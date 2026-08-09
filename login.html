@@ -4,31 +4,66 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>เข้าสู่ระบบ | EasyRoom</title>
+    <title>Sign in — EasyRoom</title>
+
+    <meta
+        name="description"
+        content="Sign in to EasyRoom"
+    >
 
     <style>
+
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Prompt:wght@300;400;500;600&display=swap');
+
+
+        :root {
+
+            --bg: #050706;
+
+            --green: #8dffb8;
+            --green-dark: #62e796;
+
+            --text: #f4f7f5;
+            --muted: #818a85;
+
+            --border:
+                rgba(255,255,255,.11);
+
+            --glass:
+                rgba(255,255,255,.055);
+
+            --input:
+                rgba(255,255,255,.045);
+
+        }
+
+
         * {
             box-sizing: border-box;
             margin: 0;
             padding: 0;
         }
 
-        :root {
-            --green: #7dffb2;
-            --green-dark: #42d77d;
-            --text: #ffffff;
-            --muted: rgba(255, 255, 255, 0.58);
-            --glass: rgba(255, 255, 255, 0.075);
-            --border: rgba(255, 255, 255, 0.18);
 
-            --rx: 0deg;
-            --ry: 0deg;
+        html,
+        body {
+            min-height: 100%;
         }
 
+
         body {
+
             min-height: 100vh;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            padding: 30px;
+
             font-family:
-                Inter,
+                "Inter",
+                "Prompt",
                 -apple-system,
                 BlinkMacSystemFont,
                 "Segoe UI",
@@ -37,78 +72,256 @@
             color: var(--text);
 
             background:
-                radial-gradient(
-                    circle at 15% 20%,
-                    rgba(90, 255, 170, 0.18),
-                    transparent 28%
-                ),
-                radial-gradient(
-                    circle at 85% 80%,
-                    rgba(100, 80, 255, 0.18),
-                    transparent 30%
-                ),
-                linear-gradient(
-                    135deg,
-                    #050807,
-                    #0b1110 45%,
-                    #050706
-                );
 
-            display: flex;
-            justify-content: center;
-            align-items: center;
+                radial-gradient(
+                    650px circle at 15% 15%,
+                    rgba(98,231,150,.075),
+                    transparent 55%
+                ),
 
-            overflow-x: hidden;
-            padding: 30px;
+                radial-gradient(
+                    600px circle at 85% 80%,
+                    rgba(81,105,255,.055),
+                    transparent 55%
+                ),
+
+                #050706;
+
+            overflow: hidden;
         }
 
-        /* Background */
 
-        .background-glow {
+        /* =================================
+           AMBIENT LIGHT
+        ================================= */
+
+        .ambient {
+
             position: fixed;
-            width: 420px;
-            height: 420px;
+
+            width: 380px;
+            height: 380px;
 
             border-radius: 50%;
 
-            background: rgba(91, 255, 163, 0.08);
+            background:
+                rgba(110,255,161,.08);
 
-            filter: blur(80px);
+            filter:
+                blur(100px);
 
             pointer-events: none;
+
+            animation:
+                ambientMove 9s ease-in-out infinite;
         }
 
-        .glow-one {
-            top: -160px;
-            left: -120px;
+
+        .ambient.one {
+
+            top: -220px;
+            left: -150px;
+
         }
 
-        .glow-two {
-            right: -150px;
-            bottom: -170px;
 
-            background: rgba(91, 109, 255, 0.10);
+        .ambient.two {
+
+            right: -220px;
+            bottom: -180px;
+
+            background:
+                rgba(88,103,255,.065);
+
+            animation-delay:
+                -4s;
+
         }
 
-        /* Main */
+
+        @keyframes ambientMove {
+
+            0%,
+            100% {
+                transform:
+                    translate(0,0);
+            }
+
+            50% {
+                transform:
+                    translate(35px,-25px);
+            }
+
+        }
+
+
+        /* =================================
+           PAGE
+        ================================= */
 
         .page {
-            width: 100%;
-            max-width: 430px;
 
-            perspective: 1200px;
+            width: 100%;
+
+            max-width: 1050px;
+
+            display: grid;
+
+            grid-template-columns:
+                .9fr 1.1fr;
+
+            gap: 70px;
+
+            align-items: center;
         }
 
-        /* Glass Card */
+
+        /* =================================
+           LEFT SIDE
+        ================================= */
+
+        .intro {
+
+            animation:
+                fadeUp .8s ease both;
+        }
+
+
+        .brand {
+
+            display: inline-flex;
+
+            align-items: center;
+
+            gap: 11px;
+
+            margin-bottom: 40px;
+        }
+
+
+        .brand img {
+
+            width: 42px;
+            height: 42px;
+
+            object-fit: contain;
+
+            border-radius: 11px;
+        }
+
+
+        .brand span {
+
+            font-size: 17px;
+
+            font-weight: 700;
+
+            letter-spacing:
+                -.4px;
+        }
+
+
+        .intro h1 {
+
+            max-width: 430px;
+
+            font-size:
+                clamp(42px,5vw,65px);
+
+            line-height:
+                .98;
+
+            letter-spacing:
+                -4px;
+        }
+
+
+        .intro h1 span {
+
+            color:
+                var(--green);
+
+        }
+
+
+        .intro p {
+
+            max-width: 410px;
+
+            margin-top: 22px;
+
+            color:
+                var(--muted);
+
+            font-size: 14px;
+
+            line-height:
+                1.8;
+        }
+
+
+        .back {
+
+            display: inline-flex;
+
+            align-items: center;
+
+            gap: 8px;
+
+            margin-top: 30px;
+
+            color: #737c77;
+
+            font-size: 12px;
+
+            transition:
+                color .2s,
+                transform .2s;
+        }
+
+
+        .back:hover {
+
+            color: white;
+
+            transform:
+                translateX(-3px);
+        }
+
+
+        /* =================================
+           LOGIN CARD
+        ================================= */
+
+        .card-wrap {
+
+            perspective:
+                1200px;
+
+            animation:
+                cardIn .9s .1s ease both;
+        }
+
 
         .login-card {
+
             position: relative;
 
-            width: 100%;
+            padding: 34px;
 
-            padding: 38px;
+            border:
+                1px solid
+                rgba(255,255,255,.14);
 
-            background: rgba(255, 255, 255, 0.075);
+            border-radius:
+                26px;
+
+            background:
+                linear-gradient(
+                    145deg,
+                    rgba(255,255,255,.095),
+                    rgba(255,255,255,.035)
+                );
 
             backdrop-filter:
                 blur(24px)
@@ -118,329 +331,452 @@
                 blur(24px)
                 saturate(1.35);
 
-            border:
-                1px solid
-                rgba(255, 255, 255, 0.18);
-
-            border-radius: 26px;
-
             box-shadow:
-                0 30px 80px rgba(0, 0, 0, 0.45),
-                inset 0 1px 0 rgba(255,255,255,.08);
 
-            transform:
-                rotateX(var(--rx))
-                rotateY(var(--ry));
+                0 45px 100px
+                rgba(0,0,0,.45),
 
-            transform-style: preserve-3d;
+                inset 0 1px 0
+                rgba(255,255,255,.09);
+
+            transform-style:
+                preserve-3d;
 
             transition:
-                transform 0.12s ease-out,
-                box-shadow 0.3s ease;
-
-            overflow: hidden;
+                transform .18s ease;
         }
 
+
         .login-card::before {
+
             content: "";
 
             position: absolute;
 
-            top: -100px;
-            left: -100px;
+            inset: 0;
 
-            width: 260px;
-            height: 260px;
-
-            border-radius: 50%;
-
-            background:
-                radial-gradient(
-                    circle,
-                    rgba(125,255,178,.13),
-                    transparent 70%
-                );
+            border-radius:
+                inherit;
 
             pointer-events: none;
+
+            background:
+                linear-gradient(
+                    120deg,
+                    rgba(255,255,255,.08),
+                    transparent 30%
+                );
+
+            opacity:
+                .7;
         }
 
-        /* Logo */
 
-        .brand {
-            display: flex;
-            align-items: center;
-            gap: 12px;
+        /* =================================
+           CARD HEADER
+        ================================= */
 
-            margin-bottom: 32px;
+        .card-header {
+
+            position: relative;
+
+            margin-bottom: 29px;
         }
 
-        .brand-icon {
+
+        .card-header .mini-logo {
+
             width: 44px;
             height: 44px;
 
-            display: flex;
-            align-items: center;
-            justify-content: center;
+            object-fit: contain;
 
-            border-radius: 13px;
+            border-radius:
+                12px;
 
-            background:
-                rgba(125,255,178,.12);
-
-            border:
-                1px solid
-                rgba(125,255,178,.25);
-
-            color: var(--green);
-
-            font-size: 21px;
-
-            box-shadow:
-                0 0 25px rgba(125,255,178,.08);
+            margin-bottom: 20px;
         }
 
-        .brand-name {
-            font-size: 18px;
-            font-weight: 600;
-            letter-spacing: -.3px;
+
+        .card-header h2 {
+
+            font-size: 27px;
+
+            letter-spacing:
+                -1px;
+
+            margin-bottom: 7px;
         }
 
-        /* Heading */
 
-        .heading {
-            margin-bottom: 27px;
-        }
-
-        .heading h1 {
-            font-size: 34px;
-            line-height: 1.15;
-
-            letter-spacing: -1.2px;
-
-            margin-bottom: 9px;
-        }
-
-        .heading p {
-            color: var(--muted);
-
-            font-size: 14px;
-
-            line-height: 1.6;
-        }
-
-        /* Form */
-
-        .form-group {
-            margin-bottom: 17px;
-        }
-
-        .form-group label {
-            display: block;
-
-            font-size: 12px;
+        .card-header p {
 
             color:
-                rgba(255,255,255,.65);
+                var(--muted);
 
-            margin-bottom: 8px;
+            font-size:
+                12px;
+
+            line-height:
+                1.6;
         }
 
-        .input-wrapper {
+
+        /* =================================
+           FORM
+        ================================= */
+
+        .form-group {
+
+            position: relative;
+
+            margin-bottom:
+                15px;
+        }
+
+
+        .form-group label {
+
+            display: block;
+
+            margin-bottom:
+                7px;
+
+            color:
+                #9ba39f;
+
+            font-size:
+                10px;
+
+            font-weight:
+                500;
+
+            letter-spacing:
+                .2px;
+        }
+
+
+        .input-wrap {
+
             position: relative;
         }
 
-        .input {
+
+        .input-wrap input {
+
             width: 100%;
 
-            height: 52px;
-
-            border-radius: 14px;
-
-            border:
-                1px solid
-                rgba(255,255,255,.12);
-
-            background:
-                rgba(255,255,255,.055);
-
-            color: white;
-
-            outline: none;
+            height: 50px;
 
             padding:
                 0 15px;
 
-            font-size: 14px;
+            border:
+                1px solid
+                rgba(255,255,255,.09);
 
-            transition:
-                border-color .25s,
-                background .25s,
-                box-shadow .25s;
-        }
+            outline: none;
 
-        .input::placeholder {
-            color:
-                rgba(255,255,255,.30);
-        }
-
-        .input:focus {
-            border-color:
-                rgba(125,255,178,.55);
+            border-radius:
+                13px;
 
             background:
-                rgba(255,255,255,.08);
+                rgba(0,0,0,.16);
+
+            color:
+                white;
+
+            font-family:
+                inherit;
+
+            font-size:
+                13px;
+
+            transition:
+                border-color .2s,
+                background .2s,
+                box-shadow .2s;
+        }
+
+
+        .input-wrap input::placeholder {
+
+            color:
+                #59625d;
+        }
+
+
+        .input-wrap input:focus {
+
+            border-color:
+                rgba(141,255,184,.35);
+
+            background:
+                rgba(141,255,184,.035);
 
             box-shadow:
-                0 0 0 4px
-                rgba(125,255,178,.07);
+                0 0 0 3px
+                rgba(141,255,184,.055);
         }
 
-        /* Password eye */
+
+        /* =================================
+           PASSWORD
+        ================================= */
 
         .password-input {
-            padding-right: 50px;
+
+            padding-right:
+                48px !important;
         }
 
-        .eye-button {
+
+        .toggle-password {
+
             position: absolute;
 
-            right: 8px;
             top: 50%;
+            right: 13px;
 
             transform:
                 translateY(-50%);
 
-            width: 38px;
-            height: 38px;
-
             border: none;
 
-            background: transparent;
+            background: none;
 
             color:
-                rgba(255,255,255,.45);
+                #68716c;
 
             cursor: pointer;
 
-            border-radius: 10px;
+            font-size: 14px;
 
-            font-size: 17px;
+            padding: 5px;
+
+            transition:
+                color .2s;
         }
 
-        .eye-button:hover {
-            color: white;
 
-            background:
-                rgba(255,255,255,.06);
+        .toggle-password:hover {
+
+            color:
+                #c4ccc7;
         }
 
-        /* Options */
+
+        /* =================================
+           OPTIONS
+        ================================= */
 
         .options {
+
             display: flex;
 
-            justify-content: space-between;
+            justify-content:
+                space-between;
 
-            align-items: center;
+            align-items:
+                center;
 
             margin:
-                6px 0 21px;
-
-            font-size: 12px;
+                17px 1px 22px;
         }
 
+
         .remember {
+
             display: flex;
 
-            align-items: center;
+            align-items:
+                center;
 
             gap: 8px;
 
             color:
-                rgba(255,255,255,.60);
+                #858e89;
+
+            font-size:
+                10px;
 
             cursor: pointer;
         }
 
+
         .remember input {
-            accent-color:
-                var(--green);
 
-            width: 14px;
-            height: 14px;
-        }
+            appearance: none;
 
-        .forgot {
-            color:
-                var(--green);
+            width: 15px;
+            height: 15px;
 
-            text-decoration: none;
-        }
+            border:
+                1px solid
+                rgba(255,255,255,.15);
 
-        .forgot:hover {
-            text-decoration: underline;
-        }
-
-        /* Sign In */
-
-        .sign-in {
-            width: 100%;
-
-            height: 53px;
-
-            border: none;
-
-            border-radius: 15px;
+            border-radius:
+                4px;
 
             background:
-                linear-gradient(
-                    135deg,
-                    #9affc5,
-                    #63ec9c
-                );
-
-            color: #07120c;
-
-            font-size: 14px;
-
-            font-weight: 700;
+                rgba(255,255,255,.04);
 
             cursor: pointer;
 
             position: relative;
+        }
+
+
+        .remember input:checked {
+
+            background:
+                var(--green);
+
+            border-color:
+                var(--green);
+        }
+
+
+        .remember input:checked::after {
+
+            content:
+                "✓";
+
+            position: absolute;
+
+            color:
+                #07120c;
+
+            font-size:
+                10px;
+
+            font-weight:
+                800;
+
+            top: 50%;
+            left: 50%;
+
+            transform:
+                translate(-50%,-53%);
+        }
+
+
+        .forgot {
+
+            color:
+                var(--green);
+
+            font-size:
+                10px;
+
+            transition:
+                opacity .2s;
+        }
+
+
+        .forgot:hover {
+
+            opacity:
+                .7;
+        }
+
+
+        /* =================================
+           SIGN IN BUTTON
+        ================================= */
+
+        .submit-btn {
+
+            position: relative;
+
+            width: 100%;
+
+            height: 51px;
+
+            border: none;
+
+            border-radius:
+                13px;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #a1ffc5,
+                    #62e896
+                );
+
+            color:
+                #07120c;
+
+            font-family:
+                inherit;
+
+            font-size:
+                12px;
+
+            font-weight:
+                700;
+
+            cursor: pointer;
 
             overflow: hidden;
 
-            transition:
-                transform .15s,
-                box-shadow .25s;
-        }
-
-        .sign-in:hover {
             box-shadow:
-                0 10px 30px
-                rgba(98,239,157,.22);
+                0 13px 35px
+                rgba(90,255,145,.13);
+
+            transition:
+                transform .2s,
+                box-shadow .2s;
+        }
+
+
+        .submit-btn:hover {
 
             transform:
-                translateY(-1px);
+                translateY(-2px);
+
+            box-shadow:
+                0 18px 42px
+                rgba(90,255,145,.20);
         }
 
-        .sign-in:active {
+
+        .submit-btn:active {
+
             transform:
-                scale(.98);
+                translateY(1px)
+                scale(.99);
         }
 
-        .sign-in.loading {
-            pointer-events: none;
 
-            color: transparent;
+        .submit-btn.loading {
+
+            pointer-events:
+                none;
+
+            color:
+                transparent;
         }
+
+
+        .submit-btn.success {
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #8dffb8,
+                    #5ee58f
+                );
+        }
+
 
         .spinner {
+
             position: absolute;
 
-            width: 20px;
-            height: 20px;
+            width: 18px;
+            height: 18px;
 
             border:
                 2px solid
@@ -449,376 +785,649 @@
             border-top-color:
                 #07120c;
 
-            border-radius: 50%;
+            border-radius:
+                50%;
+
+            top: 50%;
+            left: 50%;
+
+            transform:
+                translate(-50%,-50%);
 
             animation:
                 spin .7s linear infinite;
 
-            left: 50%;
-            top: 50%;
-
-            transform:
-                translate(-50%, -50%);
-
             display: none;
         }
 
-        .sign-in.loading .spinner {
+
+        .loading .spinner {
+
             display: block;
         }
 
+
         .check {
+
             display: none;
 
-            font-size: 20px;
+            font-size:
+                18px;
+
+            position: absolute;
+
+            top: 50%;
+            left: 50%;
+
+            transform:
+                translate(-50%,-50%);
         }
 
-        .sign-in.success {
-            background:
-                #74f2a7;
+
+        .success .check {
+
+            display: block;
         }
 
-        .sign-in.success .check {
-            display: inline;
-        }
 
         @keyframes spin {
+
             to {
                 transform:
-                    translate(-50%, -50%)
+                    translate(-50%,-50%)
                     rotate(360deg);
             }
+
         }
 
-        /* Divider */
+
+        /* =================================
+           DIVIDER
+        ================================= */
 
         .divider {
+
             display: flex;
 
-            align-items: center;
+            align-items:
+                center;
 
-            gap: 13px;
+            gap: 12px;
 
-            margin: 26px 0 18px;
+            margin:
+                24px 0 18px;
 
             color:
-                rgba(255,255,255,.30);
+                #555e59;
 
-            font-size: 11px;
+            font-size:
+                9px;
         }
+
 
         .divider::before,
         .divider::after {
-            content: "";
 
-            height: 1px;
+            content: "";
 
             flex: 1;
 
+            height: 1px;
+
             background:
-                rgba(255,255,255,.10);
+                rgba(255,255,255,.07);
         }
 
-        /* Social */
+
+        /* =================================
+           SOCIAL
+        ================================= */
 
         .social {
+
             display: grid;
 
             grid-template-columns:
                 1fr 1fr;
 
-            gap: 10px;
+            gap:
+                9px;
         }
 
-        .social-button {
-            height: 48px;
 
-            border-radius: 13px;
+        .social button {
+
+            height: 45px;
 
             border:
                 1px solid
-                rgba(255,255,255,.11);
+                rgba(255,255,255,.09);
+
+            border-radius:
+                11px;
 
             background:
-                rgba(255,255,255,.045);
+                rgba(255,255,255,.035);
 
-            color: white;
-
-            font-family: inherit;
-
-            font-size: 13px;
+            color:
+                #b4bbb7;
 
             cursor: pointer;
 
+            font-family:
+                inherit;
+
+            font-size:
+                11px;
+
             transition:
                 background .2s,
-                transform .15s;
+                border-color .2s,
+                transform .2s;
         }
 
-        .social-button:hover {
+
+        .social button:hover {
+
             background:
-                rgba(255,255,255,.09);
+                rgba(255,255,255,.07);
+
+            border-color:
+                rgba(255,255,255,.15);
 
             transform:
                 translateY(-1px);
         }
 
+
         .social-icon {
-            margin-right: 7px;
+
+            margin-right:
+                7px;
+
+            font-weight:
+                700;
         }
 
-        /* Bottom */
 
-        .bottom {
-            text-align: center;
+        /* =================================
+           REGISTER
+        ================================= */
 
-            margin-top: 25px;
+        .signup {
+
+            margin-top:
+                25px;
+
+            padding-top:
+                20px;
+
+            border-top:
+                1px solid
+                rgba(255,255,255,.06);
+
+            text-align:
+                center;
 
             color:
-                rgba(255,255,255,.42);
+                #69726d;
 
-            font-size: 12px;
+            font-size:
+                10px;
         }
 
-        .bottom a {
-            color: var(--green);
 
-            text-decoration: none;
+        .signup a {
 
-            font-weight: 500;
+            color:
+                var(--green);
+
+            font-weight:
+                600;
+
+            margin-left:
+                4px;
         }
 
-        .bottom a:hover {
-            text-decoration: underline;
+
+        /* =================================
+           ANIMATION
+        ================================= */
+
+        @keyframes fadeUp {
+
+            from {
+                opacity: 0;
+
+                transform:
+                    translateY(20px);
+            }
+
+            to {
+                opacity: 1;
+
+                transform:
+                    translateY(0);
+            }
+
         }
 
-        /* Mobile */
 
-        @media (max-width: 520px) {
+        @keyframes cardIn {
+
+            from {
+                opacity: 0;
+
+                transform:
+                    translateY(25px)
+                    rotateX(4deg);
+            }
+
+            to {
+                opacity: 1;
+
+                transform:
+                    translateY(0)
+                    rotateX(0);
+            }
+
+        }
+
+
+        /* =================================
+           MOBILE
+        ================================= */
+
+        @media (max-width: 800px) {
 
             body {
-                padding: 16px;
+                overflow:
+                    auto;
+
+                padding:
+                    20px;
             }
 
-            .login-card {
-                padding: 28px 22px;
 
-                border-radius: 23px;
+            .page {
+
+                grid-template-columns:
+                    1fr;
+
+                gap:
+                    35px;
+
+                max-width:
+                    500px;
             }
 
-            .heading h1 {
-                font-size: 30px;
+
+            .intro {
+
+                text-align:
+                    center;
             }
 
-            /* ปิด Tilt บนมือถือ */
-            .login-card {
-                transform: none !important;
+
+            .brand {
+
+                margin-bottom:
+                    25px;
+            }
+
+
+            .intro h1 {
+
+                margin:
+                    auto;
+
+                font-size:
+                    46px;
+
+                letter-spacing:
+                    -3px;
+            }
+
+
+            .intro p {
+
+                margin:
+                    17px auto 0;
+            }
+
+
+            .back {
+
+                margin-top:
+                    20px;
+            }
+
+
+            .card-wrap {
+
+                width:
+                    100%;
             }
 
         }
+
+
+        @media (max-width: 480px) {
+
+            body {
+                padding:
+                    15px;
+            }
+
+
+            .intro h1 {
+
+                font-size:
+                    39px;
+
+                letter-spacing:
+                    -2.5px;
+            }
+
+
+            .intro p {
+
+                font-size:
+                    12px;
+            }
+
+
+            .login-card {
+
+                padding:
+                    25px 20px;
+
+                border-radius:
+                    22px;
+            }
+
+
+            .card-header h2 {
+
+                font-size:
+                    24px;
+            }
+
+        }
+
     </style>
 </head>
 
+
 <body>
 
-    <div class="background-glow glow-one"></div>
-    <div class="background-glow glow-two"></div>
+
+    <div class="ambient one"></div>
+    <div class="ambient two"></div>
 
 
     <main class="page">
 
-        <section
-            class="login-card"
-            id="loginCard">
 
+        <!-- =========================
+             INTRO
+        ========================== -->
 
-            <!-- Brand -->
+        <section class="intro">
 
-            <div class="brand">
+            <a
+                href="index.html"
+                class="brand">
 
-                <div class="brand-icon">
-                    🏫
-                </div>
+                <img
+                    src="https://img1.pic.in.th/images/Screenshot-2026-08-10-at-00.21.21.png"
+                    alt="EasyRoom"
+                >
 
-                <div class="brand-name">
+                <span>
                     EasyRoom
-                </div>
+                </span>
 
-            </div>
-
-
-            <!-- Heading -->
-
-            <div class="heading">
-
-                <h1>
-                    Welcome back
-                </h1>
-
-                <p>
-                    Sign in to continue to EasyRoom
-                </p>
-
-            </div>
+            </a>
 
 
-            <!-- Form -->
+            <h1>
 
-            <form id="loginForm">
+                Welcome
+                <span>
+                    back.
+                </span>
+
+            </h1>
 
 
-                <div class="form-group">
+            <p>
 
-                    <label>
-                        Username
-                    </label>
+                Sign in to continue managing
+                your rooms, bookings and
+                schedules with EasyRoom.
 
-                    <input
-                        class="input"
-                        id="username"
-                        type="text"
-                        placeholder="Enter your username"
-                        autocomplete="username"
-                        required
+            </p>
+
+
+            <a
+                href="index.html"
+                class="back">
+
+                ← Back to home
+
+            </a>
+
+        </section>
+
+
+
+        <!-- =========================
+             LOGIN CARD
+        ========================== -->
+
+        <section class="card-wrap">
+
+            <div
+                class="login-card"
+                id="loginCard">
+
+
+                <div class="card-header">
+
+                    <img
+                        class="mini-logo"
+                        src="https://img1.pic.in.th/images/Screenshot-2026-08-10-at-00.21.21.png"
+                        alt="EasyRoom Logo"
                     >
 
+                    <h2>
+                        Sign in
+                    </h2>
+
+                    <p>
+                        Enter your account details
+                        to continue.
+                    </p>
+
                 </div>
 
 
-                <div class="form-group">
 
-                    <label>
-                        Password
-                    </label>
+                <form
+                    id="loginForm">
 
 
-                    <div class="input-wrapper">
+                    <!-- Username -->
 
-                        <input
-                            class="input password-input"
-                            id="password"
-                            type="password"
-                            placeholder="Enter your password"
-                            autocomplete="current-password"
-                            required
-                        >
+                    <div class="form-group">
 
+                        <label for="username">
+                            Username
+                        </label>
 
-                        <button
-                            type="button"
-                            class="eye-button"
-                            id="eyeButton"
-                            aria-label="แสดงรหัสผ่าน">
+                        <div class="input-wrap">
 
-                            👁
+                            <input
+                                type="text"
+                                id="username"
+                                name="username"
+                                placeholder="Enter your username"
+                                autocomplete="username"
+                                required
+                            >
 
-                        </button>
+                        </div>
 
                     </div>
 
+
+
+                    <!-- Password -->
+
+                    <div class="form-group">
+
+                        <label for="password">
+                            Password
+                        </label>
+
+                        <div class="input-wrap">
+
+                            <input
+                                class="password-input"
+                                type="password"
+                                id="password"
+                                name="password"
+                                placeholder="Enter your password"
+                                autocomplete="current-password"
+                                required
+                            >
+
+
+                            <button
+                                type="button"
+                                class="toggle-password"
+                                id="togglePassword"
+                                aria-label="Show password">
+
+                                ◉
+
+                            </button>
+
+                        </div>
+
+                    </div>
+
+
+
+                    <!-- Options -->
+
+                    <div class="options">
+
+                        <label class="remember">
+
+                            <input
+                                type="checkbox"
+                                id="remember"
+                            >
+
+                            Remember me
+
+                        </label>
+
+
+                        <a
+                            href="#"
+                            class="forgot">
+
+                            Forgot password?
+
+                        </a>
+
+                    </div>
+
+
+
+                    <!-- Submit -->
+
+                    <button
+                        class="submit-btn"
+                        id="submitBtn"
+                        type="submit">
+
+                        <span class="button-text">
+                            Sign In
+                        </span>
+
+                        <span class="spinner"></span>
+
+                        <span class="check">
+                            ✓
+                        </span>
+
+                    </button>
+
+
+                </form>
+
+
+
+                <!-- Divider -->
+
+                <div class="divider">
+
+                    or continue with
+
                 </div>
 
 
-                <!-- Options -->
 
-                <div class="options">
+                <!-- Social -->
 
-                    <label class="remember">
+                <div class="social">
 
-                        <input
-                            type="checkbox"
-                            id="remember"
-                        >
+                    <button
+                        type="button">
 
-                        <span>
-                            Remember me
+                        <span class="social-icon">
+                            G
                         </span>
 
-                    </label>
+                        Google
 
+                    </button>
+
+
+                    <button
+                        type="button">
+
+                        <span class="social-icon">
+                            
+                        </span>
+
+                        Apple
+
+                    </button>
+
+                </div>
+
+
+
+                <!-- Signup -->
+
+                <div class="signup">
+
+                    New to EasyRoom?
 
                     <a
-                        href="#"
-                        class="forgot"
-                        onclick="forgotPassword(event)">
+                        href="register.html">
 
-                        Forgot password?
+                        Create account
 
                     </a>
 
                 </div>
 
-
-                <!-- Sign In -->
-
-                <button
-                    type="submit"
-                    class="sign-in"
-                    id="signInButton">
-
-                    <span class="button-text">
-                        Sign In
-                    </span>
-
-                    <span class="spinner"></span>
-
-                    <span class="check">
-                        ✓
-                    </span>
-
-                </button>
-
-            </form>
-
-
-            <!-- Divider -->
-
-            <div class="divider">
-                or continue with
-            </div>
-
-
-            <!-- Social -->
-
-            <div class="social">
-
-                <button
-                    class="social-button"
-                    onclick="socialLogin('Google')">
-
-                    <span class="social-icon">
-                        G
-                    </span>
-
-                    Google
-
-                </button>
-
-
-                <button
-                    class="social-button"
-                    onclick="socialLogin('Apple')">
-
-                    <span class="social-icon">
-                        
-                    </span>
-
-                    Apple
-
-                </button>
-
-            </div>
-
-
-            <!-- Bottom -->
-
-            <div class="bottom">
-
-                New to EasyRoom?
-
-                <a href="register.html">
-                    Create account
-                </a>
 
             </div>
 
@@ -827,277 +1436,206 @@
     </main>
 
 
+
     <script>
 
-        /* =========================
-           PASSWORD SHOW / HIDE
-        ========================= */
+        /* =================================
+           PASSWORD VISIBILITY
+        ================================= */
 
         const password =
-            document.getElementById("password");
+            document.getElementById(
+                "password"
+            );
 
-        const eyeButton =
-            document.getElementById("eyeButton");
+        const togglePassword =
+            document.getElementById(
+                "togglePassword"
+            );
 
 
-        eyeButton.addEventListener(
+        togglePassword.addEventListener(
             "click",
             () => {
 
-                const isPassword =
-                    password.type === "password";
+                const visible =
+                    password.type ===
+                    "text";
 
 
                 password.type =
-                    isPassword
-                        ? "text"
-                        : "password";
+                    visible
+                        ? "password"
+                        : "text";
 
 
-                eyeButton.textContent =
-                    isPassword
-                        ? "🙈"
-                        : "👁";
+                togglePassword.textContent =
+                    visible
+                        ? "◉"
+                        : "◌";
 
             }
         );
 
 
-        /* =========================
+
+        /* =================================
            3D CARD TILT
-        ========================= */
+        ================================= */
 
         const card =
-            document.getElementById("loginCard");
+            document.getElementById(
+                "loginCard"
+            );
 
 
-        document.addEventListener(
-            "pointermove",
-            (event) => {
+        const cardWrap =
+            document.querySelector(
+                ".card-wrap"
+            );
 
-                /*
-                    ไม่ทำ Tilt บนอุปกรณ์ Touch
-                */
 
-                if (
-                    window.innerWidth <= 520 ||
-                    event.pointerType === "touch"
-                ) {
+        if (
+            window.innerWidth > 800
+        ) {
 
-                    return;
+            cardWrap.addEventListener(
+                "pointermove",
+                (event) => {
+
+                    const rect =
+                        cardWrap.getBoundingClientRect();
+
+
+                    const x =
+                        event.clientX -
+                        rect.left;
+
+
+                    const y =
+                        event.clientY -
+                        rect.top;
+
+
+                    const rotateY =
+                        ((x -
+                            rect.width / 2) /
+                            rect.width) *
+                        7;
+
+
+                    const rotateX =
+                        ((rect.height / 2 -
+                            y) /
+                            rect.height) *
+                        7;
+
+
+                    card.style.transform =
+                        `
+                        rotateX(${rotateX}deg)
+                        rotateY(${rotateY}deg)
+                        translateY(-3px)
+                        `;
 
                 }
+            );
 
 
-                const rect =
-                    card.getBoundingClientRect();
+            cardWrap.addEventListener(
+                "pointerleave",
+                () => {
+
+                    card.style.transform =
+                        `
+                        rotateX(0deg)
+                        rotateY(0deg)
+                        translateY(0)
+                        `;
+
+                }
+            );
+
+        }
 
 
-                const x =
-                    event.clientX - rect.left;
 
-                const y =
-                    event.clientY - rect.top;
+        /* =================================
+           LOGIN STATE
+        ================================= */
 
-
-                const centerX =
-                    rect.width / 2;
-
-                const centerY =
-                    rect.height / 2;
-
-
-                const rotateY =
-                    ((x - centerX) /
-                    centerX) * 5;
-
-
-                const rotateX =
-                    ((centerY - y) /
-                    centerY) * 5;
-
-
-                card.style.setProperty(
-                    "--ry",
-                    `${rotateY}deg`
-                );
-
-
-                card.style.setProperty(
-                    "--rx",
-                    `${rotateX}deg`
-                );
-
-            }
-        );
-
-
-        card.addEventListener(
-            "pointerleave",
-            () => {
-
-                card.style.setProperty(
-                    "--rx",
-                    "0deg"
-                );
-
-                card.style.setProperty(
-                    "--ry",
-                    "0deg"
-                );
-
-            }
-        );
-
-
-        /* =========================
-           LOGIN
-        ========================= */
-
-        const loginForm =
+        const form =
             document.getElementById(
                 "loginForm"
             );
 
 
-        const signInButton =
+        const submitBtn =
             document.getElementById(
-                "signInButton"
+                "submitBtn"
             );
 
 
-        loginForm.addEventListener(
+        const buttonText =
+            submitBtn.querySelector(
+                ".button-text"
+            );
+
+
+        form.addEventListener(
             "submit",
             (event) => {
 
                 event.preventDefault();
 
 
-                const username =
-                    document
-                        .getElementById(
-                            "username"
-                        )
-                        .value
-                        .trim();
-
-
-                const passwordValue =
-                    password.value;
-
-
-                if (
-                    !username ||
-                    !passwordValue
-                ) {
-
-                    return;
-
-                }
-
-
-                /*
-                    Loading
-                */
-
-                signInButton.classList.add(
+                submitBtn.classList.add(
                     "loading"
                 );
 
 
-                /*
-                    จำลองการเข้าสู่ระบบ
-                */
+                buttonText.textContent =
+                    "Signing in...";
+
 
                 setTimeout(
                     () => {
 
-                        signInButton.classList.remove(
+                        submitBtn.classList.remove(
                             "loading"
                         );
 
 
-                        signInButton.classList.add(
+                        submitBtn.classList.add(
                             "success"
                         );
 
 
-                        signInButton.querySelector(
-                            ".button-text"
-                        ).style.display =
-                            "none";
+                        buttonText.textContent =
+                            "Success";
 
-
-                        /*
-                            เก็บ User ไว้สำหรับ Dashboard
-                        */
-
-                        const user = {
-
-                            name: username,
-
-                            role: "student",
-
-                            roleName: "นักศึกษา"
-
-                        };
-
-
-                        localStorage.setItem(
-                            "easyroom_user",
-                            JSON.stringify(user)
-                        );
-
-
-                        /*
-                            รอแสดง Checkmark
-                        */
 
                         setTimeout(
                             () => {
 
-                                window.location.href =
-                                    "dashboard.html";
+                                /*
+                                 * ตอนมี Backend จริง
+                                 * เปลี่ยนตรงนี้เป็น
+                                 *
+                                 * window.location.href =
+                                 * "dashboard.html";
+                                 */
 
                             },
-                            600
+                            800
                         );
 
                     },
-                    900
+                    1100
                 );
 
             }
         );
-
-
-        /* =========================
-           FORGOT PASSWORD
-        ========================= */
-
-        function forgotPassword(event) {
-
-            event.preventDefault();
-
-            alert(
-                "ระบบรีเซ็ตรหัสผ่านจะเปิดใช้งานเมื่อเชื่อมต่อฐานข้อมูล"
-            );
-
-        }
-
-
-        /* =========================
-           SOCIAL LOGIN
-        ========================= */
-
-        function socialLogin(provider) {
-
-            alert(
-                provider +
-                " Login จะเปิดใช้งานเมื่อเชื่อมต่อระบบ Authentication"
-            );
-
-        }
 
     </script>
 
