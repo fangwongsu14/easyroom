@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>สมัครสมาชิก | EasyRoom</title>
+
+<style>
+
+@import url('https://fonts.googleapis.com/css2?family=Prompt:wght@300;400;500;600;700&display=swap');
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Prompt', sans-serif;
+    min-height: 100vh;
+    background: linear-gradient(135deg, #2563eb, #4f46e5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+}
+
+.container {
+    width: 100%;
+    max-width: 470px;
+}
+
+.logo {
+    text-align: center;
+    color: white;
+    margin-bottom: 22px;
+}
+
+.logo-icon {
+    width: 62px;
+    height: 62px;
+    background: white;
+    color: #2563eb;
+    border-radius: 17px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 30px;
+    margin: auto auto 10px;
+}
+
+.logo h1 {
+    font-size: 29px;
+}
+
+.logo p {
+    font-size: 14px;
+    opacity: .9;
+}
+
+.card {
+    background: white;
+    border-radius: 20px;
+    padding: 30px;
+    box-shadow: 0 15px 40px rgba(0,0,0,.18);
+}
+
+.card h2 {
+    text-align: center;
+    margin-bottom: 23px;
+}
+
+.form-group {
+    margin-bottom: 15px;
+}
+
+label {
+    display: block;
+    font-size: 14px;
+    margin-bottom: 6px;
+    color: #334155;
+}
+
+input,
+select {
+    width: 100%;
+    padding: 12px 13px;
+    border: 1px solid #d8dee8;
+    border-radius: 9px;
+    font-family: inherit;
+    outline: none;
+}
+
+input:focus,
+select:focus {
+    border-color: #2563eb;
+}
+
+.register-btn {
+    width: 100%;
+    border: none;
+    border-radius: 10px;
+    padding: 13px;
+    background: #2563eb;
+    color: white;
+    font-family: inherit;
+    font-size: 15px;
+    cursor: pointer;
+    margin-top: 5px;
+}
+
+.register-btn:hover {
+    background: #1d4ed8;
+}
+
+.links {
+    text-align: center;
+    margin-top: 20px;
+    font-size: 14px;
+}
+
+.links a {
+    color: #2563eb;
+    text-decoration: none;
+}
+
+.back {
+    display: block;
+    text-align: center;
+    margin-top: 17px;
+    color: white;
+    text-decoration: none;
+    font-size: 14px;
+}
+
+.notice {
+    background: #eff6ff;
+    color: #1d4ed8;
+    border-radius: 9px;
+    padding: 11px;
+    font-size: 12px;
+    line-height: 1.6;
+    margin-bottom: 17px;
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+    <div class="logo">
+
+        <div class="logo-icon">
+            🏫
+        </div>
+
+        <h1>EasyRoom</h1>
+
+        <p>ระบบจองห้องเรียนออนไลน์</p>
+
+    </div>
+
+
+    <div class="card">
+
+        <h2>สมัครสมาชิก</h2>
+
+
+        <div class="notice">
+
+            สมัครสมาชิกเพื่อใช้งานระบบ
+            จองและตรวจสอบห้องเรียน
+
+        </div>
+
+
+        <div class="form-group">
+
+            <label>
+                ชื่อ-นามสกุล
+            </label>
+
+            <input
+                type="text"
+                id="fullname"
+                placeholder="เช่น นายโชตยากร วงษ์สุริยะอุทัย"
+            >
+
+        </div>
+
+
+        <div class="form-group">
+
+            <label>
+                ชื่อผู้ใช้งาน
+            </label>
+
+            <input
+                type="text"
+                id="username"
+                placeholder="กรอกชื่อผู้ใช้งาน"
+            >
+
+        </div>
+
+
+        <div class="form-group">
+
+            <label>
+                รหัสผ่าน
+            </label>
+
+            <input
+                type="password"
+                id="password"
+                placeholder="กรอกรหัสผ่าน"
+            >
+
+        </div>
+
+
+        <div class="form-group">
+
+            <label>
+                ยืนยันรหัสผ่าน
+            </label>
+
+            <input
+                type="password"
+                id="confirmPassword"
+                placeholder="กรอกรหัสผ่านอีกครั้ง"
+            >
+
+        </div>
+
+
+        <div class="form-group">
+
+            <label>
+                ประเภทผู้ใช้งาน
+            </label>
+
+            <select id="role">
+
+                <option value="student">
+                    👨‍🎓 นักศึกษา
+                </option>
+
+                <option value="teacher">
+                    👨‍🏫 อาจารย์
+                </option>
+
+            </select>
+
+        </div>
+
+
+        <button
+            class="register-btn"
+            onclick="register()">
+
+            สมัครสมาชิก
+
+        </button>
+
+
+        <div class="links">
+
+            มีบัญชีอยู่แล้ว?
+
+            <a href="login.html">
+                เข้าสู่ระบบ
+            </a>
+
+        </div>
+
+    </div>
+
+
+    <a
+        href="index.html"
+        class="back">
+
+        ← กลับหน้าหลัก
+
+    </a>
+
+</div>
+
+
+<script>
+
+function register() {
+
+    const fullname =
+        document
+        .getElementById("fullname")
+        .value
+        .trim();
+
+    const username =
+        document
+        .getElementById("username")
+        .value
+        .trim();
+
+    const password =
+        document
+        .getElementById("password")
+        .value;
+
+    const confirmPassword =
+        document
+        .getElementById("confirmPassword")
+        .value;
+
+    const role =
+        document
+        .getElementById("role")
+        .value;
+
+
+    if (
+        !fullname ||
+        !username ||
+        !password ||
+        !confirmPassword
+    ) {
+
+        alert(
+            "กรุณากรอกข้อมูลให้ครบทุกช่อง"
+        );
+
+        return;
+
+    }
+
+
+    if (password.length < 6) {
+
+        alert(
+            "รหัสผ่านต้องมีอย่างน้อย 6 ตัวอักษร"
+        );
+
+        return;
+
+    }
+
+
+    if (password !== confirmPassword) {
+
+        alert(
+            "รหัสผ่านไม่ตรงกัน"
+        );
+
+        return;
+
+    }
+
+
+    const user = {
+
+        fullname: fullname,
+
+        username: username,
+
+        password: password,
+
+        role: role
+
+    };
+
+
+    localStorage.setItem(
+        "easyroom_registered_user",
+        JSON.stringify(user)
+    );
+
+
+    alert(
+        "สมัครสมาชิกสำเร็จ!"
+    );
+
+
+    window.location.href =
+        "login.html";
+
+}
+
+</script>
+
+</body>
+</html>
