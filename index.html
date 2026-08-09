@@ -1,4502 +1,1139 @@
-```html
 <!DOCTYPE html>
-<html lang="th">
 
+<html lang="th">
 <head>
     <meta charset="UTF-8">
-
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>EasyRoom — Smart Campus Room Booking</title>
+```
+<title>EasyRoom — ระบบจองห้องเรียนและห้องประชุม</title>
+
+<meta name="description" content="EasyRoom ระบบจองห้องเรียนและห้องประชุมสำหรับมหาวิทยาลัย">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Noto+Sans+Thai:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+<style>
+    /* =========================================================
+       EASYROOM
+       INDEX HTML — STRUCTURE ONLY
+       Theme: Blue / White / Modern University SaaS
+       ========================================================= */
+
+    :root {
+        --blue: #1683ff;
+        --blue-dark: #0b63d8;
+        --blue-light: #eaf5ff;
+
+        --text: #10243e;
+        --text-soft: #607089;
+
+        --white: #ffffff;
+        --background: #f5f9ff;
+        --border: #dce9f7;
+    }
+
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+
+    html {
+        scroll-behavior: smooth;
+        scroll-padding-top: 90px;
+    }
+
+    body {
+        font-family: "Noto Sans Thai", "Inter", sans-serif;
+        background: var(--background);
+        color: var(--text);
+        line-height: 1.6;
+    }
+
+    a {
+        color: inherit;
+        text-decoration: none;
+    }
+
+    button {
+        font: inherit;
+    }
+
+    img {
+        display: block;
+        max-width: 100%;
+    }
+
+    /* =========================================================
+       NAVBAR
+       ========================================================= */
+
+    .navbar {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        z-index: 1000;
+
+        height: 82px;
+
+        background: rgba(255, 255, 255, 0.82);
+        backdrop-filter: blur(20px);
+        -webkit-backdrop-filter: blur(20px);
+
+        border-bottom: 1px solid rgba(220, 233, 247, 0.8);
+    }
+
+    .navbar-inner {
+        width: min(1200px, calc(100% - 40px));
+        height: 100%;
+        margin: auto;
+
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+    }
+
+    /* โลโก้เป็นรูปอย่างเดียว ไม่มีคำว่า EasyRoom ซ้ำ */
+
+    .brand {
+        display: flex;
+        align-items: center;
+        height: 62px;
+    }
+
+    .brand img {
+        width: 175px;
+        height: auto;
+        object-fit: contain;
+    }
+
+    .nav-links {
+        display: flex;
+        align-items: center;
+        gap: 34px;
+    }
+
+    .nav-links a {
+        color: #53657c;
+        font-size: 14px;
+        font-weight: 600;
+    }
+
+    .nav-links a:hover {
+        color: var(--blue);
+    }
+
+    .nav-actions {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+    }
+
+    .nav-login {
+        padding: 10px 18px;
+        color: var(--text);
+        font-size: 14px;
+        font-weight: 700;
+    }
+
+    .nav-register {
+        padding: 11px 20px;
+        border-radius: 12px;
+
+        background: var(--blue);
+        color: white;
+
+        font-size: 14px;
+        font-weight: 700;
+    }
 
-    <meta
-        name="description"
-        content="EasyRoom ระบบจองห้องเรียนและห้องประชุมสำหรับมหาวิทยาลัย"
-    >
+    /* =========================================================
+       HERO
+       ========================================================= */
 
-    <link rel="preconnect" href="https://fonts.googleapis.com">
+    .hero {
+        min-height: 100vh;
+        padding: 150px 0 90px;
 
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        position: relative;
+        overflow: hidden;
 
-    <link
-        href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;500;600;700&family=Inter:wght@400;500;600;700;800&display=swap"
-        rel="stylesheet"
-    >
+        display: flex;
+        align-items: center;
+    }
 
-    <style>
+    .hero-container {
+        width: min(1200px, calc(100% - 40px));
+        margin: auto;
 
-        /* =========================================================
-           EASYROOM — MODERN CAMPUS DESIGN SYSTEM
-           ========================================================= */
+        display: grid;
+        grid-template-columns: 1.05fr 0.95fr;
+        align-items: center;
+        gap: 70px;
+    }
 
-        :root {
+    .hero-content {
+        position: relative;
+        z-index: 2;
+    }
 
-            --blue: #2388ff;
-            --blue-2: #56b4ff;
-            --blue-3: #0f6fe8;
+    .hero-label {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
 
-            --cyan: #5edcff;
+        padding: 8px 13px;
 
-            --navy: #122d49;
-            --text: #27435f;
-            --muted: #71849a;
-            --soft: #9aaabd;
+        border: 1px solid #cfe5fb;
+        border-radius: 999px;
 
-            --bg: #f7fbff;
-            --white: #ffffff;
+        background: rgba(255, 255, 255, 0.75);
 
-            --glass:
-                rgba(255,255,255,.66);
+        color: var(--blue);
+        font-size: 13px;
+        font-weight: 700;
+    }
 
-            --line:
-                rgba(31,100,160,.10);
+    .hero-title {
+        margin-top: 22px;
 
-            --shadow:
-                0 25px 70px
-                rgba(35,111,176,.10);
+        font-size: clamp(44px, 6vw, 76px);
+        line-height: 1.05;
+        letter-spacing: -2.5px;
 
-            --radius-xl: 30px;
-            --radius-lg: 22px;
-            --radius-md: 16px;
+        font-weight: 800;
+    }
 
-        }
+    .hero-title .highlight {
+        color: var(--blue);
+    }
 
+    .hero-description {
+        max-width: 600px;
+        margin-top: 24px;
 
-        /* =========================================================
-           RESET
-           ========================================================= */
+        color: var(--text-soft);
+        font-size: 18px;
+        line-height: 1.8;
+    }
 
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+    .hero-actions {
+        display: flex;
+        align-items: center;
+        gap: 14px;
 
-        html {
-            scroll-behavior: smooth;
-        }
+        margin-top: 34px;
+    }
 
-        body {
+    .primary-button {
+        padding: 15px 24px;
 
-            font-family:
-                "Kanit",
-                "Inter",
-                sans-serif;
+        border-radius: 14px;
+        border: none;
 
-            color: var(--text);
+        background: var(--blue);
+        color: white;
 
-            background:
+        font-size: 15px;
+        font-weight: 700;
 
-                radial-gradient(
-                    circle at 8% 5%,
-                    rgba(65,164,255,.15),
-                    transparent 25%
-                ),
+        cursor: pointer;
+    }
 
-                radial-gradient(
-                    circle at 92% 25%,
-                    rgba(96,211,255,.12),
-                    transparent 28%
-                ),
+    .secondary-button {
+        padding: 14px 23px;
 
-                linear-gradient(
-                    180deg,
-                    #ffffff 0%,
-                    #f7fbff 45%,
-                    #eef7ff 100%
-                );
+        border: 1px solid var(--border);
+        border-radius: 14px;
 
-            min-height: 100vh;
+        background: white;
+        color: var(--text);
 
-            overflow-x: hidden;
+        font-size: 15px;
+        font-weight: 700;
+    }
 
-        }
+    /* =========================================================
+       HERO LOGO / VISUAL
+       ========================================================= */
 
-        body::before {
+    .hero-visual {
+        position: relative;
 
-            content: "";
+        min-height: 500px;
 
-            position: fixed;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
 
-            inset: 0;
+    .hero-logo-card {
+        width: min(480px, 100%);
+        min-height: 380px;
 
-            z-index: -3;
+        padding: 55px;
 
-            pointer-events: none;
+        display: flex;
+        align-items: center;
+        justify-content: center;
 
-            background-image:
+        border-radius: 38px;
 
-                linear-gradient(
-                    rgba(44,128,194,.025) 1px,
-                    transparent 1px
-                ),
+        background:
+            linear-gradient(
+                145deg,
+                rgba(255, 255, 255, 0.95),
+                rgba(238, 247, 255, 0.88)
+            );
 
-                linear-gradient(
-                    90deg,
-                    rgba(44,128,194,.025) 1px,
-                    transparent 1px
-                );
+        border: 1px solid rgba(207, 229, 251, 0.9);
 
-            background-size: 70px 70px;
+        box-shadow:
+            0 35px 80px rgba(34, 112, 180, 0.14);
+    }
 
-            mask-image:
-                linear-gradient(
-                    to bottom,
-                    black 0%,
-                    transparent 75%
-                );
+    .hero-logo-card img {
+        width: 100%;
+        max-width: 390px;
+        height: auto;
+    }
 
-        }
+    /* =========================================================
+       FLOATING INFO CARDS
+       ========================================================= */
 
-        ::selection {
+    .floating-card {
+        position: absolute;
 
-            color: white;
+        padding: 15px 18px;
 
-            background:
-                var(--blue);
+        border-radius: 16px;
 
-        }
+        background: rgba(255, 255, 255, 0.9);
+        border: 1px solid rgba(210, 229, 246, 0.9);
 
-        a {
-            text-decoration: none;
-            color: inherit;
-        }
+        box-shadow: 0 18px 45px rgba(34, 112, 180, 0.13);
 
-        button,
-        input {
-            font: inherit;
-        }
+        font-size: 13px;
+        font-weight: 700;
+    }
 
+    .floating-card.available {
+        top: 45px;
+        right: 5px;
+    }
 
-        /* =========================================================
-           BACKGROUND FLOATING SHAPES
-           ========================================================= */
+    .floating-card.booking {
+        bottom: 35px;
+        left: 0;
+    }
 
-        .background-shapes {
+    /* =========================================================
+       TRUST / STATS
+       ========================================================= */
 
-            position: fixed;
+    .trust-section {
+        padding: 30px 0 90px;
+    }
 
-            inset: 0;
+    .trust-container {
+        width: min(1100px, calc(100% - 40px));
+        margin: auto;
 
-            pointer-events: none;
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 20px;
+    }
 
-            z-index: -2;
+    .stat-card {
+        padding: 28px;
 
-            overflow: hidden;
+        border-radius: 20px;
 
-        }
+        background: white;
+        border: 1px solid var(--border);
 
-        .blob {
+        text-align: center;
+    }
 
-            position: absolute;
+    .stat-number {
+        color: var(--blue);
+        font-size: 30px;
+        font-weight: 800;
+    }
 
-            border-radius: 50%;
+    .stat-label {
+        margin-top: 5px;
+        color: var(--text-soft);
+        font-size: 14px;
+    }
 
-            filter: blur(2px);
+    /* =========================================================
+       FEATURES
+       ========================================================= */
 
-            opacity: .55;
+    .section {
+        padding: 110px 0;
+    }
 
-            animation:
-                blobFloat 10s ease-in-out infinite;
+    .section-container {
+        width: min(1200px, calc(100% - 40px));
+        margin: auto;
+    }
 
-        }
+    .section-heading {
+        max-width: 700px;
+        margin-bottom: 50px;
+    }
 
-        .blob.one {
+    .section-kicker {
+        color: var(--blue);
+        font-size: 13px;
+        font-weight: 800;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+    }
 
-            width: 180px;
-            height: 180px;
+    .section-title {
+        margin-top: 10px;
 
-            top: 16%;
-            left: -55px;
+        font-size: clamp(34px, 4vw, 52px);
+        line-height: 1.15;
+        letter-spacing: -1.5px;
 
-            background:
-                linear-gradient(
-                    135deg,
-                    rgba(89,180,255,.25),
-                    rgba(135,226,255,.10)
-                );
+        font-weight: 800;
+    }
 
-        }
+    .section-description {
+        margin-top: 16px;
 
-        .blob.two {
+        color: var(--text-soft);
+        font-size: 16px;
+    }
 
-            width: 120px;
-            height: 120px;
+    .features-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 20px;
+    }
 
-            top: 55%;
-            right: 5%;
+    .feature-card {
+        min-height: 250px;
+        padding: 30px;
 
-            background:
-                rgba(104,206,255,.18);
+        border-radius: 24px;
 
-            animation-delay: -3s;
+        background: rgba(255, 255, 255, 0.8);
+        border: 1px solid var(--border);
+    }
 
-        }
+    .feature-icon {
+        width: 52px;
+        height: 52px;
 
-        .blob.three {
+        display: flex;
+        align-items: center;
+        justify-content: center;
 
-            width: 80px;
-            height: 80px;
+        border-radius: 15px;
 
-            top: 35%;
-            right: 30%;
+        background: var(--blue-light);
+        color: var(--blue);
 
-            background:
-                rgba(67,142,255,.13);
+        font-size: 20px;
+        font-weight: 800;
+    }
 
-            animation-delay: -6s;
+    .feature-title {
+        margin-top: 25px;
 
-        }
+        font-size: 19px;
+        font-weight: 800;
+    }
 
-        @keyframes blobFloat {
+    .feature-text {
+        margin-top: 10px;
 
-            0%,
-            100% {
-                transform:
-                    translate(0,0)
-                    rotate(0deg);
-            }
+        color: var(--text-soft);
+        font-size: 14px;
+        line-height: 1.8;
+    }
 
-            50% {
-                transform:
-                    translate(20px,-25px)
-                    rotate(8deg);
-            }
+    /* =========================================================
+       HOW IT WORKS
+       ========================================================= */
 
-        }
+    .steps {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 20px;
+    }
 
+    .step-card {
+        padding: 30px;
 
-        /* =========================================================
-           MOUSE GLOW
-           ========================================================= */
+        background: white;
+        border: 1px solid var(--border);
+        border-radius: 24px;
+    }
 
-        .mouse-glow {
+    .step-number {
+        color: var(--blue);
+        font-size: 14px;
+        font-weight: 800;
+    }
 
-            position: fixed;
+    .step-title {
+        margin-top: 16px;
 
-            width: 420px;
-            height: 420px;
+        font-size: 20px;
+        font-weight: 800;
+    }
 
-            border-radius: 50%;
+    .step-text {
+        margin-top: 10px;
 
-            pointer-events: none;
+        color: var(--text-soft);
+        font-size: 14px;
+        line-height: 1.8;
+    }
 
-            z-index: -1;
+    /* =========================================================
+       CTA
+       ========================================================= */
 
-            transform:
-                translate(-50%,-50%);
+    .cta-section {
+        padding: 60px 0 110px;
+    }
 
-            background:
-                radial-gradient(
-                    circle,
-                    rgba(72,165,255,.12),
-                    transparent 68%
-                );
+    .cta-card {
+        padding: 65px 50px;
 
-        }
+        border-radius: 32px;
 
+        background:
+            linear-gradient(
+                135deg,
+                #0878ee,
+                #39a2ff
+            );
 
-        /* =========================================================
-           CONTAINER
-           ========================================================= */
+        color: white;
 
-        .container {
+        text-align: center;
 
-            width:
-                min(
-                    1180px,
-                    calc(100% - 42px)
-                );
+        box-shadow: 0 30px 70px rgba(22, 131, 255, 0.22);
+    }
 
-            margin: 0 auto;
+    .cta-title {
+        font-size: clamp(32px, 4vw, 48px);
+        line-height: 1.15;
+        font-weight: 800;
+    }
 
-        }
+    .cta-text {
+        max-width: 600px;
+        margin: 15px auto 0;
 
+        color: rgba(255, 255, 255, 0.85);
+    }
 
-        /* =========================================================
-           NAVBAR
-           ========================================================= */
+    .cta-button {
+        display: inline-block;
 
-        .navbar {
+        margin-top: 28px;
+        padding: 14px 24px;
 
-            position: fixed;
+        border-radius: 13px;
 
-            top: 0;
-            left: 0;
-            right: 0;
+        background: white;
+        color: var(--blue);
 
-            z-index: 1000;
+        font-size: 14px;
+        font-weight: 800;
+    }
 
-            padding-top: 16px;
+    /* =========================================================
+       FOOTER
+       ========================================================= */
 
-            transition:
-                .3s ease;
+    footer {
+        padding: 35px 0;
 
-        }
+        border-top: 1px solid var(--border);
+        background: white;
+    }
 
-        .navbar.scrolled {
+    .footer-inner {
+        width: min(1200px, calc(100% - 40px));
+        margin: auto;
 
-            padding-top: 9px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+    }
 
-        }
+    .footer-logo img {
+        width: 135px;
+    }
 
-        .nav-shell {
+    .footer-copy {
+        color: var(--text-soft);
+        font-size: 13px;
+    }
 
-            height: 70px;
+    /* =========================================================
+       RESPONSIVE
+       ========================================================= */
 
-            display: flex;
-
-            align-items: center;
-
-            justify-content: space-between;
-
-            padding:
-                0 18px;
-
-            border:
-                1px solid
-                rgba(37,113,171,.09);
-
-            border-radius:
-                20px;
-
-            background:
-                rgba(255,255,255,.72);
-
-            backdrop-filter:
-                blur(24px);
-
-            -webkit-backdrop-filter:
-                blur(24px);
-
-            box-shadow:
-                0 10px 40px
-                rgba(30,91,145,.065);
-
-            transition:
-                .3s ease;
-
-        }
-
-        .navbar.scrolled .nav-shell {
-
-            box-shadow:
-                0 12px 35px
-                rgba(30,91,145,.10);
-
-            background:
-                rgba(255,255,255,.86);
-
-        }
-
-
-        /* =========================================================
-           LOGO
-           ========================================================= */
-
-        .brand {
-
-            width: 170px;
-            height: 58px;
-
-            display: flex;
-
-            align-items: center;
-
-        }
-
-        .brand img {
-
-            width: 100%;
-            height: 100%;
-
-            object-fit: contain;
-
-            object-position: left center;
-
-            filter:
-                drop-shadow(
-                    0 7px 15px
-                    rgba(34,136,255,.08)
-                );
-
-            transition:
-                transform .3s ease;
-
-        }
-
-        .brand:hover img {
-
-            transform:
-                scale(1.05);
-
-        }
-
-
-        /* =========================================================
-           NAV
-           ========================================================= */
+    @media (max-width: 900px) {
 
         .nav-links {
-
-            display: flex;
-
-            align-items: center;
-
-            gap: 5px;
-
-        }
-
-        .nav-link {
-
-            padding:
-                10px 14px;
-
-            border-radius:
-                11px;
-
-            color:
-                #6b7d91;
-
-            font-size:
-                13px;
-
-            transition:
-                .2s ease;
-
-        }
-
-        .nav-link:hover {
-
-            color:
-                var(--blue);
-
-            background:
-                #edf7ff;
-
-        }
-
-        .nav-actions {
-
-            display: flex;
-
-            align-items: center;
-
-            gap: 8px;
-
-        }
-
-        .sign-in {
-
-            padding:
-                10px 15px;
-
-            border-radius:
-                11px;
-
-            color:
-                #60758b;
-
-            font-size:
-                12px;
-
-        }
-
-        .sign-in:hover {
-
-            color:
-                var(--blue);
-
-        }
-
-
-        /* =========================================================
-           BUTTON
-           ========================================================= */
-
-        .btn {
-
-            position: relative;
-
-            overflow: hidden;
-
-            display: inline-flex;
-
-            align-items: center;
-
-            justify-content: center;
-
-            gap: 8px;
-
-            min-height: 44px;
-
-            padding:
-                0 18px;
-
-            border: 0;
-
-            border-radius:
-                13px;
-
-            color:
-                white;
-
-            background:
-                linear-gradient(
-                    135deg,
-                    #50adff,
-                    #1678ed
-                );
-
-            box-shadow:
-                0 12px 28px
-                rgba(32,126,237,.22);
-
-            font-size:
-                12px;
-
-            cursor:
-                pointer;
-
-            transition:
-                transform .25s ease,
-                box-shadow .25s ease;
-
-        }
-
-        .btn::before {
-
-            content: "";
-
-            position: absolute;
-
-            top: 0;
-            left: -100%;
-
-            width: 70%;
-            height: 100%;
-
-            background:
-                linear-gradient(
-                    100deg,
-                    transparent,
-                    rgba(255,255,255,.38),
-                    transparent
-                );
-
-            transform:
-                skewX(-20deg);
-
-            transition:
-                left .6s ease;
-
-        }
-
-        .btn:hover::before {
-
-            left:
-                140%;
-
-        }
-
-        .btn:hover {
-
-            transform:
-                translateY(-3px);
-
-            box-shadow:
-                0 17px 35px
-                rgba(32,126,237,.28);
-
-        }
-
-
-        /* =========================================================
-           MOBILE MENU
-           ========================================================= */
-
-        .mobile-menu {
-
             display: none;
-
-            width: 42px;
-            height: 42px;
-
-            border:
-                1px solid
-                var(--line);
-
-            border-radius:
-                11px;
-
-            background:
-                rgba(255,255,255,.8);
-
-            color:
-                var(--text);
-
-            cursor:
-                pointer;
-
         }
 
-
-        /* =========================================================
-           HERO
-           ========================================================= */
-
-        .hero {
-
-            min-height:
-                850px;
-
-            padding:
-                155px 0 90px;
-
-            display:
-                flex;
-
-            align-items:
-                center;
-
-        }
-
-        .hero-grid {
-
-            display:
-                grid;
-
-            grid-template-columns:
-                1fr 1fr;
-
-            align-items:
-                center;
-
-            gap:
-                60px;
-
+        .hero-container {
+            grid-template-columns: 1fr;
+            gap: 40px;
         }
 
         .hero-content {
-
-            animation:
-                heroEnter .8s ease both;
-
+            text-align: center;
         }
-
-        @keyframes heroEnter {
-
-            from {
-
-                opacity: 0;
-
-                transform:
-                    translateY(30px);
-
-            }
-
-            to {
-
-                opacity: 1;
-
-                transform:
-                    translateY(0);
-
-            }
-
-        }
-
-
-        /* =========================================================
-           HERO BADGE
-           ========================================================= */
-
-        .hero-badge {
-
-            display:
-                inline-flex;
-
-            align-items:
-                center;
-
-            gap:
-                9px;
-
-            padding:
-                8px 13px;
-
-            margin-bottom:
-                22px;
-
-            border:
-                1px solid
-                rgba(38,133,221,.12);
-
-            border-radius:
-                100px;
-
-            background:
-                rgba(237,247,255,.78);
-
-            color:
-                #2680df;
-
-            font-size:
-                11px;
-
-        }
-
-        .live-dot {
-
-            width: 7px;
-            height: 7px;
-
-            border-radius:
-                50%;
-
-            background:
-                #22c77a;
-
-            box-shadow:
-                0 0 0 5px
-                rgba(34,199,122,.10);
-
-            animation:
-                pulse 2s infinite;
-
-        }
-
-        @keyframes pulse {
-
-            0%,
-            100% {
-                transform: scale(1);
-            }
-
-            50% {
-                transform: scale(1.25);
-            }
-
-        }
-
-
-        /* =========================================================
-           HERO LOGO
-           ========================================================= */
-
-        .hero-logo {
-
-            width:
-                380px;
-
-            height:
-                150px;
-
-            margin-bottom:
-                4px;
-
-        }
-
-        .hero-logo img {
-
-            width: 100%;
-            height: 100%;
-
-            object-fit:
-                contain;
-
-            object-position:
-                left center;
-
-            filter:
-                drop-shadow(
-                    0 20px 35px
-                    rgba(34,136,255,.13)
-                );
-
-        }
-
-
-        /* =========================================================
-           HERO TITLE
-           ========================================================= */
-
-        .hero-title {
-
-            max-width:
-                650px;
-
-            color:
-                var(--navy);
-
-            font-size:
-                clamp(
-                    43px,
-                    5vw,
-                    65px
-                );
-
-            line-height:
-                1.12;
-
-            letter-spacing:
-                -1.3px;
-
-            font-weight:
-                600;
-
-            margin-bottom:
-                20px;
-
-        }
-
-        .hero-title .blue {
-
-            color:
-                var(--blue);
-
-        }
-
-        .hero-title .emoji {
-
-            display:
-                inline-block;
-
-            font-size:
-                .62em;
-
-            transform:
-                rotate(-8deg);
-
-            animation:
-                wave 3s ease-in-out infinite;
-
-        }
-
-        @keyframes wave {
-
-            0%,
-            100% {
-                transform:
-                    rotate(-8deg)
-                    translateY(0);
-            }
-
-            50% {
-                transform:
-                    rotate(8deg)
-                    translateY(-5px);
-            }
-
-        }
-
-
-        /* =========================================================
-           HERO DESCRIPTION
-           ========================================================= */
 
         .hero-description {
-
-            max-width:
-                600px;
-
-            color:
-                #6c7f94;
-
-            font-size:
-                16px;
-
-            line-height:
-                1.9;
-
-            font-weight:
-                300;
-
-            margin-bottom:
-                28px;
-
+            margin-left: auto;
+            margin-right: auto;
         }
-
-        .hero-description strong {
-
-            color:
-                #3f6385;
-
-            font-weight:
-                500;
-
-        }
-
-
-        /* =========================================================
-           HERO ACTIONS
-           ========================================================= */
 
         .hero-actions {
-
-            display:
-                flex;
-
-            align-items:
-                center;
-
-            gap:
-                12px;
-
-            margin-bottom:
-                28px;
-
+            justify-content: center;
         }
-
-        .hero-primary {
-
-            min-height:
-                53px;
-
-            padding:
-                0 23px;
-
-            border-radius:
-                15px;
-
-            font-size:
-                13px;
-
-        }
-
-        .hero-secondary {
-
-            min-height:
-                53px;
-
-            display:
-                inline-flex;
-
-            align-items:
-                center;
-
-            gap:
-                8px;
-
-            padding:
-                0 18px;
-
-            border:
-                1px solid
-                var(--line);
-
-            border-radius:
-                15px;
-
-            background:
-                rgba(255,255,255,.65);
-
-            color:
-                #647990;
-
-            font-size:
-                12px;
-
-            transition:
-                .25s ease;
-
-        }
-
-        .hero-secondary:hover {
-
-            transform:
-                translateY(-3px);
-
-            color:
-                var(--blue);
-
-            border-color:
-                rgba(35,136,255,.18);
-
-            background:
-                white;
-
-        }
-
-
-        /* =========================================================
-           HERO SOCIAL PROOF
-           ========================================================= */
-
-        .hero-proof {
-
-            display:
-                flex;
-
-            align-items:
-                center;
-
-            gap:
-                12px;
-
-            color:
-                #8a9bad;
-
-            font-size:
-                10px;
-
-        }
-
-        .avatars {
-
-            display:
-                flex;
-
-        }
-
-        .avatar {
-
-            width:
-                30px;
-
-            height:
-                30px;
-
-            display:
-                grid;
-
-            place-items:
-                center;
-
-            margin-left:
-                -6px;
-
-            border:
-                2px solid
-                white;
-
-            border-radius:
-                50%;
-
-            color:
-                white;
-
-            background:
-                linear-gradient(
-                    135deg,
-                    #64c7ff,
-                    #287cf1
-                );
-
-            font-family:
-                Inter,
-                sans-serif;
-
-            font-size:
-                8px;
-
-            font-weight:
-                700;
-
-        }
-
-        .avatar:first-child {
-            margin-left: 0;
-        }
-
-
-        /* =========================================================
-           HERO VISUAL
-           ========================================================= */
 
         .hero-visual {
-
-            position:
-                relative;
-
-            min-height:
-                560px;
-
-            display:
-                flex;
-
-            align-items:
-                center;
-
-            justify-content:
-                center;
-
+            min-height: 420px;
         }
 
-        .visual-glow {
+        .features-grid,
+        .steps {
+            grid-template-columns: 1fr 1fr;
+        }
+    }
 
-            position:
-                absolute;
+    @media (max-width: 620px) {
 
-            width:
-                480px;
-
-            height:
-                480px;
-
-            border-radius:
-                50%;
-
-            background:
-                radial-gradient(
-                    circle,
-                    rgba(64,163,255,.19),
-                    rgba(109,213,255,.06),
-                    transparent 68%
-                );
-
-            filter:
-                blur(10px);
-
+        .navbar {
+            height: 72px;
         }
 
-
-        /* =========================================================
-           MAIN APP CARD
-           ========================================================= */
-
-        .app-card {
-
-            position:
-                relative;
-
-            width:
-                510px;
-
-            min-height:
-                425px;
-
-            padding:
-                18px;
-
-            border:
-                1px solid
-                rgba(39,112,171,.10);
-
-            border-radius:
-                27px;
-
-            background:
-                rgba(255,255,255,.70);
-
-            backdrop-filter:
-                blur(25px);
-
-            -webkit-backdrop-filter:
-                blur(25px);
-
-            box-shadow:
-                0 35px 85px
-                rgba(36,104,160,.14);
-
-            transform:
-                perspective(1300px)
-                rotateY(-5deg)
-                rotateX(2deg);
-
-            transition:
-                transform .2s ease;
-
-            animation:
-                appFloat 6s ease-in-out infinite;
-
+        .navbar-inner {
+            width: min(100% - 28px, 1200px);
         }
 
-        @keyframes appFloat {
-
-            0%,
-            100% {
-                margin-top: 0;
-            }
-
-            50% {
-                margin-top: -9px;
-            }
-
+        .brand img {
+            width: 135px;
         }
 
-
-        /* =========================================================
-           APP TOP
-           ========================================================= */
-
-        .app-top {
-
-            display:
-                flex;
-
-            align-items:
-                center;
-
-            justify-content:
-                space-between;
-
-            margin-bottom:
-                15px;
-
+        .nav-login {
+            display: none;
         }
 
-        .window-dots {
-
-            display:
-                flex;
-
-            gap:
-                5px;
-
+        .nav-register {
+            padding: 9px 14px;
         }
 
-        .window-dot {
-
-            width:
-                7px;
-
-            height:
-                7px;
-
-            border-radius:
-                50%;
-
-            background:
-                #d7e7f4;
-
+        .hero {
+            padding-top: 120px;
         }
 
-        .app-title {
-
-            color:
-                #35516c;
-
-            font-family:
-                Inter,
-                sans-serif;
-
-            font-size:
-                10px;
-
-            font-weight:
-                600;
-
+        .hero-container,
+        .section-container,
+        .trust-container {
+            width: calc(100% - 28px);
         }
 
-        .app-profile {
-
-            width:
-                28px;
-
-            height:
-                28px;
-
-            display:
-                grid;
-
-            place-items:
-                center;
-
-            border-radius:
-                9px;
-
-            color:
-                white;
-
-            background:
-                linear-gradient(
-                    135deg,
-                    #60caff,
-                    #2781f4
-                );
-
-            font-size:
-                8px;
-
+        .hero-title {
+            font-size: 43px;
+            letter-spacing: -1.8px;
         }
 
-
-        /* =========================================================
-           DASHBOARD HEADER
-           ========================================================= */
-
-        .dashboard-head {
-
-            display:
-                flex;
-
-            align-items:
-                center;
-
-            justify-content:
-                space-between;
-
-            padding:
-                12px;
-
-            margin-bottom:
-                12px;
-
-            border-radius:
-                15px;
-
-            background:
-                linear-gradient(
-                    135deg,
-                    #edf7ff,
-                    #f8fcff
-                );
-
+        .hero-description {
+            font-size: 15px;
         }
 
-        .dashboard-greeting {
-
-            color:
-                #34516d;
-
-            font-size:
-                13px;
-
-            font-weight:
-                500;
-
+        .hero-actions {
+            flex-direction: column;
         }
 
-        .dashboard-sub {
-
-            color:
-                #8b9caf;
-
-            font-size:
-                8px;
-
-            margin-top:
-                2px;
-
+        .primary-button,
+        .secondary-button {
+            width: 100%;
         }
 
-        .date-pill {
-
-            padding:
-                7px 10px;
-
-            border-radius:
-                9px;
-
-            background:
-                white;
-
-            color:
-                #5c7790;
-
-            font-family:
-                Inter,
-                sans-serif;
-
-            font-size:
-                7px;
-
-            box-shadow:
-                0 5px 15px
-                rgba(33,101,151,.05);
-
+        .hero-logo-card {
+            min-height: 280px;
+            padding: 30px;
+            border-radius: 28px;
         }
 
-
-        /* =========================================================
-           MINI STATS
-           ========================================================= */
-
-        .mini-stats {
-
-            display:
-                grid;
-
-            grid-template-columns:
-                repeat(3,1fr);
-
-            gap:
-                9px;
-
-            margin-bottom:
-                12px;
-
+        .hero-logo-card img {
+            max-width: 300px;
         }
 
-        .mini-stat {
-
-            padding:
-                11px;
-
-            border:
-                1px solid
-                rgba(37,112,170,.07);
-
-            border-radius:
-                13px;
-
-            background:
-                rgba(255,255,255,.75);
-
+        .floating-card.available {
+            top: 10px;
+            right: 0;
         }
 
-        .mini-stat-label {
-
-            color:
-                #8c9cac;
-
-            font-size:
-                7px;
-
-            margin-bottom:
-                4px;
-
+        .floating-card.booking {
+            bottom: 10px;
+            left: 0;
         }
 
-        .mini-stat-number {
-
-            color:
-                #2b4965;
-
-            font-family:
-                Inter,
-                sans-serif;
-
-            font-size:
-                18px;
-
-            font-weight:
-                700;
-
+        .trust-container,
+        .features-grid,
+        .steps {
+            grid-template-columns: 1fr;
         }
-
-        .mini-stat-number span {
-
-            color:
-                #24b97b;
-
-            font-size:
-                7px;
-
-            font-weight:
-                500;
-
-        }
-
-
-        /* =========================================================
-           ROOM GRID
-           ========================================================= */
-
-        .room-grid {
-
-            display:
-                grid;
-
-            grid-template-columns:
-                1fr 1fr;
-
-            gap:
-                10px;
-
-        }
-
-        .room {
-
-            position:
-                relative;
-
-            padding:
-                12px;
-
-            border:
-                1px solid
-                rgba(38,111,169,.07);
-
-            border-radius:
-                14px;
-
-            background:
-                rgba(255,255,255,.78);
-
-            transition:
-                transform .25s ease,
-                box-shadow .25s ease;
-
-        }
-
-        .room:hover {
-
-            transform:
-                translateY(-4px);
-
-            box-shadow:
-                0 12px 25px
-                rgba(38,111,169,.08);
-
-        }
-
-        .room-top {
-
-            display:
-                flex;
-
-            align-items:
-                center;
-
-            justify-content:
-                space-between;
-
-            margin-bottom:
-                9px;
-
-        }
-
-        .room-icon {
-
-            width:
-                30px;
-
-            height:
-                30px;
-
-            display:
-                grid;
-
-            place-items:
-                center;
-
-            border-radius:
-                9px;
-
-            background:
-                #edf7ff;
-
-            color:
-                var(--blue);
-
-        }
-
-        .room-status {
-
-            padding:
-                4px 6px;
-
-            border-radius:
-                6px;
-
-            font-family:
-                Inter,
-                sans-serif;
-
-            font-size:
-                6px;
-
-            font-weight:
-                600;
-
-        }
-
-        .available {
-
-            color:
-                #159a62;
-
-            background:
-                #e9faf2;
-
-        }
-
-        .booked {
-
-            color:
-                #df7d31;
-
-            background:
-                #fff3e9;
-
-        }
-
-        .room-name {
-
-            color:
-                #38536d;
-
-            font-size:
-                10px;
-
-            font-weight:
-                500;
-
-            margin-bottom:
-                3px;
-
-        }
-
-        .room-meta {
-
-            color:
-                #94a2b1;
-
-            font-size:
-                7px;
-
-        }
-
-
-        /* =========================================================
-           FLOATING NOTIFICATION
-           ========================================================= */
-
-        .floating-notification {
-
-            position:
-                absolute;
-
-            left:
-                -38px;
-
-            bottom:
-                45px;
-
-            width:
-                205px;
-
-            padding:
-                13px;
-
-            display:
-                flex;
-
-            align-items:
-                center;
-
-            gap:
-                10px;
-
-            border:
-                1px solid
-                rgba(37,112,170,.10);
-
-            border-radius:
-                16px;
-
-            background:
-                rgba(255,255,255,.82);
-
-            backdrop-filter:
-                blur(22px);
-
-            box-shadow:
-                0 20px 45px
-                rgba(35,100,155,.13);
-
-            animation:
-                notificationFloat
-                4.5s ease-in-out infinite;
-
-        }
-
-        @keyframes notificationFloat {
-
-            0%,
-            100% {
-                transform:
-                    translateY(0);
-            }
-
-            50% {
-                transform:
-                    translateY(-8px);
-            }
-
-        }
-
-        .notification-icon {
-
-            width:
-                34px;
-
-            height:
-                34px;
-
-            flex-shrink:
-                0;
-
-            display:
-                grid;
-
-            place-items:
-                center;
-
-            border-radius:
-                11px;
-
-            color:
-                #1882ef;
-
-            background:
-                #eaf6ff;
-
-        }
-
-        .notification-title {
-
-            color:
-                #48627b;
-
-            font-size:
-                8px;
-
-            font-weight:
-                500;
-
-        }
-
-        .notification-text {
-
-            color:
-                #96a4b2;
-
-            font-size:
-                7px;
-
-            margin-top:
-                2px;
-
-        }
-
-
-        /* =========================================================
-           FLOATING CALENDAR
-           ========================================================= */
-
-        .floating-calendar {
-
-            position:
-                absolute;
-
-            right:
-                -35px;
-
-            top:
-                48px;
-
-            width:
-                155px;
-
-            padding:
-                13px;
-
-            border:
-                1px solid
-                rgba(37,112,170,.09);
-
-            border-radius:
-                16px;
-
-            background:
-                rgba(255,255,255,.82);
-
-            backdrop-filter:
-                blur(22px);
-
-            box-shadow:
-                0 20px 45px
-                rgba(35,100,155,.11);
-
-            animation:
-                calendarFloat
-                5.5s ease-in-out infinite;
-
-        }
-
-        @keyframes calendarFloat {
-
-            0%,
-            100% {
-                transform:
-                    translateY(0)
-                    rotate(0deg);
-            }
-
-            50% {
-                transform:
-                    translateY(-6px)
-                    rotate(1deg);
-            }
-
-        }
-
-        .calendar-head {
-
-            display:
-                flex;
-
-            justify-content:
-                space-between;
-
-            color:
-                #48647d;
-
-            font-family:
-                Inter,
-                sans-serif;
-
-            font-size:
-                8px;
-
-            font-weight:
-                600;
-
-            margin-bottom:
-                9px;
-
-        }
-
-        .calendar-grid {
-
-            display:
-                grid;
-
-            grid-template-columns:
-                repeat(7,1fr);
-
-            gap:
-                4px;
-
-            text-align:
-                center;
-
-        }
-
-        .calendar-day {
-
-            height:
-                17px;
-
-            display:
-                grid;
-
-            place-items:
-                center;
-
-            color:
-                #91a0af;
-
-            font-family:
-                Inter,
-                sans-serif;
-
-            font-size:
-                6px;
-
-            border-radius:
-                5px;
-
-        }
-
-        .calendar-day.active {
-
-            color:
-                white;
-
-            background:
-                var(--blue);
-
-            box-shadow:
-                0 4px 10px
-                rgba(35,136,255,.20);
-
-        }
-
-
-        /* =========================================================
-           TRUST STRIP
-           ========================================================= */
-
-        .trust-strip {
-
-            padding:
-                22px 0;
-
-            border-top:
-                1px solid
-                rgba(36,111,167,.06);
-
-            border-bottom:
-                1px solid
-                rgba(36,111,167,.06);
-
-            background:
-                rgba(255,255,255,.35);
-
-        }
-
-        .trust-inner {
-
-            display:
-                flex;
-
-            align-items:
-                center;
-
-            justify-content:
-                center;
-
-            gap:
-                40px;
-
-            color:
-                #91a1b0;
-
-            font-size:
-                10px;
-
-        }
-
-        .trust-item {
-
-            display:
-                flex;
-
-            align-items:
-                center;
-
-            gap:
-                7px;
-
-        }
-
-        .trust-icon {
-
-            color:
-                var(--blue);
-
-        }
-
-
-        /* =========================================================
-           SECTION
-           ========================================================= */
 
         .section {
-
-            padding:
-                115px 0;
-
+            padding: 80px 0;
         }
 
-        .section-heading {
-
-            max-width:
-                690px;
-
-            margin:
-                0 auto 55px;
-
-            text-align:
-                center;
-
-        }
-
-        .section-label {
-
-            display:
-                inline-flex;
-
-            align-items:
-                center;
-
-            gap:
-                7px;
-
-            margin-bottom:
-                12px;
-
-            color:
-                var(--blue);
-
-            font-family:
-                Inter,
-                sans-serif;
-
-            font-size:
-                10px;
-
-            font-weight:
-                700;
-
-            letter-spacing:
-                1px;
-
-        }
-
-        .section-label::before {
-
-            content:
-                "";
-
-            width:
-                20px;
-
-            height:
-                2px;
-
-            border-radius:
-                10px;
-
-            background:
-                var(--blue);
-
-        }
-
-        .section-title {
-
-            color:
-                var(--navy);
-
-            font-size:
-                clamp(
-                    32px,
-                    4vw,
-                    45px
-                );
-
-            line-height:
-                1.25;
-
-            font-weight:
-                600;
-
-            margin-bottom:
-                13px;
-
-        }
-
-        .section-description {
-
-            color:
-                #788a9d;
-
-            font-size:
-                13px;
-
-            line-height:
-                1.9;
-
-            font-weight:
-                300;
-
-        }
-
-
-        /* =========================================================
-           FEATURE CARDS
-           ========================================================= */
-
-        .features {
-
-            display:
-                grid;
-
-            grid-template-columns:
-                repeat(3,1fr);
-
-            gap:
-                18px;
-
-        }
-
-        .feature {
-
-            position:
-                relative;
-
-            padding:
-                30px;
-
-            min-height:
-                235px;
-
-            overflow:
-                hidden;
-
-            border:
-                1px solid
-                rgba(36,111,167,.08);
-
-            border-radius:
-                23px;
-
-            background:
-                rgba(255,255,255,.68);
-
-            backdrop-filter:
-                blur(20px);
-
-            box-shadow:
-                0 15px 45px
-                rgba(34,102,157,.055);
-
-            transition:
-                transform .3s ease,
-                box-shadow .3s ease,
-                border .3s ease;
-
-        }
-
-        .feature::after {
-
-            content:
-                "";
-
-            position:
-                absolute;
-
-            width:
-                130px;
-
-            height:
-                130px;
-
-            right:
-                -60px;
-
-            bottom:
-                -60px;
-
-            border-radius:
-                50%;
-
-            background:
-                rgba(66,164,255,.07);
-
-        }
-
-        .feature:hover {
-
-            transform:
-                translateY(-8px);
-
-            border-color:
-                rgba(35,136,255,.17);
-
-            box-shadow:
-                0 25px 60px
-                rgba(34,102,157,.10);
-
-        }
-
-        .feature-icon {
-
-            width:
-                52px;
-
-            height:
-                52px;
-
-            display:
-                grid;
-
-            place-items:
-                center;
-
-            margin-bottom:
-                20px;
-
-            border-radius:
-                15px;
-
-            color:
-                var(--blue);
-
-            background:
-                linear-gradient(
-                    135deg,
-                    #e8f6ff,
-                    #f2fbff
-                );
-
-            transition:
-                transform .3s ease;
-
-        }
-
-        .feature:hover .feature-icon {
-
-            transform:
-                rotate(-5deg)
-                scale(1.08);
-
-        }
-
-        .feature h3 {
-
-            color:
-                #2c4863;
-
-            font-size:
-                17px;
-
-            font-weight:
-                500;
-
-            margin-bottom:
-                8px;
-
-        }
-
-        .feature p {
-
-            max-width:
-                300px;
-
-            color:
-                #7e8fa1;
-
-            font-size:
-                11px;
-
-            line-height:
-                1.85;
-
-            font-weight:
-                300;
-
-        }
-
-
-        /* =========================================================
-           STATS
-           ========================================================= */
-
-        .stats {
-
-            display:
-                grid;
-
-            grid-template-columns:
-                repeat(4,1fr);
-
-            gap:
-                14px;
-
-            margin-top:
-                18px;
-
-        }
-
-        .stat {
-
-            padding:
-                25px 20px;
-
-            text-align:
-                center;
-
-            border:
-                1px solid
-                rgba(36,111,167,.08);
-
-            border-radius:
-                20px;
-
-            background:
-                rgba(255,255,255,.60);
-
-        }
-
-        .stat-number {
-
-            color:
-                var(--blue);
-
-            font-family:
-                Inter,
-                sans-serif;
-
-            font-size:
-                31px;
-
-            font-weight:
-                800;
-
-            margin-bottom:
-                3px;
-
-        }
-
-        .stat-label {
-
-            color:
-                #8494a4;
-
-            font-size:
-                10px;
-
-        }
-
-
-        /* =========================================================
-           HOW IT WORKS
-           ========================================================= */
-
-        .steps {
-
-            display:
-                grid;
-
-            grid-template-columns:
-                repeat(3,1fr);
-
-            gap:
-                18px;
-
-        }
-
-        .step {
-
-            position:
-                relative;
-
-            padding:
-                28px;
-
-            text-align:
-                center;
-
-        }
-
-        .step:not(:last-child)::after {
-
-            content:
-                "";
-
-            position:
-                absolute;
-
-            top:
-                50px;
-
-            right:
-                -18px;
-
-            width:
-                36px;
-
-            height:
-                1px;
-
-            background:
-                linear-gradient(
-                    90deg,
-                    rgba(35,136,255,.22),
-                    transparent
-                );
-
-        }
-
-        .step-number {
-
-            width:
-                58px;
-
-            height:
-                58px;
-
-            display:
-                grid;
-
-            place-items:
-                center;
-
-            margin:
-                0 auto 18px;
-
-            border-radius:
-                18px;
-
-            color:
-                white;
-
-            background:
-                linear-gradient(
-                    135deg,
-                    #62c9ff,
-                    #247ef2
-                );
-
-            box-shadow:
-                0 12px 25px
-                rgba(35,136,255,.20);
-
-            font-family:
-                Inter,
-                sans-serif;
-
-            font-size:
-                14px;
-
-            font-weight:
-                700;
-
-        }
-
-        .step h3 {
-
-            color:
-                #2c4862;
-
-            font-size:
-                16px;
-
-            font-weight:
-                500;
-
-            margin-bottom:
-                7px;
-
-        }
-
-        .step p {
-
-            color:
-                #8291a1;
-
-            font-size:
-                10px;
-
-            line-height:
-                1.8;
-
-            font-weight:
-                300;
-
-        }
-
-
-        /* =========================================================
-           CTA
-           ========================================================= */
-
-        .cta {
-
-            position:
-                relative;
-
-            overflow:
-                hidden;
-
-            padding:
-                65px 30px;
-
-            text-align:
-                center;
-
-            border:
-                1px solid
-                rgba(37,118,180,.10);
-
-            border-radius:
-                30px;
-
-            background:
-
-                radial-gradient(
-                    circle at 15% 30%,
-                    rgba(93,199,255,.18),
-                    transparent 30%
-                ),
-
-                radial-gradient(
-                    circle at 85% 70%,
-                    rgba(46,132,255,.12),
-                    transparent 30%
-                ),
-
-                linear-gradient(
-                    135deg,
-                    #eff9ff,
-                    #ffffff
-                );
-
-            box-shadow:
-                0 25px 70px
-                rgba(36,103,159,.08);
-
-        }
-
-        .cta::before {
-
-            content:
-                "✦";
-
-            position:
-                absolute;
-
-            top:
-                22px;
-
-            left:
-                25px;
-
-            color:
-                rgba(35,136,255,.25);
-
-            font-size:
-                22px;
-
-            animation:
-                spinStar 5s linear infinite;
-
-        }
-
-        .cta::after {
-
-            content:
-                "✦";
-
-            position:
-                absolute;
-
-            right:
-                30px;
-
-            bottom:
-                22px;
-
-            color:
-                rgba(35,136,255,.18);
-
-            font-size:
-                16px;
-
-            animation:
-                spinStar 4s linear infinite reverse;
-
-        }
-
-        @keyframes spinStar {
-
-            to {
-                transform:
-                    rotate(360deg);
-            }
-
-        }
-
-        .cta h2 {
-
-            color:
-                var(--navy);
-
-            font-size:
-                clamp(
-                    28px,
-                    4vw,
-                    39px
-                );
-
-            margin-bottom:
-                9px;
-
-        }
-
-        .cta p {
-
-            color:
-                #778a9e;
-
-            font-size:
-                12px;
-
-            margin-bottom:
-                24px;
-
-        }
-
-
-        /* =========================================================
-           FOOTER
-           ========================================================= */
-
-        footer {
-
-            padding:
-                38px 0;
-
-            border-top:
-                1px solid
-                rgba(36,111,167,.07);
-
+        .cta-card {
+            padding: 45px 25px;
         }
 
         .footer-inner {
-
-            display:
-                flex;
-
-            align-items:
-                center;
-
-            justify-content:
-                space-between;
-
+            flex-direction: column;
+            gap: 15px;
+            text-align: center;
         }
-
-        .footer-logo {
-
-            width:
-                135px;
-
-            height:
-                48px;
-
-        }
-
-        .footer-logo img {
-
-            width:
-                100%;
-
-            height:
-                100%;
-
-            object-fit:
-                contain;
-
-            object-position:
-                left center;
-
-        }
-
-        .copyright {
-
-            color:
-                #99a7b5;
-
-            font-family:
-                Inter,
-                sans-serif;
-
-            font-size:
-                8px;
-
-        }
-
-
-        /* =========================================================
-           REVEAL
-           ========================================================= */
-
-        .reveal {
-
-            opacity:
-                0;
-
-            transform:
-                translateY(25px);
-
-            transition:
-                opacity .7s ease,
-                transform .7s ease;
-
-        }
-
-        .reveal.visible {
-
-            opacity:
-                1;
-
-            transform:
-                translateY(0);
-
-        }
-
-
-        /* =========================================================
-           RESPONSIVE
-           ========================================================= */
-
-        @media (max-width: 1050px) {
-
-            .nav-links {
-                display: none;
-            }
-
-            .mobile-menu {
-                display: grid;
-                place-items: center;
-            }
-
-            .hero-grid {
-
-                grid-template-columns:
-                    1fr;
-
-                text-align:
-                    center;
-
-            }
-
-            .hero-content {
-
-                display:
-                    flex;
-
-                flex-direction:
-                    column;
-
-                align-items:
-                    center;
-
-            }
-
-            .hero-description {
-                margin-inline: auto;
-            }
-
-            .hero-logo {
-
-                margin-inline:
-                    auto;
-
-            }
-
-            .hero-visual {
-
-                min-height:
-                    500px;
-
-            }
-
-            .features {
-
-                grid-template-columns:
-                    1fr 1fr;
-
-            }
-
-        }
-
-
-        @media (max-width: 720px) {
-
-            .container {
-
-                width:
-                    calc(100% - 28px);
-
-            }
-
-            .navbar {
-
-                padding-top:
-                    9px;
-
-            }
-
-            .nav-shell {
-
-                height:
-                    61px;
-
-                border-radius:
-                    16px;
-
-                padding:
-                    0 11px;
-
-            }
-
-            .brand {
-
-                width:
-                    135px;
-
-                height:
-                    50px;
-
-            }
-
-            .sign-in {
-                display: none;
-            }
-
-            .hero {
-
-                padding:
-                    125px 0 70px;
-
-            }
-
-            .hero-title {
-
-                font-size:
-                    39px;
-
-                letter-spacing:
-                    -.7px;
-
-            }
-
-            .hero-logo {
-
-                width:
-                    285px;
-
-                height:
-                    115px;
-
-            }
-
-            .hero-description {
-
-                font-size:
-                    14px;
-
-                line-height:
-                    1.85;
-
-            }
-
-            .hero-actions {
-
-                width:
-                    100%;
-
-                flex-direction:
-                    column;
-
-            }
-
-            .hero-primary,
-            .hero-secondary {
-
-                width:
-                    100%;
-
-            }
-
-            .hero-proof {
-
-                justify-content:
-                    center;
-
-            }
-
-            .hero-visual {
-
-                min-height:
-                    370px;
-
-            }
-
-            .app-card {
-
-                width:
-                    100%;
-
-                min-height:
-                    350px;
-
-                padding:
-                    13px;
-
-                border-radius:
-                    21px;
-
-            }
-
-            .floating-calendar {
-
-                right:
-                    -5px;
-
-                top:
-                    25px;
-
-                transform:
-                    scale(.85);
-
-            }
-
-            .floating-notification {
-
-                left:
-                    -4px;
-
-                bottom:
-                    18px;
-
-                transform:
-                    scale(.85);
-
-            }
-
-            .features,
-            .steps {
-
-                grid-template-columns:
-                    1fr;
-
-            }
-
-            .stats {
-
-                grid-template-columns:
-                    1fr 1fr;
-
-            }
-
-            .step:not(:last-child)::after {
-                display: none;
-            }
-
-            .section {
-
-                padding:
-                    80px 0;
-
-            }
-
-            .trust-inner {
-
-                gap:
-                    18px;
-
-                flex-wrap:
-                    wrap;
-
-            }
-
-            .footer-inner {
-
-                flex-direction:
-                    column;
-
-                gap:
-                    14px;
-
-            }
-
-        }
-
-
-        @media (max-width: 430px) {
-
-            .hero-title {
-
-                font-size:
-                    34px;
-
-            }
-
-            .hero-logo {
-
-                width:
-                    245px;
-
-                height:
-                    100px;
-
-            }
-
-            .mini-stats {
-
-                gap:
-                    6px;
-
-            }
-
-            .mini-stat-number {
-
-                font-size:
-                    15px;
-
-            }
-
-            .room-grid {
-
-                gap:
-                    7px;
-
-            }
-
-            .floating-calendar {
-
-                display:
-                    none;
-
-            }
-
-            .floating-notification {
-
-                display:
-                    none;
-
-            }
-
-        }
-
-    </style>
+    }
+</style>
+```
 
 </head>
 
+<body id="top">
 
-<body>
+```
+<!-- =========================================================
+     NAVBAR
+     ========================================================= -->
 
+<header class="navbar">
 
-    <!-- =====================================================
-         BACKGROUND
-         ===================================================== -->
+    <div class="navbar-inner">
 
-    <div class="background-shapes">
+        <a href="#top" class="brand" aria-label="EasyRoom Home">
+            <img
+                src="https://img2.pic.in.th/logoeasyroom.png"
+                alt="EasyRoom"
+            >
+        </a>
 
-        <div class="blob one"></div>
+        <nav class="nav-links">
+            <a href="#features">ฟีเจอร์</a>
+            <a href="#how-it-works">วิธีใช้งาน</a>
+            <a href="#about">เกี่ยวกับระบบ</a>
+        </nav>
 
-        <div class="blob two"></div>
+        <div class="nav-actions">
+            <a href="login.html" class="nav-login">
+                เข้าสู่ระบบ
+            </a>
 
-        <div class="blob three"></div>
+            <a href="register.html" class="nav-register">
+                สมัครใช้งาน
+            </a>
+        </div>
 
     </div>
 
-
-    <div
-        class="mouse-glow"
-        id="mouseGlow"
-    ></div>
+</header>
 
 
-    <!-- =====================================================
-         NAVBAR
-         ===================================================== -->
+<!-- =========================================================
+     HERO
+     ========================================================= -->
 
-    <header
-        class="navbar"
-        id="navbar"
-    >
+<main>
 
-        <div class="container">
+    <section class="hero" id="home">
 
-            <div class="nav-shell">
+        <div class="hero-container">
+
+            <div class="hero-content">
+
+                <div class="hero-label">
+                    ระบบจองห้องสำหรับมหาวิทยาลัย
+                </div>
+
+                <h1 class="hero-title">
+                    จองห้องเรียน
+                    <br>
+                    <span class="highlight">ง่ายขึ้นกว่าเดิม</span>
+                </h1>
+
+                <p class="hero-description">
+                    EasyRoom ช่วยให้การค้นหา ตรวจสอบ และจองห้องเรียน
+                    หรือห้องประชุมเป็นเรื่องง่าย รวดเร็ว และเป็นระบบ
+                    ทุกอย่างอยู่ในที่เดียว
+                </p>
+
+                <div class="hero-actions">
+
+                    <a href="register.html" class="primary-button">
+                        เริ่มต้นใช้งาน
+                    </a>
+
+                    <a href="#features" class="secondary-button">
+                        ดูรายละเอียดระบบ
+                    </a>
+
+                </div>
+
+            </div>
 
 
-                <a
-                    href="index.html"
-                    class="brand"
-                >
+            <div class="hero-visual">
+
+                <div class="hero-logo-card">
 
                     <img
                         src="https://img2.pic.in.th/logoeasyroom.png"
-                        alt="EasyRoom"
+                        alt="EasyRoom Logo"
                     >
 
+                </div>
+
+                <div class="floating-card available">
+                    ห้องว่าง 24 ห้อง
+                </div>
+
+                <div class="floating-card booking">
+                    ระบบจองพร้อมใช้งาน
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- =====================================================
+         STATS
+         ===================================================== -->
+
+    <section class="trust-section">
+
+        <div class="trust-container">
+
+            <div class="stat-card">
+                <div class="stat-number">24+</div>
+                <div class="stat-label">
+                    ห้องที่พร้อมให้จอง
+                </div>
+            </div>
+
+            <div class="stat-card">
+                <div class="stat-number">120+</div>
+                <div class="stat-label">
+                    การจองในระบบ
+                </div>
+            </div>
+
+            <div class="stat-card">
+                <div class="stat-number">24/7</div>
+                <div class="stat-label">
+                    ตรวจสอบห้องได้ทุกเวลา
+                </div>
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- =====================================================
+         FEATURES
+         ===================================================== -->
+
+    <section class="section" id="features">
+
+        <div class="section-container">
+
+            <div class="section-heading">
+
+                <div class="section-kicker">
+                    FEATURES
+                </div>
+
+                <h2 class="section-title">
+                    ทุกอย่างที่ต้องการ
+                    <br>
+                    สำหรับการจองห้อง
+                </h2>
+
+                <p class="section-description">
+                    ออกแบบระบบให้ใช้งานง่ายสำหรับนักศึกษา อาจารย์
+                    และผู้ดูแลระบบ
+                </p>
+
+            </div>
+
+
+            <div class="features-grid">
+
+                <article class="feature-card">
+
+                    <div class="feature-icon">
+                        01
+                    </div>
+
+                    <h3 class="feature-title">
+                        ค้นหาห้องได้ง่าย
+                    </h3>
+
+                    <p class="feature-text">
+                        ค้นหาห้องตามอาคาร ชั้น ความจุ
+                        และช่วงเวลาที่ต้องการได้อย่างรวดเร็ว
+                    </p>
+
+                </article>
+
+
+                <article class="feature-card">
+
+                    <div class="feature-icon">
+                        02
+                    </div>
+
+                    <h3 class="feature-title">
+                        ตรวจสอบสถานะแบบชัดเจน
+                    </h3>
+
+                    <p class="feature-text">
+                        ดูได้ทันทีว่าห้องไหนว่าง ห้องไหนถูกจอง
+                        และช่วงเวลาใดที่สามารถใช้งานได้
+                    </p>
+
+                </article>
+
+
+                <article class="feature-card">
+
+                    <div class="feature-icon">
+                        03
+                    </div>
+
+                    <h3 class="feature-title">
+                        จัดการการจองในที่เดียว
+                    </h3>
+
+                    <p class="feature-text">
+                        ตรวจสอบการจองที่ผ่านมา
+                        การจองที่กำลังจะมาถึง และสถานะคำขอ
+                    </p>
+
+                </article>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- =====================================================
+         HOW IT WORKS
+         ===================================================== -->
+
+    <section class="section" id="how-it-works">
+
+        <div class="section-container">
+
+            <div class="section-heading">
+
+                <div class="section-kicker">
+                    HOW IT WORKS
+                </div>
+
+                <h2 class="section-title">
+                    จองห้องได้ในไม่กี่ขั้นตอน
+                </h2>
+
+                <p class="section-description">
+                    ไม่ต้องเสียเวลาติดต่อหลายขั้นตอน
+                    ทุกอย่างจัดการผ่าน EasyRoom
+                </p>
+
+            </div>
+
+
+            <div class="steps">
+
+                <article class="step-card">
+
+                    <div class="step-number">
+                        STEP 01
+                    </div>
+
+                    <h3 class="step-title">
+                        ค้นหาห้อง
+                    </h3>
+
+                    <p class="step-text">
+                        เลือกอาคาร ชั้น ความจุ หรือช่วงเวลาที่ต้องการ
+                    </p>
+
+                </article>
+
+
+                <article class="step-card">
+
+                    <div class="step-number">
+                        STEP 02
+                    </div>
+
+                    <h3 class="step-title">
+                        ตรวจสอบเวลา
+                    </h3>
+
+                    <p class="step-text">
+                        ตรวจสอบว่าห้องยังว่างและสามารถจองได้หรือไม่
+                    </p>
+
+                </article>
+
+
+                <article class="step-card">
+
+                    <div class="step-number">
+                        STEP 03
+                    </div>
+
+                    <h3 class="step-title">
+                        ยืนยันการจอง
+                    </h3>
+
+                    <p class="step-text">
+                        ส่งคำขอจองและติดตามสถานะผ่านระบบ
+                    </p>
+
+                </article>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- =====================================================
+         ABOUT
+         ===================================================== -->
+
+    <section class="section" id="about">
+
+        <div class="section-container">
+
+            <div class="section-heading">
+
+                <div class="section-kicker">
+                    EASYROOM
+                </div>
+
+                <h2 class="section-title">
+                    ระบบเดียวสำหรับ
+                    <br>
+                    การจัดการห้องของคุณ
+                </h2>
+
+                <p class="section-description">
+                    EasyRoom ถูกออกแบบให้การจองห้องเรียนและห้องประชุม
+                    มีความสะดวก โปร่งใส และจัดการได้ง่าย
+                </p>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- =====================================================
+         CTA
+         ===================================================== -->
+
+    <section class="cta-section">
+
+        <div class="section-container">
+
+            <div class="cta-card">
+
+                <h2 class="cta-title">
+                    พร้อมเริ่มจองห้องแล้วหรือยัง?
+                </h2>
+
+                <p class="cta-text">
+                    สร้างบัญชีและเริ่มใช้งาน EasyRoom ได้ทันที
+                </p>
+
+                <a href="register.html" class="cta-button">
+                    สร้างบัญชี
                 </a>
 
-
-                <nav class="nav-links">
-
-                    <a
-                        href="#features"
-                        class="nav-link"
-                    >
-                        ฟีเจอร์
-                    </a>
-
-                    <a
-                        href="#how"
-                        class="nav-link"
-                    >
-                        วิธีใช้งาน
-                    </a>
-
-                    <a
-                        href="#about"
-                        class="nav-link"
-                    >
-                        About
-                    </a>
-
-                </nav>
-
-
-                <div class="nav-actions">
-
-                    <a
-                        href="login.html"
-                        class="sign-in"
-                    >
-                        Sign in
-                    </a>
-
-                    <a
-                        href="register.html"
-                        class="btn"
-                    >
-
-                        เริ่มใช้งาน
-
-                        <svg
-                            width="14"
-                            height="14"
-                            viewBox="0 0 24 24"
-                            fill="none"
-                            stroke="currentColor"
-                            stroke-width="2"
-                        >
-
-                            <path d="M5 12h14"/>
-
-                            <path d="m13 6 6 6-6 6"/>
-
-                        </svg>
-
-                    </a>
-
-                    <button
-                        class="mobile-menu"
-                        id="mobileMenu"
-                    >
-
-                        <svg
-                            width="19"
-                            height="19"
-                            viewBox="0 0 24 24"
-                            fill="none"
-                            stroke="currentColor"
-                            stroke-width="1.7"
-                        >
-
-                            <path d="M4 6h16"/>
-
-                            <path d="M4 12h16"/>
-
-                            <path d="M4 18h16"/>
-
-                        </svg>
-
-                    </button>
-
-                </div>
-
             </div>
 
         </div>
 
-    </header>
+    </section>
 
+</main>
 
-    <!-- =====================================================
-         HERO
-         ===================================================== -->
 
-    <main>
+<!-- =========================================================
+     FOOTER
+     ========================================================= -->
 
-        <section class="hero">
+<footer>
 
-            <div class="container">
+    <div class="footer-inner">
 
-                <div class="hero-grid">
+        <a href="#top" class="footer-logo">
 
+            <img
+                src="https://img2.pic.in.th/logoeasyroom.png"
+                alt="EasyRoom"
+            >
 
-                    <!-- LEFT -->
+        </a>
 
-                    <div class="hero-content">
+        <p class="footer-copy">
+            EasyRoom — ระบบจองห้องเรียนและห้องประชุม
+        </p>
 
+    </div>
 
-                        <div class="hero-badge">
+</footer>
 
-                            <span class="live-dot"></span>
 
-                            ระบบจองห้องสำหรับ Campus ยุคใหม่
-
-                        </div>
-
-
-                        <div class="hero-logo">
-
-                            <img
-                                src="https://img2.pic.in.th/logoeasyroom.png"
-                                alt="EasyRoom Logo"
-                            >
-
-                        </div>
-
-
-                        <h1 class="hero-title">
-
-                            จองห้องง่าย ๆ
-                            <span class="blue">
-                                ในไม่กี่คลิก
-                            </span>
-
-                            <span class="emoji">
-                                ✨
-                            </span>
-
-                        </h1>
-
-
-                        <p class="hero-description">
-
-                            ไม่ต้องเดินหาห้อง
-                            ไม่ต้องเปิดตารางหลายไฟล์
-
-                            <br>
-
-                            <strong>
-                                EasyRoom
-                            </strong>
-
-                            ช่วยให้คุณค้นหา
-                            เช็กห้องว่าง
-                            และจองห้องเรียนได้
-                            <strong>
-                                ในที่เดียว
-                            </strong>
-
-                        </p>
-
-
-                        <div class="hero-actions">
-
-                            <a
-                                href="register.html"
-                                class="btn hero-primary"
-                            >
-
-                                เริ่มจองห้อง
-
-                                <svg
-                                    width="16"
-                                    height="16"
-                                    viewBox="0 0 24 24"
-                                    fill="none"
-                                    stroke="currentColor"
-                                    stroke-width="2"
-                                >
-
-                                    <path d="M5 12h14"/>
-
-                                    <path d="m13 6 6 6-6 6"/>
-
-                                </svg>
-
-                            </a>
-
-
-                            <a
-                                href="#how"
-                                class="hero-secondary"
-                            >
-
-                                ดูวิธีใช้งาน
-
-                                <svg
-                                    width="15"
-                                    height="15"
-                                    viewBox="0 0 24 24"
-                                    fill="none"
-                                    stroke="currentColor"
-                                    stroke-width="1.7"
-                                >
-
-                                    <path d="M12 5v14"/>
-
-                                    <path d="m19 12-7 7-7-7"/>
-
-                                </svg>
-
-                            </a>
-
-                        </div>
-
-
-                        <div class="hero-proof">
-
-                            <div class="avatars">
-
-                                <div class="avatar">S</div>
-
-                                <div class="avatar">T</div>
-
-                                <div class="avatar">A</div>
-
-                                <div class="avatar">+</div>
-
-                            </div>
-
-                            <span>
-                                Made for students, teachers & campus teams
-                            </span>
-
-                        </div>
-
-
-                    </div>
-
-
-                    <!-- RIGHT -->
-
-                    <div class="hero-visual">
-
-
-                        <div class="visual-glow"></div>
-
-
-                        <!-- APP -->
-
-                        <div
-                            class="app-card"
-                            id="tiltCard"
-                        >
-
-
-                            <div class="app-top">
-
-                                <div class="window-dots">
-
-                                    <span class="window-dot"></span>
-
-                                    <span class="window-dot"></span>
-
-                                    <span class="window-dot"></span>
-
-                                </div>
-
-                                <div class="app-title">
-                                    EASYROOM / DASHBOARD
-                                </div>
-
-                                <div class="app-profile">
-                                    ER
-                                </div>
-
-                            </div>
-
-
-                            <div class="dashboard-head">
-
-                                <div>
-
-                                    <div class="dashboard-greeting">
-                                        สวัสดีครับ 👋
-                                    </div>
-
-                                    <div class="dashboard-sub">
-                                        วันนี้มีห้องพร้อมให้จองหลายห้องเลย
-                                    </div>
-
-                                </div>
-
-                                <div class="date-pill">
-                                    MON · 10 AUG
-                                </div>
-
-                            </div>
-
-
-                            <div class="mini-stats">
-
-
-                                <div class="mini-stat">
-
-                                    <div class="mini-stat-label">
-                                        Available Rooms
-                                    </div>
-
-                                    <div class="mini-stat-number">
-                                        12
-                                        <span>● Live</span>
-                                    </div>
-
-                                </div>
-
-
-                                <div class="mini-stat">
-
-                                    <div class="mini-stat-label">
-                                        My Bookings
-                                    </div>
-
-                                    <div class="mini-stat-number">
-                                        04
-                                    </div>
-
-                                </div>
-
-
-                                <div class="mini-stat">
-
-                                    <div class="mini-stat-label">
-                                        Upcoming
-                                    </div>
-
-                                    <div class="mini-stat-number">
-                                        02
-                                    </div>
-
-                                </div>
-
-
-                            </div>
-
-
-                            <div class="room-grid">
-
-
-                                <div class="room">
-
-                                    <div class="room-top">
-
-                                        <div class="room-icon">
-
-                                            <svg
-                                                width="15"
-                                                height="15"
-                                                viewBox="0 0 24 24"
-                                                fill="none"
-                                                stroke="currentColor"
-                                                stroke-width="1.7"
-                                            >
-
-                                                <rect
-                                                    x="3"
-                                                    y="4"
-                                                    width="18"
-                                                    height="16"
-                                                    rx="2"
-                                                />
-
-                                                <path
-                                                    d="M7 8h10"
-                                                />
-
-                                            </svg>
-
-                                        </div>
-
-                                        <span class="room-status available">
-                                            AVAILABLE
-                                        </span>
-
-                                    </div>
-
-                                    <div class="room-name">
-                                        ห้องประชุม A101
-                                    </div>
-
-                                    <div class="room-meta">
-                                        Building A · 40 seats
-                                    </div>
-
-                                </div>
-
-
-                                <div class="room">
-
-                                    <div class="room-top">
-
-                                        <div class="room-icon">
-
-                                            <svg
-                                                width="15"
-                                                height="15"
-                                                viewBox="0 0 24 24"
-                                                fill="none"
-                                                stroke="currentColor"
-                                                stroke-width="1.7"
-                                            >
-
-                                                <rect
-                                                    x="3"
-                                                    y="4"
-                                                    width="18"
-                                                    height="16"
-                                                    rx="2"
-                                                />
-
-                                                <path
-                                                    d="M7 8h10"
-                                                />
-
-                                            </svg>
-
-                                        </div>
-
-                                        <span class="room-status booked">
-                                            BOOKED
-                                        </span>
-
-                                    </div>
-
-                                    <div class="room-name">
-                                        Smart Classroom
-                                    </div>
-
-                                    <div class="room-meta">
-                                        Building B · 60 seats
-                                    </div>
-
-                                </div>
-
-
-                                <div class="room">
-
-                                    <div class="room-top">
-
-                                        <div class="room-icon">
-
-                                            <svg
-                                                width="15"
-                                                height="15"
-                                                viewBox="0 0 24 24"
-                                                fill="none"
-                                                stroke="currentColor"
-                                                stroke-width="1.7"
-                                            >
-
-                                                <rect
-                                                    x="3"
-                                                    y="4"
-                                                    width="18"
-                                                    height="16"
-                                                    rx="2"
-                                                />
-
-                                                <path
-                                                    d="M7 8h10"
-                                                />
-
-                                            </svg>
-
-                                        </div>
-
-                                        <span class="room-status available">
-                                            AVAILABLE
-                                        </span>
-
-                                    </div>
-
-                                    <div class="room-name">
-                                        Meeting Room 03
-                                    </div>
-
-                                    <div class="room-meta">
-                                        Building C · 12 seats
-                                    </div>
-
-                                </div>
-
-
-                                <div class="room">
-
-                                    <div class="room-top">
-
-                                        <div class="room-icon">
-
-                                            <svg
-                                                width="15"
-                                                height="15"
-                                                viewBox="0 0 24 24"
-                                                fill="none"
-                                                stroke="currentColor"
-                                                stroke-width="1.7"
-                                            >
-
-                                                <rect
-                                                    x="3"
-                                                    y="4"
-                                                    width="18"
-                                                    height="16"
-                                                    rx="2"
-                                                />
-
-                                                <path
-                                                    d="M7 8h10"
-                                                />
-
-                                            </svg>
-
-                                        </div>
-
-                                        <span class="room-status available">
-                                            AVAILABLE
-                                        </span>
-
-                                    </div>
-
-                                    <div class="room-name">
-                                        ห้องเรียน 204
-                                    </div>
-
-                                    <div class="room-meta">
-                                        Building B · 45 seats
-                                    </div>
-
-                                </div>
-
-
-                            </div>
-
-
-                        </div>
-
-
-                        <!-- NOTIFICATION -->
-
-                        <div class="floating-notification">
-
-                            <div class="notification-icon">
-
-                                <svg
-                                    width="17"
-                                    height="17"
-                                    viewBox="0 0 24 24"
-                                    fill="none"
-                                    stroke="currentColor"
-                                    stroke-width="1.7"
-                                >
-
-                                    <path
-                                        d="M18 8a6 6 0 0 0-12 0c0 7-3 7-3 9h18c0-2-3-2-3-9"
-                                    />
-
-                                    <path
-                                        d="M10 21h4"
-                                    />
-
-                                </svg>
-
-                            </div>
-
-                            <div>
-
-                                <div class="notification-title">
-                                    Booking confirmed! 🎉
-                                </div>
-
-                                <div class="notification-text">
-                                    ห้อง A101 · วันนี้ 13:00
-                                </div>
-
-                            </div>
-
-                        </div>
-
-
-                        <!-- CALENDAR -->
-
-                        <div class="floating-calendar">
-
-                            <div class="calendar-head">
-
-                                <span>
-                                    August 2026
-                                </span>
-
-                                <span>
-                                    ›
-                                </span>
-
-                            </div>
-
-
-                            <div class="calendar-grid">
-
-                                <span class="calendar-day">M</span>
-                                <span class="calendar-day">T</span>
-                                <span class="calendar-day">W</span>
-                                <span class="calendar-day">T</span>
-                                <span class="calendar-day">F</span>
-                                <span class="calendar-day">S</span>
-                                <span class="calendar-day">S</span>
-
-                                <span class="calendar-day">3</span>
-                                <span class="calendar-day">4</span>
-                                <span class="calendar-day">5</span>
-                                <span class="calendar-day">6</span>
-                                <span class="calendar-day">7</span>
-                                <span class="calendar-day">8</span>
-                                <span class="calendar-day">9</span>
-
-                                <span class="calendar-day active">10</span>
-                                <span class="calendar-day">11</span>
-                                <span class="calendar-day">12</span>
-                                <span class="calendar-day">13</span>
-                                <span class="calendar-day">14</span>
-                                <span class="calendar-day">15</span>
-                                <span class="calendar-day">16</span>
-
-                            </div>
-
-                        </div>
-
-
-                    </div>
-
-                </div>
-
-            </div>
-
-        </section>
-
-
-        <!-- =====================================================
-             TRUST
-             ===================================================== -->
-
-        <div class="trust-strip">
-
-            <div class="container">
-
-                <div class="trust-inner">
-
-                    <div class="trust-item">
-
-                        <span class="trust-icon">✦</span>
-
-                        Easy to use
-
-                    </div>
-
-                    <div class="trust-item">
-
-                        <span class="trust-icon">◉</span>
-
-                        Real-time status
-
-                    </div>
-
-                    <div class="trust-item">
-
-                        <span class="trust-icon">✓</span>
-
-                        Simple booking
-
-                    </div>
-
-                    <div class="trust-item">
-
-                        <span class="trust-icon">♡</span>
-
-                        Made for campus
-
-                    </div>
-
-                </div>
-
-            </div>
-
-        </div>
-
-
-        <!-- =====================================================
-             FEATURES
-             ===================================================== -->
-
-        <section
-            class="section reveal"
-            id="features"
-        >
-
-            <div class="container">
-
-
-                <div class="section-heading">
-
-                    <div class="section-label">
-                        FEATURES
-                    </div>
-
-                    <h2 class="section-title">
-                        ทุกอย่างง่ายขึ้น
-                        ตั้งแต่ค้นหาจนถึงจอง
-                    </h2>
-
-                    <p class="section-description">
-                        ไม่ต้องเปิดหลายระบบ
-                        ไม่ต้องถามว่า “ห้องนี้ว่างไหม?”
-                        EasyRoom จัดการให้ในที่เดียว
-                    </p>
-
-                </div>
-
-
-                <div class="features">
-
-
-                    <article class="feature">
-
-                        <div class="feature-icon">
-
-                            <svg
-                                width="24"
-                                height="24"
-                                viewBox="0 0 24 24"
-                                fill="none"
-                                stroke="currentColor"
-                                stroke-width="1.7"
-                            >
-
-                                <circle
-                                    cx="11"
-                                    cy="11"
-                                    r="7"
-                                />
-
-                                <path
-                                    d="m20 20-4-4"
-                                />
-
-                            </svg>
-
-                        </div>
-
-                        <h3>
-                            ค้นหาห้องแบบ Smart
-                        </h3>
-
-                        <p>
-                            ค้นหาตามชื่อห้อง อาคาร
-                            ชั้น ความจุ หรือช่วงเวลา
-                            ได้อย่างรวดเร็ว
-                        </p>
-
-                    </article>
-
-
-                    <article class="feature">
-
-                        <div class="feature-icon">
-
-                            <svg
-                                width="24"
-                                height="24"
-                                viewBox="0 0 24 24"
-                                fill="none"
-                                stroke="currentColor"
-                                stroke-width="1.7"
-                            >
-
-                                <rect
-                                    x="3"
-                                    y="4"
-                                    width="18"
-                                    height="17"
-                                    rx="3"
-                                />
-
-                                <path
-                                    d="M8 2v4"
-                                />
-
-                                <path
-                                    d="M16 2v4"
-                                />
-
-                                <path
-                                    d="M3 10h18"
-                                />
-
-                            </svg>
-
-                        </div>
-
-                        <h3>
-                            จองง่ายในไม่กี่คลิก
-                        </h3>
-
-                        <p>
-                            เลือกห้อง เลือกเวลา
-                            ตรวจสอบรายละเอียด
-                            แล้วส่ง Booking ได้ทันที
-                        </p>
-
-                    </article>
-
-
-                    <article class="feature">
-
-                        <div class="feature-icon">
-
-                            <svg
-                                width="24"
-                                height="24"
-                                viewBox="0 0 24 24"
-                                fill="none"
-                                stroke="currentColor"
-                                stroke-width="1.7"
-                            >
-
-                                <path
-                                    d="M18 8a6 6 0 0 0-12 0c0 7-3 7-3 9h18c0-2-3-2-3-9"
-                                />
-
-                                <path
-                                    d="M10 21h4"
-                                />
-
-                            </svg>
-
-                        </div>
-
-                        <h3>
-                            แจ้งเตือนทุกความเคลื่อนไหว
-                        </h3>
-
-                        <p>
-                            รู้ทันทีเมื่อ Booking
-                            ได้รับการอนุมัติ
-                            ถูกยกเลิก หรือใกล้ถึงเวลา
-                        </p>
-
-                    </article>
-
-
-                </div>
-
-
-                <div class="stats">
-
-
-                    <div class="stat">
-
-                        <div
-                            class="stat-number counter"
-                            data-target="24"
-                        >
-                            0
-                        </div>
-
-                        <div class="stat-label">
-                            ห้องเรียน / Meeting Rooms
-                        </div>
-
-                    </div>
-
-
-                    <div class="stat">
-
-                        <div
-                            class="stat-number counter"
-                            data-target="12"
-                        >
-                            0
-                        </div>
-
-                        <div class="stat-label">
-                            Available Now
-                        </div>
-
-                    </div>
-
-
-                    <div class="stat">
-
-                        <div
-                            class="stat-number counter"
-                            data-target="380"
-                        >
-                            0
-                        </div>
-
-                        <div class="stat-label">
-                            Bookings / Month
-                        </div>
-
-                    </div>
-
-
-                    <div class="stat">
-
-                        <div
-                            class="stat-number counter"
-                            data-target="99"
-                        >
-                            0
-                        </div>
-
-                        <div class="stat-label">
-                            % Easy Experience
-                        </div>
-
-                    </div>
-
-
-                </div>
-
-            </div>
-
-        </section>
-
-
-        <!-- =====================================================
-             HOW
-             ===================================================== -->
-
-        <section
-            class="section reveal"
-            id="how"
-        >
-
-            <div class="container">
-
-
-                <div class="section-heading">
-
-                    <div class="section-label">
-                        HOW IT WORKS
-                    </div>
-
-                    <h2 class="section-title">
-                        จองห้องได้แบบไม่ต้องคิดเยอะ
-                    </h2>
-
-                    <p class="section-description">
-                        สามขั้นตอนง่าย ๆ
-                        แล้วคุณก็พร้อมเข้าเรียนหรือประชุม
-                    </p>
-
-                </div>
-
-
-                <div class="steps">
-
-
-                    <div class="step">
-
-                        <div class="step-number">
-                            01
-                        </div>
-
-                        <h3>
-                            ค้นหาห้อง
-                        </h3>
-
-                        <p>
-                            เลือกวันที่และช่วงเวลา
-                            แล้วดูห้องที่ Available
-                            แบบเข้าใจง่าย
-                        </p>
-
-                    </div>
-
-
-                    <div class="step">
-
-                        <div class="step-number">
-                            02
-                        </div>
-
-                        <h3>
-                            เลือกช่วงเวลา
-                        </h3>
-
-                        <p>
-                            ดูตารางเวลา
-                            และเลือก Slot
-                            ที่เหมาะกับคุณ
-                        </p>
-
-                    </div>
-
-
-                    <div class="step">
-
-                        <div class="step-number">
-                            03
-                        </div>
-
-                        <h3>
-                            Confirm 🎉
-                        </h3>
-
-                        <p>
-                            ส่งคำขอจอง
-                            แล้วติดตามสถานะได้จาก Dashboard
-                        </p>
-
-                    </div>
-
-
-                </div>
-
-            </div>
-
-        </section>
-
-
-        <!-- =====================================================
-             CTA
-             ===================================================== -->
-
-        <section
-            class="section reveal"
-            id="about"
-        >
-
-            <div class="container">
-
-                <div class="cta">
-
-                    <h2>
-                        ห้องว่างอยู่หรือเปล่า? 👀
-                    </h2>
-
-                    <p>
-                        เปิด EasyRoom แล้วหาคำตอบได้เลย
-                    </p>
-
-                    <a
-                        href="register.html"
-                        class="btn"
-                    >
-
-                        เริ่มใช้งาน EasyRoom
-
-                        <svg
-                            width="15"
-                            height="15"
-                            viewBox="0 0 24 24"
-                            fill="none"
-                            stroke="currentColor"
-                            stroke-width="2"
-                        >
-
-                            <path d="M5 12h14"/>
-
-                            <path d="m13 6 6 6-6 6"/>
-
-                        </svg>
-
-                    </a>
-
-                </div>
-
-            </div>
-
-        </section>
-
-
-    </main>
-
-
-    <!-- =====================================================
-         FOOTER
-         ===================================================== -->
-
-    <footer>
-
-        <div class="container">
-
-            <div class="footer-inner">
-
-                <div class="footer-logo">
-
-                    <img
-                        src="https://img2.pic.in.th/logoeasyroom.png"
-                        alt="EasyRoom"
-                    >
-
-                </div>
-
-                <div class="copyright">
-                    © 2026 EasyRoom · Smart Campus Room Booking
-                </div>
-
-            </div>
-
-        </div>
-
-    </footer>
-
-
-    <!-- =====================================================
-         JAVASCRIPT
-         ===================================================== -->
-
-    <script>
-
-
-        /* =====================================================
-           NAVBAR
-           ===================================================== */
-
-        const navbar =
-            document.getElementById("navbar");
-
-
-        window.addEventListener(
-            "scroll",
-            () => {
-
-                navbar.classList.toggle(
-                    "scrolled",
-                    window.scrollY > 25
-                );
-
-            }
-        );
-
-
-        /* =====================================================
-           MOUSE GLOW
-           ===================================================== */
-
-        const mouseGlow =
-            document.getElementById("mouseGlow");
-
-
-        window.addEventListener(
-            "mousemove",
-            (event) => {
-
-                mouseGlow.style.left =
-                    event.clientX + "px";
-
-                mouseGlow.style.top =
-                    event.clientY + "px";
-
-            }
-        );
-
-
-        /* =====================================================
-           3D TILT
-           ===================================================== */
-
-        const tiltCard =
-            document.getElementById("tiltCard");
-
-
-        tiltCard.addEventListener(
-            "mousemove",
-            (event) => {
-
-                if (window.innerWidth < 850)
-                    return;
-
-
-                const rect =
-                    tiltCard.getBoundingClientRect();
-
-
-                const x =
-                    event.clientX - rect.left;
-
-                const y =
-                    event.clientY - rect.top;
-
-
-                const centerX =
-                    rect.width / 2;
-
-                const centerY =
-                    rect.height / 2;
-
-
-                const rotateX =
-                    ((y - centerY) /
-                    centerY) * -2.8;
-
-
-                const rotateY =
-                    ((x - centerX) /
-                    centerX) * 2.8;
-
-
-                tiltCard.style.transform =
-                    `
-                    perspective(1300px)
-                    rotateX(${rotateX}deg)
-                    rotateY(${rotateY}deg)
-                    scale(1.015)
-                    `;
-
-            }
-        );
-
-
-        tiltCard.addEventListener(
-            "mouseleave",
-            () => {
-
-                tiltCard.style.transform =
-                    `
-                    perspective(1300px)
-                    rotateY(-5deg)
-                    rotateX(2deg)
-                    scale(1)
-                    `;
-
-            }
-        );
-
-
-        /* =====================================================
-           SCROLL REVEAL
-           ===================================================== */
-
-        const revealElements =
-            document.querySelectorAll(".reveal");
-
-
-        const observer =
-            new IntersectionObserver(
-                (entries) => {
-
-                    entries.forEach(
-                        (entry) => {
-
-                            if (
-                                entry.isIntersecting
-                            ) {
-
-                                entry.target
-                                    .classList
-                                    .add("visible");
-
-                            }
-
-                        }
-                    );
-
-                },
-                {
-                    threshold: .12
-                }
-            );
-
-
-        revealElements.forEach(
-            element => observer.observe(element)
-        );
-
-
-        /* =====================================================
-           COUNTER
-           ===================================================== */
-
-        const counters =
-            document.querySelectorAll(".counter");
-
-
-        let countersStarted = false;
-
-
-        function startCounters() {
-
-            if (countersStarted)
-                return;
-
-            countersStarted = true;
-
-
-            counters.forEach(
-                counter => {
-
-                    const target =
-                        Number(
-                            counter.dataset.target
-                        );
-
-
-                    let current = 0;
-
-                    const increment =
-                        Math.max(
-                            1,
-                            Math.ceil(target / 45)
-                        );
-
-
-                    const timer =
-                        setInterval(
-                            () => {
-
-                                current += increment;
-
-
-                                if (
-                                    current >= target
-                                ) {
-
-                                    current =
-                                        target;
-
-                                    clearInterval(
-                                        timer
-                                    );
-
-                                }
-
-
-                                counter.textContent =
-                                    current;
-
-                            },
-                            28
-                        );
-
-                }
-            );
-
-        }
-
-
-        const statsSection =
-            document.querySelector(".stats");
-
-
-        const statsObserver =
-            new IntersectionObserver(
-                entries => {
-
-                    if (
-                        entries[0].isIntersecting
-                    ) {
-
-                        startCounters();
-
-                    }
-
-                },
-                {
-                    threshold: .5
-                }
-            );
-
-
-        statsObserver.observe(
-            statsSection
-        );
-
-
-        /* =====================================================
-           MOBILE MENU
-           ===================================================== */
-
-        const mobileMenu =
-            document.getElementById(
-                "mobileMenu"
-            );
-
-
-        mobileMenu.addEventListener(
-            "click",
-            () => {
-
-                alert(
-                    "Mobile navigation จะเชื่อมกับเมนูจริงในขั้นตอนปรับระบบต่อไปครับ"
-                );
-
-            }
-        );
-
-
-    </script>
-
+<!--
+    JavaScript จะเพิ่มในขั้นตอนถัดไป
+    เช่น:
+    - Scroll animation
+    - Mouse glow
+    - 3D tilt
+    - Navbar effect
+    - Micro interaction
+-->
+```
 
 </body>
-
 </html>
-```
