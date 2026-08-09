@@ -4,10 +4,10 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>EasyRoom — จองห้องง่ายขึ้นกว่าที่เคย</title>
-<meta name="description" content="EasyRoom ระบบจองห้องเรียนและห้องประชุมสำหรับมหาวิทยาลัย ค้นหา จอง และตรวจสอบสถานะห้องได้ในที่เดียว">
+<meta name="description" content="EasyRoom ระบบจองห้องเรียนและห้องประชุมสำหรับมหาวิทยาลัย ค้นหา จอง และจัดการห้องได้จากที่เดียว">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Noto+Sans+Thai:wght@400;500;600;700&family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Noto+Sans+Thai:wght@400;500;600;700&family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
@@ -19,31 +19,37 @@
   <!-- ================= HERO ================= -->
   <section class="hero" id="hero">
     <div class="hero-bg" aria-hidden="true"></div>
+    <div class="blob blob-a" aria-hidden="true"></div>
+    <div class="blob blob-b" aria-hidden="true"></div>
     <div class="ambient-glow" id="ambientGlow" aria-hidden="true"></div>
+    <div class="mouse-light" id="mouseLight" aria-hidden="true"></div>
 
     <div class="hero-inner">
 
       <div class="hero-stage" id="heroStage">
 
-        <span class="eyebrow phase" data-phase="1">ระบบจองห้องสำหรับมหาวิทยาลัย</span>
+        <span class="eyebrow phase" data-phase="1">
+          <i class="eyebrow-dot" aria-hidden="true"></i>
+          SMART UNIVERSITY BOOKING
+        </span>
 
         <div class="logo-wrap phase" data-phase="3" id="logoWrap">
           <div class="logo-glow" aria-hidden="true"></div>
           <div class="logo-ring" aria-hidden="true"></div>
-          <img
-            src="https://img2.pic.in.th/logoeasyroom.png"
-            alt="EasyRoom"
-            class="hero-logo"
-            id="heroLogo"
-            width="440" height="440">
+          <div class="logo-tilt" id="logoTilt">
+            <img
+              src="https://img2.pic.in.th/logoeasyroom.png"
+              alt="EasyRoom"
+              class="hero-logo"
+              width="440" height="440">
+            <div class="logo-sheen" aria-hidden="true"></div>
+          </div>
         </div>
 
         <h1 class="headline phase" data-phase="4">
           <span class="line">จองห้องง่ายขึ้น</span>
           <span class="line accent-line"><em>กว่าที่เคย</em></span>
         </h1>
-
-        <p class="subhead phase" data-phase="4">Book your space, your way.</p>
 
         <p class="description phase" data-phase="5">
           ระบบจองห้องเรียนและห้องประชุม<br class="br-desktop">
@@ -55,7 +61,7 @@
             <span>เริ่มใช้งาน</span>
           </a>
           <a href="login.html" class="btn btn-ghost">
-            <span>ดูรายละเอียด</span>
+            <span>เข้าสู่ระบบ</span>
           </a>
         </div>
 
@@ -68,19 +74,19 @@
             <span class="status-dot"></span>
             <span class="card-tag">Available</span>
           </div>
-          <strong class="card-title">Room A-302</strong>
-          <span class="card-sub">40 seats · Building A</span>
+          <strong class="card-title">ห้อง A-302</strong>
+          <span class="card-sub">40 seats · อาคาร A · ชั้น 3</span>
         </div>
 
         <div class="glass-card card-upcoming" data-depth="0.35">
           <span class="card-tag">Upcoming Booking</span>
-          <strong class="card-title">Lecture Room</strong>
+          <strong class="card-title">ห้องประชุม 204</strong>
           <span class="card-sub">13:00 — 15:00</span>
         </div>
 
         <div class="glass-card card-count" data-depth="0.45">
           <span class="card-tag">Available Rooms</span>
-          <strong class="card-title card-title-lg">24 rooms</strong>
+          <strong class="card-title card-title-lg">24 ห้อง</strong>
         </div>
 
       </div>
@@ -88,23 +94,27 @@
     </div>
 
     <div class="scroll-hint" aria-hidden="true">
-      <span class="scroll-hint-line"></span>
+      <span class="scroll-hint-label">Scroll to explore</span>
+      <span class="scroll-hint-track"><span class="scroll-hint-dot"></span></span>
     </div>
   </section>
 
   <!-- ================= INTRO ================= -->
   <section class="intro" id="intro">
     <p class="intro-eyebrow reveal-on-scroll">Everything you need.</p>
-    <h2 class="intro-title reveal-on-scroll">
+    <h2 class="intro-title reveal-on-scroll" style="--stagger:80ms">
       ทุกอย่างที่ต้องใช้<br><em>อยู่ในที่เดียว</em>
     </h2>
+    <p class="intro-sub reveal-on-scroll" style="--stagger:160ms">
+      ค้นหา จอง และจัดการห้องเรียนหรือห้องประชุมได้จากที่เดียว
+    </p>
   </section>
 
   <!-- ================= FEATURES ================= -->
   <section class="features" id="features">
     <div class="feature-grid">
 
-      <article class="feature-card reveal-on-scroll" style="--stagger:0ms">
+      <article class="feature-card tilt-card reveal-on-scroll" style="--stagger:0ms">
         <div class="feature-icon" aria-hidden="true">
           <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
             <circle cx="10.5" cy="10.5" r="6.5" stroke="currentColor" stroke-width="1.6"/>
@@ -112,10 +122,11 @@
           </svg>
         </div>
         <h3>Smart Search</h3>
-        <p>ค้นหาห้องตามอาคาร ชั้น ความจุ และเวลาที่ต้องการ</p>
+        <p>ค้นหาห้องตามอาคาร ชั้น ความจุ และเวลา</p>
+        <div class="card-spotlight" aria-hidden="true"></div>
       </article>
 
-      <article class="feature-card reveal-on-scroll" style="--stagger:150ms">
+      <article class="feature-card tilt-card reveal-on-scroll" style="--stagger:100ms">
         <div class="feature-icon" aria-hidden="true">
           <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
             <rect x="3.5" y="5" width="17" height="15.5" rx="2.5" stroke="currentColor" stroke-width="1.6"/>
@@ -126,10 +137,11 @@
           </svg>
         </div>
         <h3>Easy Booking</h3>
-        <p>เลือกห้องและเวลาที่ต้องการ แล้วส่งคำขอได้ในไม่กี่คลิก</p>
+        <p>จองห้องได้ง่ายในไม่กี่ขั้นตอน</p>
+        <div class="card-spotlight" aria-hidden="true"></div>
       </article>
 
-      <article class="feature-card reveal-on-scroll" style="--stagger:300ms">
+      <article class="feature-card tilt-card reveal-on-scroll" style="--stagger:200ms">
         <div class="feature-icon" aria-hidden="true">
           <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
             <circle cx="12" cy="12" r="8.5" stroke="currentColor" stroke-width="1.6"/>
@@ -138,29 +150,70 @@
           </svg>
         </div>
         <h3>Live Availability</h3>
-        <p>ดูสถานะห้องแบบเรียลไทม์ Available หรือ Occupied ได้ชัดเจน</p>
+        <p>ตรวจสอบสถานะห้องว่างแบบเข้าใจง่าย</p>
+        <div class="card-spotlight" aria-hidden="true"></div>
       </article>
 
+    </div>
+  </section>
+
+  <!-- ================= MINI ROOM PREVIEW ================= -->
+  <section class="preview" id="preview">
+    <div class="preview-panel reveal-on-scroll">
+      <div class="preview-glow" aria-hidden="true"></div>
+
+      <div class="preview-header">
+        <div class="preview-brand">
+          <img src="https://img2.pic.in.th/logoeasyroom.png" alt="" class="preview-logo">
+          <span>EasyRoom</span>
+        </div>
+        <span class="preview-date">Today</span>
+      </div>
+
+      <p class="preview-label">Available Rooms</p>
+
+      <div class="preview-rooms">
+        <div class="preview-room is-available">
+          <span class="room-id">A-302</span>
+          <span class="room-status"><i class="status-dot status-dot-sm"></i>Available</span>
+        </div>
+        <div class="preview-room is-occupied">
+          <span class="room-id">B-204</span>
+          <span class="room-status"><i class="status-dot status-dot-sm dot-occupied"></i>Occupied</span>
+        </div>
+        <div class="preview-room is-available">
+          <span class="room-id">C-101</span>
+          <span class="room-status"><i class="status-dot status-dot-sm"></i>Available</span>
+        </div>
+      </div>
     </div>
   </section>
 
   <!-- ================= CTA ================= -->
   <section class="cta-section" id="cta">
     <div class="cta-glow" aria-hidden="true"></div>
-    <h2 class="reveal-on-scroll">
-      พร้อมจองห้องของคุณ<br><em>หรือยัง?</em>
-    </h2>
-    <p class="reveal-on-scroll">Your next room is waiting.</p>
-    <a href="register.html" class="btn btn-primary btn-large reveal-on-scroll">
-      <span>เริ่มใช้งาน · Get Started</span>
-    </a>
+    <div class="cta-panel reveal-on-scroll">
+      <h2>
+        พร้อมจองห้องของคุณ<br><em>หรือยัง?</em>
+      </h2>
+      <p>Your next room is waiting.</p>
+      <div class="cta-buttons">
+        <a href="register.html" class="btn btn-primary btn-large">
+          <span>เริ่มใช้งาน</span>
+        </a>
+        <a href="login.html" class="btn btn-ghost btn-large">
+          <span>เข้าสู่ระบบ</span>
+        </a>
+      </div>
+    </div>
   </section>
 
 </main>
 
 <footer class="site-footer">
   <img src="https://img2.pic.in.th/logoeasyroom.png" alt="EasyRoom" class="footer-logo">
-  <p>&copy; 2026 EasyRoom</p>
+  <p class="footer-copyright">&copy; 2026 EasyRoom</p>
+  <p class="footer-tagline">Smart room booking for modern universities.</p>
 </footer>
 
 <script src="js/script.js"></script>
