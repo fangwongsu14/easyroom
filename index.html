@@ -3,121 +3,114 @@
 <html lang="th">
 
 <head>
-
     <meta charset="UTF-8">
 
-    <meta
-        name="viewport"
-        content="width=device-width, initial-scale=1.0"
-    >
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>EasyRoom — ระบบจองห้องเรียนและห้องประชุม</title>
+    <title>EasyRoom — Smart Campus Room Booking</title>
 
     <meta
         name="description"
-        content="EasyRoom ระบบจองห้องเรียนและห้องประชุมที่ใช้งานง่าย รวดเร็ว และเป็นระบบ"
+        content="EasyRoom ระบบจองห้องเรียนและห้องประชุมสำหรับมหาวิทยาลัย"
     >
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
 
-    <link
-        rel="preconnect"
-        href="https://fonts.gstatic.com"
-        crossorigin
-    >
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
     <link
         href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;500;600;700&family=Inter:wght@400;500;600;700;800&display=swap"
         rel="stylesheet"
     >
 
-
     <style>
 
-        /* =====================================================
-           EASYROOM
-           PREMIUM BLUE / WHITE SAAS
-           ===================================================== */
+        /* =========================================================
+           EASYROOM — MODERN CAMPUS DESIGN SYSTEM
+           ========================================================= */
 
         :root {
 
-            --blue: #1677ff;
-            --blue-dark: #075ed7;
-            --blue-light: #55a7ff;
+            --blue: #2388ff;
+            --blue-2: #56b4ff;
+            --blue-3: #0f6fe8;
 
-            --blue-soft: #eaf4ff;
+            --cyan: #5edcff;
 
-            --text: #132a43;
-            --text-soft: #617188;
-            --text-muted: #8c9aaa;
+            --navy: #122d49;
+            --text: #27435f;
+            --muted: #71849a;
+            --soft: #9aaabd;
 
+            --bg: #f7fbff;
             --white: #ffffff;
 
-            --border:
-                rgba(28, 82, 139, 0.10);
+            --glass:
+                rgba(255,255,255,.66);
+
+            --line:
+                rgba(31,100,160,.10);
 
             --shadow:
                 0 25px 70px
-                rgba(28, 82, 139, 0.11);
+                rgba(35,111,176,.10);
+
+            --radius-xl: 30px;
+            --radius-lg: 22px;
+            --radius-md: 16px;
 
         }
 
 
-        /* =====================================================
+        /* =========================================================
            RESET
-           ===================================================== */
+           ========================================================= */
 
         * {
-
             margin: 0;
             padding: 0;
-
             box-sizing: border-box;
-
         }
-
 
         html {
-
             scroll-behavior: smooth;
-
         }
 
-
         body {
-
-            color: var(--text);
 
             font-family:
                 "Kanit",
                 "Inter",
                 sans-serif;
 
+            color: var(--text);
+
             background:
 
                 radial-gradient(
-                    circle at 10% 0%,
-                    rgba(50,145,255,0.14),
-                    transparent 28%
+                    circle at 8% 5%,
+                    rgba(65,164,255,.15),
+                    transparent 25%
                 ),
 
                 radial-gradient(
-                    circle at 90% 35%,
-                    rgba(71,166,255,0.10),
-                    transparent 30%
+                    circle at 92% 25%,
+                    rgba(96,211,255,.12),
+                    transparent 28%
                 ),
 
                 linear-gradient(
-                    135deg,
+                    180deg,
                     #ffffff 0%,
-                    #f7fbff 52%,
-                    #edf6ff 100%
+                    #f7fbff 45%,
+                    #eef7ff 100%
                 );
+
+            min-height: 100vh;
 
             overflow-x: hidden;
 
         }
-
 
         body::before {
 
@@ -127,20 +120,20 @@
 
             inset: 0;
 
-            pointer-events: none;
+            z-index: -3;
 
-            z-index: -1;
+            pointer-events: none;
 
             background-image:
 
                 linear-gradient(
-                    rgba(25,100,170,0.025) 1px,
+                    rgba(44,128,194,.025) 1px,
                     transparent 1px
                 ),
 
                 linear-gradient(
                     90deg,
-                    rgba(25,100,170,0.025) 1px,
+                    rgba(44,128,194,.025) 1px,
                     transparent 1px
                 );
 
@@ -149,88 +142,180 @@
             mask-image:
                 linear-gradient(
                     to bottom,
-                    black,
-                    transparent 80%
+                    black 0%,
+                    transparent 75%
                 );
 
         }
 
-
         ::selection {
 
-            background:
-                rgba(22,119,255,0.16);
+            color: white;
 
-            color:
+            background:
                 var(--blue);
 
         }
 
-
         a {
-
-            color: inherit;
-
             text-decoration: none;
-
+            color: inherit;
         }
 
-
-        button {
-
+        button,
+        input {
             font: inherit;
-
         }
 
 
-        /* =====================================================
-           CONTAINER
-           ===================================================== */
+        /* =========================================================
+           BACKGROUND FLOATING SHAPES
+           ========================================================= */
 
-        .container {
-
-            width: min(
-                1180px,
-                calc(100% - 48px)
-            );
-
-            margin: auto;
-
-        }
-
-
-        /* =====================================================
-           AMBIENT
-           ===================================================== */
-
-        .ambient {
+        .background-shapes {
 
             position: fixed;
 
-            width: 500px;
-            height: 500px;
+            inset: 0;
+
+            pointer-events: none;
+
+            z-index: -2;
+
+            overflow: hidden;
+
+        }
+
+        .blob {
+
+            position: absolute;
 
             border-radius: 50%;
 
+            filter: blur(2px);
+
+            opacity: .55;
+
+            animation:
+                blobFloat 10s ease-in-out infinite;
+
+        }
+
+        .blob.one {
+
+            width: 180px;
+            height: 180px;
+
+            top: 16%;
+            left: -55px;
+
             background:
-                rgba(45,139,255,0.065);
+                linear-gradient(
+                    135deg,
+                    rgba(89,180,255,.25),
+                    rgba(135,226,255,.10)
+                );
 
-            filter:
-                blur(100px);
+        }
 
-            transform:
-                translate(-50%, -50%);
+        .blob.two {
+
+            width: 120px;
+            height: 120px;
+
+            top: 55%;
+            right: 5%;
+
+            background:
+                rgba(104,206,255,.18);
+
+            animation-delay: -3s;
+
+        }
+
+        .blob.three {
+
+            width: 80px;
+            height: 80px;
+
+            top: 35%;
+            right: 30%;
+
+            background:
+                rgba(67,142,255,.13);
+
+            animation-delay: -6s;
+
+        }
+
+        @keyframes blobFloat {
+
+            0%,
+            100% {
+                transform:
+                    translate(0,0)
+                    rotate(0deg);
+            }
+
+            50% {
+                transform:
+                    translate(20px,-25px)
+                    rotate(8deg);
+            }
+
+        }
+
+
+        /* =========================================================
+           MOUSE GLOW
+           ========================================================= */
+
+        .mouse-glow {
+
+            position: fixed;
+
+            width: 420px;
+            height: 420px;
+
+            border-radius: 50%;
 
             pointer-events: none;
 
             z-index: -1;
 
+            transform:
+                translate(-50%,-50%);
+
+            background:
+                radial-gradient(
+                    circle,
+                    rgba(72,165,255,.12),
+                    transparent 68%
+                );
+
         }
 
 
-        /* =====================================================
+        /* =========================================================
+           CONTAINER
+           ========================================================= */
+
+        .container {
+
+            width:
+                min(
+                    1180px,
+                    calc(100% - 42px)
+                );
+
+            margin: 0 auto;
+
+        }
+
+
+        /* =========================================================
            NAVBAR
-           ===================================================== */
+           ========================================================= */
 
         .navbar {
 
@@ -240,41 +325,24 @@
             left: 0;
             right: 0;
 
-            z-index: 100;
+            z-index: 1000;
 
-            padding:
-                16px 0;
+            padding-top: 16px;
 
             transition:
-                padding 0.3s ease,
-                background 0.3s ease,
-                box-shadow 0.3s ease;
+                .3s ease;
 
         }
-
 
         .navbar.scrolled {
 
-            padding:
-                10px 0;
-
-            background:
-                rgba(255,255,255,0.78);
-
-            backdrop-filter:
-                blur(20px);
-
-            -webkit-backdrop-filter:
-                blur(20px);
-
-            box-shadow:
-                0 8px 30px
-                rgba(32,79,128,0.06);
+            padding-top: 9px;
 
         }
 
+        .nav-shell {
 
-        .nav-inner {
+            height: 70px;
 
             display: flex;
 
@@ -282,19 +350,18 @@
 
             justify-content: space-between;
 
-            height: 68px;
-
             padding:
-                0 20px;
+                0 18px;
 
             border:
                 1px solid
-                rgba(30,83,137,0.08);
+                rgba(37,113,171,.09);
 
-            border-radius: 18px;
+            border-radius:
+                20px;
 
             background:
-                rgba(255,255,255,0.68);
+                rgba(255,255,255,.72);
 
             backdrop-filter:
                 blur(24px);
@@ -303,28 +370,40 @@
                 blur(24px);
 
             box-shadow:
-                0 10px 35px
-                rgba(31,80,132,0.055);
+                0 10px 40px
+                rgba(30,91,145,.065);
+
+            transition:
+                .3s ease;
+
+        }
+
+        .navbar.scrolled .nav-shell {
+
+            box-shadow:
+                0 12px 35px
+                rgba(30,91,145,.10);
+
+            background:
+                rgba(255,255,255,.86);
 
         }
 
 
-        /* =====================================================
+        /* =========================================================
            LOGO
-           ===================================================== */
+           ========================================================= */
 
         .brand {
+
+            width: 170px;
+            height: 58px;
 
             display: flex;
 
             align-items: center;
 
-            width: 170px;
-
-            height: 58px;
-
         }
-
 
         .brand img {
 
@@ -337,27 +416,26 @@
 
             filter:
                 drop-shadow(
-                    0 8px 20px
-                    rgba(22,119,255,0.08)
+                    0 7px 15px
+                    rgba(34,136,255,.08)
                 );
 
             transition:
-                transform 0.3s ease;
+                transform .3s ease;
 
         }
-
 
         .brand:hover img {
 
             transform:
-                scale(1.045);
+                scale(1.05);
 
         }
 
 
-        /* =====================================================
-           NAV LINKS
-           ===================================================== */
+        /* =========================================================
+           NAV
+           ========================================================= */
 
         .nav-links {
 
@@ -365,29 +443,28 @@
 
             align-items: center;
 
-            gap: 6px;
+            gap: 5px;
 
         }
-
 
         .nav-link {
 
             padding:
                 10px 14px;
 
-            border-radius: 10px;
+            border-radius:
+                11px;
 
             color:
-                #617187;
+                #6b7d91;
 
-            font-size: 13px;
+            font-size:
+                13px;
 
             transition:
-                color 0.2s ease,
-                background 0.2s ease;
+                .2s ease;
 
         }
-
 
         .nav-link:hover {
 
@@ -395,10 +472,9 @@
                 var(--blue);
 
             background:
-                var(--blue-soft);
+                #edf7ff;
 
         }
-
 
         .nav-actions {
 
@@ -406,42 +482,43 @@
 
             align-items: center;
 
-            gap: 10px;
+            gap: 8px;
 
         }
 
-
-        .btn-login {
+        .sign-in {
 
             padding:
-                10px 16px;
+                10px 15px;
 
-            border-radius: 10px;
+            border-radius:
+                11px;
 
             color:
-                #53657a;
+                #60758b;
 
-            font-size: 12px;
-
-            transition:
-                color 0.2s ease,
-                background 0.2s ease;
+            font-size:
+                12px;
 
         }
 
-
-        .btn-login:hover {
+        .sign-in:hover {
 
             color:
                 var(--blue);
 
-            background:
-                var(--blue-soft);
-
         }
 
 
-        .btn-primary {
+        /* =========================================================
+           BUTTON
+           ========================================================= */
+
+        .btn {
+
+            position: relative;
+
+            overflow: hidden;
 
             display: inline-flex;
 
@@ -451,48 +528,92 @@
 
             gap: 8px;
 
+            min-height: 44px;
+
             padding:
-                12px 20px;
+                0 18px;
 
-            border: none;
+            border: 0;
 
-            border-radius: 11px;
+            border-radius:
+                13px;
 
-            color: white;
+            color:
+                white;
 
             background:
                 linear-gradient(
                     135deg,
-                    #318dff,
-                    #0865e5
+                    #50adff,
+                    #1678ed
                 );
 
             box-shadow:
-                0 10px 25px
-                rgba(22,119,255,0.19);
+                0 12px 28px
+                rgba(32,126,237,.22);
 
-            font-size: 12px;
+            font-size:
+                12px;
 
-            cursor: pointer;
+            cursor:
+                pointer;
 
             transition:
-                transform 0.25s ease,
-                box-shadow 0.25s ease;
+                transform .25s ease,
+                box-shadow .25s ease;
 
         }
 
+        .btn::before {
 
-        .btn-primary:hover {
+            content: "";
+
+            position: absolute;
+
+            top: 0;
+            left: -100%;
+
+            width: 70%;
+            height: 100%;
+
+            background:
+                linear-gradient(
+                    100deg,
+                    transparent,
+                    rgba(255,255,255,.38),
+                    transparent
+                );
 
             transform:
-                translateY(-2px);
+                skewX(-20deg);
 
-            box-shadow:
-                0 15px 32px
-                rgba(22,119,255,0.27);
+            transition:
+                left .6s ease;
 
         }
 
+        .btn:hover::before {
+
+            left:
+                140%;
+
+        }
+
+        .btn:hover {
+
+            transform:
+                translateY(-3px);
+
+            box-shadow:
+                0 17px 35px
+                rgba(32,126,237,.28);
+
+        }
+
+
+        /* =========================================================
+           MOBILE MENU
+           ========================================================= */
 
         .mobile-menu {
 
@@ -503,24 +624,26 @@
 
             border:
                 1px solid
-                var(--border);
+                var(--line);
 
-            border-radius: 10px;
-
-            color:
-                #557087;
+            border-radius:
+                11px;
 
             background:
-                rgba(255,255,255,0.7);
+                rgba(255,255,255,.8);
 
-            cursor: pointer;
+            color:
+                var(--text);
+
+            cursor:
+                pointer;
 
         }
 
 
-        /* =====================================================
+        /* =========================================================
            HERO
-           ===================================================== */
+           ========================================================= */
 
         .hero {
 
@@ -528,47 +651,47 @@
                 850px;
 
             padding:
-                175px 0
-                105px;
+                155px 0 90px;
 
-            display: flex;
+            display:
+                flex;
 
-            align-items: center;
+            align-items:
+                center;
 
         }
-
 
         .hero-grid {
 
-            display: grid;
+            display:
+                grid;
 
             grid-template-columns:
-                1.03fr
-                0.97fr;
+                1fr 1fr;
 
-            align-items: center;
+            align-items:
+                center;
 
-            gap: 80px;
+            gap:
+                60px;
 
         }
-
 
         .hero-content {
 
             animation:
-                heroIn 0.8s ease both;
+                heroEnter .8s ease both;
 
         }
 
-
-        @keyframes heroIn {
+        @keyframes heroEnter {
 
             from {
 
                 opacity: 0;
 
                 transform:
-                    translateY(25px);
+                    translateY(30px);
 
             }
 
@@ -584,255 +707,371 @@
         }
 
 
-        .eyebrow {
+        /* =========================================================
+           HERO BADGE
+           ========================================================= */
 
-            display: inline-flex;
+        .hero-badge {
 
-            align-items: center;
+            display:
+                inline-flex;
 
-            gap: 9px;
+            align-items:
+                center;
+
+            gap:
+                9px;
 
             padding:
                 8px 13px;
 
-            margin-bottom: 25px;
+            margin-bottom:
+                22px;
 
             border:
                 1px solid
-                rgba(22,119,255,0.12);
+                rgba(38,133,221,.12);
 
-            border-radius: 100px;
-
-            color:
-                var(--blue);
+            border-radius:
+                100px;
 
             background:
-                rgba(234,244,255,0.72);
+                rgba(237,247,255,.78);
 
-            font-size: 11px;
+            color:
+                #2680df;
 
-            font-weight: 400;
+            font-size:
+                11px;
 
         }
 
-
-        .eyebrow-dot {
+        .live-dot {
 
             width: 7px;
             height: 7px;
 
-            border-radius: 50%;
+            border-radius:
+                50%;
 
             background:
-                #26b876;
+                #22c77a;
 
             box-shadow:
                 0 0 0 5px
-                rgba(38,184,118,0.09);
+                rgba(34,199,122,.10);
+
+            animation:
+                pulse 2s infinite;
 
         }
 
+        @keyframes pulse {
+
+            0%,
+            100% {
+                transform: scale(1);
+            }
+
+            50% {
+                transform: scale(1.25);
+            }
+
+        }
+
+
+        /* =========================================================
+           HERO LOGO
+           ========================================================= */
 
         .hero-logo {
 
-            width: 340px;
+            width:
+                380px;
 
-            height: 145px;
+            height:
+                150px;
 
-            margin-bottom: 8px;
+            margin-bottom:
+                4px;
 
         }
-
 
         .hero-logo img {
 
             width: 100%;
             height: 100%;
 
-            object-fit: contain;
+            object-fit:
+                contain;
 
-            object-position: left center;
+            object-position:
+                left center;
 
             filter:
                 drop-shadow(
-                    0 18px 32px
-                    rgba(22,119,255,0.10)
+                    0 20px 35px
+                    rgba(34,136,255,.13)
                 );
 
         }
 
+
+        /* =========================================================
+           HERO TITLE
+           ========================================================= */
 
         .hero-title {
 
-            max-width: 700px;
+            max-width:
+                650px;
 
             color:
-                #122b45;
+                var(--navy);
 
             font-size:
                 clamp(
-                    42px,
+                    43px,
                     5vw,
-                    66px
+                    65px
                 );
 
-            line-height: 1.12;
+            line-height:
+                1.12;
 
             letter-spacing:
-                -1.5px;
+                -1.3px;
 
-            font-weight: 600;
+            font-weight:
+                600;
 
-            margin-bottom: 22px;
+            margin-bottom:
+                20px;
 
         }
 
-
-        .hero-title span {
+        .hero-title .blue {
 
             color:
                 var(--blue);
 
         }
 
+        .hero-title .emoji {
+
+            display:
+                inline-block;
+
+            font-size:
+                .62em;
+
+            transform:
+                rotate(-8deg);
+
+            animation:
+                wave 3s ease-in-out infinite;
+
+        }
+
+        @keyframes wave {
+
+            0%,
+            100% {
+                transform:
+                    rotate(-8deg)
+                    translateY(0);
+            }
+
+            50% {
+                transform:
+                    rotate(8deg)
+                    translateY(-5px);
+            }
+
+        }
+
+
+        /* =========================================================
+           HERO DESCRIPTION
+           ========================================================= */
 
         .hero-description {
 
-            max-width: 590px;
+            max-width:
+                600px;
 
             color:
-                #64758a;
+                #6c7f94;
 
-            font-size: 17px;
+            font-size:
+                16px;
 
-            line-height: 1.9;
+            line-height:
+                1.9;
 
-            font-weight: 300;
+            font-weight:
+                300;
 
-            margin-bottom: 34px;
+            margin-bottom:
+                28px;
+
+        }
+
+        .hero-description strong {
+
+            color:
+                #3f6385;
+
+            font-weight:
+                500;
 
         }
 
 
-        .hero-buttons {
+        /* =========================================================
+           HERO ACTIONS
+           ========================================================= */
 
-            display: flex;
+        .hero-actions {
 
-            align-items: center;
+            display:
+                flex;
 
-            gap: 13px;
+            align-items:
+                center;
 
-            margin-bottom: 35px;
+            gap:
+                12px;
+
+            margin-bottom:
+                28px;
 
         }
 
+        .hero-primary {
 
-        .hero-button {
-
-            min-height: 52px;
+            min-height:
+                53px;
 
             padding:
                 0 23px;
 
-            border-radius: 13px;
+            border-radius:
+                15px;
 
-            font-size: 13px;
+            font-size:
+                13px;
 
         }
-
 
         .hero-secondary {
 
-            display: inline-flex;
+            min-height:
+                53px;
 
-            align-items: center;
+            display:
+                inline-flex;
 
-            justify-content: center;
+            align-items:
+                center;
 
-            gap: 9px;
-
-            min-height: 52px;
+            gap:
+                8px;
 
             padding:
-                0 21px;
+                0 18px;
 
             border:
                 1px solid
-                rgba(30,83,137,0.11);
+                var(--line);
 
-            border-radius: 13px;
-
-            color:
-                #607187;
+            border-radius:
+                15px;
 
             background:
-                rgba(255,255,255,0.65);
+                rgba(255,255,255,.65);
 
-            backdrop-filter:
-                blur(15px);
+            color:
+                #647990;
 
-            font-size: 13px;
+            font-size:
+                12px;
 
             transition:
-                transform 0.25s ease,
-                border 0.25s ease,
-                color 0.25s ease;
+                .25s ease;
 
         }
-
 
         .hero-secondary:hover {
 
             transform:
-                translateY(-2px);
+                translateY(-3px);
 
             color:
                 var(--blue);
 
             border-color:
-                rgba(22,119,255,0.20);
+                rgba(35,136,255,.18);
+
+            background:
+                white;
 
         }
 
 
-        .hero-trust {
+        /* =========================================================
+           HERO SOCIAL PROOF
+           ========================================================= */
 
-            display: flex;
+        .hero-proof {
 
-            align-items: center;
+            display:
+                flex;
 
-            gap: 13px;
+            align-items:
+                center;
+
+            gap:
+                12px;
 
             color:
-                #8a98a8;
+                #8a9bad;
 
-            font-size: 10px;
-
-        }
-
-
-        .trust-avatars {
-
-            display: flex;
+            font-size:
+                10px;
 
         }
 
+        .avatars {
 
-        .trust-avatar {
+            display:
+                flex;
 
-            width: 28px;
-            height: 28px;
+        }
 
-            display: grid;
-            place-items: center;
+        .avatar {
 
-            margin-left: -5px;
+            width:
+                30px;
+
+            height:
+                30px;
+
+            display:
+                grid;
+
+            place-items:
+                center;
+
+            margin-left:
+                -6px;
 
             border:
                 2px solid
                 white;
 
-            border-radius: 50%;
+            border-radius:
+                50%;
 
             color:
                 white;
@@ -840,75 +1079,105 @@
             background:
                 linear-gradient(
                     135deg,
-                    #52a7ff,
-                    #176ee7
+                    #64c7ff,
+                    #287cf1
                 );
 
-            font-size: 9px;
+            font-family:
+                Inter,
+                sans-serif;
+
+            font-size:
+                8px;
+
+            font-weight:
+                700;
 
         }
 
-
-        .trust-avatar:first-child {
-
+        .avatar:first-child {
             margin-left: 0;
-
         }
 
 
-        /* =====================================================
+        /* =========================================================
            HERO VISUAL
-           ===================================================== */
+           ========================================================= */
 
         .hero-visual {
 
-            position: relative;
+            position:
+                relative;
 
-            min-height: 550px;
+            min-height:
+                560px;
 
-            display: flex;
+            display:
+                flex;
 
-            align-items: center;
+            align-items:
+                center;
 
-            justify-content: center;
+            justify-content:
+                center;
 
         }
 
+        .visual-glow {
 
-        .hero-glow {
+            position:
+                absolute;
 
-            position: absolute;
+            width:
+                480px;
 
-            width: 420px;
-            height: 420px;
+            height:
+                480px;
 
-            border-radius: 50%;
+            border-radius:
+                50%;
 
             background:
-                rgba(45,142,255,0.10);
+                radial-gradient(
+                    circle,
+                    rgba(64,163,255,.19),
+                    rgba(109,213,255,.06),
+                    transparent 68%
+                );
 
             filter:
-                blur(80px);
+                blur(10px);
 
         }
 
 
-        .dashboard-preview {
+        /* =========================================================
+           MAIN APP CARD
+           ========================================================= */
 
-            position: relative;
+        .app-card {
 
-            width: 500px;
+            position:
+                relative;
 
-            padding: 20px;
+            width:
+                510px;
+
+            min-height:
+                425px;
+
+            padding:
+                18px;
 
             border:
                 1px solid
-                rgba(30,83,137,0.10);
+                rgba(39,112,171,.10);
 
-            border-radius: 25px;
+            border-radius:
+                27px;
 
             background:
-                rgba(255,255,255,0.72);
+                rgba(255,255,255,.70);
 
             backdrop-filter:
                 blur(25px);
@@ -917,607 +1186,115 @@
                 blur(25px);
 
             box-shadow:
-                0 35px 80px
-                rgba(32,82,136,0.13);
+                0 35px 85px
+                rgba(36,104,160,.14);
 
             transform:
-                perspective(1200px)
-                rotateY(-7deg)
-                rotateX(3deg);
+                perspective(1300px)
+                rotateY(-5deg)
+                rotateX(2deg);
+
+            transition:
+                transform .2s ease;
 
             animation:
-                floating 5s ease-in-out infinite;
+                appFloat 6s ease-in-out infinite;
 
         }
 
-
-        @keyframes floating {
+        @keyframes appFloat {
 
             0%,
             100% {
-
-                transform:
-                    perspective(1200px)
-                    rotateY(-7deg)
-                    rotateX(3deg)
-                    translateY(0);
-
+                margin-top: 0;
             }
 
             50% {
-
-                transform:
-                    perspective(1200px)
-                    rotateY(-5deg)
-                    rotateX(2deg)
-                    translateY(-10px);
-
+                margin-top: -9px;
             }
 
         }
 
 
-        .preview-top {
+        /* =========================================================
+           APP TOP
+           ========================================================= */
 
-            display: flex;
+        .app-top {
 
-            align-items: center;
+            display:
+                flex;
 
-            justify-content: space-between;
+            align-items:
+                center;
 
-            margin-bottom: 18px;
+            justify-content:
+                space-between;
 
-        }
-
-
-        .preview-title {
-
-            color:
-                #233b55;
-
-            font-size: 14px;
-
-            font-weight: 500;
-
-        }
-
-
-        .preview-status {
-
-            padding:
-                6px 10px;
-
-            border-radius: 100px;
-
-            color:
-                #1d9b63;
-
-            background:
-                #e9f9f1;
-
-            font-size: 9px;
-
-        }
-
-
-        .preview-search {
-
-            height: 40px;
-
-            display: flex;
-
-            align-items: center;
-
-            gap: 9px;
-
-            padding:
-                0 12px;
-
-            margin-bottom: 17px;
-
-            border:
-                1px solid
-                rgba(30,83,137,0.07);
-
-            border-radius: 10px;
-
-            color:
-                #a1adba;
-
-            background:
-                #f8fbfe;
-
-            font-size: 9px;
-
-        }
-
-
-        .preview-rooms {
-
-            display: grid;
-
-            grid-template-columns:
-                1fr 1fr;
-
-            gap: 12px;
-
-        }
-
-
-        .preview-room {
-
-            padding:
+            margin-bottom:
                 15px;
 
-            border:
-                1px solid
-                rgba(30,83,137,0.07);
+        }
 
-            border-radius: 14px;
+        .window-dots {
+
+            display:
+                flex;
+
+            gap:
+                5px;
+
+        }
+
+        .window-dot {
+
+            width:
+                7px;
+
+            height:
+                7px;
+
+            border-radius:
+                50%;
 
             background:
-                rgba(250,252,255,0.85);
-
-            transition:
-                transform 0.25s ease;
+                #d7e7f4;
 
         }
 
-
-        .preview-room:hover {
-
-            transform:
-                translateY(-3px);
-
-        }
-
-
-        .room-image {
-
-            height: 88px;
-
-            margin-bottom: 11px;
-
-            border-radius: 10px;
-
-            background:
-
-                linear-gradient(
-                    135deg,
-                    rgba(47,141,255,0.14),
-                    rgba(193,225,255,0.42)
-                );
-
-            position: relative;
-
-            overflow: hidden;
-
-        }
-
-
-        .room-image::after {
-
-            content: "";
-
-            position: absolute;
-
-            width: 60px;
-            height: 60px;
-
-            right: 18px;
-            bottom: -18px;
-
-            border-radius: 50%;
-
-            background:
-                rgba(255,255,255,0.75);
-
-        }
-
-
-        .room-name {
+        .app-title {
 
             color:
-                #2b4058;
-
-            font-size: 11px;
-
-            font-weight: 500;
-
-            margin-bottom: 4px;
-
-        }
-
-
-        .room-meta {
-
-            color:
-                #96a3b1;
-
-            font-size: 8px;
-
-        }
-
-
-        .room-available {
-
-            display: inline-flex;
-
-            margin-top: 9px;
-
-            padding:
-                4px 7px;
-
-            border-radius: 6px;
-
-            color:
-                #15945c;
-
-            background:
-                #eaf9f1;
-
-            font-size: 7px;
-
-        }
-
-
-        /* =====================================================
-           FLOATING CARD
-           ===================================================== */
-
-        .floating-booking {
-
-            position: absolute;
-
-            right: -35px;
-            bottom: 55px;
-
-            width: 210px;
-
-            padding:
-                16px;
-
-            border:
-                1px solid
-                rgba(30,83,137,0.10);
-
-            border-radius: 17px;
-
-            background:
-                rgba(255,255,255,0.78);
-
-            backdrop-filter:
-                blur(22px);
-
-            box-shadow:
-                0 20px 45px
-                rgba(32,82,136,0.13);
-
-            animation:
-                floatCard 4.5s ease-in-out infinite;
-
-        }
-
-
-        @keyframes floatCard {
-
-            0%,
-            100% {
-
-                transform:
-                    translateY(0);
-
-            }
-
-            50% {
-
-                transform:
-                    translateY(-8px);
-
-            }
-
-        }
-
-
-        .floating-label {
-
-            color:
-                #8a98a8;
-
-            font-size: 8px;
-
-            margin-bottom: 6px;
-
-        }
-
-
-        .floating-name {
-
-            color:
-                #263e57;
-
-            font-size: 12px;
-
-            font-weight: 500;
-
-            margin-bottom: 10px;
-
-        }
-
-
-        .floating-time {
-
-            display: flex;
-
-            align-items: center;
-
-            justify-content: space-between;
-
-            padding-top: 10px;
-
-            border-top:
-                1px solid
-                rgba(30,83,137,0.07);
-
-            color:
-                #6d7c8d;
-
-            font-size: 8px;
-
-        }
-
-
-        .floating-badge {
-
-            color:
-                #168e5a;
-
-            background:
-                #eaf9f1;
-
-            padding:
-                4px 6px;
-
-            border-radius: 6px;
-
-        }
-
-
-        /* =====================================================
-           SECTION
-           ===================================================== */
-
-        .section {
-
-            padding:
-                110px 0;
-
-        }
-
-
-        .section-header {
-
-            max-width: 700px;
-
-            margin:
-                0 auto 55px;
-
-            text-align: center;
-
-        }
-
-
-        .section-label {
-
-            display: inline-block;
-
-            margin-bottom: 13px;
-
-            color:
-                var(--blue);
-
-            font-size: 11px;
-
-            font-weight: 500;
-
-            letter-spacing:
-                0.4px;
-
-        }
-
-
-        .section-title {
-
-            color:
-                #18324d;
+                #35516c;
+
+            font-family:
+                Inter,
+                sans-serif;
 
             font-size:
-                clamp(
-                    31px,
-                    4vw,
-                    45px
-                );
+                10px;
 
-            line-height: 1.25;
-
-            font-weight: 600;
-
-            margin-bottom: 14px;
+            font-weight:
+                600;
 
         }
 
+        .app-profile {
 
-        .section-description {
-
-            color:
-                #728196;
-
-            font-size: 14px;
-
-            line-height: 1.8;
-
-            font-weight: 300;
-
-        }
-
-
-        /* =====================================================
-           FEATURES
-           ===================================================== */
-
-        .features {
-
-            display: grid;
-
-            grid-template-columns:
-                repeat(3, 1fr);
-
-            gap: 18px;
-
-        }
-
-
-        .feature-card {
-
-            padding:
-                30px;
-
-            border:
-                1px solid
-                rgba(30,83,137,0.08);
-
-            border-radius: 20px;
-
-            background:
-                rgba(255,255,255,0.66);
-
-            backdrop-filter:
-                blur(20px);
-
-            box-shadow:
-                0 12px 35px
-                rgba(31,79,130,0.045);
-
-            transition:
-                transform 0.3s ease,
-                box-shadow 0.3s ease,
-                border 0.3s ease;
-
-        }
-
-
-        .feature-card:hover {
-
-            transform:
-                translateY(-6px);
-
-            border-color:
-                rgba(22,119,255,0.16);
-
-            box-shadow:
-                0 20px 45px
-                rgba(31,79,130,0.09);
-
-        }
-
-
-        .feature-icon {
-
-            width: 48px;
-            height: 48px;
-
-            display: grid;
-            place-items: center;
-
-            margin-bottom: 19px;
-
-            border-radius: 14px;
-
-            color:
-                var(--blue);
-
-            background:
-                var(--blue-soft);
-
-        }
-
-
-        .feature-icon svg {
-
-            width: 23px;
-            height: 23px;
-
-        }
-
-
-        .feature-card h3 {
-
-            color:
-                #263d56;
-
-            font-size: 17px;
-
-            font-weight: 500;
-
-            margin-bottom: 9px;
-
-        }
-
-
-        .feature-card p {
-
-            color:
-                #7c8a9b;
-
-            font-size: 12px;
-
-            line-height: 1.8;
-
-            font-weight: 300;
-
-        }
-
-
-        /* =====================================================
-           HOW IT WORKS
-           ===================================================== */
-
-        .steps {
-
-            display: grid;
-
-            grid-template-columns:
-                repeat(3, 1fr);
-
-            gap: 20px;
-
-        }
-
-
-        .step {
-
-            position: relative;
-
-            padding:
+            width:
                 28px;
 
-            text-align: center;
+            height:
+                28px;
 
-        }
+            display:
+                grid;
 
+            place-items:
+                center;
 
-        .step-number {
-
-            width: 55px;
-            height: 55px;
-
-            display: grid;
-            place-items: center;
-
-            margin:
-                0 auto 18px;
-
-            border-radius: 17px;
+            border-radius:
+                9px;
 
             color:
                 white;
@@ -1525,194 +1302,1408 @@
             background:
                 linear-gradient(
                     135deg,
-                    #4ba0ff,
-                    #126be8
+                    #60caff,
+                    #2781f4
+                );
+
+            font-size:
+                8px;
+
+        }
+
+
+        /* =========================================================
+           DASHBOARD HEADER
+           ========================================================= */
+
+        .dashboard-head {
+
+            display:
+                flex;
+
+            align-items:
+                center;
+
+            justify-content:
+                space-between;
+
+            padding:
+                12px;
+
+            margin-bottom:
+                12px;
+
+            border-radius:
+                15px;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #edf7ff,
+                    #f8fcff
+                );
+
+        }
+
+        .dashboard-greeting {
+
+            color:
+                #34516d;
+
+            font-size:
+                13px;
+
+            font-weight:
+                500;
+
+        }
+
+        .dashboard-sub {
+
+            color:
+                #8b9caf;
+
+            font-size:
+                8px;
+
+            margin-top:
+                2px;
+
+        }
+
+        .date-pill {
+
+            padding:
+                7px 10px;
+
+            border-radius:
+                9px;
+
+            background:
+                white;
+
+            color:
+                #5c7790;
+
+            font-family:
+                Inter,
+                sans-serif;
+
+            font-size:
+                7px;
+
+            box-shadow:
+                0 5px 15px
+                rgba(33,101,151,.05);
+
+        }
+
+
+        /* =========================================================
+           MINI STATS
+           ========================================================= */
+
+        .mini-stats {
+
+            display:
+                grid;
+
+            grid-template-columns:
+                repeat(3,1fr);
+
+            gap:
+                9px;
+
+            margin-bottom:
+                12px;
+
+        }
+
+        .mini-stat {
+
+            padding:
+                11px;
+
+            border:
+                1px solid
+                rgba(37,112,170,.07);
+
+            border-radius:
+                13px;
+
+            background:
+                rgba(255,255,255,.75);
+
+        }
+
+        .mini-stat-label {
+
+            color:
+                #8c9cac;
+
+            font-size:
+                7px;
+
+            margin-bottom:
+                4px;
+
+        }
+
+        .mini-stat-number {
+
+            color:
+                #2b4965;
+
+            font-family:
+                Inter,
+                sans-serif;
+
+            font-size:
+                18px;
+
+            font-weight:
+                700;
+
+        }
+
+        .mini-stat-number span {
+
+            color:
+                #24b97b;
+
+            font-size:
+                7px;
+
+            font-weight:
+                500;
+
+        }
+
+
+        /* =========================================================
+           ROOM GRID
+           ========================================================= */
+
+        .room-grid {
+
+            display:
+                grid;
+
+            grid-template-columns:
+                1fr 1fr;
+
+            gap:
+                10px;
+
+        }
+
+        .room {
+
+            position:
+                relative;
+
+            padding:
+                12px;
+
+            border:
+                1px solid
+                rgba(38,111,169,.07);
+
+            border-radius:
+                14px;
+
+            background:
+                rgba(255,255,255,.78);
+
+            transition:
+                transform .25s ease,
+                box-shadow .25s ease;
+
+        }
+
+        .room:hover {
+
+            transform:
+                translateY(-4px);
+
+            box-shadow:
+                0 12px 25px
+                rgba(38,111,169,.08);
+
+        }
+
+        .room-top {
+
+            display:
+                flex;
+
+            align-items:
+                center;
+
+            justify-content:
+                space-between;
+
+            margin-bottom:
+                9px;
+
+        }
+
+        .room-icon {
+
+            width:
+                30px;
+
+            height:
+                30px;
+
+            display:
+                grid;
+
+            place-items:
+                center;
+
+            border-radius:
+                9px;
+
+            background:
+                #edf7ff;
+
+            color:
+                var(--blue);
+
+        }
+
+        .room-status {
+
+            padding:
+                4px 6px;
+
+            border-radius:
+                6px;
+
+            font-family:
+                Inter,
+                sans-serif;
+
+            font-size:
+                6px;
+
+            font-weight:
+                600;
+
+        }
+
+        .available {
+
+            color:
+                #159a62;
+
+            background:
+                #e9faf2;
+
+        }
+
+        .booked {
+
+            color:
+                #df7d31;
+
+            background:
+                #fff3e9;
+
+        }
+
+        .room-name {
+
+            color:
+                #38536d;
+
+            font-size:
+                10px;
+
+            font-weight:
+                500;
+
+            margin-bottom:
+                3px;
+
+        }
+
+        .room-meta {
+
+            color:
+                #94a2b1;
+
+            font-size:
+                7px;
+
+        }
+
+
+        /* =========================================================
+           FLOATING NOTIFICATION
+           ========================================================= */
+
+        .floating-notification {
+
+            position:
+                absolute;
+
+            left:
+                -38px;
+
+            bottom:
+                45px;
+
+            width:
+                205px;
+
+            padding:
+                13px;
+
+            display:
+                flex;
+
+            align-items:
+                center;
+
+            gap:
+                10px;
+
+            border:
+                1px solid
+                rgba(37,112,170,.10);
+
+            border-radius:
+                16px;
+
+            background:
+                rgba(255,255,255,.82);
+
+            backdrop-filter:
+                blur(22px);
+
+            box-shadow:
+                0 20px 45px
+                rgba(35,100,155,.13);
+
+            animation:
+                notificationFloat
+                4.5s ease-in-out infinite;
+
+        }
+
+        @keyframes notificationFloat {
+
+            0%,
+            100% {
+                transform:
+                    translateY(0);
+            }
+
+            50% {
+                transform:
+                    translateY(-8px);
+            }
+
+        }
+
+        .notification-icon {
+
+            width:
+                34px;
+
+            height:
+                34px;
+
+            flex-shrink:
+                0;
+
+            display:
+                grid;
+
+            place-items:
+                center;
+
+            border-radius:
+                11px;
+
+            color:
+                #1882ef;
+
+            background:
+                #eaf6ff;
+
+        }
+
+        .notification-title {
+
+            color:
+                #48627b;
+
+            font-size:
+                8px;
+
+            font-weight:
+                500;
+
+        }
+
+        .notification-text {
+
+            color:
+                #96a4b2;
+
+            font-size:
+                7px;
+
+            margin-top:
+                2px;
+
+        }
+
+
+        /* =========================================================
+           FLOATING CALENDAR
+           ========================================================= */
+
+        .floating-calendar {
+
+            position:
+                absolute;
+
+            right:
+                -35px;
+
+            top:
+                48px;
+
+            width:
+                155px;
+
+            padding:
+                13px;
+
+            border:
+                1px solid
+                rgba(37,112,170,.09);
+
+            border-radius:
+                16px;
+
+            background:
+                rgba(255,255,255,.82);
+
+            backdrop-filter:
+                blur(22px);
+
+            box-shadow:
+                0 20px 45px
+                rgba(35,100,155,.11);
+
+            animation:
+                calendarFloat
+                5.5s ease-in-out infinite;
+
+        }
+
+        @keyframes calendarFloat {
+
+            0%,
+            100% {
+                transform:
+                    translateY(0)
+                    rotate(0deg);
+            }
+
+            50% {
+                transform:
+                    translateY(-6px)
+                    rotate(1deg);
+            }
+
+        }
+
+        .calendar-head {
+
+            display:
+                flex;
+
+            justify-content:
+                space-between;
+
+            color:
+                #48647d;
+
+            font-family:
+                Inter,
+                sans-serif;
+
+            font-size:
+                8px;
+
+            font-weight:
+                600;
+
+            margin-bottom:
+                9px;
+
+        }
+
+        .calendar-grid {
+
+            display:
+                grid;
+
+            grid-template-columns:
+                repeat(7,1fr);
+
+            gap:
+                4px;
+
+            text-align:
+                center;
+
+        }
+
+        .calendar-day {
+
+            height:
+                17px;
+
+            display:
+                grid;
+
+            place-items:
+                center;
+
+            color:
+                #91a0af;
+
+            font-family:
+                Inter,
+                sans-serif;
+
+            font-size:
+                6px;
+
+            border-radius:
+                5px;
+
+        }
+
+        .calendar-day.active {
+
+            color:
+                white;
+
+            background:
+                var(--blue);
+
+            box-shadow:
+                0 4px 10px
+                rgba(35,136,255,.20);
+
+        }
+
+
+        /* =========================================================
+           TRUST STRIP
+           ========================================================= */
+
+        .trust-strip {
+
+            padding:
+                22px 0;
+
+            border-top:
+                1px solid
+                rgba(36,111,167,.06);
+
+            border-bottom:
+                1px solid
+                rgba(36,111,167,.06);
+
+            background:
+                rgba(255,255,255,.35);
+
+        }
+
+        .trust-inner {
+
+            display:
+                flex;
+
+            align-items:
+                center;
+
+            justify-content:
+                center;
+
+            gap:
+                40px;
+
+            color:
+                #91a1b0;
+
+            font-size:
+                10px;
+
+        }
+
+        .trust-item {
+
+            display:
+                flex;
+
+            align-items:
+                center;
+
+            gap:
+                7px;
+
+        }
+
+        .trust-icon {
+
+            color:
+                var(--blue);
+
+        }
+
+
+        /* =========================================================
+           SECTION
+           ========================================================= */
+
+        .section {
+
+            padding:
+                115px 0;
+
+        }
+
+        .section-heading {
+
+            max-width:
+                690px;
+
+            margin:
+                0 auto 55px;
+
+            text-align:
+                center;
+
+        }
+
+        .section-label {
+
+            display:
+                inline-flex;
+
+            align-items:
+                center;
+
+            gap:
+                7px;
+
+            margin-bottom:
+                12px;
+
+            color:
+                var(--blue);
+
+            font-family:
+                Inter,
+                sans-serif;
+
+            font-size:
+                10px;
+
+            font-weight:
+                700;
+
+            letter-spacing:
+                1px;
+
+        }
+
+        .section-label::before {
+
+            content:
+                "";
+
+            width:
+                20px;
+
+            height:
+                2px;
+
+            border-radius:
+                10px;
+
+            background:
+                var(--blue);
+
+        }
+
+        .section-title {
+
+            color:
+                var(--navy);
+
+            font-size:
+                clamp(
+                    32px,
+                    4vw,
+                    45px
+                );
+
+            line-height:
+                1.25;
+
+            font-weight:
+                600;
+
+            margin-bottom:
+                13px;
+
+        }
+
+        .section-description {
+
+            color:
+                #788a9d;
+
+            font-size:
+                13px;
+
+            line-height:
+                1.9;
+
+            font-weight:
+                300;
+
+        }
+
+
+        /* =========================================================
+           FEATURE CARDS
+           ========================================================= */
+
+        .features {
+
+            display:
+                grid;
+
+            grid-template-columns:
+                repeat(3,1fr);
+
+            gap:
+                18px;
+
+        }
+
+        .feature {
+
+            position:
+                relative;
+
+            padding:
+                30px;
+
+            min-height:
+                235px;
+
+            overflow:
+                hidden;
+
+            border:
+                1px solid
+                rgba(36,111,167,.08);
+
+            border-radius:
+                23px;
+
+            background:
+                rgba(255,255,255,.68);
+
+            backdrop-filter:
+                blur(20px);
+
+            box-shadow:
+                0 15px 45px
+                rgba(34,102,157,.055);
+
+            transition:
+                transform .3s ease,
+                box-shadow .3s ease,
+                border .3s ease;
+
+        }
+
+        .feature::after {
+
+            content:
+                "";
+
+            position:
+                absolute;
+
+            width:
+                130px;
+
+            height:
+                130px;
+
+            right:
+                -60px;
+
+            bottom:
+                -60px;
+
+            border-radius:
+                50%;
+
+            background:
+                rgba(66,164,255,.07);
+
+        }
+
+        .feature:hover {
+
+            transform:
+                translateY(-8px);
+
+            border-color:
+                rgba(35,136,255,.17);
+
+            box-shadow:
+                0 25px 60px
+                rgba(34,102,157,.10);
+
+        }
+
+        .feature-icon {
+
+            width:
+                52px;
+
+            height:
+                52px;
+
+            display:
+                grid;
+
+            place-items:
+                center;
+
+            margin-bottom:
+                20px;
+
+            border-radius:
+                15px;
+
+            color:
+                var(--blue);
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #e8f6ff,
+                    #f2fbff
+                );
+
+            transition:
+                transform .3s ease;
+
+        }
+
+        .feature:hover .feature-icon {
+
+            transform:
+                rotate(-5deg)
+                scale(1.08);
+
+        }
+
+        .feature h3 {
+
+            color:
+                #2c4863;
+
+            font-size:
+                17px;
+
+            font-weight:
+                500;
+
+            margin-bottom:
+                8px;
+
+        }
+
+        .feature p {
+
+            max-width:
+                300px;
+
+            color:
+                #7e8fa1;
+
+            font-size:
+                11px;
+
+            line-height:
+                1.85;
+
+            font-weight:
+                300;
+
+        }
+
+
+        /* =========================================================
+           STATS
+           ========================================================= */
+
+        .stats {
+
+            display:
+                grid;
+
+            grid-template-columns:
+                repeat(4,1fr);
+
+            gap:
+                14px;
+
+            margin-top:
+                18px;
+
+        }
+
+        .stat {
+
+            padding:
+                25px 20px;
+
+            text-align:
+                center;
+
+            border:
+                1px solid
+                rgba(36,111,167,.08);
+
+            border-radius:
+                20px;
+
+            background:
+                rgba(255,255,255,.60);
+
+        }
+
+        .stat-number {
+
+            color:
+                var(--blue);
+
+            font-family:
+                Inter,
+                sans-serif;
+
+            font-size:
+                31px;
+
+            font-weight:
+                800;
+
+            margin-bottom:
+                3px;
+
+        }
+
+        .stat-label {
+
+            color:
+                #8494a4;
+
+            font-size:
+                10px;
+
+        }
+
+
+        /* =========================================================
+           HOW IT WORKS
+           ========================================================= */
+
+        .steps {
+
+            display:
+                grid;
+
+            grid-template-columns:
+                repeat(3,1fr);
+
+            gap:
+                18px;
+
+        }
+
+        .step {
+
+            position:
+                relative;
+
+            padding:
+                28px;
+
+            text-align:
+                center;
+
+        }
+
+        .step:not(:last-child)::after {
+
+            content:
+                "";
+
+            position:
+                absolute;
+
+            top:
+                50px;
+
+            right:
+                -18px;
+
+            width:
+                36px;
+
+            height:
+                1px;
+
+            background:
+                linear-gradient(
+                    90deg,
+                    rgba(35,136,255,.22),
+                    transparent
+                );
+
+        }
+
+        .step-number {
+
+            width:
+                58px;
+
+            height:
+                58px;
+
+            display:
+                grid;
+
+            place-items:
+                center;
+
+            margin:
+                0 auto 18px;
+
+            border-radius:
+                18px;
+
+            color:
+                white;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #62c9ff,
+                    #247ef2
                 );
 
             box-shadow:
                 0 12px 25px
-                rgba(22,119,255,0.18);
+                rgba(35,136,255,.20);
 
-            font-size: 18px;
+            font-family:
+                Inter,
+                sans-serif;
 
-            font-weight: 600;
+            font-size:
+                14px;
+
+            font-weight:
+                700;
 
         }
-
 
         .step h3 {
 
             color:
-                #29425c;
+                #2c4862;
 
-            font-size: 16px;
+            font-size:
+                16px;
 
-            font-weight: 500;
+            font-weight:
+                500;
 
-            margin-bottom: 8px;
+            margin-bottom:
+                7px;
 
         }
-
 
         .step p {
 
             color:
-                #7d8a9a;
+                #8291a1;
 
-            font-size: 11px;
+            font-size:
+                10px;
 
-            line-height: 1.7;
+            line-height:
+                1.8;
 
-            font-weight: 300;
+            font-weight:
+                300;
 
         }
 
 
-        /* =====================================================
+        /* =========================================================
            CTA
-           ===================================================== */
+           ========================================================= */
 
         .cta {
 
+            position:
+                relative;
+
+            overflow:
+                hidden;
+
             padding:
-                35px;
+                65px 30px;
+
+            text-align:
+                center;
 
             border:
                 1px solid
-                rgba(30,83,137,0.09);
+                rgba(37,118,180,.10);
 
-            border-radius: 28px;
+            border-radius:
+                30px;
 
             background:
 
                 radial-gradient(
-                    circle at 20% 30%,
-                    rgba(77,164,255,0.18),
-                    transparent 35%
+                    circle at 15% 30%,
+                    rgba(93,199,255,.18),
+                    transparent 30%
+                ),
+
+                radial-gradient(
+                    circle at 85% 70%,
+                    rgba(46,132,255,.12),
+                    transparent 30%
                 ),
 
                 linear-gradient(
                     135deg,
-                    #edf6ff,
+                    #eff9ff,
                     #ffffff
                 );
 
             box-shadow:
-                0 20px 60px
-                rgba(31,79,130,0.07);
-
-            text-align: center;
+                0 25px 70px
+                rgba(36,103,159,.08);
 
         }
 
+        .cta::before {
+
+            content:
+                "✦";
+
+            position:
+                absolute;
+
+            top:
+                22px;
+
+            left:
+                25px;
+
+            color:
+                rgba(35,136,255,.25);
+
+            font-size:
+                22px;
+
+            animation:
+                spinStar 5s linear infinite;
+
+        }
+
+        .cta::after {
+
+            content:
+                "✦";
+
+            position:
+                absolute;
+
+            right:
+                30px;
+
+            bottom:
+                22px;
+
+            color:
+                rgba(35,136,255,.18);
+
+            font-size:
+                16px;
+
+            animation:
+                spinStar 4s linear infinite reverse;
+
+        }
+
+        @keyframes spinStar {
+
+            to {
+                transform:
+                    rotate(360deg);
+            }
+
+        }
 
         .cta h2 {
 
             color:
-                #193651;
+                var(--navy);
 
             font-size:
                 clamp(
-                    27px,
+                    28px,
                     4vw,
-                    38px
+                    39px
                 );
 
-            margin-bottom: 10px;
+            margin-bottom:
+                9px;
 
         }
-
 
         .cta p {
 
             color:
-                #758498;
+                #778a9e;
 
-            font-size: 13px;
+            font-size:
+                12px;
 
-            margin-bottom: 23px;
+            margin-bottom:
+                24px;
 
         }
 
 
-        /* =====================================================
+        /* =========================================================
            FOOTER
-           ===================================================== */
+           ========================================================= */
 
         footer {
 
             padding:
-                35px 0;
+                38px 0;
 
             border-top:
                 1px solid
-                rgba(30,83,137,0.07);
+                rgba(36,111,167,.07);
 
         }
-
 
         .footer-inner {
 
-            display: flex;
+            display:
+                flex;
 
-            align-items: center;
+            align-items:
+                center;
 
-            justify-content: space-between;
-
-        }
-
-
-        .footer-brand {
-
-            width: 125px;
-            height: 48px;
+            justify-content:
+                space-between;
 
         }
 
+        .footer-logo {
 
-        .footer-brand img {
+            width:
+                135px;
 
-            width: 100%;
-            height: 100%;
-
-            object-fit: contain;
-
-            object-position: left center;
+            height:
+                48px;
 
         }
 
+        .footer-logo img {
 
-        .footer-copy {
+            width:
+                100%;
+
+            height:
+                100%;
+
+            object-fit:
+                contain;
+
+            object-position:
+                left center;
+
+        }
+
+        .copyright {
 
             color:
-                #96a3b0;
+                #99a7b5;
 
-            font-size: 9px;
+            font-family:
+                Inter,
+                sans-serif;
+
+            font-size:
+                8px;
 
         }
 
 
-        /* =====================================================
+        /* =========================================================
            REVEAL
-           ===================================================== */
+           ========================================================= */
 
         .reveal {
 
-            opacity: 0;
+            opacity:
+                0;
 
             transform:
                 translateY(25px);
 
             transition:
-                opacity 0.7s ease,
-                transform 0.7s ease;
+                opacity .7s ease,
+                transform .7s ease;
 
         }
 
-
         .reveal.visible {
 
-            opacity: 1;
+            opacity:
+                1;
 
             transform:
                 translateY(0);
@@ -1720,78 +2711,63 @@
         }
 
 
-        /* =====================================================
+        /* =========================================================
            RESPONSIVE
-           ===================================================== */
+           ========================================================= */
 
-        @media (max-width: 1000px) {
+        @media (max-width: 1050px) {
 
             .nav-links {
-
                 display: none;
-
             }
-
 
             .mobile-menu {
-
                 display: grid;
-
                 place-items: center;
-
             }
-
 
             .hero-grid {
 
                 grid-template-columns:
                     1fr;
 
-                text-align: center;
-
-                gap: 40px;
+                text-align:
+                    center;
 
             }
-
 
             .hero-content {
 
-                display: flex;
+                display:
+                    flex;
 
-                flex-direction: column;
+                flex-direction:
+                    column;
 
-                align-items: center;
+                align-items:
+                    center;
 
             }
-
 
             .hero-description {
-
-                margin-left: auto;
-                margin-right: auto;
-
+                margin-inline: auto;
             }
-
 
             .hero-logo {
 
-                margin:
-                    0 auto 8px;
-
-                width: 330px;
+                margin-inline:
+                    auto;
 
             }
-
 
             .hero-visual {
 
-                min-height: 470px;
+                min-height:
+                    500px;
 
             }
 
-
-            .features,
-            .steps {
+            .features {
 
                 grid-template-columns:
                     1fr 1fr;
@@ -1801,65 +2777,55 @@
         }
 
 
-        @media (max-width: 700px) {
+        @media (max-width: 720px) {
 
             .container {
 
                 width:
-                    min(
-                        100% - 30px,
-                        560px
-                    );
+                    calc(100% - 28px);
 
             }
-
 
             .navbar {
 
-                padding:
-                    10px 0;
+                padding-top:
+                    9px;
 
             }
 
+            .nav-shell {
 
-            .nav-inner {
-
-                height: 60px;
-
-                padding:
-                    0 12px;
+                height:
+                    61px;
 
                 border-radius:
-                    15px;
+                    16px;
+
+                padding:
+                    0 11px;
 
             }
-
 
             .brand {
 
-                width: 135px;
-                height: 50px;
+                width:
+                    135px;
+
+                height:
+                    50px;
 
             }
 
-
-            .nav-actions .btn-login {
-
+            .sign-in {
                 display: none;
-
             }
-
 
             .hero {
 
-                min-height:
-                    auto;
-
                 padding:
-                    135px 0 70px;
+                    125px 0 70px;
 
             }
-
 
             .hero-title {
 
@@ -1867,10 +2833,19 @@
                     39px;
 
                 letter-spacing:
-                    -0.8px;
+                    -.7px;
 
             }
 
+            .hero-logo {
+
+                width:
+                    285px;
+
+                height:
+                    115px;
+
+            }
 
             .hero-description {
 
@@ -1878,36 +2853,34 @@
                     14px;
 
                 line-height:
-                    1.8;
+                    1.85;
 
             }
 
+            .hero-actions {
 
-            .hero-logo {
-
-                width: 270px;
-                height: 115px;
-
-            }
-
-
-            .hero-buttons {
-
-                width: 100%;
+                width:
+                    100%;
 
                 flex-direction:
                     column;
 
             }
 
-
-            .hero-button,
+            .hero-primary,
             .hero-secondary {
 
-                width: 100%;
+                width:
+                    100%;
 
             }
 
+            .hero-proof {
+
+                justify-content:
+                    center;
+
+            }
 
             .hero-visual {
 
@@ -1916,33 +2889,47 @@
 
             }
 
-
-            .dashboard-preview {
+            .app-card {
 
                 width:
-                    min(
-                        100%,
-                        460px
-                    );
+                    100%;
+
+                min-height:
+                    350px;
+
+                padding:
+                    13px;
+
+                border-radius:
+                    21px;
+
+            }
+
+            .floating-calendar {
+
+                right:
+                    -5px;
+
+                top:
+                    25px;
 
                 transform:
-                    perspective(1000px)
-                    rotateY(-3deg)
-                    rotateX(2deg);
+                    scale(.85);
 
             }
 
+            .floating-notification {
 
-            .floating-booking {
+                left:
+                    -4px;
 
-                right: -4px;
+                bottom:
+                    18px;
 
-                bottom: 25px;
-
-                width: 180px;
+                transform:
+                    scale(.85);
 
             }
-
 
             .features,
             .steps {
@@ -1952,6 +2939,16 @@
 
             }
 
+            .stats {
+
+                grid-template-columns:
+                    1fr 1fr;
+
+            }
+
+            .step:not(:last-child)::after {
+                display: none;
+            }
 
             .section {
 
@@ -1960,28 +2957,30 @@
 
             }
 
+            .trust-inner {
 
-            .feature-card {
+                gap:
+                    18px;
 
-                padding:
-                    25px;
+                flex-wrap:
+                    wrap;
 
             }
-
 
             .footer-inner {
 
                 flex-direction:
                     column;
 
-                gap: 14px;
+                gap:
+                    14px;
 
             }
 
         }
 
 
-        @media (max-width: 420px) {
+        @media (max-width: 430px) {
 
             .hero-title {
 
@@ -1990,37 +2989,48 @@
 
             }
 
-
             .hero-logo {
 
                 width:
-                    235px;
+                    245px;
 
                 height:
                     100px;
 
             }
 
+            .mini-stats {
 
-            .preview-rooms {
-
-                grid-template-columns:
-                    1fr;
-
-            }
-
-
-            .dashboard-preview {
-
-                padding:
-                    14px;
+                gap:
+                    6px;
 
             }
 
+            .mini-stat-number {
 
-            .floating-booking {
+                font-size:
+                    15px;
 
-                display: none;
+            }
+
+            .room-grid {
+
+                gap:
+                    7px;
+
+            }
+
+            .floating-calendar {
+
+                display:
+                    none;
+
+            }
+
+            .floating-notification {
+
+                display:
+                    none;
 
             }
 
@@ -2035,12 +3045,23 @@
 
 
     <!-- =====================================================
-         AMBIENT LIGHT
+         BACKGROUND
          ===================================================== -->
 
+    <div class="background-shapes">
+
+        <div class="blob one"></div>
+
+        <div class="blob two"></div>
+
+        <div class="blob three"></div>
+
+    </div>
+
+
     <div
-        class="ambient"
-        id="ambient"
+        class="mouse-glow"
+        id="mouseGlow"
     ></div>
 
 
@@ -2055,26 +3076,21 @@
 
         <div class="container">
 
-            <div class="nav-inner">
+            <div class="nav-shell">
 
-
-                <!-- LOGO -->
 
                 <a
                     href="index.html"
                     class="brand"
-                    aria-label="EasyRoom"
                 >
 
                     <img
                         src="https://img2.pic.in.th/logoeasyroom.png"
-                        alt="EasyRoom Logo"
+                        alt="EasyRoom"
                     >
 
                 </a>
 
-
-                <!-- NAVIGATION -->
 
                 <nav class="nav-links">
 
@@ -2086,7 +3102,7 @@
                     </a>
 
                     <a
-                        href="#how-it-works"
+                        href="#how"
                         class="nav-link"
                     >
                         วิธีใช้งาน
@@ -2102,23 +3118,21 @@
                 </nav>
 
 
-                <!-- ACTIONS -->
-
                 <div class="nav-actions">
 
                     <a
                         href="login.html"
-                        class="btn-login"
+                        class="sign-in"
                     >
                         Sign in
                     </a>
 
-
                     <a
                         href="register.html"
-                        class="btn-primary"
+                        class="btn"
                     >
-                        Get Started
+
+                        เริ่มใช้งาน
 
                         <svg
                             width="14"
@@ -2126,26 +3140,20 @@
                             viewBox="0 0 24 24"
                             fill="none"
                             stroke="currentColor"
-                            stroke-width="1.8"
+                            stroke-width="2"
                         >
 
-                            <path
-                                d="M5 12h14"
-                            />
+                            <path d="M5 12h14"/>
 
-                            <path
-                                d="m13 6 6 6-6 6"
-                            />
+                            <path d="m13 6 6 6-6 6"/>
 
                         </svg>
 
                     </a>
 
-
                     <button
                         class="mobile-menu"
                         id="mobileMenu"
-                        aria-label="เปิดเมนู"
                     >
 
                         <svg
@@ -2157,17 +3165,11 @@
                             stroke-width="1.7"
                         >
 
-                            <path
-                                d="M4 6h16"
-                            />
+                            <path d="M4 6h16"/>
 
-                            <path
-                                d="M4 12h16"
-                            />
+                            <path d="M4 12h16"/>
 
-                            <path
-                                d="M4 18h16"
-                            />
+                            <path d="M4 18h16"/>
 
                         </svg>
 
@@ -2188,7 +3190,6 @@
 
     <main>
 
-
         <section class="hero">
 
             <div class="container">
@@ -2196,27 +3197,25 @@
                 <div class="hero-grid">
 
 
-                    <!-- HERO TEXT -->
+                    <!-- LEFT -->
 
                     <div class="hero-content">
 
 
-                        <div class="eyebrow">
+                        <div class="hero-badge">
 
-                            <span class="eyebrow-dot"></span>
+                            <span class="live-dot"></span>
 
-                            Smart Room Booking System
+                            ระบบจองห้องสำหรับ Campus ยุคใหม่
 
                         </div>
 
-
-                        <!-- LARGE LOGO -->
 
                         <div class="hero-logo">
 
                             <img
                                 src="https://img2.pic.in.th/logoeasyroom.png"
-                                alt="EasyRoom"
+                                alt="EasyRoom Logo"
                             >
 
                         </div>
@@ -2224,9 +3223,13 @@
 
                         <h1 class="hero-title">
 
-                            จองห้องง่ายขึ้น
-                            <span>
-                                เป็นระบบมากขึ้น
+                            จองห้องง่าย ๆ
+                            <span class="blue">
+                                ในไม่กี่คลิก
+                            </span>
+
+                            <span class="emoji">
+                                ✨
                             </span>
 
                         </h1>
@@ -2234,27 +3237,33 @@
 
                         <p class="hero-description">
 
-                            ระบบจองห้องเรียนและห้องประชุม
-                            ที่ออกแบบมาให้ค้นหา
-                            ตรวจสอบสถานะ
-                            และจัดการการจองได้ในที่เดียว
+                            ไม่ต้องเดินหาห้อง
+                            ไม่ต้องเปิดตารางหลายไฟล์
 
                             <br>
 
-                            Simple booking.
-                            Smarter management.
+                            <strong>
+                                EasyRoom
+                            </strong>
+
+                            ช่วยให้คุณค้นหา
+                            เช็กห้องว่าง
+                            และจองห้องเรียนได้
+                            <strong>
+                                ในที่เดียว
+                            </strong>
 
                         </p>
 
 
-                        <div class="hero-buttons">
+                        <div class="hero-actions">
 
                             <a
                                 href="register.html"
-                                class="btn-primary hero-button"
+                                class="btn hero-primary"
                             >
 
-                                เริ่มใช้งานฟรี
+                                เริ่มจองห้อง
 
                                 <svg
                                     width="16"
@@ -2262,16 +3271,12 @@
                                     viewBox="0 0 24 24"
                                     fill="none"
                                     stroke="currentColor"
-                                    stroke-width="1.8"
+                                    stroke-width="2"
                                 >
 
-                                    <path
-                                        d="M5 12h14"
-                                    />
+                                    <path d="M5 12h14"/>
 
-                                    <path
-                                        d="m13 6 6 6-6 6"
-                                    />
+                                    <path d="m13 6 6 6-6 6"/>
 
                                 </svg>
 
@@ -2279,11 +3284,11 @@
 
 
                             <a
-                                href="#how-it-works"
+                                href="#how"
                                 class="hero-secondary"
                             >
 
-                                ดูวิธีการทำงาน
+                                ดูวิธีใช้งาน
 
                                 <svg
                                     width="15"
@@ -2294,13 +3299,9 @@
                                     stroke-width="1.7"
                                 >
 
-                                    <path
-                                        d="M12 5v14"
-                                    />
+                                    <path d="M12 5v14"/>
 
-                                    <path
-                                        d="m19 12-7 7-7-7"
-                                    />
+                                    <path d="m19 12-7 7-7-7"/>
 
                                 </svg>
 
@@ -2309,30 +3310,22 @@
                         </div>
 
 
-                        <div class="hero-trust">
+                        <div class="hero-proof">
 
-                            <div class="trust-avatars">
+                            <div class="avatars">
 
-                                <div class="trust-avatar">
-                                    U
-                                </div>
+                                <div class="avatar">S</div>
 
-                                <div class="trust-avatar">
-                                    T
-                                </div>
+                                <div class="avatar">T</div>
 
-                                <div class="trust-avatar">
-                                    A
-                                </div>
+                                <div class="avatar">A</div>
 
-                                <div class="trust-avatar">
-                                    +
-                                </div>
+                                <div class="avatar">+</div>
 
                             </div>
 
                             <span>
-                                Designed for modern classrooms & teams
+                                Made for students, teachers & campus teams
                             </span>
 
                         </div>
@@ -2341,139 +3334,302 @@
                     </div>
 
 
-                    <!-- HERO VISUAL -->
+                    <!-- RIGHT -->
 
                     <div class="hero-visual">
 
 
-                        <div class="hero-glow"></div>
+                        <div class="visual-glow"></div>
 
+
+                        <!-- APP -->
 
                         <div
-                            class="dashboard-preview"
+                            class="app-card"
                             id="tiltCard"
                         >
 
 
-                            <div class="preview-top">
+                            <div class="app-top">
 
-                                <div class="preview-title">
+                                <div class="window-dots">
 
-                                    Room Explorer
+                                    <span class="window-dot"></span>
+
+                                    <span class="window-dot"></span>
+
+                                    <span class="window-dot"></span>
 
                                 </div>
 
-                                <div class="preview-status">
+                                <div class="app-title">
+                                    EASYROOM / DASHBOARD
+                                </div>
 
-                                    ● 12 ห้องพร้อมใช้งาน
-
+                                <div class="app-profile">
+                                    ER
                                 </div>
 
                             </div>
 
 
-                            <div class="preview-search">
+                            <div class="dashboard-head">
 
-                                <svg
-                                    width="14"
-                                    height="14"
-                                    viewBox="0 0 24 24"
-                                    fill="none"
-                                    stroke="currentColor"
-                                    stroke-width="1.8"
-                                >
+                                <div>
 
-                                    <circle
-                                        cx="11"
-                                        cy="11"
-                                        r="7"
-                                    />
+                                    <div class="dashboard-greeting">
+                                        สวัสดีครับ 👋
+                                    </div>
 
-                                    <path
-                                        d="m20 20-4-4"
-                                    />
+                                    <div class="dashboard-sub">
+                                        วันนี้มีห้องพร้อมให้จองหลายห้องเลย
+                                    </div>
 
-                                </svg>
+                                </div>
 
-                                ค้นหาห้องเรียน ห้องประชุม...
+                                <div class="date-pill">
+                                    MON · 10 AUG
+                                </div>
 
                             </div>
 
 
-                            <div class="preview-rooms">
+                            <div class="mini-stats">
 
 
-                                <div class="preview-room">
+                                <div class="mini-stat">
 
-                                    <div class="room-image"></div>
+                                    <div class="mini-stat-label">
+                                        Available Rooms
+                                    </div>
+
+                                    <div class="mini-stat-number">
+                                        12
+                                        <span>● Live</span>
+                                    </div>
+
+                                </div>
+
+
+                                <div class="mini-stat">
+
+                                    <div class="mini-stat-label">
+                                        My Bookings
+                                    </div>
+
+                                    <div class="mini-stat-number">
+                                        04
+                                    </div>
+
+                                </div>
+
+
+                                <div class="mini-stat">
+
+                                    <div class="mini-stat-label">
+                                        Upcoming
+                                    </div>
+
+                                    <div class="mini-stat-number">
+                                        02
+                                    </div>
+
+                                </div>
+
+
+                            </div>
+
+
+                            <div class="room-grid">
+
+
+                                <div class="room">
+
+                                    <div class="room-top">
+
+                                        <div class="room-icon">
+
+                                            <svg
+                                                width="15"
+                                                height="15"
+                                                viewBox="0 0 24 24"
+                                                fill="none"
+                                                stroke="currentColor"
+                                                stroke-width="1.7"
+                                            >
+
+                                                <rect
+                                                    x="3"
+                                                    y="4"
+                                                    width="18"
+                                                    height="16"
+                                                    rx="2"
+                                                />
+
+                                                <path
+                                                    d="M7 8h10"
+                                                />
+
+                                            </svg>
+
+                                        </div>
+
+                                        <span class="room-status available">
+                                            AVAILABLE
+                                        </span>
+
+                                    </div>
 
                                     <div class="room-name">
                                         ห้องประชุม A101
                                     </div>
 
                                     <div class="room-meta">
-                                        อาคาร A · ชั้น 1 · 40 seats
-                                    </div>
-
-                                    <div class="room-available">
-                                        Available
+                                        Building A · 40 seats
                                     </div>
 
                                 </div>
 
 
-                                <div class="preview-room">
+                                <div class="room">
 
-                                    <div class="room-image"></div>
+                                    <div class="room-top">
+
+                                        <div class="room-icon">
+
+                                            <svg
+                                                width="15"
+                                                height="15"
+                                                viewBox="0 0 24 24"
+                                                fill="none"
+                                                stroke="currentColor"
+                                                stroke-width="1.7"
+                                            >
+
+                                                <rect
+                                                    x="3"
+                                                    y="4"
+                                                    width="18"
+                                                    height="16"
+                                                    rx="2"
+                                                />
+
+                                                <path
+                                                    d="M7 8h10"
+                                                />
+
+                                            </svg>
+
+                                        </div>
+
+                                        <span class="room-status booked">
+                                            BOOKED
+                                        </span>
+
+                                    </div>
 
                                     <div class="room-name">
                                         Smart Classroom
                                     </div>
 
                                     <div class="room-meta">
-                                        อาคาร B · ชั้น 2 · 60 seats
-                                    </div>
-
-                                    <div class="room-available">
-                                        Available
+                                        Building B · 60 seats
                                     </div>
 
                                 </div>
 
 
-                                <div class="preview-room">
+                                <div class="room">
 
-                                    <div class="room-image"></div>
+                                    <div class="room-top">
+
+                                        <div class="room-icon">
+
+                                            <svg
+                                                width="15"
+                                                height="15"
+                                                viewBox="0 0 24 24"
+                                                fill="none"
+                                                stroke="currentColor"
+                                                stroke-width="1.7"
+                                            >
+
+                                                <rect
+                                                    x="3"
+                                                    y="4"
+                                                    width="18"
+                                                    height="16"
+                                                    rx="2"
+                                                />
+
+                                                <path
+                                                    d="M7 8h10"
+                                                />
+
+                                            </svg>
+
+                                        </div>
+
+                                        <span class="room-status available">
+                                            AVAILABLE
+                                        </span>
+
+                                    </div>
 
                                     <div class="room-name">
                                         Meeting Room 03
                                     </div>
 
                                     <div class="room-meta">
-                                        อาคาร C · ชั้น 3 · 12 seats
-                                    </div>
-
-                                    <div class="room-available">
-                                        Available
+                                        Building C · 12 seats
                                     </div>
 
                                 </div>
 
 
-                                <div class="preview-room">
+                                <div class="room">
 
-                                    <div class="room-image"></div>
+                                    <div class="room-top">
+
+                                        <div class="room-icon">
+
+                                            <svg
+                                                width="15"
+                                                height="15"
+                                                viewBox="0 0 24 24"
+                                                fill="none"
+                                                stroke="currentColor"
+                                                stroke-width="1.7"
+                                            >
+
+                                                <rect
+                                                    x="3"
+                                                    y="4"
+                                                    width="18"
+                                                    height="16"
+                                                    rx="2"
+                                                />
+
+                                                <path
+                                                    d="M7 8h10"
+                                                />
+
+                                            </svg>
+
+                                        </div>
+
+                                        <span class="room-status available">
+                                            AVAILABLE
+                                        </span>
+
+                                    </div>
 
                                     <div class="room-name">
                                         ห้องเรียน 204
                                     </div>
 
                                     <div class="room-meta">
-                                        อาคาร B · ชั้น 2 · 45 seats
-                                    </div>
-
-                                    <div class="room-available">
-                                        Available
+                                        Building B · 45 seats
                                     </div>
 
                                 </div>
@@ -2485,27 +3641,90 @@
                         </div>
 
 
-                        <!-- FLOATING BOOKING -->
+                        <!-- NOTIFICATION -->
 
-                        <div class="floating-booking">
+                        <div class="floating-notification">
 
-                            <div class="floating-label">
-                                Upcoming Booking
+                            <div class="notification-icon">
+
+                                <svg
+                                    width="17"
+                                    height="17"
+                                    viewBox="0 0 24 24"
+                                    fill="none"
+                                    stroke="currentColor"
+                                    stroke-width="1.7"
+                                >
+
+                                    <path
+                                        d="M18 8a6 6 0 0 0-12 0c0 7-3 7-3 9h18c0-2-3-2-3-9"
+                                    />
+
+                                    <path
+                                        d="M10 21h4"
+                                    />
+
+                                </svg>
+
                             </div>
 
-                            <div class="floating-name">
-                                ห้องประชุม A101
+                            <div>
+
+                                <div class="notification-title">
+                                    Booking confirmed! 🎉
+                                </div>
+
+                                <div class="notification-text">
+                                    ห้อง A101 · วันนี้ 13:00
+                                </div>
+
                             </div>
 
-                            <div class="floating-time">
+                        </div>
+
+
+                        <!-- CALENDAR -->
+
+                        <div class="floating-calendar">
+
+                            <div class="calendar-head">
 
                                 <span>
-                                    Today · 13:00
+                                    August 2026
                                 </span>
 
-                                <span class="floating-badge">
-                                    Confirmed
+                                <span>
+                                    ›
                                 </span>
+
+                            </div>
+
+
+                            <div class="calendar-grid">
+
+                                <span class="calendar-day">M</span>
+                                <span class="calendar-day">T</span>
+                                <span class="calendar-day">W</span>
+                                <span class="calendar-day">T</span>
+                                <span class="calendar-day">F</span>
+                                <span class="calendar-day">S</span>
+                                <span class="calendar-day">S</span>
+
+                                <span class="calendar-day">3</span>
+                                <span class="calendar-day">4</span>
+                                <span class="calendar-day">5</span>
+                                <span class="calendar-day">6</span>
+                                <span class="calendar-day">7</span>
+                                <span class="calendar-day">8</span>
+                                <span class="calendar-day">9</span>
+
+                                <span class="calendar-day active">10</span>
+                                <span class="calendar-day">11</span>
+                                <span class="calendar-day">12</span>
+                                <span class="calendar-day">13</span>
+                                <span class="calendar-day">14</span>
+                                <span class="calendar-day">15</span>
+                                <span class="calendar-day">16</span>
 
                             </div>
 
@@ -2514,7 +3733,6 @@
 
                     </div>
 
-
                 </div>
 
             </div>
@@ -2522,9 +3740,58 @@
         </section>
 
 
-        <!-- =================================================
+        <!-- =====================================================
+             TRUST
+             ===================================================== -->
+
+        <div class="trust-strip">
+
+            <div class="container">
+
+                <div class="trust-inner">
+
+                    <div class="trust-item">
+
+                        <span class="trust-icon">✦</span>
+
+                        Easy to use
+
+                    </div>
+
+                    <div class="trust-item">
+
+                        <span class="trust-icon">◉</span>
+
+                        Real-time status
+
+                    </div>
+
+                    <div class="trust-item">
+
+                        <span class="trust-icon">✓</span>
+
+                        Simple booking
+
+                    </div>
+
+                    <div class="trust-item">
+
+                        <span class="trust-icon">♡</span>
+
+                        Made for campus
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- =====================================================
              FEATURES
-             ================================================= -->
+             ===================================================== -->
 
         <section
             class="section reveal"
@@ -2534,21 +3801,21 @@
             <div class="container">
 
 
-                <div class="section-header">
+                <div class="section-heading">
 
                     <div class="section-label">
                         FEATURES
                     </div>
 
                     <h2 class="section-title">
-                        ทุกอย่างที่คุณต้องการ
-                        อยู่ในที่เดียว
+                        ทุกอย่างง่ายขึ้น
+                        ตั้งแต่ค้นหาจนถึงจอง
                     </h2>
 
                     <p class="section-description">
-                        ออกแบบมาเพื่อให้การจัดการห้องเรียน
-                        และห้องประชุมง่าย รวดเร็ว
-                        และไม่ซับซ้อน
+                        ไม่ต้องเปิดหลายระบบ
+                        ไม่ต้องถามว่า “ห้องนี้ว่างไหม?”
+                        EasyRoom จัดการให้ในที่เดียว
                     </p>
 
                 </div>
@@ -2557,11 +3824,13 @@
                 <div class="features">
 
 
-                    <article class="feature-card">
+                    <article class="feature">
 
                         <div class="feature-icon">
 
                             <svg
+                                width="24"
+                                height="24"
                                 viewBox="0 0 24 24"
                                 fill="none"
                                 stroke="currentColor"
@@ -2583,23 +3852,25 @@
                         </div>
 
                         <h3>
-                            ค้นหาห้องได้ทันที
+                            ค้นหาห้องแบบ Smart
                         </h3>
 
                         <p>
-                            ค้นหาห้องตามชื่อ อาคาร
-                            ชั้น ความจุ หรือสถานะ
+                            ค้นหาตามชื่อห้อง อาคาร
+                            ชั้น ความจุ หรือช่วงเวลา
                             ได้อย่างรวดเร็ว
                         </p>
 
                     </article>
 
 
-                    <article class="feature-card">
+                    <article class="feature">
 
                         <div class="feature-icon">
 
                             <svg
+                                width="24"
+                                height="24"
                                 viewBox="0 0 24 24"
                                 fill="none"
                                 stroke="currentColor"
@@ -2631,23 +3902,25 @@
                         </div>
 
                         <h3>
-                            จองได้อย่างเป็นระบบ
+                            จองง่ายในไม่กี่คลิก
                         </h3>
 
                         <p>
-                            ตรวจสอบเวลาว่าง
-                            และสร้าง Booking
-                            ได้จากระบบเดียว
+                            เลือกห้อง เลือกเวลา
+                            ตรวจสอบรายละเอียด
+                            แล้วส่ง Booking ได้ทันที
                         </p>
 
                     </article>
 
 
-                    <article class="feature-card">
+                    <article class="feature">
 
                         <div class="feature-icon">
 
                             <svg
+                                width="24"
+                                height="24"
                                 viewBox="0 0 24 24"
                                 fill="none"
                                 stroke="currentColor"
@@ -2667,16 +3940,86 @@
                         </div>
 
                         <h3>
-                            แจ้งเตือนทุกสถานะ
+                            แจ้งเตือนทุกความเคลื่อนไหว
                         </h3>
 
                         <p>
-                            ติดตามการอนุมัติ
-                            การเปลี่ยนแปลง
-                            และการจองที่กำลังจะมาถึง
+                            รู้ทันทีเมื่อ Booking
+                            ได้รับการอนุมัติ
+                            ถูกยกเลิก หรือใกล้ถึงเวลา
                         </p>
 
                     </article>
+
+
+                </div>
+
+
+                <div class="stats">
+
+
+                    <div class="stat">
+
+                        <div
+                            class="stat-number counter"
+                            data-target="24"
+                        >
+                            0
+                        </div>
+
+                        <div class="stat-label">
+                            ห้องเรียน / Meeting Rooms
+                        </div>
+
+                    </div>
+
+
+                    <div class="stat">
+
+                        <div
+                            class="stat-number counter"
+                            data-target="12"
+                        >
+                            0
+                        </div>
+
+                        <div class="stat-label">
+                            Available Now
+                        </div>
+
+                    </div>
+
+
+                    <div class="stat">
+
+                        <div
+                            class="stat-number counter"
+                            data-target="380"
+                        >
+                            0
+                        </div>
+
+                        <div class="stat-label">
+                            Bookings / Month
+                        </div>
+
+                    </div>
+
+
+                    <div class="stat">
+
+                        <div
+                            class="stat-number counter"
+                            data-target="99"
+                        >
+                            0
+                        </div>
+
+                        <div class="stat-label">
+                            % Easy Experience
+                        </div>
+
+                    </div>
 
 
                 </div>
@@ -2686,31 +4029,31 @@
         </section>
 
 
-        <!-- =================================================
-             HOW IT WORKS
-             ================================================= -->
+        <!-- =====================================================
+             HOW
+             ===================================================== -->
 
         <section
             class="section reveal"
-            id="how-it-works"
+            id="how"
         >
 
             <div class="container">
 
 
-                <div class="section-header">
+                <div class="section-heading">
 
                     <div class="section-label">
                         HOW IT WORKS
                     </div>
 
                     <h2 class="section-title">
-                        จองห้องได้ใน 3 ขั้นตอน
+                        จองห้องได้แบบไม่ต้องคิดเยอะ
                     </h2>
 
                     <p class="section-description">
-                        ไม่ต้องเสียเวลาค้นหา
-                        หรือเช็กตารางหลายที่
+                        สามขั้นตอนง่าย ๆ
+                        แล้วคุณก็พร้อมเข้าเรียนหรือประชุม
                     </p>
 
                 </div>
@@ -2730,8 +4073,9 @@
                         </h3>
 
                         <p>
-                            เลือกห้องตามวัน เวลา
-                            อาคาร และจำนวนผู้ใช้งาน
+                            เลือกวันที่และช่วงเวลา
+                            แล้วดูห้องที่ Available
+                            แบบเข้าใจง่าย
                         </p>
 
                     </div>
@@ -2748,8 +4092,9 @@
                         </h3>
 
                         <p>
-                            ตรวจสอบ Availability
-                            แล้วเลือกเวลาที่ต้องการ
+                            ดูตารางเวลา
+                            และเลือก Slot
+                            ที่เหมาะกับคุณ
                         </p>
 
                     </div>
@@ -2762,12 +4107,12 @@
                         </div>
 
                         <h3>
-                            Confirm Booking
+                            Confirm 🎉
                         </h3>
 
                         <p>
-                            ส่งคำขอจองและติดตาม
-                            สถานะได้จาก Dashboard
+                            ส่งคำขอจอง
+                            แล้วติดตามสถานะได้จาก Dashboard
                         </p>
 
                     </div>
@@ -2780,9 +4125,9 @@
         </section>
 
 
-        <!-- =================================================
-             ABOUT / CTA
-             ================================================= -->
+        <!-- =====================================================
+             CTA
+             ===================================================== -->
 
         <section
             class="section reveal"
@@ -2794,21 +4139,19 @@
                 <div class="cta">
 
                     <h2>
-                        พร้อมเปลี่ยนวิธีจองห้องแล้วหรือยัง?
+                        ห้องว่างอยู่หรือเปล่า? 👀
                     </h2>
 
                     <p>
-                        เริ่มต้นใช้งาน EasyRoom
-                        แล้วจัดการทุก Booking
-                        ได้ง่ายขึ้น
+                        เปิด EasyRoom แล้วหาคำตอบได้เลย
                     </p>
 
                     <a
                         href="register.html"
-                        class="btn-primary"
+                        class="btn"
                     >
 
-                        Create your account
+                        เริ่มใช้งาน EasyRoom
 
                         <svg
                             width="15"
@@ -2816,16 +4159,12 @@
                             viewBox="0 0 24 24"
                             fill="none"
                             stroke="currentColor"
-                            stroke-width="1.8"
+                            stroke-width="2"
                         >
 
-                            <path
-                                d="M5 12h14"
-                            />
+                            <path d="M5 12h14"/>
 
-                            <path
-                                d="m13 6 6 6-6 6"
-                            />
+                            <path d="m13 6 6 6-6 6"/>
 
                         </svg>
 
@@ -2851,8 +4190,7 @@
 
             <div class="footer-inner">
 
-
-                <div class="footer-brand">
+                <div class="footer-logo">
 
                     <img
                         src="https://img2.pic.in.th/logoeasyroom.png"
@@ -2861,14 +4199,9 @@
 
                 </div>
 
-
-                <div class="footer-copy">
-
-                    © 2026 EasyRoom
-                    · Smart Room Booking System
-
+                <div class="copyright">
+                    © 2026 EasyRoom · Smart Campus Room Booking
                 </div>
-
 
             </div>
 
@@ -2885,57 +4218,42 @@
 
 
         /* =====================================================
-           NAVBAR SCROLL
+           NAVBAR
            ===================================================== */
 
         const navbar =
-            document.getElementById(
-                "navbar"
-            );
+            document.getElementById("navbar");
 
 
         window.addEventListener(
             "scroll",
             () => {
 
-                if (
-                    window.scrollY > 30
-                ) {
-
-                    navbar.classList.add(
-                        "scrolled"
-                    );
-
-                } else {
-
-                    navbar.classList.remove(
-                        "scrolled"
-                    );
-
-                }
+                navbar.classList.toggle(
+                    "scrolled",
+                    window.scrollY > 25
+                );
 
             }
         );
 
 
         /* =====================================================
-           MOUSE AMBIENT
+           MOUSE GLOW
            ===================================================== */
 
-        const ambient =
-            document.getElementById(
-                "ambient"
-            );
+        const mouseGlow =
+            document.getElementById("mouseGlow");
 
 
         window.addEventListener(
             "mousemove",
             (event) => {
 
-                ambient.style.left =
+                mouseGlow.style.left =
                     event.clientX + "px";
 
-                ambient.style.top =
+                mouseGlow.style.top =
                     event.clientY + "px";
 
             }
@@ -2947,84 +4265,71 @@
            ===================================================== */
 
         const tiltCard =
-            document.getElementById(
-                "tiltCard"
-            );
+            document.getElementById("tiltCard");
 
 
-        if (tiltCard) {
+        tiltCard.addEventListener(
+            "mousemove",
+            (event) => {
 
-            tiltCard.addEventListener(
-                "mousemove",
-                (event) => {
-
-                    if (
-                        window.innerWidth < 850
-                    ) return;
+                if (window.innerWidth < 850)
+                    return;
 
 
-                    const rect =
-                        tiltCard.getBoundingClientRect();
+                const rect =
+                    tiltCard.getBoundingClientRect();
 
 
-                    const x =
-                        event.clientX -
-                        rect.left;
+                const x =
+                    event.clientX - rect.left;
+
+                const y =
+                    event.clientY - rect.top;
 
 
-                    const y =
-                        event.clientY -
-                        rect.top;
+                const centerX =
+                    rect.width / 2;
+
+                const centerY =
+                    rect.height / 2;
 
 
-                    const centerX =
-                        rect.width / 2;
+                const rotateX =
+                    ((y - centerY) /
+                    centerY) * -2.8;
 
 
-                    const centerY =
-                        rect.height / 2;
+                const rotateY =
+                    ((x - centerX) /
+                    centerX) * 2.8;
 
 
-                    const rotateX =
-                        ((y - centerY) /
-                            centerY) *
-                        -2.2;
+                tiltCard.style.transform =
+                    `
+                    perspective(1300px)
+                    rotateX(${rotateX}deg)
+                    rotateY(${rotateY}deg)
+                    scale(1.015)
+                    `;
+
+            }
+        );
 
 
-                    const rotateY =
-                        ((x - centerX) /
-                            centerX) *
-                        2.2;
+        tiltCard.addEventListener(
+            "mouseleave",
+            () => {
 
+                tiltCard.style.transform =
+                    `
+                    perspective(1300px)
+                    rotateY(-5deg)
+                    rotateX(2deg)
+                    scale(1)
+                    `;
 
-                    tiltCard.style.transform =
-                        `
-                        perspective(1200px)
-                        rotateX(${rotateX}deg)
-                        rotateY(${rotateY}deg)
-                        scale(1.015)
-                        `;
-
-                }
-            );
-
-
-            tiltCard.addEventListener(
-                "mouseleave",
-                () => {
-
-                    tiltCard.style.transform =
-                        `
-                        perspective(1200px)
-                        rotateY(-7deg)
-                        rotateX(3deg)
-                        scale(1)
-                        `;
-
-                }
-            );
-
-        }
+            }
+        );
 
 
         /* =====================================================
@@ -3032,12 +4337,10 @@
            ===================================================== */
 
         const revealElements =
-            document.querySelectorAll(
-                ".reveal"
-            );
+            document.querySelectorAll(".reveal");
 
 
-        const revealObserver =
+        const observer =
             new IntersectionObserver(
                 (entries) => {
 
@@ -3050,9 +4353,7 @@
 
                                 entry.target
                                     .classList
-                                    .add(
-                                        "visible"
-                                    );
+                                    .add("visible");
 
                             }
 
@@ -3061,19 +4362,112 @@
 
                 },
                 {
-                    threshold: 0.12
+                    threshold: .12
                 }
             );
 
 
         revealElements.forEach(
-            (element) => {
+            element => observer.observe(element)
+        );
 
-                revealObserver.observe(
-                    element
-                );
 
-            }
+        /* =====================================================
+           COUNTER
+           ===================================================== */
+
+        const counters =
+            document.querySelectorAll(".counter");
+
+
+        let countersStarted = false;
+
+
+        function startCounters() {
+
+            if (countersStarted)
+                return;
+
+            countersStarted = true;
+
+
+            counters.forEach(
+                counter => {
+
+                    const target =
+                        Number(
+                            counter.dataset.target
+                        );
+
+
+                    let current = 0;
+
+                    const increment =
+                        Math.max(
+                            1,
+                            Math.ceil(target / 45)
+                        );
+
+
+                    const timer =
+                        setInterval(
+                            () => {
+
+                                current += increment;
+
+
+                                if (
+                                    current >= target
+                                ) {
+
+                                    current =
+                                        target;
+
+                                    clearInterval(
+                                        timer
+                                    );
+
+                                }
+
+
+                                counter.textContent =
+                                    current;
+
+                            },
+                            28
+                        );
+
+                }
+            );
+
+        }
+
+
+        const statsSection =
+            document.querySelector(".stats");
+
+
+        const statsObserver =
+            new IntersectionObserver(
+                entries => {
+
+                    if (
+                        entries[0].isIntersecting
+                    ) {
+
+                        startCounters();
+
+                    }
+
+                },
+                {
+                    threshold: .5
+                }
+            );
+
+
+        statsObserver.observe(
+            statsSection
         );
 
 
@@ -3092,7 +4486,7 @@
             () => {
 
                 alert(
-                    "Mobile navigation จะเพิ่มรายละเอียดในขั้นตอนปรับ UX ต่อไป"
+                    "Mobile navigation จะเชื่อมกับเมนูจริงในขั้นตอนปรับระบบต่อไปครับ"
                 );
 
             }
