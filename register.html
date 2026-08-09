@@ -1,396 +1,1831 @@
 <!DOCTYPE html>
 <html lang="th">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>สมัครสมาชิก | EasyRoom</title>
+    <title>Create account — EasyRoom</title>
 
-<style>
+    <style>
 
-@import url('https://fonts.googleapis.com/css2?family=Prompt:wght@300;400;500;600;700&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Prompt:wght@300;400;500;600&display=swap');
 
-* {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
-}
 
-body {
-    font-family: 'Prompt', sans-serif;
-    min-height: 100vh;
-    background: linear-gradient(135deg, #2563eb, #4f46e5);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 20px;
-}
+        :root {
+            --bg: #050706;
+            --green: #8dffb8;
+            --green-dark: #62e796;
 
-.container {
-    width: 100%;
-    max-width: 470px;
-}
+            --text: #f4f7f5;
+            --muted: #818a85;
 
-.logo {
-    text-align: center;
-    color: white;
-    margin-bottom: 22px;
-}
+            --border: rgba(255,255,255,.11);
+        }
 
-.logo-icon {
-    width: 62px;
-    height: 62px;
-    background: white;
-    color: #2563eb;
-    border-radius: 17px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 30px;
-    margin: auto auto 10px;
-}
 
-.logo h1 {
-    font-size: 29px;
-}
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
 
-.logo p {
-    font-size: 14px;
-    opacity: .9;
-}
 
-.card {
-    background: white;
-    border-radius: 20px;
-    padding: 30px;
-    box-shadow: 0 15px 40px rgba(0,0,0,.18);
-}
+        html,
+        body {
+            min-height: 100%;
+        }
 
-.card h2 {
-    text-align: center;
-    margin-bottom: 23px;
-}
 
-.form-group {
-    margin-bottom: 15px;
-}
+        body {
 
-label {
-    display: block;
-    font-size: 14px;
-    margin-bottom: 6px;
-    color: #334155;
-}
+            min-height: 100vh;
 
-input,
-select {
-    width: 100%;
-    padding: 12px 13px;
-    border: 1px solid #d8dee8;
-    border-radius: 9px;
-    font-family: inherit;
-    outline: none;
-}
+            display: flex;
+            justify-content: center;
+            align-items: center;
 
-input:focus,
-select:focus {
-    border-color: #2563eb;
-}
+            padding: 35px 20px;
 
-.register-btn {
-    width: 100%;
-    border: none;
-    border-radius: 10px;
-    padding: 13px;
-    background: #2563eb;
-    color: white;
-    font-family: inherit;
-    font-size: 15px;
-    cursor: pointer;
-    margin-top: 5px;
-}
+            font-family:
+                "Inter",
+                "Prompt",
+                -apple-system,
+                BlinkMacSystemFont,
+                "Segoe UI",
+                sans-serif;
 
-.register-btn:hover {
-    background: #1d4ed8;
-}
+            color: var(--text);
 
-.links {
-    text-align: center;
-    margin-top: 20px;
-    font-size: 14px;
-}
+            background:
 
-.links a {
-    color: #2563eb;
-    text-decoration: none;
-}
+                radial-gradient(
+                    650px circle at 10% 10%,
+                    rgba(98,231,150,.075),
+                    transparent 55%
+                ),
 
-.back {
-    display: block;
-    text-align: center;
-    margin-top: 17px;
-    color: white;
-    text-decoration: none;
-    font-size: 14px;
-}
+                radial-gradient(
+                    650px circle at 90% 90%,
+                    rgba(81,105,255,.055),
+                    transparent 55%
+                ),
 
-.notice {
-    background: #eff6ff;
-    color: #1d4ed8;
-    border-radius: 9px;
-    padding: 11px;
-    font-size: 12px;
-    line-height: 1.6;
-    margin-bottom: 17px;
-}
+                #050706;
 
-</style>
+            overflow-x: hidden;
+        }
+
+
+        /* =================================
+           AMBIENT
+        ================================= */
+
+        .ambient {
+
+            position: fixed;
+
+            width: 400px;
+            height: 400px;
+
+            border-radius: 50%;
+
+            filter: blur(105px);
+
+            pointer-events: none;
+
+            opacity: .8;
+
+            animation:
+                floatAmbient 10s ease-in-out infinite;
+        }
+
+
+        .ambient.one {
+            top: -250px;
+            left: -180px;
+
+            background:
+                rgba(100,255,160,.10);
+        }
+
+
+        .ambient.two {
+            right: -240px;
+            bottom: -220px;
+
+            background:
+                rgba(90,100,255,.07);
+
+            animation-delay: -4s;
+        }
+
+
+        @keyframes floatAmbient {
+
+            0%,
+            100% {
+                transform:
+                    translate(0,0);
+            }
+
+            50% {
+                transform:
+                    translate(30px,-25px);
+            }
+
+        }
+
+
+        /* =================================
+           LAYOUT
+        ================================= */
+
+        .page {
+
+            width: 100%;
+
+            max-width: 1060px;
+
+            display: grid;
+
+            grid-template-columns:
+                .9fr 1.1fr;
+
+            gap: 75px;
+
+            align-items: center;
+        }
+
+
+        /* =================================
+           INTRO
+        ================================= */
+
+        .intro {
+
+            animation:
+                fadeUp .8s ease both;
+        }
+
+
+        .brand {
+
+            display: inline-flex;
+
+            align-items: center;
+
+            gap: 11px;
+
+            margin-bottom: 38px;
+
+            color: white;
+
+            text-decoration: none;
+        }
+
+
+        .brand img {
+
+            width: 42px;
+            height: 42px;
+
+            object-fit: contain;
+
+            border-radius: 11px;
+        }
+
+
+        .brand span {
+
+            font-size: 17px;
+
+            font-weight: 700;
+
+            letter-spacing: -.4px;
+        }
+
+
+        .intro h1 {
+
+            max-width: 470px;
+
+            font-size:
+                clamp(42px,5vw,65px);
+
+            line-height: .98;
+
+            letter-spacing: -4px;
+        }
+
+
+        .intro h1 span {
+
+            color:
+                var(--green);
+        }
+
+
+        .intro-description {
+
+            max-width: 430px;
+
+            margin-top: 22px;
+
+            color:
+                var(--muted);
+
+            font-size: 14px;
+
+            line-height: 1.8;
+        }
+
+
+        .benefits {
+
+            display: grid;
+
+            gap: 12px;
+
+            margin-top: 30px;
+        }
+
+
+        .benefit {
+
+            display: flex;
+
+            align-items: center;
+
+            gap: 10px;
+
+            color: #78817c;
+
+            font-size: 11px;
+        }
+
+
+        .benefit-icon {
+
+            width: 23px;
+            height: 23px;
+
+            display: flex;
+
+            align-items: center;
+            justify-content: center;
+
+            border-radius: 7px;
+
+            background:
+                rgba(141,255,184,.07);
+
+            border:
+                1px solid
+                rgba(141,255,184,.10);
+
+            color:
+                var(--green);
+
+            font-size: 10px;
+        }
+
+
+        .back {
+
+            display: inline-flex;
+
+            align-items: center;
+
+            gap: 8px;
+
+            margin-top: 30px;
+
+            color:
+                #68716c;
+
+            font-size: 11px;
+
+            text-decoration: none;
+
+            transition:
+                color .2s,
+                transform .2s;
+        }
+
+
+        .back:hover {
+
+            color: white;
+
+            transform:
+                translateX(-3px);
+        }
+
+
+        /* =================================
+           CARD
+        ================================= */
+
+        .card-wrap {
+
+            perspective: 1200px;
+
+            animation:
+                cardIn .9s .1s ease both;
+        }
+
+
+        .register-card {
+
+            position: relative;
+
+            padding: 31px;
+
+            border:
+                1px solid
+                rgba(255,255,255,.14);
+
+            border-radius:
+                26px;
+
+            background:
+                linear-gradient(
+                    145deg,
+                    rgba(255,255,255,.095),
+                    rgba(255,255,255,.035)
+                );
+
+            backdrop-filter:
+                blur(24px)
+                saturate(1.35);
+
+            -webkit-backdrop-filter:
+                blur(24px)
+                saturate(1.35);
+
+            box-shadow:
+
+                0 45px 100px
+                rgba(0,0,0,.46),
+
+                inset 0 1px 0
+                rgba(255,255,255,.09);
+
+            transform-style:
+                preserve-3d;
+
+            transition:
+                transform .18s ease;
+        }
+
+
+        .register-card::before {
+
+            content: "";
+
+            position: absolute;
+
+            inset: 0;
+
+            border-radius:
+                inherit;
+
+            pointer-events: none;
+
+            background:
+                linear-gradient(
+                    125deg,
+                    rgba(255,255,255,.08),
+                    transparent 28%
+                );
+        }
+
+
+        /* =================================
+           HEADER
+        ================================= */
+
+        .card-header {
+
+            position: relative;
+
+            margin-bottom: 24px;
+        }
+
+
+        .mini-logo {
+
+            width: 40px;
+            height: 40px;
+
+            object-fit: contain;
+
+            border-radius: 10px;
+
+            margin-bottom: 17px;
+        }
+
+
+        .card-header h2 {
+
+            font-size: 26px;
+
+            letter-spacing: -1px;
+
+            margin-bottom: 6px;
+        }
+
+
+        .card-header p {
+
+            color:
+                var(--muted);
+
+            font-size: 11px;
+
+            line-height: 1.6;
+        }
+
+
+        /* =================================
+           FORM GRID
+        ================================= */
+
+        .form-grid {
+
+            display: grid;
+
+            grid-template-columns:
+                1fr 1fr;
+
+            gap: 13px;
+        }
+
+
+        .form-group {
+
+            position: relative;
+
+            margin-bottom: 13px;
+        }
+
+
+        .form-group.full {
+
+            grid-column:
+                1 / -1;
+        }
+
+
+        .form-group label {
+
+            display: block;
+
+            margin-bottom: 7px;
+
+            color:
+                #9ba39f;
+
+            font-size: 10px;
+
+            font-weight: 500;
+        }
+
+
+        .input-wrap {
+
+            position: relative;
+        }
+
+
+        .input-wrap input,
+        .input-wrap select {
+
+            width: 100%;
+
+            height: 48px;
+
+            padding:
+                0 14px;
+
+            border:
+                1px solid
+                rgba(255,255,255,.09);
+
+            outline: none;
+
+            border-radius: 12px;
+
+            background:
+                rgba(0,0,0,.16);
+
+            color: white;
+
+            font-family: inherit;
+
+            font-size: 12px;
+
+            transition:
+                border-color .2s,
+                background .2s,
+                box-shadow .2s;
+        }
+
+
+        .input-wrap input::placeholder {
+
+            color:
+                #59625d;
+        }
+
+
+        .input-wrap input:focus,
+        .input-wrap select:focus {
+
+            border-color:
+                rgba(141,255,184,.35);
+
+            background:
+                rgba(141,255,184,.035);
+
+            box-shadow:
+                0 0 0 3px
+                rgba(141,255,184,.055);
+        }
+
+
+        .input-wrap select {
+
+            appearance: none;
+
+            cursor: pointer;
+
+            padding-right: 38px;
+        }
+
+
+        .input-wrap select option {
+
+            background:
+                #101512;
+
+            color: white;
+        }
+
+
+        .select-arrow {
+
+            position: absolute;
+
+            right: 14px;
+
+            top: 50%;
+
+            transform:
+                translateY(-50%);
+
+            color:
+                #68716c;
+
+            pointer-events: none;
+
+            font-size: 10px;
+        }
+
+
+        /* =================================
+           PASSWORD
+        ================================= */
+
+        .password-input {
+
+            padding-right:
+                45px !important;
+        }
+
+
+        .toggle-password {
+
+            position: absolute;
+
+            right: 10px;
+            top: 50%;
+
+            transform:
+                translateY(-50%);
+
+            border: none;
+
+            background: none;
+
+            color:
+                #68716c;
+
+            cursor: pointer;
+
+            padding: 5px;
+
+            font-size: 13px;
+        }
+
+
+        .toggle-password:hover {
+
+            color:
+                #c4ccc7;
+        }
+
+
+        /* =================================
+           PASSWORD STRENGTH
+        ================================= */
+
+        .strength {
+
+            margin-top: 8px;
+        }
+
+
+        .strength-bars {
+
+            display: grid;
+
+            grid-template-columns:
+                repeat(4,1fr);
+
+            gap: 4px;
+        }
+
+
+        .strength-bars span {
+
+            height: 3px;
+
+            border-radius: 99px;
+
+            background:
+                rgba(255,255,255,.08);
+
+            transition:
+                background .25s;
+        }
+
+
+        .strength-text {
+
+            margin-top: 6px;
+
+            color:
+                #5f6863;
+
+            font-size: 9px;
+        }
+
+
+        /* =================================
+           TERMS
+        ================================= */
+
+        .terms {
+
+            display: flex;
+
+            align-items:
+                flex-start;
+
+            gap: 9px;
+
+            margin:
+                6px 0 18px;
+
+            color:
+                #737c77;
+
+            font-size: 9px;
+
+            line-height: 1.6;
+
+            cursor: pointer;
+        }
+
+
+        .terms input {
+
+            appearance: none;
+
+            flex-shrink: 0;
+
+            width: 15px;
+            height: 15px;
+
+            border:
+                1px solid
+                rgba(255,255,255,.15);
+
+            border-radius: 4px;
+
+            background:
+                rgba(255,255,255,.04);
+
+            cursor: pointer;
+
+            position: relative;
+        }
+
+
+        .terms input:checked {
+
+            background:
+                var(--green);
+
+            border-color:
+                var(--green);
+        }
+
+
+        .terms input:checked::after {
+
+            content: "✓";
+
+            position: absolute;
+
+            left: 50%;
+            top: 50%;
+
+            transform:
+                translate(-50%,-52%);
+
+            color:
+                #07120c;
+
+            font-size: 9px;
+
+            font-weight: 800;
+        }
+
+
+        .terms a {
+
+            color:
+                var(--green);
+
+            text-decoration: none;
+        }
+
+
+        /* =================================
+           SUBMIT
+        ================================= */
+
+        .submit-btn {
+
+            position: relative;
+
+            width: 100%;
+
+            height: 50px;
+
+            border: none;
+
+            border-radius: 13px;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #a1ffc5,
+                    #62e896
+                );
+
+            color:
+                #07120c;
+
+            font-family: inherit;
+
+            font-size: 12px;
+
+            font-weight: 700;
+
+            cursor: pointer;
+
+            box-shadow:
+                0 13px 35px
+                rgba(90,255,145,.13);
+
+            transition:
+                transform .2s,
+                box-shadow .2s;
+        }
+
+
+        .submit-btn:hover {
+
+            transform:
+                translateY(-2px);
+
+            box-shadow:
+                0 18px 42px
+                rgba(90,255,145,.20);
+        }
+
+
+        .submit-btn:active {
+
+            transform:
+                translateY(1px)
+                scale(.99);
+        }
+
+
+        .spinner {
+
+            display: none;
+
+            position: absolute;
+
+            width: 17px;
+            height: 17px;
+
+            border:
+                2px solid
+                rgba(0,0,0,.18);
+
+            border-top-color:
+                #07120c;
+
+            border-radius: 50%;
+
+            top: 50%;
+            left: 50%;
+
+            transform:
+                translate(-50%,-50%);
+
+            animation:
+                spin .7s linear infinite;
+        }
+
+
+        .submit-btn.loading {
+
+            pointer-events: none;
+
+            color: transparent;
+        }
+
+
+        .submit-btn.loading .spinner {
+
+            display: block;
+        }
+
+
+        .success-mark {
+
+            display: none;
+
+            position: absolute;
+
+            top: 50%;
+            left: 50%;
+
+            transform:
+                translate(-50%,-50%);
+
+            font-size: 18px;
+        }
+
+
+        .submit-btn.success .success-mark {
+
+            display: block;
+        }
+
+
+        @keyframes spin {
+
+            to {
+                transform:
+                    translate(-50%,-50%)
+                    rotate(360deg);
+            }
+        }
+
+
+        /* =================================
+           FOOTER
+        ================================= */
+
+        .login-link {
+
+            margin-top: 20px;
+
+            padding-top: 18px;
+
+            border-top:
+                1px solid
+                rgba(255,255,255,.06);
+
+            text-align: center;
+
+            color:
+                #68716c;
+
+            font-size: 10px;
+        }
+
+
+        .login-link a {
+
+            color:
+                var(--green);
+
+            text-decoration: none;
+
+            font-weight: 600;
+
+            margin-left: 4px;
+        }
+
+
+        /* =================================
+           ANIMATION
+        ================================= */
+
+        @keyframes fadeUp {
+
+            from {
+                opacity: 0;
+
+                transform:
+                    translateY(20px);
+            }
+
+            to {
+                opacity: 1;
+
+                transform:
+                    translateY(0);
+            }
+        }
+
+
+        @keyframes cardIn {
+
+            from {
+                opacity: 0;
+
+                transform:
+                    translateY(25px)
+                    rotateX(4deg);
+            }
+
+            to {
+                opacity: 1;
+
+                transform:
+                    translateY(0)
+                    rotateX(0);
+            }
+        }
+
+
+        /* =================================
+           MOBILE
+        ================================= */
+
+        @media (max-width: 820px) {
+
+            body {
+                overflow-y: auto;
+            }
+
+
+            .page {
+
+                grid-template-columns:
+                    1fr;
+
+                max-width:
+                    520px;
+
+                gap:
+                    35px;
+            }
+
+
+            .intro {
+
+                text-align:
+                    center;
+            }
+
+
+            .brand {
+
+                margin-bottom:
+                    25px;
+            }
+
+
+            .intro h1 {
+
+                margin:
+                    auto;
+
+                font-size:
+                    46px;
+
+                letter-spacing:
+                    -3px;
+            }
+
+
+            .intro-description {
+
+                margin:
+                    17px auto 0;
+            }
+
+
+            .benefits {
+
+                justify-items:
+                    center;
+            }
+
+
+            .back {
+
+                margin-top:
+                    20px;
+            }
+
+        }
+
+
+        @media (max-width: 500px) {
+
+            body {
+
+                padding:
+                    18px 14px;
+            }
+
+
+            .intro h1 {
+
+                font-size:
+                    39px;
+
+                letter-spacing:
+                    -2.5px;
+            }
+
+
+            .intro-description {
+
+                font-size:
+                    12px;
+            }
+
+
+            .register-card {
+
+                padding:
+                    24px 19px;
+
+                border-radius:
+                    22px;
+            }
+
+
+            .form-grid {
+
+                grid-template-columns:
+                    1fr;
+            }
+
+
+            .form-group.full {
+
+                grid-column:
+                    auto;
+            }
+
+        }
+
+    </style>
 </head>
+
 
 <body>
 
-<div class="container">
 
-    <div class="logo">
-
-        <div class="logo-icon">
-            🏫
-        </div>
-
-        <h1>EasyRoom</h1>
-
-        <p>ระบบจองห้องเรียนออนไลน์</p>
-
-    </div>
+    <div class="ambient one"></div>
+    <div class="ambient two"></div>
 
 
-    <div class="card">
-
-        <h2>สมัครสมาชิก</h2>
+    <main class="page">
 
 
-        <div class="notice">
+        <!-- =========================
+             INTRO
+        ========================== -->
 
-            สมัครสมาชิกเพื่อใช้งานระบบ
-            จองและตรวจสอบห้องเรียน
+        <section class="intro">
 
-        </div>
+            <a
+                href="index.html"
+                class="brand">
 
+                <img
+                    src="https://img1.pic.in.th/images/Screenshot-2026-08-10-at-00.21.21.png"
+                    alt="EasyRoom"
+                >
 
-        <div class="form-group">
+                <span>
+                    EasyRoom
+                </span>
 
-            <label>
-                ชื่อ-นามสกุล
-            </label>
-
-            <input
-                type="text"
-                id="fullname"
-                placeholder="เช่น นายโชตยากร วงษ์สุริยะอุทัย"
-            >
-
-        </div>
-
-
-        <div class="form-group">
-
-            <label>
-                ชื่อผู้ใช้งาน
-            </label>
-
-            <input
-                type="text"
-                id="username"
-                placeholder="กรอกชื่อผู้ใช้งาน"
-            >
-
-        </div>
-
-
-        <div class="form-group">
-
-            <label>
-                รหัสผ่าน
-            </label>
-
-            <input
-                type="password"
-                id="password"
-                placeholder="กรอกรหัสผ่าน"
-            >
-
-        </div>
-
-
-        <div class="form-group">
-
-            <label>
-                ยืนยันรหัสผ่าน
-            </label>
-
-            <input
-                type="password"
-                id="confirmPassword"
-                placeholder="กรอกรหัสผ่านอีกครั้ง"
-            >
-
-        </div>
-
-
-        <div class="form-group">
-
-            <label>
-                ประเภทผู้ใช้งาน
-            </label>
-
-            <select id="role">
-
-                <option value="student">
-                    👨‍🎓 นักศึกษา
-                </option>
-
-                <option value="teacher">
-                    👨‍🏫 อาจารย์
-                </option>
-
-            </select>
-
-        </div>
-
-
-        <button
-            class="register-btn"
-            onclick="register()">
-
-            สมัครสมาชิก
-
-        </button>
-
-
-        <div class="links">
-
-            มีบัญชีอยู่แล้ว?
-
-            <a href="login.html">
-                เข้าสู่ระบบ
             </a>
 
-        </div>
 
-    </div>
+            <h1>
 
+                Create your
+                <span>
+                    account.
+                </span>
 
-    <a
-        href="index.html"
-        class="back">
-
-        ← กลับหน้าหลัก
-
-    </a>
-
-</div>
+            </h1>
 
 
-<script>
+            <p class="intro-description">
 
-function register() {
+                Join EasyRoom and make classroom
+                booking simpler. Create an account
+                and start managing your reservations
+                in one place.
 
-    const fullname =
+            </p>
+
+
+            <div class="benefits">
+
+
+                <div class="benefit">
+
+                    <span class="benefit-icon">
+                        ✓
+                    </span>
+
+                    Easy room discovery
+
+                </div>
+
+
+                <div class="benefit">
+
+                    <span class="benefit-icon">
+                        ✓
+                    </span>
+
+                    Simple booking process
+
+                </div>
+
+
+                <div class="benefit">
+
+                    <span class="benefit-icon">
+                        ✓
+                    </span>
+
+                    Manage your reservations
+
+                </div>
+
+
+            </div>
+
+
+            <a
+                href="index.html"
+                class="back">
+
+                ← Back to home
+
+            </a>
+
+        </section>
+
+
+
+        <!-- =========================
+             REGISTER CARD
+        ========================== -->
+
+        <section class="card-wrap">
+
+            <div
+                class="register-card"
+                id="registerCard">
+
+
+                <div class="card-header">
+
+                    <img
+                        class="mini-logo"
+                        src="https://img1.pic.in.th/images/Screenshot-2026-08-10-at-00.21.21.png"
+                        alt="EasyRoom Logo"
+                    >
+
+                    <h2>
+                        Create account
+                    </h2>
+
+                    <p>
+                        Fill in your details to get started.
+                    </p>
+
+                </div>
+
+
+
+                <form id="registerForm">
+
+
+                    <div class="form-grid">
+
+
+                        <!-- Full name -->
+
+                        <div class="form-group full">
+
+                            <label for="fullname">
+                                Full name
+                            </label>
+
+                            <div class="input-wrap">
+
+                                <input
+                                    type="text"
+                                    id="fullname"
+                                    placeholder="Enter your full name"
+                                    required
+                                >
+
+                            </div>
+
+                        </div>
+
+
+
+                        <!-- Username -->
+
+                        <div class="form-group">
+
+                            <label for="username">
+                                Username
+                            </label>
+
+                            <div class="input-wrap">
+
+                                <input
+                                    type="text"
+                                    id="username"
+                                    placeholder="Choose a username"
+                                    autocomplete="username"
+                                    required
+                                >
+
+                            </div>
+
+                        </div>
+
+
+
+                        <!-- Role -->
+
+                        <div class="form-group">
+
+                            <label for="role">
+                                Account type
+                            </label>
+
+                            <div class="input-wrap">
+
+                                <select
+                                    id="role"
+                                    required>
+
+                                    <option value="">
+                                        Select type
+                                    </option>
+
+                                    <option value="student">
+                                        Student
+                                    </option>
+
+                                    <option value="teacher">
+                                        Teacher
+                                    </option>
+
+                                </select>
+
+                                <span class="select-arrow">
+                                    ▼
+                                </span>
+
+                            </div>
+
+                        </div>
+
+
+
+                        <!-- Email -->
+
+                        <div class="form-group full">
+
+                            <label for="email">
+                                Email address
+                            </label>
+
+                            <div class="input-wrap">
+
+                                <input
+                                    type="email"
+                                    id="email"
+                                    placeholder="you@example.com"
+                                    autocomplete="email"
+                                    required
+                                >
+
+                            </div>
+
+                        </div>
+
+
+
+                        <!-- Password -->
+
+                        <div class="form-group">
+
+                            <label for="password">
+                                Password
+                            </label>
+
+                            <div class="input-wrap">
+
+                                <input
+                                    class="password-input"
+                                    type="password"
+                                    id="password"
+                                    placeholder="Create a password"
+                                    autocomplete="new-password"
+                                    required
+                                >
+
+                                <button
+                                    type="button"
+                                    class="toggle-password"
+                                    data-target="password">
+
+                                    ◉
+
+                                </button>
+
+                            </div>
+
+
+                            <div class="strength">
+
+                                <div class="strength-bars">
+
+                                    <span></span>
+                                    <span></span>
+                                    <span></span>
+                                    <span></span>
+
+                                </div>
+
+                                <div
+                                    class="strength-text"
+                                    id="strengthText">
+
+                                    Password strength
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+
+
+                        <!-- Confirm password -->
+
+                        <div class="form-group">
+
+                            <label for="confirmPassword">
+                                Confirm password
+                            </label>
+
+                            <div class="input-wrap">
+
+                                <input
+                                    class="password-input"
+                                    type="password"
+                                    id="confirmPassword"
+                                    placeholder="Repeat password"
+                                    autocomplete="new-password"
+                                    required
+                                >
+
+                                <button
+                                    type="button"
+                                    class="toggle-password"
+                                    data-target="confirmPassword">
+
+                                    ◉
+
+                                </button>
+
+                            </div>
+
+                        </div>
+
+
+                    </div>
+
+
+
+                    <!-- Terms -->
+
+                    <label class="terms">
+
+                        <input
+                            type="checkbox"
+                            id="terms"
+                            required
+                        >
+
+                        <span>
+
+                            I agree to the
+                            <a href="#">
+                                Terms of Service
+                            </a>
+                            and
+                            <a href="#">
+                                Privacy Policy
+                            </a>.
+
+                        </span>
+
+                    </label>
+
+
+
+                    <!-- Submit -->
+
+                    <button
+                        type="submit"
+                        class="submit-btn"
+                        id="submitBtn">
+
+                        <span class="button-text">
+                            Create account
+                        </span>
+
+                        <span class="spinner"></span>
+
+                        <span class="success-mark">
+                            ✓
+                        </span>
+
+                    </button>
+
+
+                </form>
+
+
+
+                <div class="login-link">
+
+                    Already have an account?
+
+                    <a href="login.html">
+                        Sign in
+                    </a>
+
+                </div>
+
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+
+    <script>
+
+        /* =================================
+           SHOW / HIDE PASSWORD
+        ================================= */
+
         document
-        .getElementById("fullname")
-        .value
-        .trim();
+            .querySelectorAll(".toggle-password")
+            .forEach(button => {
 
-    const username =
-        document
-        .getElementById("username")
-        .value
-        .trim();
+                button.addEventListener(
+                    "click",
+                    () => {
 
-    const password =
-        document
-        .getElementById("password")
-        .value;
-
-    const confirmPassword =
-        document
-        .getElementById("confirmPassword")
-        .value;
-
-    const role =
-        document
-        .getElementById("role")
-        .value;
+                        const input =
+                            document.getElementById(
+                                button.dataset.target
+                            );
 
 
-    if (
-        !fullname ||
-        !username ||
-        !password ||
-        !confirmPassword
-    ) {
+                        const isVisible =
+                            input.type === "text";
 
-        alert(
-            "กรุณากรอกข้อมูลให้ครบทุกช่อง"
+
+                        input.type =
+                            isVisible
+                                ? "password"
+                                : "text";
+
+
+                        button.textContent =
+                            isVisible
+                                ? "◉"
+                                : "◌";
+
+                    }
+                );
+
+            });
+
+
+
+        /* =================================
+           PASSWORD STRENGTH
+        ================================= */
+
+        const password =
+            document.getElementById(
+                "password"
+            );
+
+        const strengthBars =
+            document.querySelectorAll(
+                ".strength-bars span"
+            );
+
+        const strengthText =
+            document.getElementById(
+                "strengthText"
+            );
+
+
+        password.addEventListener(
+            "input",
+            () => {
+
+                const value =
+                    password.value;
+
+                let score = 0;
+
+
+                if (value.length >= 6)
+                    score++;
+
+                if (value.length >= 10)
+                    score++;
+
+                if (/[A-Z]/.test(value))
+                    score++;
+
+                if (
+                    /[0-9]/.test(value) &&
+                    /[^A-Za-z0-9]/.test(value)
+                )
+                    score++;
+
+
+                strengthBars.forEach(
+                    bar => {
+                        bar.style.background =
+                            "rgba(255,255,255,.08)";
+                    }
+                );
+
+
+                if (!value) {
+
+                    strengthText.textContent =
+                        "Password strength";
+
+                    return;
+                }
+
+
+                const labels = [
+                    "Too weak",
+                    "Weak",
+                    "Good",
+                    "Strong",
+                    "Very strong"
+                ];
+
+
+                strengthText.textContent =
+                    labels[score];
+
+
+                for (
+                    let i = 0;
+                    i < score;
+                    i++
+                ) {
+
+                    strengthBars[i].style.background =
+                        "rgba(141,255,184,.75)";
+
+                }
+
+            }
         );
 
-        return;
-
-    }
 
 
-    if (password.length < 6) {
+        /* =================================
+           3D TILT
+        ================================= */
 
-        alert(
-            "รหัสผ่านต้องมีอย่างน้อย 6 ตัวอักษร"
+        const card =
+            document.getElementById(
+                "registerCard"
+            );
+
+        const wrapper =
+            document.querySelector(
+                ".card-wrap"
+            );
+
+
+        if (window.innerWidth > 820) {
+
+            wrapper.addEventListener(
+                "pointermove",
+                event => {
+
+                    const rect =
+                        wrapper.getBoundingClientRect();
+
+
+                    const x =
+                        event.clientX -
+                        rect.left;
+
+
+                    const y =
+                        event.clientY -
+                        rect.top;
+
+
+                    const rotateY =
+                        ((x -
+                            rect.width / 2) /
+                            rect.width) *
+                        7;
+
+
+                    const rotateX =
+                        ((rect.height / 2 -
+                            y) /
+                            rect.height) *
+                        7;
+
+
+                    card.style.transform =
+                        `
+                        rotateX(${rotateX}deg)
+                        rotateY(${rotateY}deg)
+                        translateY(-3px)
+                        `;
+
+                }
+            );
+
+
+            wrapper.addEventListener(
+                "pointerleave",
+                () => {
+
+                    card.style.transform =
+                        `
+                        rotateX(0deg)
+                        rotateY(0deg)
+                        translateY(0)
+                        `;
+
+                }
+            );
+
+        }
+
+
+
+        /* =================================
+           REGISTER STATE
+        ================================= */
+
+        const form =
+            document.getElementById(
+                "registerForm"
+            );
+
+        const submitBtn =
+            document.getElementById(
+                "submitBtn"
+            );
+
+
+        form.addEventListener(
+            "submit",
+            event => {
+
+                event.preventDefault();
+
+
+                const passwordValue =
+                    password.value;
+
+                const confirmValue =
+                    document.getElementById(
+                        "confirmPassword"
+                    ).value;
+
+
+                if (
+                    passwordValue !==
+                    confirmValue
+                ) {
+
+                    alert(
+                        "Passwords do not match."
+                    );
+
+                    return;
+                }
+
+
+                submitBtn.classList.add(
+                    "loading"
+                );
+
+
+                setTimeout(
+                    () => {
+
+                        submitBtn.classList.remove(
+                            "loading"
+                        );
+
+
+                        submitBtn.classList.add(
+                            "success"
+                        );
+
+
+                        submitBtn.querySelector(
+                            ".button-text"
+                        ).textContent =
+                            "Account created";
+
+
+                        /*
+                         * ตอนเชื่อม Database จริง
+                         * ให้เปลี่ยนตรงนี้เป็น
+                         *
+                         * window.location.href =
+                         * "login.html";
+                         */
+
+                    },
+                    1200
+                );
+
+            }
         );
 
-        return;
-
-    }
-
-
-    if (password !== confirmPassword) {
-
-        alert(
-            "รหัสผ่านไม่ตรงกัน"
-        );
-
-        return;
-
-    }
-
-
-    const user = {
-
-        fullname: fullname,
-
-        username: username,
-
-        password: password,
-
-        role: role
-
-    };
-
-
-    localStorage.setItem(
-        "easyroom_registered_user",
-        JSON.stringify(user)
-    );
-
-
-    alert(
-        "สมัครสมาชิกสำเร็จ!"
-    );
-
-
-    window.location.href =
-        "login.html";
-
-}
-
-</script>
+    </script>
 
 </body>
 </html>
