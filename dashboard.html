@@ -1,1375 +1,3234 @@
+```html
 <!DOCTYPE html>
-<html lang="th">
+<html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<title>Dashboard | EasyRoom</title>
-
-<style>
-
-@import url('https://fonts.googleapis.com/css2?family=Prompt:wght@300;400;500;600;700&display=swap');
-
-* {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
-}
-
-body {
-    font-family: 'Prompt', sans-serif;
-    background: #f5f7fb;
-    color: #172033;
-}
-
-/* NAVBAR */
-
-.navbar {
-    height: 70px;
-    background: white;
-    border-bottom: 1px solid #e5e7eb;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 0 6%;
-    position: sticky;
-    top: 0;
-    z-index: 10;
-}
-
-.logo {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    color: #2563eb;
-    font-size: 22px;
-    font-weight: 700;
-}
-
-.logo-icon {
-    width: 39px;
-    height: 39px;
-    background: #2563eb;
-    color: white;
-    border-radius: 10px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.user-area {
-    display: flex;
-    align-items: center;
-    gap: 14px;
-}
-
-.user-name {
-    font-size: 14px;
-}
-
-.logout {
-    border: none;
-    background: #fee2e2;
-    color: #b91c1c;
-    padding: 9px 14px;
-    border-radius: 9px;
-    cursor: pointer;
-    font-family: inherit;
-}
-
-/* HEADER */
-
-.header {
-    background: linear-gradient(135deg,#2563eb,#4f46e5);
-    color: white;
-    padding: 42px 6%;
-}
-
-.header-inner {
-    max-width: 1150px;
-    margin: auto;
-}
-
-.header h1 {
-    font-size: 30px;
-}
-
-.header p {
-    margin-top: 7px;
-    opacity: .9;
-}
-
-/* CONTENT */
-
-.container {
-    max-width: 1150px;
-    margin: auto;
-    padding: 30px 20px;
-}
-
-/* STATS */
-
-.stats {
-    display: grid;
-    grid-template-columns: repeat(4,1fr);
-    gap: 18px;
-    margin-bottom: 25px;
-}
-
-.stat {
-    background: white;
-    padding: 21px;
-    border-radius: 15px;
-    box-shadow: 0 4px 18px rgba(15,23,42,.05);
-}
-
-.stat-label {
-    color: #64748b;
-    font-size: 13px;
-}
-
-.stat-number {
-    display: block;
-    font-size: 28px;
-    font-weight: 600;
-    margin-top: 5px;
-}
-
-/* PANELS */
-
-.panel {
-    background: white;
-    border-radius: 16px;
-    padding: 23px;
-    margin-bottom: 22px;
-    box-shadow: 0 4px 18px rgba(15,23,42,.05);
-}
-
-.panel-title {
-    font-size: 19px;
-    margin-bottom: 18px;
-}
-
-/* SEARCH */
-
-.search {
-    display: grid;
-    grid-template-columns: 1.5fr 1fr 1fr auto;
-    gap: 10px;
-    margin-bottom: 20px;
-}
-
-input,
-select {
-    width: 100%;
-    padding: 11px 13px;
-    border: 1px solid #d8dee8;
-    border-radius: 9px;
-    outline: none;
-    font-family: inherit;
-}
-
-input:focus,
-select:focus {
-    border-color: #2563eb;
-}
-
-.btn {
-    border: none;
-    border-radius: 9px;
-    padding: 11px 16px;
-    font-family: inherit;
-    cursor: pointer;
-}
-
-.primary {
-    background: #2563eb;
-    color: white;
-}
-
-.primary:hover {
-    background: #1d4ed8;
-}
-
-/* ROOM */
-
-.rooms {
-    display: grid;
-    grid-template-columns: repeat(3,1fr);
-    gap: 18px;
-}
-
-.room {
-    border: 1px solid #e8ebf0;
-    border-radius: 14px;
-    overflow: hidden;
-}
-
-.room-top {
-    height: 110px;
-    background: linear-gradient(135deg,#dbeafe,#e0e7ff);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-size: 42px;
-}
-
-.room-body {
-    padding: 17px;
-}
-
-.room-body h3 {
-    margin-bottom: 8px;
-}
-
-.detail {
-    color: #64748b;
-    font-size: 13px;
-    margin: 5px 0;
-}
-
-.status {
-    display: inline-block;
-    margin: 9px 0;
-    padding: 5px 10px;
-    border-radius: 20px;
-    font-size: 12px;
-}
-
-.available {
-    background: #dcfce7;
-    color: #15803d;
-}
-
-.pending {
-    background: #fef3c7;
-    color: #a16207;
-}
-
-.booked {
-    background: #fee2e2;
-    color: #b91c1c;
-}
-
-/* TABLE */
-
-.table-wrapper {
-    overflow-x: auto;
-}
-
-table {
-    width: 100%;
-    border-collapse: collapse;
-}
-
-th,
-td {
-    padding: 13px;
-    border-bottom: 1px solid #edf0f4;
-    text-align: left;
-    font-size: 13px;
-}
-
-th {
-    background: #f8fafc;
-}
-
-.cancel {
-    background: #ef4444;
-    color: white;
-}
-
-/* ADMIN */
-
-.admin {
-    display: none;
-}
-
-.admin-buttons {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 10px;
-}
-
-/* EMPTY */
-
-.empty {
-    text-align: center;
-    padding: 30px;
-    color: #94a3b8;
-}
-
-/* RESPONSIVE */
-
-@media(max-width:850px) {
-
-    .stats {
-        grid-template-columns: repeat(2,1fr);
-    }
-
-    .rooms {
-        grid-template-columns: 1fr;
-    }
-
-    .search {
-        grid-template-columns: 1fr;
-    }
-}
-
-@media(max-width:550px) {
-
-    .navbar {
-        padding: 0 18px;
-    }
-
-    .user-name {
-        display: none;
-    }
-
-    .stats {
-        grid-template-columns: 1fr;
-    }
-
-    .header {
-        padding: 35px 20px;
-    }
-
-}
-
-</style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Dashboard — EasyRoom</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <style>
+        /* =========================================================
+           EASYROOM — PREMIUM DASHBOARD
+           ========================================================= */
+
+        :root {
+            --bg: #070908;
+            --bg-soft: #0b0e0c;
+            --panel: rgba(18, 23, 20, 0.72);
+            --panel-strong: rgba(21, 27, 24, 0.88);
+            --border: rgba(255, 255, 255, 0.075);
+            --border-hover: rgba(144, 255, 185, 0.22);
+
+            --text: #f4f7f5;
+            --text-soft: #a6afa9;
+            --text-muted: #69736d;
+
+            --green: #8df5ae;
+            --green-strong: #55e985;
+            --green-dark: #183d26;
+
+            --yellow: #f6d878;
+            --red: #ff7d7d;
+            --blue: #83b9ff;
+
+            --sidebar-width: 258px;
+            --radius: 20px;
+            --radius-small: 14px;
+
+            --shadow:
+                0 25px 80px rgba(0, 0, 0, 0.45),
+                inset 0 1px 0 rgba(255,255,255,0.025);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            min-height: 100vh;
+            background:
+                radial-gradient(
+                    circle at 18% 5%,
+                    rgba(94, 235, 137, 0.07),
+                    transparent 28%
+                ),
+                radial-gradient(
+                    circle at 85% 80%,
+                    rgba(87, 163, 255, 0.035),
+                    transparent 25%
+                ),
+                var(--bg);
+
+            color: var(--text);
+            font-family: "Inter", sans-serif;
+            overflow-x: hidden;
+        }
+
+        body::before {
+            content: "";
+            position: fixed;
+            inset: 0;
+            pointer-events: none;
+            background:
+                linear-gradient(
+                    90deg,
+                    rgba(255,255,255,0.012) 1px,
+                    transparent 1px
+                ),
+                linear-gradient(
+                    rgba(255,255,255,0.012) 1px,
+                    transparent 1px
+                );
+            background-size: 60px 60px;
+            mask-image: linear-gradient(to bottom, black, transparent 85%);
+            opacity: 0.35;
+            z-index: -1;
+        }
+
+        ::selection {
+            background: rgba(141, 245, 174, 0.22);
+            color: white;
+        }
+
+        button,
+        input {
+            font: inherit;
+        }
+
+        button {
+            border: 0;
+        }
+
+        a {
+            color: inherit;
+            text-decoration: none;
+        }
+
+
+        /* =========================================================
+           AMBIENT LIGHT
+           ========================================================= */
+
+        .ambient {
+            position: fixed;
+            width: 500px;
+            height: 500px;
+            border-radius: 50%;
+            background: rgba(103, 244, 143, 0.045);
+            filter: blur(100px);
+            pointer-events: none;
+            transform: translate(-50%, -50%);
+            z-index: -1;
+        }
+
+
+        /* =========================================================
+           SIDEBAR
+           ========================================================= */
+
+        .sidebar {
+            position: fixed;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            width: var(--sidebar-width);
+
+            display: flex;
+            flex-direction: column;
+
+            padding: 25px 17px;
+
+            background:
+                linear-gradient(
+                    180deg,
+                    rgba(15, 19, 17, 0.92),
+                    rgba(8, 11, 9, 0.96)
+                );
+
+            border-right: 1px solid var(--border);
+
+            backdrop-filter: blur(24px);
+            -webkit-backdrop-filter: blur(24px);
+
+            z-index: 100;
+            transition: transform 0.35s ease;
+        }
+
+        .brand {
+            display: flex;
+            align-items: center;
+            gap: 11px;
+            padding: 0 10px 28px;
+        }
+
+        .brand img {
+            width: 38px;
+            height: 38px;
+            object-fit: contain;
+            border-radius: 10px;
+        }
+
+        .brand-text {
+            font-size: 19px;
+            font-weight: 700;
+            letter-spacing: -0.6px;
+        }
+
+        .brand-text span {
+            color: var(--green);
+        }
+
+        .nav-label {
+            padding: 0 12px;
+            margin: 7px 0 9px;
+
+            font-size: 10px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1.2px;
+            color: #505a54;
+        }
+
+        .nav {
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+        }
+
+        .nav-item {
+            position: relative;
+
+            display: flex;
+            align-items: center;
+            gap: 12px;
+
+            height: 46px;
+            padding: 0 13px;
+
+            border-radius: 13px;
+
+            color: var(--text-soft);
+            font-size: 13px;
+            font-weight: 500;
+
+            transition:
+                background 0.25s ease,
+                color 0.25s ease,
+                transform 0.25s ease;
+        }
+
+        .nav-item svg {
+            width: 18px;
+            height: 18px;
+            stroke-width: 1.8;
+            flex-shrink: 0;
+        }
+
+        .nav-item:hover {
+            background: rgba(255,255,255,0.035);
+            color: white;
+            transform: translateX(2px);
+        }
+
+        .nav-item.active {
+            background:
+                linear-gradient(
+                    100deg,
+                    rgba(141,245,174,0.13),
+                    rgba(141,245,174,0.045)
+                );
+
+            color: var(--green);
+        }
+
+        .nav-item.active::before {
+            content: "";
+            position: absolute;
+            left: -17px;
+            width: 3px;
+            height: 24px;
+            border-radius: 0 5px 5px 0;
+            background: var(--green);
+            box-shadow: 0 0 16px rgba(141,245,174,0.45);
+        }
+
+        .nav-badge {
+            margin-left: auto;
+
+            min-width: 21px;
+            height: 21px;
+            padding: 0 6px;
+
+            display: grid;
+            place-items: center;
+
+            border-radius: 20px;
+
+            background: rgba(141,245,174,0.12);
+            color: var(--green);
+
+            font-size: 10px;
+            font-weight: 700;
+        }
+
+        .sidebar-spacer {
+            flex: 1;
+        }
+
+        .upgrade-card {
+            position: relative;
+            overflow: hidden;
+
+            margin: 12px 3px 16px;
+            padding: 17px;
+
+            border: 1px solid rgba(141,245,174,0.12);
+            border-radius: 16px;
+
+            background:
+                radial-gradient(
+                    circle at 100% 0,
+                    rgba(141,245,174,0.11),
+                    transparent 55%
+                ),
+                rgba(141,245,174,0.035);
+        }
+
+        .upgrade-card::after {
+            content: "";
+            position: absolute;
+            width: 100px;
+            height: 100px;
+            right: -55px;
+            bottom: -55px;
+            border-radius: 50%;
+            background: rgba(141,245,174,0.07);
+            filter: blur(15px);
+        }
+
+        .upgrade-icon {
+            width: 30px;
+            height: 30px;
+
+            display: grid;
+            place-items: center;
+
+            margin-bottom: 11px;
+
+            border-radius: 9px;
+
+            background: rgba(141,245,174,0.1);
+            color: var(--green);
+        }
+
+        .upgrade-icon svg {
+            width: 15px;
+        }
+
+        .upgrade-card strong {
+            display: block;
+            margin-bottom: 5px;
+
+            font-size: 12px;
+        }
+
+        .upgrade-card p {
+            color: var(--text-muted);
+            font-size: 10px;
+            line-height: 1.6;
+            margin-bottom: 13px;
+        }
+
+        .upgrade-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+
+            color: var(--green);
+            font-size: 10px;
+            font-weight: 700;
+        }
+
+        .upgrade-btn svg {
+            width: 12px;
+        }
+
+        .user-mini {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+
+            padding: 12px 9px 2px;
+
+            border-top: 1px solid var(--border);
+        }
+
+        .avatar {
+            width: 34px;
+            height: 34px;
+
+            display: grid;
+            place-items: center;
+
+            border-radius: 11px;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #233c2b,
+                    #101c15
+                );
+
+            border: 1px solid rgba(141,245,174,0.13);
+
+            color: var(--green);
+            font-size: 11px;
+            font-weight: 700;
+        }
+
+        .user-info {
+            min-width: 0;
+            flex: 1;
+        }
+
+        .user-name {
+            font-size: 11px;
+            font-weight: 600;
+
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .user-role {
+            margin-top: 3px;
+            color: var(--text-muted);
+            font-size: 9px;
+        }
+
+        .user-more {
+            color: var(--text-muted);
+            cursor: pointer;
+        }
+
+        .user-more svg {
+            width: 15px;
+        }
+
+
+        /* =========================================================
+           MOBILE HEADER
+           ========================================================= */
+
+        .mobile-header {
+            display: none;
+
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+
+            height: 66px;
+            padding: 0 18px;
+
+            align-items: center;
+            justify-content: space-between;
+
+            background: rgba(7,9,8,0.82);
+            border-bottom: 1px solid var(--border);
+
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+
+            z-index: 90;
+        }
+
+        .mobile-brand {
+            display: flex;
+            align-items: center;
+            gap: 9px;
+            font-weight: 700;
+            font-size: 17px;
+        }
+
+        .mobile-brand img {
+            width: 31px;
+            height: 31px;
+        }
+
+        .menu-btn {
+            width: 39px;
+            height: 39px;
+
+            display: grid;
+            place-items: center;
+
+            border-radius: 11px;
+            border: 1px solid var(--border);
+
+            background: rgba(255,255,255,0.035);
+            color: white;
+
+            cursor: pointer;
+        }
+
+        .menu-btn svg {
+            width: 18px;
+        }
+
+
+        /* =========================================================
+           MAIN
+           ========================================================= */
+
+        .main {
+            margin-left: var(--sidebar-width);
+            min-height: 100vh;
+            padding: 30px 38px 50px;
+        }
+
+        .topbar {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 20px;
+
+            margin-bottom: 34px;
+        }
+
+        .breadcrumb {
+            color: var(--text-muted);
+            font-size: 11px;
+            margin-bottom: 8px;
+        }
+
+        .breadcrumb span {
+            color: var(--green);
+        }
+
+        .page-title {
+            font-size: clamp(24px, 2.5vw, 32px);
+            line-height: 1.1;
+            letter-spacing: -1.2px;
+            font-weight: 700;
+        }
+
+        .page-title span {
+            color: var(--green);
+        }
+
+        .top-actions {
+            display: flex;
+            align-items: center;
+            gap: 9px;
+        }
+
+        .icon-btn {
+            position: relative;
+
+            width: 42px;
+            height: 42px;
+
+            display: grid;
+            place-items: center;
+
+            border: 1px solid var(--border);
+            border-radius: 12px;
+
+            background: rgba(255,255,255,0.025);
+            color: var(--text-soft);
+
+            cursor: pointer;
+
+            transition: all 0.25s ease;
+        }
+
+        .icon-btn:hover {
+            color: white;
+            border-color: var(--border-hover);
+            background: rgba(141,245,174,0.05);
+            transform: translateY(-2px);
+        }
+
+        .icon-btn svg {
+            width: 18px;
+        }
+
+        .notification-dot {
+            position: absolute;
+            top: 9px;
+            right: 9px;
+
+            width: 5px;
+            height: 5px;
+
+            border-radius: 50%;
+            background: var(--green);
+            box-shadow: 0 0 9px var(--green);
+        }
+
+
+        /* =========================================================
+           HERO WELCOME
+           ========================================================= */
+
+        .welcome {
+            position: relative;
+            overflow: hidden;
+
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 30px;
+
+            min-height: 185px;
+            padding: 30px 34px;
+
+            margin-bottom: 20px;
+
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+
+            background:
+                radial-gradient(
+                    circle at 85% 20%,
+                    rgba(141,245,174,0.13),
+                    transparent 30%
+                ),
+                radial-gradient(
+                    circle at 60% 100%,
+                    rgba(67,132,82,0.08),
+                    transparent 35%
+                ),
+                linear-gradient(
+                    120deg,
+                    rgba(19,25,21,0.9),
+                    rgba(12,16,14,0.76)
+                );
+
+            box-shadow: var(--shadow);
+        }
+
+        .welcome::before {
+            content: "";
+            position: absolute;
+            width: 320px;
+            height: 320px;
+            right: -130px;
+            top: -180px;
+
+            border: 1px solid rgba(141,245,174,0.07);
+            border-radius: 50%;
+        }
+
+        .welcome::after {
+            content: "";
+            position: absolute;
+            width: 180px;
+            height: 180px;
+            right: 60px;
+            bottom: -145px;
+
+            border: 1px solid rgba(141,245,174,0.06);
+            border-radius: 50%;
+        }
+
+        .welcome-content {
+            position: relative;
+            z-index: 2;
+        }
+
+        .eyebrow {
+            display: inline-flex;
+            align-items: center;
+            gap: 7px;
+
+            margin-bottom: 11px;
+
+            color: var(--green);
+            font-size: 10px;
+            font-weight: 700;
+            letter-spacing: 0.6px;
+            text-transform: uppercase;
+        }
+
+        .status-pulse {
+            width: 6px;
+            height: 6px;
+
+            border-radius: 50%;
+            background: var(--green);
+
+            box-shadow: 0 0 0 4px rgba(141,245,174,0.07);
+        }
+
+        .welcome h2 {
+            font-size: clamp(20px, 2vw, 27px);
+            letter-spacing: -0.8px;
+            margin-bottom: 8px;
+        }
+
+        .welcome p {
+            max-width: 560px;
+            color: var(--text-soft);
+            font-size: 12px;
+            line-height: 1.7;
+        }
+
+        .welcome-meta {
+            position: relative;
+            z-index: 2;
+
+            min-width: 205px;
+            padding: 17px 19px;
+
+            border: 1px solid rgba(255,255,255,0.065);
+            border-radius: 15px;
+
+            background: rgba(255,255,255,0.025);
+            backdrop-filter: blur(12px);
+        }
+
+        .meta-label {
+            color: var(--text-muted);
+            font-size: 9px;
+            text-transform: uppercase;
+            letter-spacing: 0.9px;
+            margin-bottom: 7px;
+        }
+
+        .meta-date {
+            font-size: 13px;
+            font-weight: 600;
+        }
+
+        .meta-status {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+
+            margin-top: 9px;
+
+            color: var(--green);
+            font-size: 9px;
+        }
+
+
+        /* =========================================================
+           STATS
+           ========================================================= */
+
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 14px;
+
+            margin-bottom: 20px;
+        }
+
+        .stat-card {
+            position: relative;
+            overflow: hidden;
+
+            min-height: 142px;
+            padding: 19px;
+
+            border: 1px solid var(--border);
+            border-radius: var(--radius-small);
+
+            background: var(--panel);
+
+            box-shadow: var(--shadow);
+
+            transition:
+                transform 0.3s ease,
+                border-color 0.3s ease,
+                background 0.3s ease;
+        }
+
+        .stat-card:hover {
+            transform: translateY(-4px);
+            border-color: var(--border-hover);
+            background: var(--panel-strong);
+        }
+
+        .stat-card::after {
+            content: "";
+            position: absolute;
+            width: 100px;
+            height: 100px;
+            right: -45px;
+            bottom: -55px;
+
+            border-radius: 50%;
+            background: rgba(141,245,174,0.04);
+            filter: blur(15px);
+        }
+
+        .stat-top {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 17px;
+        }
+
+        .stat-icon {
+            width: 34px;
+            height: 34px;
+
+            display: grid;
+            place-items: center;
+
+            border-radius: 10px;
+
+            background: rgba(141,245,174,0.075);
+            color: var(--green);
+        }
+
+        .stat-icon svg {
+            width: 16px;
+        }
+
+        .stat-change {
+            font-size: 9px;
+            font-weight: 600;
+            color: var(--green);
+        }
+
+        .stat-number {
+            font-size: 25px;
+            font-weight: 700;
+            letter-spacing: -1px;
+        }
+
+        .stat-title {
+            margin-top: 5px;
+            color: var(--text-muted);
+            font-size: 10px;
+        }
+
+
+        /* =========================================================
+           CONTENT GRID
+           ========================================================= */
+
+        .content-grid {
+            display: grid;
+            grid-template-columns: minmax(0, 1.55fr) minmax(300px, 0.8fr);
+            gap: 20px;
+        }
+
+        .section-card {
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+
+            background: var(--panel);
+
+            box-shadow: var(--shadow);
+
+            overflow: hidden;
+        }
+
+        .section-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+
+            padding: 21px 22px 18px;
+
+            border-bottom: 1px solid rgba(255,255,255,0.045);
+        }
+
+        .section-title {
+            font-size: 13px;
+            font-weight: 650;
+            letter-spacing: -0.2px;
+        }
+
+        .section-subtitle {
+            margin-top: 4px;
+            color: var(--text-muted);
+            font-size: 9px;
+        }
+
+        .view-all {
+            color: var(--green);
+            font-size: 9px;
+            font-weight: 600;
+        }
+
+
+        /* =========================================================
+           ROOM SEARCH
+           ========================================================= */
+
+        .room-tools {
+            display: flex;
+            gap: 8px;
+            padding: 17px 20px;
+        }
+
+        .search-box {
+            position: relative;
+            flex: 1;
+        }
+
+        .search-box svg {
+            position: absolute;
+            left: 13px;
+            top: 50%;
+            transform: translateY(-50%);
+
+            width: 15px;
+            color: var(--text-muted);
+        }
+
+        .search-box input {
+            width: 100%;
+            height: 39px;
+
+            padding: 0 13px 0 38px;
+
+            outline: none;
+
+            border: 1px solid rgba(255,255,255,0.065);
+            border-radius: 11px;
+
+            background: rgba(255,255,255,0.025);
+            color: white;
+
+            font-size: 10px;
+
+            transition: border 0.25s ease, background 0.25s ease;
+        }
+
+        .search-box input::placeholder {
+            color: #555e58;
+        }
+
+        .search-box input:focus {
+            border-color: rgba(141,245,174,0.22);
+            background: rgba(141,245,174,0.025);
+        }
+
+        .filter-btn {
+            height: 39px;
+            padding: 0 13px;
+
+            display: flex;
+            align-items: center;
+            gap: 7px;
+
+            border: 1px solid rgba(255,255,255,0.065);
+            border-radius: 11px;
+
+            background: rgba(255,255,255,0.025);
+            color: var(--text-soft);
+
+            font-size: 10px;
+
+            cursor: pointer;
+            transition: all 0.25s ease;
+        }
+
+        .filter-btn:hover {
+            color: white;
+            border-color: var(--border-hover);
+        }
+
+        .filter-btn svg {
+            width: 13px;
+        }
+
+
+        /* =========================================================
+           ROOM CARDS
+           ========================================================= */
+
+        .rooms {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 11px;
+
+            padding: 0 20px 20px;
+        }
+
+        .room-card {
+            position: relative;
+            overflow: hidden;
+
+            min-height: 190px;
+            padding: 17px;
+
+            border: 1px solid rgba(255,255,255,0.065);
+            border-radius: 15px;
+
+            background:
+                linear-gradient(
+                    145deg,
+                    rgba(255,255,255,0.035),
+                    rgba(255,255,255,0.012)
+                );
+
+            transition:
+                transform 0.3s ease,
+                border-color 0.3s ease,
+                box-shadow 0.3s ease;
+        }
+
+        .room-card:hover {
+            transform: translateY(-5px) perspective(800px) rotateX(1deg) rotateY(-1deg);
+            border-color: rgba(141,245,174,0.18);
+
+            box-shadow:
+                0 18px 40px rgba(0,0,0,0.25),
+                0 0 35px rgba(141,245,174,0.025);
+        }
+
+        .room-card::before {
+            content: "";
+            position: absolute;
+            width: 160px;
+            height: 160px;
+            top: -90px;
+            right: -70px;
+
+            border-radius: 50%;
+            background: rgba(141,245,174,0.045);
+            filter: blur(15px);
+        }
+
+        .room-top {
+            position: relative;
+
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+
+            margin-bottom: 25px;
+        }
+
+        .room-status {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+
+            padding: 5px 8px;
+
+            border-radius: 20px;
+
+            background: rgba(141,245,174,0.07);
+            color: var(--green);
+
+            font-size: 8px;
+            font-weight: 600;
+        }
+
+        .room-status.busy {
+            background: rgba(255,125,125,0.07);
+            color: var(--red);
+        }
+
+        .status-dot {
+            width: 5px;
+            height: 5px;
+            border-radius: 50%;
+            background: currentColor;
+            box-shadow: 0 0 7px currentColor;
+        }
+
+        .room-menu {
+            width: 25px;
+            height: 25px;
+
+            display: grid;
+            place-items: center;
+
+            border-radius: 7px;
+
+            color: var(--text-muted);
+            cursor: pointer;
+        }
+
+        .room-menu:hover {
+            background: rgba(255,255,255,0.04);
+            color: white;
+        }
+
+        .room-menu svg {
+            width: 14px;
+        }
+
+        .room-name {
+            position: relative;
+
+            font-size: 14px;
+            font-weight: 650;
+            letter-spacing: -0.3px;
+        }
+
+        .room-location {
+            position: relative;
+
+            margin-top: 5px;
+
+            color: var(--text-muted);
+            font-size: 9px;
+        }
+
+        .room-bottom {
+            position: absolute;
+            left: 17px;
+            right: 17px;
+            bottom: 16px;
+
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .room-specs {
+            display: flex;
+            gap: 11px;
+
+            color: var(--text-soft);
+            font-size: 8px;
+        }
+
+        .room-spec {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+
+        .room-spec svg {
+            width: 11px;
+            color: var(--text-muted);
+        }
+
+        .book-btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+
+            height: 28px;
+            padding: 0 11px;
+
+            border-radius: 8px;
+
+            background: var(--green);
+            color: #08100b;
+
+            font-size: 8px;
+            font-weight: 800;
+
+            cursor: pointer;
+
+            transition:
+                transform 0.2s ease,
+                box-shadow 0.2s ease;
+        }
+
+        .book-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 7px 18px rgba(141,245,174,0.15);
+        }
+
+        .book-btn.disabled {
+            background: rgba(255,255,255,0.06);
+            color: var(--text-muted);
+            cursor: not-allowed;
+        }
+
+        .book-btn.disabled:hover {
+            transform: none;
+            box-shadow: none;
+        }
+
+
+        /* =========================================================
+           UPCOMING
+           ========================================================= */
+
+        .booking-list {
+            padding: 3px 20px 12px;
+        }
+
+        .booking {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+
+            padding: 14px 2px;
+
+            border-bottom: 1px solid rgba(255,255,255,0.045);
+        }
+
+        .booking:last-child {
+            border-bottom: 0;
+        }
+
+        .booking-date {
+            width: 42px;
+            height: 42px;
+
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+
+            flex-shrink: 0;
+
+            border: 1px solid rgba(141,245,174,0.1);
+            border-radius: 11px;
+
+            background: rgba(141,245,174,0.045);
+        }
+
+        .booking-date strong {
+            color: var(--green);
+            font-size: 13px;
+            line-height: 1;
+        }
+
+        .booking-date span {
+            margin-top: 4px;
+            color: var(--text-muted);
+            font-size: 7px;
+            text-transform: uppercase;
+        }
+
+        .booking-info {
+            min-width: 0;
+            flex: 1;
+        }
+
+        .booking-name {
+            overflow: hidden;
+            white-space: nowrap;
+            text-overflow: ellipsis;
+
+            font-size: 10px;
+            font-weight: 600;
+        }
+
+        .booking-detail {
+            margin-top: 5px;
+
+            display: flex;
+            align-items: center;
+            gap: 5px;
+
+            color: var(--text-muted);
+            font-size: 8px;
+        }
+
+        .booking-detail svg {
+            width: 10px;
+        }
+
+        .booking-time {
+            color: var(--text-soft);
+            font-size: 8px;
+            white-space: nowrap;
+        }
+
+
+        /* =========================================================
+           ACTIVITY
+           ========================================================= */
+
+        .activity {
+            margin-top: 20px;
+        }
+
+        .activity-list {
+            padding: 5px 20px 14px;
+        }
+
+        .activity-item {
+            position: relative;
+
+            display: flex;
+            gap: 11px;
+
+            padding: 13px 0;
+        }
+
+        .activity-item:not(:last-child)::after {
+            content: "";
+            position: absolute;
+
+            left: 5px;
+            top: 29px;
+            bottom: -1px;
+
+            width: 1px;
+
+            background: rgba(255,255,255,0.06);
+        }
+
+        .activity-dot {
+            position: relative;
+            z-index: 2;
+
+            width: 11px;
+            height: 11px;
+
+            flex-shrink: 0;
+            margin-top: 3px;
+
+            border-radius: 50%;
+
+            background: var(--green);
+            box-shadow:
+                0 0 0 4px rgba(141,245,174,0.055),
+                0 0 10px rgba(141,245,174,0.2);
+        }
+
+        .activity-dot.yellow {
+            background: var(--yellow);
+            box-shadow: 0 0 0 4px rgba(246,216,120,0.05);
+        }
+
+        .activity-dot.blue {
+            background: var(--blue);
+            box-shadow: 0 0 0 4px rgba(131,185,255,0.05);
+        }
+
+        .activity-text {
+            flex: 1;
+        }
+
+        .activity-text p {
+            font-size: 9px;
+            line-height: 1.5;
+            color: var(--text-soft);
+        }
+
+        .activity-text strong {
+            color: var(--text);
+            font-weight: 600;
+        }
+
+        .activity-time {
+            display: block;
+            margin-top: 4px;
+            color: var(--text-muted);
+            font-size: 8px;
+        }
+
+
+        /* =========================================================
+           NOTIFICATION PANEL
+           ========================================================= */
+
+        .notification-panel {
+            position: fixed;
+
+            top: 82px;
+            right: 30px;
+
+            width: 330px;
+
+            padding: 0;
+
+            border: 1px solid var(--border);
+            border-radius: 17px;
+
+            background: rgba(15,19,17,0.94);
+
+            backdrop-filter: blur(25px);
+            -webkit-backdrop-filter: blur(25px);
+
+            box-shadow:
+                0 25px 80px rgba(0,0,0,0.55);
+
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(-10px) scale(0.97);
+
+            transition:
+                opacity 0.25s ease,
+                transform 0.25s ease,
+                visibility 0.25s ease;
+
+            z-index: 200;
+        }
+
+        .notification-panel.open {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0) scale(1);
+        }
+
+        .notification-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+
+            padding: 17px;
+
+            border-bottom: 1px solid var(--border);
+        }
+
+        .notification-header strong {
+            font-size: 12px;
+        }
+
+        .mark-read {
+            color: var(--green);
+            font-size: 8px;
+            cursor: pointer;
+        }
+
+        .notification {
+            display: flex;
+            gap: 10px;
+
+            padding: 14px 17px;
+
+            border-bottom: 1px solid rgba(255,255,255,0.04);
+        }
+
+        .notification:last-child {
+            border-bottom: 0;
+        }
+
+        .notification-icon {
+            width: 29px;
+            height: 29px;
+
+            display: grid;
+            place-items: center;
+
+            flex-shrink: 0;
+
+            border-radius: 9px;
+
+            background: rgba(141,245,174,0.07);
+            color: var(--green);
+        }
+
+        .notification-icon svg {
+            width: 13px;
+        }
+
+        .notification p {
+            color: var(--text-soft);
+            font-size: 8px;
+            line-height: 1.5;
+        }
+
+        .notification p strong {
+            color: white;
+        }
+
+        .notification small {
+            display: block;
+            margin-top: 4px;
+            color: var(--text-muted);
+            font-size: 7px;
+        }
+
+
+        /* =========================================================
+           TOAST
+           ========================================================= */
+
+        .toast {
+            position: fixed;
+            right: 28px;
+            bottom: 28px;
+
+            display: flex;
+            align-items: center;
+            gap: 11px;
+
+            padding: 13px 15px;
+
+            border: 1px solid rgba(141,245,174,0.14);
+            border-radius: 13px;
+
+            background: rgba(15,21,17,0.92);
+
+            backdrop-filter: blur(18px);
+
+            box-shadow: 0 18px 45px rgba(0,0,0,0.4);
+
+            transform: translateY(20px);
+            opacity: 0;
+            visibility: hidden;
+
+            transition: all 0.3s ease;
+
+            z-index: 300;
+        }
+
+        .toast.show {
+            transform: translateY(0);
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .toast-icon {
+            width: 27px;
+            height: 27px;
+
+            display: grid;
+            place-items: center;
+
+            border-radius: 8px;
+
+            background: rgba(141,245,174,0.1);
+            color: var(--green);
+        }
+
+        .toast-icon svg {
+            width: 13px;
+        }
+
+        .toast strong {
+            display: block;
+            font-size: 9px;
+        }
+
+        .toast span {
+            display: block;
+            margin-top: 3px;
+            color: var(--text-muted);
+            font-size: 8px;
+        }
+
+
+        /* =========================================================
+           REVEAL ANIMATION
+           ========================================================= */
+
+        .reveal {
+            opacity: 0;
+            transform: translateY(15px);
+            transition:
+                opacity 0.6s ease,
+                transform 0.6s ease;
+        }
+
+        .reveal.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+
+        /* =========================================================
+           RESPONSIVE
+           ========================================================= */
+
+        @media (max-width: 1150px) {
+
+            :root {
+                --sidebar-width: 225px;
+            }
+
+            .main {
+                padding-left: 27px;
+                padding-right: 27px;
+            }
+
+            .stats {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .content-grid {
+                grid-template-columns: 1fr;
+            }
+
+        }
+
+        @media (max-width: 800px) {
+
+            .sidebar {
+                transform: translateX(-100%);
+                box-shadow: 25px 0 80px rgba(0,0,0,0.5);
+            }
+
+            .sidebar.open {
+                transform: translateX(0);
+            }
+
+            .mobile-header {
+                display: flex;
+            }
+
+            .main {
+                margin-left: 0;
+                padding: 90px 17px 35px;
+            }
+
+            .topbar {
+                margin-bottom: 24px;
+            }
+
+            .top-actions .icon-btn:first-child {
+                display: none;
+            }
+
+            .welcome {
+                align-items: flex-start;
+                flex-direction: column;
+                padding: 24px;
+            }
+
+            .welcome-meta {
+                width: 100%;
+            }
+
+        }
+
+        @media (max-width: 560px) {
+
+            .page-title {
+                font-size: 23px;
+            }
+
+            .topbar {
+                align-items: flex-end;
+            }
+
+            .stats {
+                grid-template-columns: 1fr 1fr;
+                gap: 9px;
+            }
+
+            .stat-card {
+                min-height: 126px;
+                padding: 15px;
+            }
+
+            .stat-number {
+                font-size: 21px;
+            }
+
+            .rooms {
+                grid-template-columns: 1fr;
+            }
+
+            .room-card {
+                min-height: 175px;
+            }
+
+            .notification-panel {
+                left: 15px;
+                right: 15px;
+                top: 76px;
+                width: auto;
+            }
+
+            .toast {
+                left: 15px;
+                right: 15px;
+                bottom: 15px;
+            }
+
+        }
+
+        @media (max-width: 390px) {
+
+            .stats {
+                grid-template-columns: 1fr;
+            }
+
+            .welcome {
+                padding: 20px;
+            }
+
+            .section-header {
+                padding-left: 17px;
+                padding-right: 17px;
+            }
+
+            .room-tools {
+                padding-left: 15px;
+                padding-right: 15px;
+            }
+
+            .rooms {
+                padding-left: 15px;
+                padding-right: 15px;
+            }
+        }
+
+    </style>
 </head>
 
 <body>
 
+    <!-- Ambient cursor glow -->
+    <div class="ambient" id="ambient"></div>
 
-<!-- NAVBAR -->
 
-<nav class="navbar">
+    <!-- =========================================================
+         MOBILE HEADER
+         ========================================================= -->
 
-    <div class="logo">
+    <header class="mobile-header">
 
-        <div class="logo-icon">
-            🏫
+        <div class="mobile-brand">
+            <img
+                src="https://img1.pic.in.th/images/Screenshot-2026-08-10-at-00.21.21.png"
+                alt="EasyRoom"
+            >
+            <span>Easy<span style="color: var(--green);">Room</span></span>
         </div>
 
-        EasyRoom
-
-    </div>
-
-
-    <div class="user-area">
-
-        <span
-            class="user-name"
-            id="userName">
-            ผู้ใช้งาน
-        </span>
-
-        <button
-            class="logout"
-            onclick="logout()">
-
-            ออกจากระบบ
-
+        <button class="menu-btn" id="menuBtn" aria-label="Open menu">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                <path d="M4 6h16M4 12h16M4 18h16"/>
+            </svg>
         </button>
 
-    </div>
-
-</nav>
+    </header>
 
 
-<!-- HEADER -->
+    <!-- =========================================================
+         SIDEBAR
+         ========================================================= -->
 
-<header class="header">
+    <aside class="sidebar" id="sidebar">
 
-    <div class="header-inner">
+        <div class="brand">
 
-        <h1 id="dashboardTitle">
-            Dashboard
-        </h1>
-
-        <p id="welcome">
-            ระบบจัดการห้องเรียน
-        </p>
-
-    </div>
-
-</header>
-
-
-<!-- CONTENT -->
-
-<main class="container">
-
-
-    <!-- STATISTICS -->
-
-    <section class="stats">
-
-        <div class="stat">
-
-            <span class="stat-label">
-                ห้องทั้งหมด
-            </span>
-
-            <strong
-                class="stat-number"
-                id="totalRooms">
-                0
-            </strong>
-
-        </div>
-
-
-        <div class="stat">
-
-            <span class="stat-label">
-                ห้องว่าง
-            </span>
-
-            <strong
-                class="stat-number"
-                id="availableRooms">
-                0
-            </strong>
-
-        </div>
-
-
-        <div class="stat">
-
-            <span class="stat-label">
-                การจองของฉัน
-            </span>
-
-            <strong
-                class="stat-number"
-                id="myBookings">
-                0
-            </strong>
-
-        </div>
-
-
-        <div class="stat">
-
-            <span class="stat-label">
-                สิทธิ์ผู้ใช้งาน
-            </span>
-
-            <strong
-                class="stat-number"
-                style="font-size:19px"
-                id="userRole">
-                -
-            </strong>
-
-        </div>
-
-    </section>
-
-
-    <!-- ROOM SEARCH -->
-
-    <section class="panel">
-
-        <h2 class="panel-title">
-            🔎 ค้นหาห้องเรียน
-        </h2>
-
-
-        <div class="search">
-
-            <input
-                id="search"
-                placeholder="ค้นหาชื่อห้อง..."
+            <img
+                src="https://img1.pic.in.th/images/Screenshot-2026-08-10-at-00.21.21.png"
+                alt="EasyRoom Logo"
             >
 
-
-            <select id="building">
-
-                <option value="">
-                    ทุกอาคาร
-                </option>
-
-                <option value="อาคาร 1">
-                    อาคาร 1
-                </option>
-
-                <option value="อาคาร 2">
-                    อาคาร 2
-                </option>
-
-                <option value="อาคาร 3">
-                    อาคาร 3
-                </option>
-
-            </select>
-
-
-            <select id="type">
-
-                <option value="">
-                    ทุกประเภท
-                </option>
-
-                <option value="ห้องเรียน">
-                    ห้องเรียน
-                </option>
-
-                <option value="ห้องคอมพิวเตอร์">
-                    ห้องคอมพิวเตอร์
-                </option>
-
-                <option value="ห้องประชุม">
-                    ห้องประชุม
-                </option>
-
-            </select>
-
-
-            <button
-                class="btn primary"
-                onclick="searchRooms()">
-
-                ค้นหา
-
-            </button>
+            <div class="brand-text">
+                Easy<span>Room</span>
+            </div>
 
         </div>
 
 
-        <div
-            class="rooms"
-            id="roomList">
+        <div class="nav-label">Workspace</div>
+
+        <nav class="nav">
+
+            <a href="#" class="nav-item active">
+
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                    <rect x="3" y="3" width="7" height="7" rx="1"/>
+                    <rect x="14" y="3" width="7" height="7" rx="1"/>
+                    <rect x="3" y="14" width="7" height="7" rx="1"/>
+                    <rect x="14" y="14" width="7" height="7" rx="1"/>
+                </svg>
+
+                <span>Dashboard</span>
+
+            </a>
+
+
+            <a href="#rooms" class="nav-item">
+
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                    <path d="M3 21V7a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2v14"/>
+                    <path d="M3 21h18"/>
+                    <path d="M7 9h3M14 9h3M7 13h3M14 13h3M7 17h3M14 17h3"/>
+                </svg>
+
+                <span>Browse Rooms</span>
+
+            </a>
+
+
+            <a href="#bookings" class="nav-item">
+
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                    <rect x="3" y="4" width="18" height="17" rx="2"/>
+                    <path d="M16 2v4M8 2v4M3 10h18"/>
+                    <path d="m8 15 2 2 5-5"/>
+                </svg>
+
+                <span>My Bookings</span>
+
+                <span class="nav-badge">3</span>
+
+            </a>
+
+
+            <a href="#" class="nav-item">
+
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                    <rect x="3" y="4" width="18" height="17" rx="2"/>
+                    <path d="M16 2v4M8 2v4M3 10h18"/>
+                    <path d="M8 14h.01M12 14h.01M16 14h.01M8 18h.01M12 18h.01"/>
+                </svg>
+
+                <span>Calendar</span>
+
+            </a>
+
+
+            <a href="#" class="nav-item" id="notificationNav">
+
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                    <path d="M18 8a6 6 0 0 0-12 0c0 7-3 7-3 9h18c0-2-3-2-3-9"/>
+                    <path d="M10 21h4"/>
+                </svg>
+
+                <span>Notifications</span>
+
+                <span class="nav-badge">2</span>
+
+            </a>
+
+        </nav>
+
+
+        <div class="nav-label" style="margin-top: 22px;">
+            Personal
         </div>
 
-    </section>
+        <nav class="nav">
+
+            <a href="#" class="nav-item">
+
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                    <circle cx="12" cy="8" r="4"/>
+                    <path d="M4 21a8 8 0 0 1 16 0"/>
+                </svg>
+
+                <span>Profile</span>
+
+            </a>
 
 
-    <!-- BOOKINGS -->
+            <a href="#" class="nav-item">
 
-    <section class="panel">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                    <path d="M12 15.5a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7Z"/>
+                    <path d="M19.4 15a1.7 1.7 0 0 0 .34 1.88l.06.06-1.9 1.9-.06-.06a1.7 1.7 0 0 0-1.88-.34 1.7 1.7 0 0 0-1.04 1.56V20h-2.68v-.09a1.7 1.7 0 0 0-1.04-1.56 1.7 1.7 0 0 0-1.88.34l-.06.06-1.9-1.9.06-.06A1.7 1.7 0 0 0 7.4 15a1.7 1.7 0 0 0-1.56-1.04H5.75v-2.68h.09A1.7 1.7 0 0 0 7.4 10.2a1.7 1.7 0 0 0-.34-1.88L7 8.26l1.9-1.9.06.06a1.7 1.7 0 0 0 1.88.34A1.7 1.7 0 0 0 11.88 5.2V5h2.68v.2a1.7 1.7 0 0 0 1.04 1.56 1.7 1.7 0 0 0 1.88-.34l.06-.06 1.9 1.9-.06.06A1.7 1.7 0 0 0 19.4 10.2a1.7 1.7 0 0 0 1.56 1.04H21v2.68h-.04A1.7 1.7 0 0 0 19.4 15Z"/>
+                </svg>
 
-        <h2 class="panel-title">
-            📅 รายการจองของฉัน
-        </h2>
+                <span>Settings</span>
 
+            </a>
 
-        <div
-            class="table-wrapper"
-            id="bookingTable">
-        </div>
-
-    </section>
+        </nav>
 
 
-    <!-- ADMIN -->
-
-    <section
-        class="panel admin"
-        id="adminPanel">
-
-        <h2 class="panel-title">
-            ⚙️ การจัดการระบบ
-        </h2>
+        <div class="sidebar-spacer"></div>
 
 
-        <div class="admin-buttons">
+        <div class="upgrade-card">
 
-            <button
-                class="btn primary"
-                onclick="adminMessage('ผู้ใช้งาน')">
+            <div class="upgrade-icon">
 
-                👥 จัดการผู้ใช้งาน
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                    <path d="m12 3 2.7 5.5L21 9.4l-4.5 4.4 1.1 6.2L12 17l-5.6 3 1.1-6.2L3 9.4l6.3-.9L12 3Z"/>
+                </svg>
 
-            </button>
+            </div>
 
+            <strong>Need a room?</strong>
 
-            <button
-                class="btn primary"
-                onclick="adminMessage('ห้องเรียน')">
+            <p>
+                Find the perfect space for your next class or meeting.
+            </p>
 
-                🚪 จัดการห้องเรียน
+            <a href="#rooms" class="upgrade-btn">
+                Browse available rooms
 
-            </button>
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                    <path d="M5 12h14M13 6l6 6-6 6"/>
+                </svg>
 
-
-            <button
-                class="btn primary"
-                onclick="adminMessage('อาคาร')">
-
-                🏢 จัดการอาคาร
-
-            </button>
-
-
-            <button
-                class="btn primary"
-                onclick="adminMessage('ประเภทห้อง')">
-
-                🗂️ ประเภทห้อง
-
-            </button>
-
-
-            <button
-                class="btn primary"
-                onclick="adminMessage('รายงาน')">
-
-                📊 รายงาน
-
-            </button>
+            </a>
 
         </div>
 
-    </section>
 
-</main>
+        <div class="user-mini">
 
+            <div class="avatar">CW</div>
 
-<script>
+            <div class="user-info">
+                <div class="user-name">Chotayakon</div>
+                <div class="user-role">Student Account</div>
+            </div>
 
-/* -----------------------------
-   ROOM DATA
------------------------------ */
+            <div class="user-more">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                    <circle cx="12" cy="5" r="1"/>
+                    <circle cx="12" cy="12" r="1"/>
+                    <circle cx="12" cy="19" r="1"/>
+                </svg>
+            </div>
 
-const rooms = [
+        </div>
 
-    {
-        id: 1,
-        name: "ห้อง 101",
-        building: "อาคาร 1",
-        type: "ห้องเรียน",
-        capacity: 40,
-        icon: "🏫"
-    },
-
-    {
-        id: 2,
-        name: "ห้อง 102",
-        building: "อาคาร 1",
-        type: "ห้องเรียน",
-        capacity: 40,
-        icon: "🏫"
-    },
-
-    {
-        id: 3,
-        name: "ห้องคอม 201",
-        building: "อาคาร 2",
-        type: "ห้องคอมพิวเตอร์",
-        capacity: 35,
-        icon: "💻"
-    },
-
-    {
-        id: 4,
-        name: "ห้องคอม 202",
-        building: "อาคาร 2",
-        type: "ห้องคอมพิวเตอร์",
-        capacity: 35,
-        icon: "💻"
-    },
-
-    {
-        id: 5,
-        name: "ห้องประชุม 301",
-        building: "อาคาร 3",
-        type: "ห้องประชุม",
-        capacity: 80,
-        icon: "👥"
-    },
-
-    {
-        id: 6,
-        name: "ห้องประชุม 302",
-        building: "อาคาร 3",
-        type: "ห้องประชุม",
-        capacity: 60,
-        icon: "👥"
-    }
-
-];
+    </aside>
 
 
-/* -----------------------------
-   USER
------------------------------ */
+    <!-- =========================================================
+         MAIN CONTENT
+         ========================================================= -->
 
-const user =
-    JSON.parse(
-        localStorage.getItem(
-            "easyroom_user"
-        ) || "null"
-    );
+    <main class="main">
 
+        <div class="topbar">
 
-if (!user) {
+            <div>
 
-    window.location.href =
-        "login.html";
+                <div class="breadcrumb">
+                    Workspace / <span>Dashboard</span>
+                </div>
 
-}
+                <h1 class="page-title">
+                    Good morning, <span>Chotayakon</span>
+                </h1>
 
-
-/* -----------------------------
-   BOOKINGS
------------------------------ */
-
-let bookings =
-    JSON.parse(
-        localStorage.getItem(
-            "easyroom_bookings"
-        ) || "[]"
-    );
+            </div>
 
 
-/* -----------------------------
-   DISPLAY USER
------------------------------ */
+            <div class="top-actions">
 
-document.getElementById(
-    "userName"
-).textContent =
-    user ? user.name : "";
+                <button class="icon-btn" title="Search">
 
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                        <circle cx="11" cy="11" r="7"/>
+                        <path d="m20 20-4-4"/>
+                    </svg>
 
-document.getElementById(
-    "dashboardTitle"
-).textContent =
-    user
-    ? user.roleName + " Dashboard"
-    : "Dashboard";
+                </button>
 
 
-document.getElementById(
-    "welcome"
-).textContent =
-    user
-    ? "ยินดีต้อนรับคุณ " + user.name
-    : "";
+                <button class="icon-btn" id="notificationBtn" title="Notifications">
+
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                        <path d="M18 8a6 6 0 0 0-12 0c0 7-3 7-3 9h18c0-2-3-2-3-9"/>
+                        <path d="M10 21h4"/>
+                    </svg>
+
+                    <span class="notification-dot"></span>
+
+                </button>
+
+            </div>
+
+        </div>
 
 
-document.getElementById(
-    "userRole"
-).textContent =
-    user
-    ? user.roleName
-    : "-";
+        <!-- =====================================================
+             WELCOME
+             ===================================================== -->
+
+        <section class="welcome reveal">
+
+            <div class="welcome-content">
+
+                <div class="eyebrow">
+                    <span class="status-pulse"></span>
+                    System operational
+                </div>
+
+                <h2>Your workspace, simplified.</h2>
+
+                <p>
+                    Manage your room bookings, discover available spaces,
+                    and keep track of everything from one place.
+                </p>
+
+            </div>
 
 
-/* -----------------------------
-   ADMIN
------------------------------ */
+            <div class="welcome-meta">
 
-if (
-    user &&
-    user.role === "admin"
-) {
+                <div class="meta-label">
+                    Today
+                </div>
 
-    document.getElementById(
-        "adminPanel"
-    ).style.display = "block";
+                <div class="meta-date" id="currentDate">
+                    Monday, August 10
+                </div>
 
-}
+                <div class="meta-status">
+                    <span class="status-pulse"></span>
+                    12 rooms available now
+                </div>
 
+            </div>
 
-/* -----------------------------
-   ROOM RENDER
------------------------------ */
-
-function renderRooms(list = rooms) {
-
-    const container =
-        document.getElementById(
-            "roomList"
-        );
+        </section>
 
 
-    if (list.length === 0) {
+        <!-- =====================================================
+             STATS
+             ===================================================== -->
 
-        container.innerHTML =
-            `<div class="empty">
-                ไม่พบห้องที่ค้นหา
-            </div>`;
+        <section class="stats reveal">
 
-        return;
+            <div class="stat-card">
 
-    }
+                <div class="stat-top">
 
-
-    container.innerHTML =
-        list.map(room => {
-
-            const booked =
-                bookings.some(
-                    booking =>
-                        booking.roomId === room.id
-                );
-
-
-            return `
-
-                <div class="room">
-
-                    <div class="room-top">
-                        ${room.icon}
+                    <div class="stat-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                            <path d="M3 21V7a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2v14"/>
+                            <path d="M3 21h18"/>
+                            <path d="M7 9h3M14 9h3M7 13h3M14 13h3"/>
+                        </svg>
                     </div>
 
-                    <div class="room-body">
+                    <span class="stat-change">+2 today</span>
 
-                        <h3>
-                            ${room.name}
-                        </h3>
+                </div>
 
-                        <div class="detail">
-                            🏢 ${room.building}
+                <div class="stat-number">12</div>
+                <div class="stat-title">Available Rooms</div>
+
+            </div>
+
+
+            <div class="stat-card">
+
+                <div class="stat-top">
+
+                    <div class="stat-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                            <rect x="3" y="4" width="18" height="17" rx="2"/>
+                            <path d="M16 2v4M8 2v4M3 10h18"/>
+                            <path d="m8 15 2 2 5-5"/>
+                        </svg>
+                    </div>
+
+                    <span class="stat-change">This month</span>
+
+                </div>
+
+                <div class="stat-number">8</div>
+                <div class="stat-title">My Bookings</div>
+
+            </div>
+
+
+            <div class="stat-card">
+
+                <div class="stat-top">
+
+                    <div class="stat-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                            <circle cx="12" cy="12" r="9"/>
+                            <path d="M12 7v5l3 2"/>
+                        </svg>
+                    </div>
+
+                    <span class="stat-change" style="color: var(--yellow);">
+                        Awaiting review
+                    </span>
+
+                </div>
+
+                <div class="stat-number">2</div>
+                <div class="stat-title">Pending Requests</div>
+
+            </div>
+
+
+            <div class="stat-card">
+
+                <div class="stat-top">
+
+                    <div class="stat-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                            <path d="M12 21a9 9 0 1 0 0-18 9 9 0 0 0 0 18Z"/>
+                            <path d="M12 7v5l3 2"/>
+                        </svg>
+                    </div>
+
+                    <span class="stat-change">Next at 10:00</span>
+
+                </div>
+
+                <div class="stat-number">3</div>
+                <div class="stat-title">Upcoming Today</div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =====================================================
+             CONTENT
+             ===================================================== -->
+
+        <div class="content-grid">
+
+            <div>
+
+                <!-- ROOMS -->
+
+                <section class="section-card reveal" id="rooms">
+
+                    <div class="section-header">
+
+                        <div>
+                            <div class="section-title">
+                                Available rooms
+                            </div>
+
+                            <div class="section-subtitle">
+                                Find a space that fits your needs
+                            </div>
                         </div>
 
-                        <div class="detail">
-                            📚 ${room.type}
+                        <a href="#" class="view-all">
+                            View all
+                        </a>
+
+                    </div>
+
+
+                    <div class="room-tools">
+
+                        <div class="search-box">
+
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                                <circle cx="11" cy="11" r="7"/>
+                                <path d="m20 20-4-4"/>
+                            </svg>
+
+                            <input
+                                type="text"
+                                id="roomSearch"
+                                placeholder="Search rooms, buildings..."
+                                autocomplete="off"
+                            >
+
                         </div>
 
-                        <div class="detail">
-                            👥 รองรับ ${room.capacity} คน
-                        </div>
 
+                        <button class="filter-btn" id="filterBtn">
 
-                        <span
-                            class="status ${
-                                booked
-                                ? "booked"
-                                : "available"
-                            }">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                                <path d="M4 6h16M7 12h10M10 18h4"/>
+                            </svg>
 
-                            ${
-                                booked
-                                ? "ไม่ว่าง"
-                                : "ว่าง"
-                            }
-
-                        </span>
-
-
-                        <br>
-
-
-                        <button
-                            class="btn ${
-                                booked
-                                ? "cancel"
-                                : "primary"
-                            }"
-                            onclick="${
-                                booked
-                                ? `viewBooking(${room.id})`
-                                : `bookRoom(${room.id})`
-                            }">
-
-                            ${
-                                booked
-                                ? "ดูการจอง"
-                                : "จองห้องนี้"
-                            }
+                            Filter
 
                         </button>
 
                     </div>
 
-                </div>
 
-            `;
+                    <div class="rooms" id="roomList">
 
-        }).join("");
+                        <!-- ROOM 1 -->
+
+                        <article class="room-card">
+
+                            <div class="room-top">
+
+                                <span class="room-status">
+                                    <span class="status-dot"></span>
+                                    Available
+                                </span>
+
+                                <button class="room-menu">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                                        <circle cx="5" cy="12" r="1"/>
+                                        <circle cx="12" cy="12" r="1"/>
+                                        <circle cx="19" cy="12" r="1"/>
+                                    </svg>
+                                </button>
+
+                            </div>
+
+                            <div class="room-name">
+                                Innovation Lab
+                            </div>
+
+                            <div class="room-location">
+                                Building A · Floor 3
+                            </div>
+
+                            <div class="room-bottom">
+
+                                <div class="room-specs">
+
+                                    <span class="room-spec">
+                                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                                            <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/>
+                                            <circle cx="9" cy="7" r="4"/>
+                                            <path d="M22 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/>
+                                        </svg>
+                                        30 seats
+                                    </span>
+
+                                    <span class="room-spec">
+                                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                                            <rect x="3" y="4" width="18" height="14" rx="2"/>
+                                            <path d="M8 21h8M12 18v3"/>
+                                        </svg>
+                                        Projector
+                                    </span>
+
+                                </div>
+
+                                <button class="book-btn" data-room="Innovation Lab">
+                                    Book
+                                </button>
+
+                            </div>
+
+                        </article>
 
 
-    updateStats();
+                        <!-- ROOM 2 -->
 
-}
+                        <article class="room-card">
+
+                            <div class="room-top">
+
+                                <span class="room-status">
+                                    <span class="status-dot"></span>
+                                    Available
+                                </span>
+
+                                <button class="room-menu">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                                        <circle cx="5" cy="12" r="1"/>
+                                        <circle cx="12" cy="12" r="1"/>
+                                        <circle cx="19" cy="12" r="1"/>
+                                    </svg>
+                                </button>
+
+                            </div>
+
+                            <div class="room-name">
+                                Conference Room 01
+                            </div>
+
+                            <div class="room-location">
+                                Building B · Floor 2
+                            </div>
+
+                            <div class="room-bottom">
+
+                                <div class="room-specs">
+
+                                    <span class="room-spec">
+                                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                                            <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/>
+                                            <circle cx="9" cy="7" r="4"/>
+                                            <path d="M22 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/>
+                                        </svg>
+                                        12 seats
+                                    </span>
+
+                                    <span class="room-spec">
+                                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                                            <path d="M12 3v18M3 12h18"/>
+                                        </svg>
+                                        Whiteboard
+                                    </span>
+
+                                </div>
+
+                                <button class="book-btn" data-room="Conference Room 01">
+                                    Book
+                                </button>
+
+                            </div>
+
+                        </article>
 
 
-/* -----------------------------
-   SEARCH
------------------------------ */
+                        <!-- ROOM 3 -->
 
-function searchRooms() {
+                        <article class="room-card">
 
-    const keyword =
-        document.getElementById(
-            "search"
-        ).value
-        .toLowerCase();
+                            <div class="room-top">
+
+                                <span class="room-status busy">
+                                    <span class="status-dot"></span>
+                                    Occupied
+                                </span>
+
+                                <button class="room-menu">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                                        <circle cx="5" cy="12" r="1"/>
+                                        <circle cx="12" cy="12" r="1"/>
+                                        <circle cx="19" cy="12" r="1"/>
+                                    </svg>
+                                </button>
+
+                            </div>
+
+                            <div class="room-name">
+                                Smart Classroom 02
+                            </div>
+
+                            <div class="room-location">
+                                Building A · Floor 2
+                            </div>
+
+                            <div class="room-bottom">
+
+                                <div class="room-specs">
+
+                                    <span class="room-spec">
+                                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                                            <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/>
+                                            <circle cx="9" cy="7" r="4"/>
+                                        </svg>
+                                        45 seats
+                                    </span>
+
+                                    <span class="room-spec">
+                                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                                            <rect x="3" y="4" width="18" height="14" rx="2"/>
+                                            <path d="M8 21h8M12 18v3"/>
+                                        </svg>
+                                        Display
+                                    </span>
+
+                                </div>
+
+                                <button class="book-btn disabled" disabled>
+                                    Busy
+                                </button>
+
+                            </div>
+
+                        </article>
 
 
-    const building =
-        document.getElementById(
-            "building"
-        ).value;
+                        <!-- ROOM 4 -->
+
+                        <article class="room-card">
+
+                            <div class="room-top">
+
+                                <span class="room-status">
+                                    <span class="status-dot"></span>
+                                    Available
+                                </span>
+
+                                <button class="room-menu">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                                        <circle cx="5" cy="12" r="1"/>
+                                        <circle cx="12" cy="12" r="1"/>
+                                        <circle cx="19" cy="12" r="1"/>
+                                    </svg>
+                                </button>
+
+                            </div>
+
+                            <div class="room-name">
+                                Seminar Room 04
+                            </div>
+
+                            <div class="room-location">
+                                Building C · Floor 1
+                            </div>
+
+                            <div class="room-bottom">
+
+                                <div class="room-specs">
+
+                                    <span class="room-spec">
+                                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                                            <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/>
+                                            <circle cx="9" cy="7" r="4"/>
+                                        </svg>
+                                        20 seats
+                                    </span>
+
+                                    <span class="room-spec">
+                                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                                            <path d="M12 3v18M3 12h18"/>
+                                        </svg>
+                                        Board
+                                    </span>
+
+                                </div>
+
+                                <button class="book-btn" data-room="Seminar Room 04">
+                                    Book
+                                </button>
+
+                            </div>
+
+                        </article>
+
+                    </div>
+
+                </section>
 
 
-    const type =
-        document.getElementById(
-            "type"
-        ).value;
+                <!-- ACTIVITY -->
+
+                <section class="section-card activity reveal">
+
+                    <div class="section-header">
+
+                        <div>
+                            <div class="section-title">
+                                Recent activity
+                            </div>
+
+                            <div class="section-subtitle">
+                                Latest updates on your account
+                            </div>
+                        </div>
+
+                    </div>
 
 
-    const result =
-        rooms.filter(room => {
+                    <div class="activity-list">
 
-            return (
+                        <div class="activity-item">
 
-                room.name
-                    .toLowerCase()
-                    .includes(keyword)
+                            <div class="activity-dot"></div>
 
-                &&
+                            <div class="activity-text">
 
-                (
-                    !building ||
-                    room.building === building
-                )
+                                <p>
+                                    Booking request for
+                                    <strong>Innovation Lab</strong>
+                                    was approved.
+                                </p>
 
-                &&
+                                <span class="activity-time">
+                                    12 minutes ago
+                                </span>
 
-                (
-                    !type ||
-                    room.type === type
-                )
+                            </div>
 
+                        </div>
+
+
+                        <div class="activity-item">
+
+                            <div class="activity-dot yellow"></div>
+
+                            <div class="activity-text">
+
+                                <p>
+                                    Your booking for
+                                    <strong>Conference Room 01</strong>
+                                    is awaiting approval.
+                                </p>
+
+                                <span class="activity-time">
+                                    1 hour ago
+                                </span>
+
+                            </div>
+
+                        </div>
+
+
+                        <div class="activity-item">
+
+                            <div class="activity-dot blue"></div>
+
+                            <div class="activity-text">
+
+                                <p>
+                                    You updated your profile information.
+                                </p>
+
+                                <span class="activity-time">
+                                    Yesterday
+                                </span>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </section>
+
+            </div>
+
+
+            <!-- =================================================
+                 RIGHT COLUMN
+                 ================================================= -->
+
+            <div>
+
+                <section class="section-card reveal" id="bookings">
+
+                    <div class="section-header">
+
+                        <div>
+                            <div class="section-title">
+                                Upcoming bookings
+                            </div>
+
+                            <div class="section-subtitle">
+                                Your next reservations
+                            </div>
+                        </div>
+
+                        <a href="#" class="view-all">
+                            View all
+                        </a>
+
+                    </div>
+
+
+                    <div class="booking-list">
+
+                        <div class="booking">
+
+                            <div class="booking-date">
+                                <strong>10</strong>
+                                <span>Aug</span>
+                            </div>
+
+                            <div class="booking-info">
+
+                                <div class="booking-name">
+                                    Innovation Lab
+                                </div>
+
+                                <div class="booking-detail">
+
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                                        <path d="M12 21s7-6.2 7-12a7 7 0 1 0-14 0c0 5.8 7 12 7 12Z"/>
+                                        <circle cx="12" cy="9" r="2.5"/>
+                                    </svg>
+
+                                    Building A · Floor 3
+
+                                </div>
+
+                            </div>
+
+                            <div class="booking-time">
+                                10:00
+                            </div>
+
+                        </div>
+
+
+                        <div class="booking">
+
+                            <div class="booking-date">
+                                <strong>11</strong>
+                                <span>Aug</span>
+                            </div>
+
+                            <div class="booking-info">
+
+                                <div class="booking-name">
+                                    Conference Room 01
+                                </div>
+
+                                <div class="booking-detail">
+
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                                        <path d="M12 21s7-6.2 7-12a7 7 0 1 0-14 0c0 5.8 7 12 7 12Z"/>
+                                        <circle cx="12" cy="9" r="2.5"/>
+                                    </svg>
+
+                                    Building B · Floor 2
+
+                                </div>
+
+                            </div>
+
+                            <div class="booking-time">
+                                13:30
+                            </div>
+
+                        </div>
+
+
+                        <div class="booking">
+
+                            <div class="booking-date">
+                                <strong>14</strong>
+                                <span>Aug</span>
+                            </div>
+
+                            <div class="booking-info">
+
+                                <div class="booking-name">
+                                    Seminar Room 04
+                                </div>
+
+                                <div class="booking-detail">
+
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                                        <path d="M12 21s7-6.2 7-12a7 7 0 1 0-14 0c0 5.8 7 12 7 12Z"/>
+                                        <circle cx="12" cy="9" r="2.5"/>
+                                    </svg>
+
+                                    Building C · Floor 1
+
+                                </div>
+
+                            </div>
+
+                            <div class="booking-time">
+                                09:00
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </section>
+
+
+                <!-- QUICK SUMMARY -->
+
+                <section class="section-card reveal" style="margin-top:20px;">
+
+                    <div class="section-header">
+
+                        <div>
+                            <div class="section-title">
+                                Today's overview
+                            </div>
+
+                            <div class="section-subtitle">
+                                Your schedule at a glance
+                            </div>
+                        </div>
+
+                    </div>
+
+
+                    <div style="padding:20px;">
+
+                        <div style="
+                            display:flex;
+                            justify-content:space-between;
+                            align-items:center;
+                            margin-bottom:12px;
+                        ">
+
+                            <span style="
+                                font-size:9px;
+                                color:var(--text-muted);
+                            ">
+                                Booking utilization
+                            </span>
+
+                            <strong style="
+                                font-size:10px;
+                                color:var(--green);
+                            ">
+                                68%
+                            </strong>
+
+                        </div>
+
+
+                        <div style="
+                            height:6px;
+                            border-radius:10px;
+                            background:rgba(255,255,255,0.045);
+                            overflow:hidden;
+                        ">
+
+                            <div style="
+                                width:68%;
+                                height:100%;
+                                border-radius:10px;
+                                background:linear-gradient(
+                                    90deg,
+                                    var(--green-dark),
+                                    var(--green)
+                                );
+                                box-shadow:0 0 14px rgba(141,245,174,0.15);
+                            "></div>
+
+                        </div>
+
+
+                        <div style="
+                            display:grid;
+                            grid-template-columns:1fr 1fr;
+                            gap:9px;
+                            margin-top:18px;
+                        ">
+
+                            <div style="
+                                padding:12px;
+                                border-radius:11px;
+                                background:rgba(255,255,255,0.025);
+                                border:1px solid rgba(255,255,255,0.045);
+                            ">
+
+                                <div style="
+                                    color:var(--text-muted);
+                                    font-size:8px;
+                                    margin-bottom:6px;
+                                ">
+                                    Next booking
+                                </div>
+
+                                <div style="
+                                    font-size:11px;
+                                    font-weight:600;
+                                ">
+                                    10:00 AM
+                                </div>
+
+                            </div>
+
+
+                            <div style="
+                                padding:12px;
+                                border-radius:11px;
+                                background:rgba(255,255,255,0.025);
+                                border:1px solid rgba(255,255,255,0.045);
+                            ">
+
+                                <div style="
+                                    color:var(--text-muted);
+                                    font-size:8px;
+                                    margin-bottom:6px;
+                                ">
+                                    Free time
+                                </div>
+
+                                <div style="
+                                    font-size:11px;
+                                    font-weight:600;
+                                ">
+                                    4.5 hrs
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </section>
+
+            </div>
+
+        </div>
+
+    </main>
+
+
+    <!-- =========================================================
+         NOTIFICATION PANEL
+         ========================================================= -->
+
+    <div class="notification-panel" id="notificationPanel">
+
+        <div class="notification-header">
+
+            <strong>Notifications</strong>
+
+            <span class="mark-read" id="markRead">
+                Mark all as read
+            </span>
+
+        </div>
+
+
+        <div class="notification">
+
+            <div class="notification-icon">
+
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                    <path d="m5 12 4 4L19 6"/>
+                </svg>
+
+            </div>
+
+            <div>
+
+                <p>
+                    <strong>Booking approved.</strong>
+                    Your Innovation Lab booking has been approved.
+                </p>
+
+                <small>12 minutes ago</small>
+
+            </div>
+
+        </div>
+
+
+        <div class="notification">
+
+            <div class="notification-icon">
+
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                    <circle cx="12" cy="12" r="9"/>
+                    <path d="M12 7v5l3 2"/>
+                </svg>
+
+            </div>
+
+            <div>
+
+                <p>
+                    <strong>Request pending.</strong>
+                    Conference Room 01 is awaiting approval.
+                </p>
+
+                <small>1 hour ago</small>
+
+            </div>
+
+        </div>
+
+
+        <div class="notification">
+
+            <div class="notification-icon">
+
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                    <path d="M12 3v18M3 12h18"/>
+                </svg>
+
+            </div>
+
+            <div>
+
+                <p>
+                    <strong>New rooms available.</strong>
+                    2 rooms have become available today.
+                </p>
+
+                <small>3 hours ago</small>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- =========================================================
+         TOAST
+         ========================================================= -->
+
+    <div class="toast" id="toast">
+
+        <div class="toast-icon">
+
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                <path d="m5 12 4 4L19 6"/>
+            </svg>
+
+        </div>
+
+        <div>
+
+            <strong id="toastTitle">
+                Booking started
+            </strong>
+
+            <span id="toastMessage">
+                Opening booking flow...
+            </span>
+
+        </div>
+
+    </div>
+
+
+    <!-- =========================================================
+         JAVASCRIPT
+         ========================================================= -->
+
+    <script>
+
+        /* =========================================================
+           CURSOR AMBIENT LIGHT
+           ========================================================= */
+
+        const ambient = document.getElementById("ambient");
+
+        window.addEventListener("mousemove", (e) => {
+
+            ambient.style.left = `${e.clientX}px`;
+            ambient.style.top = `${e.clientY}px`;
+
+        });
+
+
+        /* =========================================================
+           CURRENT DATE
+           ========================================================= */
+
+        const currentDate = document.getElementById("currentDate");
+
+        const today = new Date();
+
+        currentDate.textContent = today.toLocaleDateString(
+            "en-US",
+            {
+                weekday: "long",
+                month: "long",
+                day: "numeric"
+            }
+        );
+
+
+        /* =========================================================
+           MOBILE SIDEBAR
+           ========================================================= */
+
+        const sidebar = document.getElementById("sidebar");
+        const menuBtn = document.getElementById("menuBtn");
+
+        menuBtn.addEventListener("click", () => {
+
+            sidebar.classList.toggle("open");
+
+        });
+
+
+        document.querySelectorAll(".nav-item").forEach(item => {
+
+            item.addEventListener("click", () => {
+
+                if (window.innerWidth <= 800) {
+                    sidebar.classList.remove("open");
+                }
+
+            });
+
+        });
+
+
+        /* =========================================================
+           NOTIFICATIONS
+           ========================================================= */
+
+        const notificationBtn =
+            document.getElementById("notificationBtn");
+
+        const notificationPanel =
+            document.getElementById("notificationPanel");
+
+        const markRead =
+            document.getElementById("markRead");
+
+        notificationBtn.addEventListener("click", (event) => {
+
+            event.stopPropagation();
+
+            notificationPanel.classList.toggle("open");
+
+        });
+
+
+        document.addEventListener("click", (event) => {
+
+            if (
+                !notificationPanel.contains(event.target) &&
+                !notificationBtn.contains(event.target)
+            ) {
+
+                notificationPanel.classList.remove("open");
+
+            }
+
+        });
+
+
+        markRead.addEventListener("click", () => {
+
+            document.querySelectorAll(".notification-dot")
+                .forEach(dot => dot.style.display = "none");
+
+            document.querySelectorAll(".nav-badge")
+                .forEach((badge, index) => {
+
+                    if (index === 1) {
+                        badge.textContent = "0";
+                        badge.style.opacity = "0.4";
+                    }
+
+                });
+
+            showToast(
+                "All caught up",
+                "Your notifications have been marked as read."
             );
 
         });
 
 
-    renderRooms(result);
+        /* =========================================================
+           ROOM SEARCH
+           ========================================================= */
 
-}
+        const roomSearch =
+            document.getElementById("roomSearch");
 
+        const roomCards =
+            document.querySelectorAll(".room-card");
 
-/* -----------------------------
-   BOOK ROOM
------------------------------ */
+        roomSearch.addEventListener("input", () => {
 
-function bookRoom(roomId) {
+            const query =
+                roomSearch.value.toLowerCase().trim();
 
-    const room =
-        rooms.find(
-            item => item.id === roomId
-        );
+            roomCards.forEach(card => {
 
+                const text =
+                    card.textContent.toLowerCase();
 
-    const date =
-        prompt(
-            "กรอกวันที่ต้องการจอง เช่น 2026-08-15"
-        );
+                card.style.display =
+                    text.includes(query)
+                        ? ""
+                        : "none";
 
+            });
 
-    if (!date) return;
+        });
 
 
-    const start =
-        prompt(
-            "กรอกเวลาเริ่ม เช่น 09:00"
-        );
+        /* =========================================================
+           FILTER BUTTON
+           ========================================================= */
 
+        const filterBtn =
+            document.getElementById("filterBtn");
 
-    if (!start) return;
+        let showingAvailable = false;
 
+        filterBtn.addEventListener("click", () => {
 
-    const end =
-        prompt(
-            "กรอกเวลาสิ้นสุด เช่น 11:00"
-        );
+            showingAvailable = !showingAvailable;
 
+            roomCards.forEach(card => {
 
-    if (!end) return;
+                const busy =
+                    card.querySelector(".room-status.busy");
 
+                if (showingAvailable && busy) {
 
-    if (start >= end) {
+                    card.style.display = "none";
 
-        alert(
-            "เวลาสิ้นสุดต้องมากกว่าเวลาเริ่ม"
-        );
+                } else {
 
-        return;
+                    card.style.display = "";
 
-    }
-
-
-    const duplicate =
-        bookings.some(
-            booking =>
-
-                booking.roomId === roomId
-                &&
-                booking.date === date
-                &&
-                start < booking.end
-                &&
-                end > booking.start
-        );
-
-
-    if (duplicate) {
-
-        alert(
-            "ช่วงเวลานี้มีผู้จองห้องแล้ว"
-        );
-
-        return;
-
-    }
-
-
-    const booking = {
-
-        id: Date.now(),
-
-        roomId: roomId,
-
-        roomName: room.name,
-
-        username: user.name,
-
-        date: date,
-
-        start: start,
-
-        end: end,
-
-        status:
-            user.role === "admin"
-            ? "อนุมัติแล้ว"
-            : "รออนุมัติ"
-
-    };
-
-
-    bookings.push(booking);
-
-
-    localStorage.setItem(
-        "easyroom_bookings",
-        JSON.stringify(bookings)
-    );
-
-
-    alert(
-        "ส่งคำขอจองห้องเรียบร้อยแล้ว"
-    );
-
-
-    renderRooms();
-
-    renderBookings();
-
-    updateStats();
-
-}
-
-
-/* -----------------------------
-   BOOKINGS TABLE
------------------------------ */
-
-function renderBookings() {
-
-    const container =
-        document.getElementById(
-            "bookingTable"
-        );
-
-
-    let list;
-
-
-    if (
-        user &&
-        user.role === "admin"
-    ) {
-
-        list = bookings;
-
-    } else {
-
-        list =
-            bookings.filter(
-                booking =>
-                    booking.username ===
-                    user.name
-            );
-
-    }
-
-
-    document.getElementById(
-        "myBookings"
-    ).textContent =
-        list.length;
-
-
-    if (list.length === 0) {
-
-        container.innerHTML =
-            `<div class="empty">
-                ยังไม่มีรายการจอง
-            </div>`;
-
-        return;
-
-    }
-
-
-    container.innerHTML = `
-
-        <table>
-
-            <thead>
-
-                <tr>
-
-                    <th>ห้อง</th>
-                    <th>ผู้จอง</th>
-                    <th>วันที่</th>
-                    <th>เวลา</th>
-                    <th>สถานะ</th>
-                    <th>จัดการ</th>
-
-                </tr>
-
-            </thead>
-
-            <tbody>
-
-                ${
-                    list.map(
-                        booking => `
-
-                        <tr>
-
-                            <td>
-                                ${booking.roomName}
-                            </td>
-
-                            <td>
-                                ${booking.username}
-                            </td>
-
-                            <td>
-                                ${booking.date}
-                            </td>
-
-                            <td>
-                                ${booking.start}
-                                -
-                                ${booking.end}
-                            </td>
-
-                            <td>
-
-                                <span
-                                    class="status ${
-                                        booking.status ===
-                                        "อนุมัติแล้ว"
-                                        ? "available"
-                                        : "pending"
-                                    }">
-
-                                    ${booking.status}
-
-                                </span>
-
-                            </td>
-
-                            <td>
-
-                                <button
-                                    class="btn cancel"
-                                    onclick="cancelBooking(${booking.id})">
-
-                                    ยกเลิก
-
-                                </button>
-
-                            </td>
-
-                        </tr>
-
-                    `
-                    ).join("")
                 }
 
-            </tbody>
+            });
 
-        </table>
+            filterBtn.style.color =
+                showingAvailable
+                    ? "var(--green)"
+                    : "";
 
-    `;
+            filterBtn.style.borderColor =
+                showingAvailable
+                    ? "rgba(141,245,174,0.22)"
+                    : "";
 
-}
+            filterBtn.innerHTML = showingAvailable
+                ? `
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                        <path d="m5 12 4 4L19 6"/>
+                    </svg>
+                    Available
+                  `
+                : `
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                        <path d="M4 6h16M7 12h10M10 18h4"/>
+                    </svg>
+                    Filter
+                  `;
 
+        });
 
-/* -----------------------------
-   CANCEL
------------------------------ */
 
-function cancelBooking(id) {
+        /* =========================================================
+           BOOKING BUTTONS
+           ========================================================= */
 
-    if (
-        !confirm(
-            "ต้องการยกเลิกการจองนี้หรือไม่?"
-        )
-    ) {
+        document.querySelectorAll(".book-btn[data-room]")
+            .forEach(button => {
 
-        return;
+                button.addEventListener("click", () => {
 
-    }
+                    const room =
+                        button.dataset.room;
 
+                    showToast(
+                        "Booking started",
+                        `Opening booking flow for ${room}.`
+                    );
 
-    bookings =
-        bookings.filter(
-            booking =>
-                booking.id !== id
-        );
+                });
 
+            });
 
-    localStorage.setItem(
-        "easyroom_bookings",
-        JSON.stringify(bookings)
-    );
 
+        /* =========================================================
+           TOAST
+           ========================================================= */
 
-    renderRooms();
+        const toast =
+            document.getElementById("toast");
 
-    renderBookings();
+        const toastTitle =
+            document.getElementById("toastTitle");
 
-    updateStats();
+        const toastMessage =
+            document.getElementById("toastMessage");
 
-}
+        let toastTimer;
 
+        function showToast(title, message) {
 
-/* -----------------------------
-   VIEW BOOKING
------------------------------ */
+            toastTitle.textContent = title;
+            toastMessage.textContent = message;
 
-function viewBooking(roomId) {
+            toast.classList.add("show");
 
-    const booking =
-        bookings.find(
-            item =>
-                item.roomId === roomId
-        );
+            clearTimeout(toastTimer);
 
+            toastTimer = setTimeout(() => {
 
-    if (!booking) {
+                toast.classList.remove("show");
 
-        alert(
-            "ไม่พบข้อมูลการจอง"
-        );
+            }, 3200);
 
-        return;
+        }
 
-    }
 
+        /* =========================================================
+           SCROLL REVEAL
+           ========================================================= */
 
-    alert(
+        const revealObserver =
+            new IntersectionObserver(
+                entries => {
 
-        "ห้อง: " +
-        booking.roomName +
+                    entries.forEach(entry => {
 
-        "\nผู้จอง: " +
-        booking.username +
+                        if (entry.isIntersecting) {
 
-        "\nวันที่: " +
-        booking.date +
+                            entry.target.classList.add("visible");
 
-        "\nเวลา: " +
-        booking.start +
-        " - " +
-        booking.end +
+                            revealObserver.unobserve(
+                                entry.target
+                            );
 
-        "\nสถานะ: " +
-        booking.status
+                        }
 
-    );
+                    });
 
-}
+                },
+                {
+                    threshold: 0.08
+                }
+            );
 
 
-/* -----------------------------
-   STATS
------------------------------ */
+        document.querySelectorAll(".reveal")
+            .forEach(element => {
 
-function updateStats() {
+                revealObserver.observe(element);
 
-    const booked =
-        new Set(
-            bookings.map(
-                booking =>
-                    booking.roomId
-            )
-        ).size;
+            });
 
 
-    document.getElementById(
-        "totalRooms"
-    ).textContent =
-        rooms.length;
+        /* =========================================================
+           ROOM CARD TILT
+           ========================================================= */
 
+        document.querySelectorAll(".room-card")
+            .forEach(card => {
 
-    document.getElementById(
-        "availableRooms"
-    ).textContent =
-        rooms.length - booked;
+                card.addEventListener("mousemove", (e) => {
 
-}
+                    if (window.innerWidth < 800) return;
 
+                    const rect =
+                        card.getBoundingClientRect();
 
-/* -----------------------------
-   ADMIN
------------------------------ */
+                    const x =
+                        e.clientX - rect.left;
 
-function adminMessage(name) {
+                    const y =
+                        e.clientY - rect.top;
 
-    alert(
+                    const centerX =
+                        rect.width / 2;
 
-        "เมนูจัดการ" +
-        name +
-        "\n\n" +
-        "ส่วนนี้จะเชื่อมต่อฐานข้อมูลจริงในขั้นตอน Backend"
+                    const centerY =
+                        rect.height / 2;
 
-    );
+                    const rotateX =
+                        ((y - centerY) / centerY) * -1.7;
 
-}
+                    const rotateY =
+                        ((x - centerX) / centerX) * 1.7;
 
+                    card.style.transform =
+                        `
+                        perspective(800px)
+                        rotateX(${rotateX}deg)
+                        rotateY(${rotateY}deg)
+                        translateY(-5px)
+                        `;
 
-/* -----------------------------
-   LOGOUT
------------------------------ */
+                });
 
-function logout() {
 
-    localStorage.removeItem(
-        "easyroom_user"
-    );
+                card.addEventListener("mouseleave", () => {
 
-    window.location.href =
-        "login.html";
+                    card.style.transform = "";
 
-}
+                });
 
+            });
 
-/* -----------------------------
-   START
------------------------------ */
 
-renderRooms();
+        /* =========================================================
+           SIDEBAR ACTIVE STATE
+           ========================================================= */
 
-renderBookings();
+        document.querySelectorAll(".nav-item")
+            .forEach(item => {
 
-updateStats();
+                item.addEventListener("click", () => {
 
-</script>
+                    document.querySelectorAll(".nav-item")
+                        .forEach(nav => nav.classList.remove("active"));
+
+                    item.classList.add("active");
+
+                });
+
+            });
+
+    </script>
 
 </body>
 </html>
+```
