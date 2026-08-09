@@ -1,1788 +1,2007 @@
 <!DOCTYPE html>
 <html lang="th">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>EasyRoom | ระบบจองห้องเรียนออนไลน์</title>
-
-<style>
-@import url('https://fonts.googleapis.com/css2?family=Prompt:wght@300;400;500;600;700&display=swap');
-
-* {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
-}
-
-body {
-    font-family: 'Prompt', sans-serif;
-    background: #f5f7fb;
-    color: #172033;
-}
-
-button,
-input,
-select {
-    font-family: inherit;
-}
-
-button {
-    cursor: pointer;
-}
-
-.navbar {
-    height: 72px;
-    background: white;
-    border-bottom: 1px solid #e8ebf0;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 0 6%;
-    position: sticky;
-    top: 0;
-    z-index: 50;
-}
-
-.logo {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    font-size: 23px;
-    font-weight: 700;
-    color: #2563eb;
-}
-
-.logo-box {
-    width: 40px;
-    height: 40px;
-    background: #2563eb;
-    border-radius: 11px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: white;
-}
-
-.nav-buttons {
-    display: flex;
-    gap: 10px;
-}
-
-.btn {
-    border: none;
-    border-radius: 10px;
-    padding: 11px 18px;
-    font-size: 14px;
-    font-weight: 500;
-    transition: .2s;
-}
-
-.btn:hover {
-    transform: translateY(-1px);
-}
-
-.primary {
-    background: #2563eb;
-    color: white;
-}
-
-.primary:hover {
-    background: #1d4ed8;
-}
-
-.secondary {
-    background: white;
-    color: #2563eb;
-    border: 1px solid #2563eb;
-}
-
-.danger {
-    background: #ef4444;
-    color: white;
-}
-
-.success {
-    background: #16a34a;
-    color: white;
-}
-
-.hero {
-    background: linear-gradient(135deg, #2563eb, #4f46e5);
-    color: white;
-    padding: 80px 7%;
-}
-
-.hero-content {
-    max-width: 1100px;
-    margin: auto;
-}
-
-.hero h1 {
-    font-size: 44px;
-    margin-bottom: 12px;
-}
-
-.hero p {
-    max-width: 700px;
-    font-size: 18px;
-    line-height: 1.8;
-    opacity: .92;
-    margin-bottom: 28px;
-}
-
-.hero-actions {
-    display: flex;
-    gap: 12px;
-}
-
-.hero .primary {
-    background: white;
-    color: #2563eb;
-}
-
-.hero .secondary {
-    background: transparent;
-    color: white;
-    border-color: white;
-}
-
-.container {
-    max-width: 1120px;
-    margin: auto;
-    padding: 45px 20px;
-}
-
-.section-title {
-    font-size: 27px;
-    margin-bottom: 22px;
-}
-
-.search-panel {
-    background: white;
-    padding: 20px;
-    border-radius: 17px;
-    box-shadow: 0 5px 22px rgba(15,23,42,.06);
-    margin-bottom: 25px;
-}
-
-.search-grid {
-    display: grid;
-    grid-template-columns: 1.5fr 1fr 1fr auto;
-    gap: 12px;
-}
-
-input,
-select {
-    width: 100%;
-    padding: 12px 14px;
-    border: 1px solid #d8dee8;
-    border-radius: 9px;
-    outline: none;
-    background: white;
-}
-
-input:focus,
-select:focus {
-    border-color: #2563eb;
-}
-
-.rooms {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 20px;
-}
-
-.room-card {
-    background: white;
-    border-radius: 17px;
-    overflow: hidden;
-    box-shadow: 0 5px 20px rgba(15,23,42,.06);
-    transition: .2s;
-}
-
-.room-card:hover {
-    transform: translateY(-3px);
-}
-
-.room-image {
-    height: 135px;
-    background: linear-gradient(135deg,#dbeafe,#e0e7ff);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 46px;
-}
-
-.room-content {
-    padding: 20px;
-}
-
-.room-content h3 {
-    font-size: 19px;
-    margin-bottom: 8px;
-}
-
-.room-detail {
-    color: #64748b;
-    font-size: 14px;
-    margin: 6px 0;
-}
-
-.status {
-    display: inline-block;
-    padding: 5px 11px;
-    border-radius: 20px;
-    font-size: 12px;
-    margin: 10px 0 14px;
-}
-
-.available {
-    background: #dcfce7;
-    color: #15803d;
-}
-
-.pending {
-    background: #fef3c7;
-    color: #a16207;
-}
-
-.unavailable {
-    background: #fee2e2;
-    color: #b91c1c;
-}
-
-.full {
-    width: 100%;
-}
-
-.features {
-    margin-top: 55px;
-    display: grid;
-    grid-template-columns: repeat(3,1fr);
-    gap: 20px;
-}
-
-.feature {
-    background: white;
-    padding: 28px;
-    text-align: center;
-    border-radius: 17px;
-    box-shadow: 0 4px 18px rgba(15,23,42,.05);
-}
-
-.feature-icon {
-    font-size: 36px;
-    margin-bottom: 12px;
-}
-
-.feature h3 {
-    margin-bottom: 8px;
-}
-
-.feature p {
-    color: #64748b;
-    font-size: 14px;
-    line-height: 1.7;
-}
-
-footer {
-    background: #111827;
-    color: #94a3b8;
-    text-align: center;
-    padding: 30px;
-    margin-top: 30px;
-}
-
-/* MODAL */
-
-.modal {
-    display: none;
-    position: fixed;
-    inset: 0;
-    background: rgba(15,23,42,.65);
-    z-index: 200;
-    align-items: center;
-    justify-content: center;
-    padding: 20px;
-}
-
-.modal-box {
-    width: 100%;
-    max-width: 450px;
-    background: white;
-    border-radius: 18px;
-    padding: 28px;
-    position: relative;
-}
-
-.modal-box h2 {
-    margin-bottom: 20px;
-}
-
-.close {
-    position: absolute;
-    right: 18px;
-    top: 13px;
-    background: none;
-    border: none;
-    font-size: 27px;
-    color: #64748b;
-}
-
-.form-group {
-    margin-bottom: 15px;
-}
-
-.form-group label {
-    display: block;
-    font-size: 14px;
-    margin-bottom: 6px;
-}
-
-.roles {
-    display: grid;
-    grid-template-columns: repeat(3,1fr);
-    gap: 8px;
-}
-
-.role {
-    padding: 10px 5px;
-    border: 1px solid #dbe1ea;
-    background: white;
-    border-radius: 9px;
-}
-
-.role.active {
-    border-color: #2563eb;
-    background: #eff6ff;
-    color: #2563eb;
-}
-
-/* DASHBOARD */
-
-.dashboard {
-    display: none;
-    min-height: calc(100vh - 72px);
-}
-
-.dashboard-header {
-    background: white;
-    border-bottom: 1px solid #e8ebf0;
-    padding: 30px 6%;
-}
-
-.dashboard-header-inner {
-    max-width: 1120px;
-    margin: auto;
-}
-
-.dashboard-header p {
-    color: #64748b;
-    margin-top: 5px;
-}
-
-.dashboard-content {
-    max-width: 1120px;
-    margin: 30px auto;
-    padding: 0 20px;
-}
-
-.stats {
-    display: grid;
-    grid-template-columns: repeat(4,1fr);
-    gap: 18px;
-    margin-bottom: 25px;
-}
-
-.stat {
-    background: white;
-    border-radius: 15px;
-    padding: 21px;
-    box-shadow: 0 4px 17px rgba(15,23,42,.05);
-}
-
-.stat-label {
-    color: #64748b;
-    font-size: 13px;
-}
-
-.stat-value {
-    display: block;
-    font-size: 27px;
-    font-weight: 600;
-    margin-top: 5px;
-}
-
-.panel {
-    background: white;
-    border-radius: 16px;
-    padding: 22px;
-    margin-bottom: 20px;
-    box-shadow: 0 4px 17px rgba(15,23,42,.05);
-}
-
-.panel h3 {
-    margin-bottom: 18px;
-}
-
-table {
-    width: 100%;
-    border-collapse: collapse;
-}
-
-th,
-td {
-    padding: 13px;
-    text-align: left;
-    border-bottom: 1px solid #edf0f4;
-    font-size: 13px;
-}
-
-th {
-    background: #f8fafc;
-}
-
-.empty {
-    text-align: center;
-    color: #94a3b8;
-    padding: 30px;
-}
-
-.admin-actions {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 10px;
-}
-
-/* RESPONSIVE */
-
-@media(max-width:850px) {
-
-    .rooms,
-    .features {
-        grid-template-columns: 1fr;
-    }
-
-    .search-grid {
-        grid-template-columns: 1fr;
-    }
-
-    .stats {
-        grid-template-columns: repeat(2,1fr);
-    }
-
-    .hero h1 {
-        font-size: 34px;
-    }
-}
-
-@media(max-width:550px) {
-
-    .navbar {
-        padding: 0 18px;
-    }
-
-    .nav-buttons .secondary {
-        display: none;
-    }
-
-    .hero {
-        padding: 55px 25px;
-    }
-
-    .hero h1 {
-        font-size: 29px;
-    }
-
-    .stats {
-        grid-template-columns: 1fr;
-    }
-
-    .roles {
-        grid-template-columns: 1fr;
-    }
-}
-</style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>EasyRoom — Smart Room Booking</title>
+
+    <meta
+        name="description"
+        content="EasyRoom ระบบจองห้องเรียนที่เรียบง่าย รวดเร็ว และจัดการได้ในที่เดียว"
+    >
+
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Prompt:wght@300;400;500;600;700&display=swap');
+
+        :root {
+            --bg: #050706;
+            --bg-soft: #0a0e0c;
+
+            --green: #8dffb8;
+            --green-2: #5de98d;
+
+            --text: #f5f7f6;
+            --muted: #89928d;
+
+            --glass: rgba(255, 255, 255, 0.055);
+            --glass-hover: rgba(255, 255, 255, 0.085);
+
+            --border: rgba(255, 255, 255, 0.10);
+
+            --radius: 22px;
+
+            --mx: 50%;
+            --my: 50%;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            min-height: 100vh;
+
+            font-family:
+                "Inter",
+                "Prompt",
+                -apple-system,
+                BlinkMacSystemFont,
+                "Segoe UI",
+                sans-serif;
+
+            color: var(--text);
+
+            background:
+                radial-gradient(
+                    800px circle at var(--mx) var(--my),
+                    rgba(105, 255, 161, 0.045),
+                    transparent 45%
+                ),
+                radial-gradient(
+                    700px circle at 85% 10%,
+                    rgba(86, 120, 255, 0.08),
+                    transparent 50%
+                ),
+                var(--bg);
+
+            overflow-x: hidden;
+        }
+
+        body::before {
+            content: "";
+
+            position: fixed;
+            inset: 0;
+
+            pointer-events: none;
+            z-index: 100;
+
+            opacity: 0.025;
+
+            background-image:
+                url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.6'/%3E%3C/svg%3E");
+        }
+
+        a {
+            color: inherit;
+            text-decoration: none;
+        }
+
+        button {
+            font: inherit;
+        }
+
+        /* =========================
+           BACKGROUND
+        ========================= */
+
+        .orb {
+            position: fixed;
+
+            width: 420px;
+            height: 420px;
+
+            border-radius: 50%;
+
+            filter: blur(100px);
+
+            pointer-events: none;
+
+            opacity: .11;
+
+            z-index: -1;
+        }
+
+        .orb.green {
+            background: #52ff91;
+
+            top: -240px;
+            left: -160px;
+        }
+
+        .orb.blue {
+            background: #536bff;
+
+            right: -220px;
+            top: 280px;
+
+            opacity: .07;
+        }
+
+        .orb.bottom {
+            background: #51ff9b;
+
+            bottom: -280px;
+            left: 40%;
+
+            opacity: .055;
+        }
+
+        /* =========================
+           NAVBAR
+        ========================= */
+
+        .navbar {
+            position: fixed;
+
+            top: 18px;
+            left: 50%;
+
+            transform: translateX(-50%);
+
+            width: min(1180px, calc(100% - 32px));
+
+            height: 64px;
+
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+
+            padding: 0 10px 0 18px;
+
+            border: 1px solid var(--border);
+
+            border-radius: 18px;
+
+            background:
+                rgba(8, 12, 10, 0.72);
+
+            backdrop-filter:
+                blur(22px)
+                saturate(1.3);
+
+            -webkit-backdrop-filter:
+                blur(22px)
+                saturate(1.3);
+
+            box-shadow:
+                0 20px 60px rgba(0,0,0,.22);
+
+            z-index: 50;
+        }
+
+        .brand {
+            display: flex;
+            align-items: center;
+
+            gap: 11px;
+        }
+
+        .brand-logo {
+            width: 38px;
+            height: 38px;
+
+            object-fit: contain;
+
+            border-radius: 10px;
+        }
+
+        .brand-name {
+            font-size: 16px;
+            font-weight: 700;
+
+            letter-spacing: -.3px;
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+
+            gap: 30px;
+
+            color: #aab2ad;
+
+            font-size: 13px;
+        }
+
+        .nav-links a {
+            transition: color .2s ease;
+        }
+
+        .nav-links a:hover {
+            color: white;
+        }
+
+        .nav-actions {
+            display: flex;
+            align-items: center;
+
+            gap: 8px;
+        }
+
+        .nav-login {
+            padding: 10px 15px;
+
+            color: #c3cac6;
+
+            font-size: 13px;
+        }
+
+        .nav-register {
+            padding: 10px 16px;
+
+            border: 1px solid rgba(141,255,184,.25);
+
+            border-radius: 11px;
+
+            background:
+                rgba(141,255,184,.09);
+
+            color: var(--green);
+
+            font-size: 13px;
+            font-weight: 600;
+
+            transition:
+                background .2s,
+                transform .2s;
+        }
+
+        .nav-register:hover {
+            background:
+                rgba(141,255,184,.15);
+
+            transform: translateY(-1px);
+        }
+
+        /* =========================
+           HERO
+        ========================= */
+
+        .hero {
+            position: relative;
+
+            min-height: 880px;
+
+            max-width: 1180px;
+
+            margin: auto;
+
+            padding:
+                190px 20px 90px;
+
+            display: grid;
+
+            grid-template-columns:
+                1.05fr .95fr;
+
+            align-items: center;
+
+            gap: 70px;
+        }
+
+        .hero-content {
+            position: relative;
+
+            z-index: 2;
+        }
+
+        .eyebrow {
+            display: inline-flex;
+
+            align-items: center;
+
+            gap: 8px;
+
+            padding: 7px 11px;
+
+            margin-bottom: 25px;
+
+            border:
+                1px solid
+                rgba(141,255,184,.16);
+
+            border-radius: 999px;
+
+            background:
+                rgba(141,255,184,.055);
+
+            color:
+                rgba(170,255,200,.85);
+
+            font-size: 11px;
+            font-weight: 500;
+        }
+
+        .eyebrow-dot {
+            width: 6px;
+            height: 6px;
+
+            border-radius: 50%;
+
+            background: var(--green);
+
+            box-shadow:
+                0 0 12px
+                rgba(141,255,184,.9);
+        }
+
+        .hero h1 {
+            max-width: 690px;
+
+            font-size:
+                clamp(52px, 6.2vw, 82px);
+
+            line-height: .98;
+
+            letter-spacing: -5px;
+
+            font-weight: 700;
+        }
+
+        .hero h1 .accent {
+            color: var(--green);
+
+            text-shadow:
+                0 0 45px
+                rgba(141,255,184,.12);
+        }
+
+        .hero-description {
+            max-width: 530px;
+
+            margin-top: 28px;
+
+            color: var(--muted);
+
+            font-size: 16px;
+
+            line-height: 1.75;
+        }
+
+        .hero-actions {
+            display: flex;
+            align-items: center;
+
+            gap: 11px;
+
+            margin-top: 34px;
+        }
+
+        .btn-primary {
+            display: inline-flex;
+
+            align-items: center;
+            justify-content: center;
+
+            gap: 9px;
+
+            padding: 14px 19px;
+
+            border: 1px solid
+                rgba(160,255,195,.35);
+
+            border-radius: 13px;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #a2ffc6,
+                    #65e998
+                );
+
+            color: #07120c;
+
+            font-size: 13px;
+            font-weight: 700;
+
+            box-shadow:
+                0 12px 35px
+                rgba(88,255,145,.12);
+
+            transition:
+                transform .2s,
+                box-shadow .2s;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+
+            box-shadow:
+                0 17px 45px
+                rgba(88,255,145,.20);
+        }
+
+        .btn-secondary {
+            display: inline-flex;
+
+            align-items: center;
+            justify-content: center;
+
+            padding: 14px 19px;
+
+            border: 1px solid var(--border);
+
+            border-radius: 13px;
+
+            background:
+                rgba(255,255,255,.035);
+
+            color: #c7ceca;
+
+            font-size: 13px;
+
+            transition:
+                background .2s,
+                transform .2s;
+        }
+
+        .btn-secondary:hover {
+            background:
+                rgba(255,255,255,.07);
+
+            transform: translateY(-2px);
+        }
+
+        .hero-meta {
+            display: flex;
+
+            align-items: center;
+
+            gap: 20px;
+
+            margin-top: 34px;
+
+            color: #626b66;
+
+            font-size: 11px;
+        }
+
+        .hero-meta span {
+            display: flex;
+
+            align-items: center;
+
+            gap: 7px;
+        }
+
+        .meta-check {
+            color: var(--green);
+        }
+
+        /* =========================
+           HERO VISUAL
+        ========================= */
+
+        .hero-visual {
+            position: relative;
+
+            height: 510px;
+
+            display: flex;
+
+            align-items: center;
+            justify-content: center;
+
+            perspective: 1200px;
+        }
+
+        .visual-glow {
+            position: absolute;
+
+            width: 340px;
+            height: 340px;
+
+            border-radius: 50%;
+
+            background:
+                rgba(101,255,157,.08);
+
+            filter: blur(80px);
+        }
+
+        .room-card {
+            position: relative;
+
+            width: 355px;
+
+            padding: 19px;
+
+            border:
+                1px solid
+                rgba(255,255,255,.13);
+
+            border-radius: 25px;
+
+            background:
+                linear-gradient(
+                    145deg,
+                    rgba(255,255,255,.10),
+                    rgba(255,255,255,.035)
+                );
+
+            backdrop-filter:
+                blur(25px)
+                saturate(1.35);
+
+            -webkit-backdrop-filter:
+                blur(25px)
+                saturate(1.35);
+
+            box-shadow:
+                0 45px 100px
+                rgba(0,0,0,.48),
+                inset 0 1px 0
+                rgba(255,255,255,.10);
+
+            transform:
+                rotateY(-9deg)
+                rotateX(5deg)
+                rotateZ(1deg);
+
+            transition:
+                transform .5s ease;
+        }
+
+        .hero-visual:hover .room-card {
+            transform:
+                rotateY(-3deg)
+                rotateX(2deg)
+                rotateZ(0deg)
+                translateY(-8px);
+        }
+
+        .room-image {
+            height: 205px;
+
+            border-radius: 17px;
+
+            overflow: hidden;
+
+            position: relative;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #19211d,
+                    #101512
+                );
+        }
+
+        .room-image::before {
+            content: "";
+
+            position: absolute;
+
+            inset: 0;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    rgba(141,255,184,.18),
+                    transparent 45%
+                );
+        }
+
+        .room-image::after {
+            content: "EASYROOM";
+
+            position: absolute;
+
+            bottom: 16px;
+            left: 16px;
+
+            font-size: 9px;
+
+            letter-spacing: 2px;
+
+            color:
+                rgba(255,255,255,.35);
+        }
+
+        .room-grid {
+            position: absolute;
+
+            inset: 35px;
+
+            display: grid;
+
+            grid-template-columns:
+                repeat(3,1fr);
+
+            gap: 8px;
+
+            opacity: .32;
+        }
+
+        .room-grid span {
+            border:
+                1px solid
+                rgba(255,255,255,.20);
+
+            border-radius: 5px;
+        }
+
+        .room-info {
+            padding: 17px 3px 3px;
+        }
+
+        .room-status {
+            display: flex;
+
+            justify-content: space-between;
+            align-items: center;
+
+            margin-bottom: 9px;
+        }
+
+        .available {
+            display: flex;
+
+            align-items: center;
+
+            gap: 6px;
+
+            color: var(--green);
+
+            font-size: 10px;
+
+            font-weight: 600;
+        }
+
+        .available i {
+            width: 6px;
+            height: 6px;
+
+            border-radius: 50%;
+
+            background: var(--green);
+
+            box-shadow:
+                0 0 10px
+                rgba(141,255,184,.8);
+        }
+
+        .room-type {
+            color: #66706a;
+
+            font-size: 10px;
+        }
+
+        .room-title {
+            font-size: 22px;
+
+            font-weight: 600;
+
+            letter-spacing: -.7px;
+        }
+
+        .room-details {
+            display: flex;
+
+            gap: 20px;
+
+            margin-top: 13px;
+
+            color: #737c77;
+
+            font-size: 10px;
+        }
+
+        .room-details strong {
+            display: block;
+
+            color: #cbd1ce;
+
+            font-size: 12px;
+
+            margin-bottom: 2px;
+        }
+
+        /* Floating cards */
+
+        .floating-card {
+            position: absolute;
+
+            border:
+                1px solid
+                rgba(255,255,255,.10);
+
+            background:
+                rgba(15,20,17,.65);
+
+            backdrop-filter:
+                blur(18px);
+
+            border-radius: 15px;
+
+            box-shadow:
+                0 25px 55px
+                rgba(0,0,0,.35);
+
+            animation:
+                float 5s ease-in-out infinite;
+        }
+
+        .floating-booking {
+            left: 0;
+            bottom: 72px;
+
+            width: 170px;
+
+            padding: 13px;
+        }
+
+        .floating-booking small {
+            color: #6d7771;
+
+            font-size: 9px;
+        }
+
+        .floating-booking strong {
+            display: block;
+
+            margin-top: 5px;
+
+            font-size: 13px;
+        }
+
+        .booking-time {
+            margin-top: 9px;
+
+            color: var(--green);
+
+            font-size: 10px;
+        }
+
+        .floating-stat {
+            right: -8px;
+            top: 75px;
+
+            padding: 14px 17px;
+
+            animation-delay: -2s;
+        }
+
+        .floating-stat small {
+            color: #68716c;
+
+            font-size: 9px;
+        }
+
+        .floating-stat strong {
+            display: block;
+
+            margin-top: 3px;
+
+            font-size: 23px;
+        }
+
+        @keyframes float {
+
+            0%,
+            100% {
+                transform: translateY(0);
+            }
+
+            50% {
+                transform: translateY(-9px);
+            }
+
+        }
+
+        /* =========================
+           SECTION
+        ========================= */
+
+        .section {
+            max-width: 1180px;
+
+            margin: auto;
+
+            padding:
+                100px 20px;
+        }
+
+        .section-heading {
+            max-width: 650px;
+
+            margin-bottom: 45px;
+        }
+
+        .section-label {
+            color: var(--green);
+
+            font-size: 11px;
+
+            font-weight: 600;
+
+            letter-spacing: 1.5px;
+
+            text-transform: uppercase;
+
+            margin-bottom: 13px;
+        }
+
+        .section-heading h2 {
+            font-size:
+                clamp(32px, 4vw, 48px);
+
+            letter-spacing: -2.5px;
+
+            line-height: 1.08;
+        }
+
+        .section-heading p {
+            margin-top: 15px;
+
+            color: var(--muted);
+
+            font-size: 14px;
+
+            line-height: 1.7;
+        }
+
+        /* =========================
+           FEATURES
+        ========================= */
+
+        .features {
+            display: grid;
+
+            grid-template-columns:
+                repeat(3,1fr);
+
+            gap: 14px;
+        }
+
+        .feature {
+            position: relative;
+
+            padding: 27px;
+
+            min-height: 220px;
+
+            border:
+                1px solid var(--border);
+
+            border-radius:
+                var(--radius);
+
+            background:
+                linear-gradient(
+                    145deg,
+                    rgba(255,255,255,.065),
+                    rgba(255,255,255,.025)
+                );
+
+            overflow: hidden;
+
+            transition:
+                transform .3s,
+                border-color .3s,
+                background .3s;
+        }
+
+        .feature::after {
+            content: "";
+
+            position: absolute;
+
+            width: 160px;
+            height: 160px;
+
+            right: -80px;
+            bottom: -80px;
+
+            border-radius: 50%;
+
+            background:
+                rgba(113,255,163,.08);
+
+            filter: blur(40px);
+        }
+
+        .feature:hover {
+            transform: translateY(-5px);
+
+            border-color:
+                rgba(141,255,184,.18);
+
+            background:
+                rgba(255,255,255,.075);
+        }
+
+        .feature-icon {
+            width: 42px;
+            height: 42px;
+
+            display: flex;
+
+            align-items: center;
+            justify-content: center;
+
+            border-radius: 12px;
+
+            border:
+                1px solid
+                rgba(141,255,184,.13);
+
+            background:
+                rgba(141,255,184,.07);
+
+            color: var(--green);
+
+            font-size: 18px;
+
+            margin-bottom: 23px;
+        }
+
+        .feature h3 {
+            font-size: 16px;
+
+            margin-bottom: 9px;
+
+            letter-spacing: -.3px;
+        }
+
+        .feature p {
+            color: #727c76;
+
+            font-size: 12px;
+
+            line-height: 1.7;
+        }
+
+        /* =========================
+           HOW IT WORKS
+        ========================= */
+
+        .steps {
+            display: grid;
+
+            grid-template-columns:
+                repeat(3,1fr);
+
+            border:
+                1px solid var(--border);
+
+            border-radius:
+                var(--radius);
+
+            overflow: hidden;
+
+            background:
+                rgba(255,255,255,.025);
+        }
+
+        .step {
+            padding: 30px;
+
+            min-height: 190px;
+
+            border-right:
+                1px solid var(--border);
+        }
+
+        .step:last-child {
+            border-right: none;
+        }
+
+        .step-number {
+            color: var(--green);
+
+            font-size: 11px;
+
+            letter-spacing: 1px;
+
+            margin-bottom: 35px;
+        }
+
+        .step h3 {
+            font-size: 17px;
+
+            margin-bottom: 9px;
+        }
+
+        .step p {
+            color: #707a74;
+
+            font-size: 12px;
+
+            line-height: 1.7;
+        }
+
+        /* =========================
+           CTA
+        ========================= */
+
+        .cta {
+            position: relative;
+
+            max-width: 1180px;
+
+            margin:
+                50px auto 100px;
+
+            padding: 75px 30px;
+
+            text-align: center;
+
+            border:
+                1px solid
+                rgba(141,255,184,.12);
+
+            border-radius:
+                28px;
+
+            background:
+                radial-gradient(
+                    circle at center,
+                    rgba(109,255,158,.09),
+                    transparent 55%
+                ),
+                rgba(255,255,255,.025);
+
+            overflow: hidden;
+        }
+
+        .cta h2 {
+            font-size:
+                clamp(34px, 5vw, 55px);
+
+            letter-spacing: -3px;
+
+            line-height: 1.05;
+        }
+
+        .cta p {
+            max-width: 500px;
+
+            margin:
+                18px auto 27px;
+
+            color: var(--muted);
+
+            font-size: 13px;
+
+            line-height: 1.7;
+        }
+
+        /* =========================
+           FOOTER
+        ========================= */
+
+        footer {
+            max-width: 1180px;
+
+            margin: auto;
+
+            padding:
+                30px 20px 45px;
+
+            border-top:
+                1px solid
+                rgba(255,255,255,.07);
+
+            display: flex;
+
+            justify-content: space-between;
+
+            color: #5f6863;
+
+            font-size: 11px;
+        }
+
+        .footer-brand {
+            color: #858e89;
+        }
+
+        /* =========================
+           REVEAL
+        ========================= */
+
+        .reveal {
+            opacity: 0;
+
+            transform:
+                translateY(25px);
+
+            transition:
+                opacity .7s ease,
+                transform .7s ease;
+        }
+
+        .reveal.visible {
+            opacity: 1;
+
+            transform:
+                translateY(0);
+        }
+
+        /* =========================
+           MOBILE
+        ========================= */
+
+        @media (max-width: 900px) {
+
+            .nav-links {
+                display: none;
+            }
+
+            .hero {
+                grid-template-columns: 1fr;
+
+                min-height: auto;
+
+                padding-top: 155px;
+
+                gap: 50px;
+            }
+
+            .hero-content {
+                text-align: center;
+            }
+
+            .hero h1 {
+                margin: auto;
+            }
+
+            .hero-description {
+                margin-left: auto;
+                margin-right: auto;
+            }
+
+            .hero-actions {
+                justify-content: center;
+            }
+
+            .hero-meta {
+                justify-content: center;
+            }
+
+            .hero-visual {
+                height: 460px;
+            }
+
+            .features,
+            .steps {
+                grid-template-columns: 1fr;
+            }
+
+            .step {
+                border-right: none;
+
+                border-bottom:
+                    1px solid var(--border);
+            }
+
+            .step:last-child {
+                border-bottom: none;
+            }
+
+        }
+
+        @media (max-width: 560px) {
+
+            .navbar {
+                top: 10px;
+
+                width:
+                    calc(100% - 20px);
+
+                height: 58px;
+
+                padding-left: 12px;
+            }
+
+            .brand-logo {
+                width: 34px;
+                height: 34px;
+            }
+
+            .nav-login {
+                display: none;
+            }
+
+            .nav-register {
+                padding:
+                    9px 12px;
+            }
+
+            .hero {
+                padding:
+                    130px 18px 70px;
+            }
+
+            .hero h1 {
+                font-size: 47px;
+
+                letter-spacing:
+                    -3.2px;
+            }
+
+            .hero-description {
+                font-size: 14px;
+            }
+
+            .hero-actions {
+                flex-direction: column;
+
+                width: 100%;
+            }
+
+            .btn-primary,
+            .btn-secondary {
+                width: 100%;
+            }
+
+            .hero-meta {
+                flex-direction: column;
+
+                gap: 8px;
+            }
+
+            .hero-visual {
+                height: 390px;
+            }
+
+            .room-card {
+                width:
+                    min(355px, 88vw);
+            }
+
+            .floating-booking {
+                left: -3px;
+                bottom: 35px;
+
+                transform:
+                    scale(.86);
+            }
+
+            .floating-stat {
+                right: -3px;
+                top: 45px;
+
+                transform:
+                    scale(.86);
+            }
+
+            .section {
+                padding:
+                    75px 18px;
+            }
+
+            .cta {
+                margin:
+                    30px 18px 70px;
+
+                padding:
+                    55px 20px;
+            }
+
+            footer {
+                flex-direction: column;
+
+                gap: 10px;
+            }
+        }
+
+    </style>
 </head>
 
 <body>
 
-<!-- NAVBAR -->
-
-<nav class="navbar">
-
-    <div class="logo">
-        <div class="logo-box">🏫</div>
-        EasyRoom
-    </div>
-
-    <div class="nav-buttons">
-
-        <button class="btn secondary"
-                onclick="openModal('login')">
-            เข้าสู่ระบบ
-        </button>
-
-        <button class="btn primary"
-                onclick="openModal('register')">
-            สมัครสมาชิก
-        </button>
-
-    </div>
-
-</nav>
+    <div class="orb green"></div>
+    <div class="orb blue"></div>
+    <div class="orb bottom"></div>
 
 
-<!-- HOME -->
+    <!-- =========================
+         NAVBAR
+    ========================== -->
 
-<div id="home">
+    <nav class="navbar">
 
-    <section class="hero">
+        <a
+            href="index.html"
+            class="brand">
 
-        <div class="hero-content">
+            <img
+                class="brand-logo"
+                src="https://img1.pic.in.th/images/Screenshot-2026-08-10-at-00.21.21.png"
+                alt="EasyRoom Logo"
+            >
 
-            <h1>ระบบจองห้องเรียนออนไลน์</h1>
+            <span class="brand-name">
+                EasyRoom
+            </span>
 
-            <p>
-                EasyRoom ช่วยให้ผู้ใช้งานสามารถตรวจสอบ
-                ห้องเรียนที่ว่าง และทำรายการจองห้องเรียน
-                ได้อย่างสะดวกและรวดเร็ว
-            </p>
-
-            <div class="hero-actions">
-
-                <button class="btn primary"
-                        onclick="openModal('login')">
-                    เริ่มจองห้องเรียน
-                </button>
-
-                <button class="btn secondary"
-                        onclick="goRooms()">
-                    ดูห้องว่าง
-                </button>
-
-            </div>
-
-        </div>
-
-    </section>
+        </a>
 
 
-    <main class="container">
+        <div class="nav-links">
 
-        <h2 class="section-title" id="roomSection">
-            🏫 ห้องเรียน
-        </h2>
+            <a href="#features">
+                Features
+            </a>
 
+            <a href="#how">
+                How it works
+            </a>
 
-        <div class="search-panel">
-
-            <div class="search-grid">
-
-                <input
-                    id="search"
-                    placeholder="ค้นหาชื่อห้อง..."
-                >
-
-                <select id="building">
-                    <option value="">ทุกอาคาร</option>
-                    <option value="อาคาร 1">อาคาร 1</option>
-                    <option value="อาคาร 2">อาคาร 2</option>
-                    <option value="อาคาร 3">อาคาร 3</option>
-                </select>
-
-                <select id="roomType">
-                    <option value="">ทุกประเภทห้อง</option>
-                    <option value="ห้องเรียน">ห้องเรียน</option>
-                    <option value="ห้องคอมพิวเตอร์">ห้องคอมพิวเตอร์</option>
-                    <option value="ห้องประชุม">ห้องประชุม</option>
-                </select>
-
-                <button class="btn primary"
-                        onclick="filterRooms()">
-                    ค้นหา
-                </button>
-
-            </div>
+            <a href="#about">
+                About
+            </a>
 
         </div>
 
 
-        <div class="rooms" id="roomList"></div>
+        <div class="nav-actions">
+
+            <a
+                href="login.html"
+                class="nav-login">
+
+                Sign in
+
+            </a>
 
 
-        <div class="features">
+            <a
+                href="register.html"
+                class="nav-register">
 
-            <div class="feature">
+                Get started
 
-                <div class="feature-icon">🔎</div>
+            </a>
 
-                <h3>ดูห้องว่าง</h3>
+        </div>
 
-                <p>
-                    ตรวจสอบห้องเรียนที่พร้อมใช้งาน
-                    ได้จากระบบออนไลน์
+    </nav>
+
+
+    <!-- =========================
+         HERO
+    ========================== -->
+
+    <main>
+
+        <section class="hero">
+
+            <div class="hero-content">
+
+                <div class="eyebrow">
+
+                    <span class="eyebrow-dot"></span>
+
+                    Smart room booking system
+
+                </div>
+
+
+                <h1>
+
+                    Find the right
+                    <span class="accent">
+                        room.
+                    </span>
+
+                    <br>
+
+                    Book it
+                    <span class="accent">
+                        easily.
+                    </span>
+
+                </h1>
+
+
+                <p class="hero-description">
+
+                    EasyRoom makes classroom and meeting-room
+                    booking simple. Find available spaces,
+                    choose your time, and manage every booking
+                    in one place.
+
                 </p>
 
-            </div>
+
+                <div class="hero-actions">
+
+                    <a
+                        href="register.html"
+                        class="btn-primary">
+
+                        Get started
+
+                        <span>→</span>
+
+                    </a>
 
 
-            <div class="feature">
+                    <a
+                        href="#features"
+                        class="btn-secondary">
 
-                <div class="feature-icon">📅</div>
+                        Explore EasyRoom
 
-                <h3>จองห้องเรียน</h3>
+                    </a>
 
-                <p>
-                    เลือกห้อง วันที่ และเวลา
-                    เพื่อทำรายการจอง
-                </p>
-
-            </div>
+                </div>
 
 
-            <div class="feature">
+                <div class="hero-meta">
 
-                <div class="feature-icon">📋</div>
+                    <span>
 
-                <h3>ประวัติการจอง</h3>
+                        <span class="meta-check">
+                            ✓
+                        </span>
 
-                <p>
-                    ตรวจสอบรายการจอง
-                    และสถานะการจองของตนเอง
-                </p>
+                        Fast booking
 
-            </div>
-
-        </div>
-
-    </main>
+                    </span>
 
 
-    <footer>
+                    <span>
 
-        EasyRoom — ระบบจองห้องเรียนออนไลน์<br>
-        โครงงานปลายภาค สาขาคอมพิวเตอร์ศึกษา
+                        <span class="meta-check">
+                            ✓
+                        </span>
 
-    </footer>
+                        Easy to manage
 
-</div>
-
-
-<!-- DASHBOARD -->
-
-<div id="dashboard" class="dashboard">
-
-    <div class="dashboard-header">
-
-        <div class="dashboard-header-inner">
-
-            <h2 id="dashboardTitle">
-                Dashboard
-            </h2>
-
-            <p id="welcome"></p>
-
-        </div>
-
-    </div>
+                    </span>
 
 
-    <div class="dashboard-content">
+                    <span>
 
-        <div class="stats">
+                        <span class="meta-check">
+                            ✓
+                        </span>
 
-            <div class="stat">
+                        One place
 
-                <span class="stat-label">
-                    ห้องทั้งหมด
-                </span>
+                    </span>
 
-                <strong class="stat-value"
-                        id="totalRooms">
-                    0
-                </strong>
+                </div>
 
             </div>
 
 
-            <div class="stat">
+            <!-- Visual -->
 
-                <span class="stat-label">
-                    ห้องว่าง
-                </span>
+            <div class="hero-visual">
 
-                <strong class="stat-value"
-                        id="availableRooms">
-                    0
-                </strong>
+                <div class="visual-glow"></div>
 
-            </div>
 
+                <div class="floating-stat">
 
-            <div class="stat">
+                    <small>
+                        Available rooms
+                    </small>
 
-                <span class="stat-label">
-                    การจองของฉัน
-                </span>
+                    <strong>
+                        18
+                    </strong>
 
-                <strong class="stat-value"
-                        id="bookingCount">
-                    0
-                </strong>
+                </div>
 
-            </div>
-
-
-            <div class="stat">
-
-                <span class="stat-label">
-                    ประเภทผู้ใช้งาน
-                </span>
-
-                <strong class="stat-value"
-                        style="font-size:18px"
-                        id="roleDisplay">
-                    -
-                </strong>
-
-            </div>
-
-        </div>
-
-
-        <div class="panel">
-
-            <h3>📋 รายการจอง</h3>
-
-            <div id="bookingList"></div>
-
-        </div>
-
-
-        <div class="panel"
-             id="adminPanel"
-             style="display:none">
-
-            <h3>⚙️ ระบบจัดการ Admin</h3>
-
-            <div class="admin-actions">
-
-                <button class="btn primary"
-                        onclick="demo('จัดการผู้ใช้งาน')">
-                    👥 จัดการผู้ใช้งาน
-                </button>
-
-                <button class="btn primary"
-                        onclick="demo('จัดการห้องเรียน')">
-                    🚪 จัดการห้องเรียน
-                </button>
-
-                <button class="btn primary"
-                        onclick="demo('จัดการอาคาร')">
-                    🏢 จัดการอาคาร
-                </button>
-
-                <button class="btn primary"
-                        onclick="demo('จัดการประเภทห้อง')">
-                    🗂️ ประเภทห้อง
-                </button>
-
-                <button class="btn success"
-                        onclick="demo('รายงานการใช้ห้อง')">
-                    📊 รายงาน
-                </button>
-
-            </div>
-
-        </div>
-
-
-        <button class="btn danger"
-                onclick="logout()">
-            ออกจากระบบ
-        </button>
-
-    </div>
-
-</div>
-
-
-<!-- LOGIN -->
-
-<div class="modal" id="loginModal">
-
-    <div class="modal-box">
-
-        <button class="close"
-                onclick="closeModal('login')">
-            ×
-        </button>
-
-        <h2>เข้าสู่ระบบ</h2>
-
-
-        <div class="form-group">
-
-            <label>ชื่อผู้ใช้งาน</label>
-
-            <input
-                id="loginName"
-                placeholder="กรอกชื่อผู้ใช้งาน"
-            >
-
-        </div>
-
-
-        <div class="form-group">
-
-            <label>รหัสผ่าน</label>
-
-            <input
-                id="loginPassword"
-                type="password"
-                placeholder="กรอกรหัสผ่าน"
-            >
-
-        </div>
-
-
-        <div class="form-group">
-
-            <label>ประเภทผู้ใช้งาน</label>
-
-            <div class="roles">
-
-                <button class="role active"
-                        onclick="chooseRole(this,'student')">
-                    👨‍🎓 นักศึกษา
-                </button>
-
-                <button class="role"
-                        onclick="chooseRole(this,'teacher')">
-                    👨‍🏫 อาจารย์
-                </button>
-
-                <button class="role"
-                        onclick="chooseRole(this,'admin')">
-                    👨‍💼 Admin
-                </button>
-
-            </div>
-
-        </div>
-
-
-        <button class="btn primary full"
-                onclick="login()">
-            เข้าสู่ระบบ
-        </button>
-
-    </div>
-
-</div>
-
-
-<!-- REGISTER -->
-
-<div class="modal" id="registerModal">
-
-    <div class="modal-box">
-
-        <button class="close"
-                onclick="closeModal('register')">
-            ×
-        </button>
-
-        <h2>สมัครสมาชิก</h2>
-
-
-        <div class="form-group">
-
-            <label>ชื่อ-นามสกุล</label>
-
-            <input
-                id="registerName"
-                placeholder="กรอกชื่อ-นามสกุล"
-            >
-
-        </div>
-
-
-        <div class="form-group">
-
-            <label>ชื่อผู้ใช้งาน</label>
-
-            <input
-                id="registerUsername"
-                placeholder="กรอกชื่อผู้ใช้งาน"
-            >
-
-        </div>
-
-
-        <div class="form-group">
-
-            <label>รหัสผ่าน</label>
-
-            <input
-                id="registerPassword"
-                type="password"
-                placeholder="กรอกรหัสผ่าน"
-            >
-
-        </div>
-
-
-        <div class="form-group">
-
-            <label>ประเภทผู้ใช้งาน</label>
-
-            <select id="registerRole">
-
-                <option value="student">
-                    นักศึกษา
-                </option>
-
-                <option value="teacher">
-                    อาจารย์
-                </option>
-
-            </select>
-
-        </div>
-
-
-        <button class="btn primary full"
-                onclick="register()">
-            สมัครสมาชิก
-        </button>
-
-    </div>
-
-</div>
-
-
-<!-- BOOKING -->
-
-<div class="modal" id="bookingModal">
-
-    <div class="modal-box">
-
-        <button class="close"
-                onclick="closeModal('booking')">
-            ×
-        </button>
-
-        <h2>📅 จองห้องเรียน</h2>
-
-        <p id="selectedRoom"
-           style="color:#2563eb;font-weight:600;margin-bottom:18px">
-        </p>
-
-
-        <div class="form-group">
-
-            <label>วันที่</label>
-
-            <input
-                type="date"
-                id="bookingDate"
-            >
-
-        </div>
-
-
-        <div class="form-group">
-
-            <label>เวลาเริ่ม</label>
-
-            <input
-                type="time"
-                id="startTime"
-            >
-
-        </div>
-
-
-        <div class="form-group">
-
-            <label>เวลาสิ้นสุด</label>
-
-            <input
-                type="time"
-                id="endTime"
-            >
-
-        </div>
-
-
-        <button class="btn primary full"
-                onclick="confirmBooking()">
-            ยืนยันการจอง
-        </button>
-
-    </div>
-
-</div>
-
-
-<script>
-
-const rooms = [
-
-    {
-        id: 1,
-        name: "ห้อง 101",
-        building: "อาคาร 1",
-        type: "ห้องเรียน",
-        capacity: 40,
-        icon: "🏫"
-    },
-
-    {
-        id: 2,
-        name: "ห้อง 102",
-        building: "อาคาร 1",
-        type: "ห้องเรียน",
-        capacity: 40,
-        icon: "🏫"
-    },
-
-    {
-        id: 3,
-        name: "ห้องคอม 201",
-        building: "อาคาร 2",
-        type: "ห้องคอมพิวเตอร์",
-        capacity: 35,
-        icon: "💻"
-    },
-
-    {
-        id: 4,
-        name: "ห้องคอม 202",
-        building: "อาคาร 2",
-        type: "ห้องคอมพิวเตอร์",
-        capacity: 35,
-        icon: "💻"
-    },
-
-    {
-        id: 5,
-        name: "ห้องประชุม 301",
-        building: "อาคาร 3",
-        type: "ห้องประชุม",
-        capacity: 80,
-        icon: "👥"
-    },
-
-    {
-        id: 6,
-        name: "ห้องประชุม 302",
-        building: "อาคาร 3",
-        type: "ห้องประชุม",
-        capacity: 60,
-        icon: "👥"
-    }
-
-];
-
-
-let currentRole = "student";
-let currentUser = null;
-let selectedRoom = null;
-
-
-let bookings =
-    JSON.parse(
-        localStorage.getItem("easyroom_bookings") || "[]"
-    );
-
-
-function openModal(type) {
-
-    document.getElementById(
-        type + "Modal"
-    ).style.display = "flex";
-
-}
-
-
-function closeModal(type) {
-
-    document.getElementById(
-        type + "Modal"
-    ).style.display = "none";
-
-}
-
-
-function chooseRole(button, role) {
-
-    currentRole = role;
-
-    document.querySelectorAll(".role")
-        .forEach(item =>
-            item.classList.remove("active")
-        );
-
-    button.classList.add("active");
-
-}
-
-
-function register() {
-
-    const name =
-        document.getElementById("registerName").value.trim();
-
-    const username =
-        document.getElementById("registerUsername").value.trim();
-
-    const password =
-        document.getElementById("registerPassword").value;
-
-    if(!name || !username || !password) {
-
-        alert("กรุณากรอกข้อมูลให้ครบ");
-
-        return;
-
-    }
-
-    alert(
-        "สมัครสมาชิกสำเร็จ\nสามารถเข้าสู่ระบบได้แล้ว"
-    );
-
-    document.getElementById("loginName").value =
-        username;
-
-    closeModal("register");
-
-    openModal("login");
-
-}
-
-
-function login() {
-
-    const name =
-        document.getElementById("loginName").value.trim();
-
-    if(!name) {
-
-        alert("กรุณากรอกชื่อผู้ใช้งาน");
-
-        return;
-
-    }
-
-    const roleName = {
-
-        student: "นักศึกษา",
-        teacher: "อาจารย์",
-        admin: "Admin"
-
-    };
-
-    currentUser = {
-
-        name: name,
-        role: currentRole,
-        roleName: roleName[currentRole]
-
-    };
-
-    localStorage.setItem(
-        "easyroom_user",
-        JSON.stringify(currentUser)
-    );
-
-    closeModal("login");
-
-    showDashboard();
-
-}
-
-
-function showDashboard() {
-
-    document.getElementById("home")
-        .style.display = "none";
-
-    document.getElementById("dashboard")
-        .style.display = "block";
-
-
-    document.getElementById("dashboardTitle")
-        .textContent =
-        currentUser.roleName + " Dashboard";
-
-
-    document.getElementById("welcome")
-        .textContent =
-        "ยินดีต้อนรับคุณ " + currentUser.name;
-
-
-    document.getElementById("roleDisplay")
-        .textContent =
-        currentUser.roleName;
-
-
-    document.getElementById("adminPanel")
-        .style.display =
-        currentUser.role === "admin"
-        ? "block"
-        : "none";
-
-
-    updateDashboard();
-
-}
-
-
-function logout() {
-
-    currentUser = null;
-
-    localStorage.removeItem(
-        "easyroom_user"
-    );
-
-    document.getElementById("dashboard")
-        .style.display = "none";
-
-    document.getElementById("home")
-        .style.display = "block";
-
-}
-
-
-function renderRooms(list = rooms) {
-
-    const container =
-        document.getElementById("roomList");
-
-
-    if(list.length === 0) {
-
-        container.innerHTML =
-            '<div class="empty">ไม่พบห้องที่ค้นหา</div>';
-
-        return;
-
-    }
-
-
-    container.innerHTML =
-        list.map(room => {
-
-            const roomBookings =
-                bookings.filter(
-                    b => b.roomId === room.id
-                );
-
-
-            const isBooked =
-                roomBookings.length > 0;
-
-
-            return `
 
                 <div class="room-card">
 
                     <div class="room-image">
-                        ${room.icon}
+
+                        <div class="room-grid">
+
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                            <span></span>
+
+                        </div>
+
                     </div>
 
-                    <div class="room-content">
 
-                        <h3>${room.name}</h3>
+                    <div class="room-info">
 
-                        <div class="room-detail">
-                            🏢 ${room.building}
+                        <div class="room-status">
+
+                            <span class="available">
+
+                                <i></i>
+
+                                AVAILABLE
+
+                            </span>
+
+
+                            <span class="room-type">
+                                Classroom
+                            </span>
+
                         </div>
 
-                        <div class="room-detail">
-                            📚 ${room.type}
-                        </div>
 
-                        <div class="room-detail">
-                            👥 รองรับ ${room.capacity} คน
+                        <div class="room-title">
+                            Room 204
                         </div>
 
 
-                        <span class="status ${
-                            isBooked
-                            ? "unavailable"
-                            : "available"
-                        }">
+                        <div class="room-details">
 
-                            ${
-                                isBooked
-                                ? "ไม่ว่าง"
-                                : "ว่าง"
-                            }
+                            <div>
 
-                        </span>
+                                <strong>
+                                    40
+                                </strong>
+
+                                Capacity
+
+                            </div>
 
 
-                        <button
-                            class="btn ${
-                                isBooked
-                                ? "secondary"
-                                : "primary"
-                            } full"
-                            onclick="bookRoom(${room.id})"
-                            ${
-                                isBooked
-                                ? "disabled"
-                                : ""
-                            }>
+                            <div>
 
-                            ${
-                                isBooked
-                                ? "ห้องถูกจองแล้ว"
-                                : "จองห้องนี้"
-                            }
+                                <strong>
+                                    Building A
+                                </strong>
 
-                        </button>
+                                Location
+
+                            </div>
+
+
+                            <div>
+
+                                <strong>
+                                    2F
+                                </strong>
+
+                                Floor
+
+                            </div>
+
+                        </div>
 
                     </div>
 
                 </div>
 
-            `;
 
-        }).join("");
+                <div class="floating-card floating-booking">
 
+                    <small>
+                        Upcoming booking
+                    </small>
 
-    updateRoomStats();
+                    <strong>
+                        Room 204
+                    </strong>
 
-}
+                    <div class="booking-time">
+                        Today · 09:00 — 11:00
+                    </div>
 
+                </div>
 
-function filterRooms() {
+            </div>
 
-    const search =
-        document.getElementById("search")
-        .value
-        .toLowerCase();
+        </section>
 
 
-    const building =
-        document.getElementById("building")
-        .value;
+        <!-- =========================
+             FEATURES
+        ========================== -->
 
+        <section
+            class="section reveal"
+            id="features">
 
-    const type =
-        document.getElementById("roomType")
-        .value;
+            <div class="section-heading">
 
+                <div class="section-label">
+                    Everything in one place
+                </div>
 
-    const result =
-        rooms.filter(room => {
+                <h2>
+                    Room booking,
+                    without the hassle.
+                </h2>
 
-            return (
+                <p>
+                    Everything you need to discover,
+                    reserve and manage rooms — designed
+                    to stay simple.
+                </p>
 
-                room.name
-                    .toLowerCase()
-                    .includes(search)
+            </div>
 
-                &&
 
-                (!building ||
-                    room.building === building)
+            <div class="features">
 
-                &&
 
-                (!type ||
-                    room.type === type)
+                <article class="feature">
 
-            );
+                    <div class="feature-icon">
+                        ⌕
+                    </div>
 
-        });
+                    <h3>
+                        Find a room
+                    </h3>
 
+                    <p>
+                        Search rooms by building,
+                        type, capacity and availability
+                        without wasting time.
+                    </p>
 
-    renderRooms(result);
+                </article>
 
-}
 
+                <article class="feature">
 
-function bookRoom(roomId) {
+                    <div class="feature-icon">
+                        ◷
+                    </div>
 
-    if(!currentUser) {
+                    <h3>
+                        Book in seconds
+                    </h3>
 
-        alert(
-            "กรุณาเข้าสู่ระบบก่อนจองห้อง"
-        );
+                    <p>
+                        Choose a room and time slot,
+                        then send your booking request
+                        in just a few steps.
+                    </p>
 
-        openModal("login");
+                </article>
 
-        return;
 
-    }
+                <article class="feature">
 
+                    <div class="feature-icon">
+                        ✓
+                    </div>
 
-    selectedRoom =
-        rooms.find(
-            room => room.id === roomId
-        );
+                    <h3>
+                        Stay organized
+                    </h3>
 
+                    <p>
+                        Keep track of your bookings,
+                        approval status and room usage
+                        from one dashboard.
+                    </p>
 
-    document.getElementById("selectedRoom")
-        .textContent =
-        "ห้องที่เลือก: " +
-        selectedRoom.name +
-        " — " +
-        selectedRoom.building;
+                </article>
 
 
-    openModal("booking");
+            </div>
 
-}
+        </section>
 
 
-function confirmBooking() {
+        <!-- =========================
+             HOW IT WORKS
+        ========================== -->
 
-    const date =
-        document.getElementById("bookingDate")
-        .value;
+        <section
+            class="section reveal"
+            id="how">
 
+            <div class="section-heading">
 
-    const start =
-        document.getElementById("startTime")
-        .value;
+                <div class="section-label">
+                    Simple by design
+                </div>
 
+                <h2>
+                    Three steps.
+                    That's it.
+                </h2>
 
-    const end =
-        document.getElementById("endTime")
-        .value;
+            </div>
 
 
-    if(!date || !start || !end) {
+            <div class="steps">
 
-        alert(
-            "กรุณากรอกข้อมูลให้ครบ"
-        );
 
-        return;
+                <article class="step">
 
-    }
+                    <div class="step-number">
+                        01
+                    </div>
 
+                    <h3>
+                        Search
+                    </h3>
 
-    if(start >= end) {
+                    <p>
+                        Find the room that matches
+                        your needs and schedule.
+                    </p>
 
-        alert(
-            "เวลาสิ้นสุดต้องมากกว่าเวลาเริ่ม"
-        );
+                </article>
 
-        return;
 
-    }
+                <article class="step">
 
+                    <div class="step-number">
+                        02
+                    </div>
 
-    const duplicate =
-        bookings.some(
-            booking =>
+                    <h3>
+                        Choose
+                    </h3>
 
-                booking.roomId === selectedRoom.id
-                &&
-                booking.date === date
-                &&
-                start < booking.end
-                &&
-                end > booking.start
-        );
+                    <p>
+                        Select the date and available
+                        time slot you want.
+                    </p>
 
+                </article>
 
-    if(duplicate) {
 
-        alert(
-            "ช่วงเวลานี้มีการจองห้องแล้ว"
-        );
+                <article class="step">
 
-        return;
+                    <div class="step-number">
+                        03
+                    </div>
 
-    }
+                    <h3>
+                        Book
+                    </h3>
 
+                    <p>
+                        Submit your request and keep
+                        track of its approval status.
+                    </p>
 
-    const newBooking = {
+                </article>
 
-        id: Date.now(),
 
-        roomId:
-            selectedRoom.id,
+            </div>
 
-        roomName:
-            selectedRoom.name,
+        </section>
 
-        username:
-            currentUser.name,
 
-        date: date,
+        <!-- =========================
+             CTA
+        ========================== -->
 
-        start: start,
+        <section
+            class="cta reveal"
+            id="about">
 
-        end: end,
+            <h2>
+                Ready to make
+                <span class="accent">
+                    room?
+                </span>
+            </h2>
 
-        status:
-            currentRole === "admin"
-            ? "อนุมัติแล้ว"
-            : "รออนุมัติ"
+            <p>
+                Start managing your classroom
+                bookings with EasyRoom today.
+            </p>
 
-    };
 
+            <a
+                href="register.html"
+                class="btn-primary">
 
-    bookings.push(newBooking);
+                Create your account
 
+                <span>→</span>
 
-    localStorage.setItem(
-        "easyroom_bookings",
-        JSON.stringify(bookings)
-    );
+            </a>
 
+        </section>
 
-    closeModal("booking");
+    </main>
 
 
-    alert(
-        "ส่งคำขอจองห้องเรียบร้อยแล้ว"
-    );
+    <!-- =========================
+         FOOTER
+    ========================== -->
 
+    <footer>
 
-    renderRooms();
-
-    updateDashboard();
-
-}
-
-
-function updateRoomStats() {
-
-    document.getElementById("totalRooms")
-        .textContent =
-        rooms.length;
-
-
-    const bookedRooms =
-        new Set(
-            bookings.map(
-                booking => booking.roomId
-            )
-        ).size;
-
-
-    document.getElementById("availableRooms")
-        .textContent =
-        rooms.length - bookedRooms;
-
-}
-
-
-function updateDashboard() {
-
-    updateRoomStats();
-
-
-    const myBookings =
-        currentRole === "admin"
-        ? bookings
-        : bookings.filter(
-            booking =>
-                booking.username ===
-                currentUser.name
-        );
-
-
-    document.getElementById("bookingCount")
-        .textContent =
-        myBookings.length;
-
-
-    renderBookings(myBookings);
-
-}
-
-
-function renderBookings(list) {
-
-    const container =
-        document.getElementById("bookingList");
-
-
-    if(list.length === 0) {
-
-        container.innerHTML =
-            '<div class="empty">ยังไม่มีรายการจอง</div>';
-
-        return;
-
-    }
-
-
-    container.innerHTML = `
-
-        <div style="overflow-x:auto">
-
-            <table>
-
-                <thead>
-
-                    <tr>
-
-                        <th>ห้อง</th>
-                        <th>ผู้จอง</th>
-                        <th>วันที่</th>
-                        <th>เวลา</th>
-                        <th>สถานะ</th>
-                        <th>จัดการ</th>
-
-                    </tr>
-
-                </thead>
-
-
-                <tbody>
-
-                    ${list.map(booking => `
-
-                        <tr>
-
-                            <td>
-                                ${booking.roomName}
-                            </td>
-
-                            <td>
-                                ${booking.username}
-                            </td>
-
-                            <td>
-                                ${booking.date}
-                            </td>
-
-                            <td>
-                                ${booking.start}
-                                -
-                                ${booking.end}
-                            </td>
-
-                            <td>
-
-                                <span class="status ${
-                                    booking.status ===
-                                    "อนุมัติแล้ว"
-                                    ? "available"
-                                    : "pending"
-                                }">
-
-                                    ${booking.status}
-
-                                </span>
-
-                            </td>
-
-                            <td>
-
-                                <button
-                                    class="btn danger"
-                                    onclick="cancelBooking(${booking.id})">
-                                    ยกเลิก
-                                </button>
-
-                            </td>
-
-                        </tr>
-
-                    `).join("")}
-
-                </tbody>
-
-            </table>
-
+        <div class="footer-brand">
+            © 2026 EasyRoom
         </div>
 
-    `;
+        <div>
+            Smart Room Booking System
+        </div>
 
-}
-
-
-function cancelBooking(id) {
-
-    if(
-        !confirm(
-            "ต้องการยกเลิกการจองนี้หรือไม่?"
-        )
-    ) {
-
-        return;
-
-    }
+    </footer>
 
 
-    bookings =
-        bookings.filter(
-            booking =>
-                booking.id !== id
+    <script>
+
+        /* =========================
+           MOUSE AMBIENT LIGHT
+        ========================== */
+
+        document.addEventListener(
+            "pointermove",
+            (event) => {
+
+                const x =
+                    (event.clientX /
+                    window.innerWidth) *
+                    100;
+
+                const y =
+                    (event.clientY /
+                    window.innerHeight) *
+                    100;
+
+
+                document.documentElement
+                    .style
+                    .setProperty(
+                        "--mx",
+                        `${x}%`
+                    );
+
+
+                document.documentElement
+                    .style
+                    .setProperty(
+                        "--my",
+                        `${y}%`
+                    );
+
+            }
         );
 
 
-    localStorage.setItem(
-        "easyroom_bookings",
-        JSON.stringify(bookings)
-    );
+        /* =========================
+           SCROLL REVEAL
+        ========================== */
+
+        const observer =
+            new IntersectionObserver(
+                (entries) => {
+
+                    entries.forEach(
+                        (entry) => {
+
+                            if (
+                                entry.isIntersecting
+                            ) {
+
+                                entry.target
+                                    .classList
+                                    .add("visible");
+
+                            }
+
+                        }
+                    );
+
+                },
+                {
+                    threshold: 0.12
+                }
+            );
 
 
-    renderRooms();
-
-    updateDashboard();
-
-}
-
-
-function demo(name) {
-
-    alert(
-        "เมนู: " +
-        name +
-        "\n\nส่วนนี้จะเชื่อมต่อฐานข้อมูลจริงในขั้นต่อไป"
-    );
-
-}
+        document
+            .querySelectorAll(".reveal")
+            .forEach(
+                element => observer.observe(element)
+            );
 
 
-function goRooms() {
+        /* =========================
+           ROOM CARD TILT
+        ========================== */
 
-    document.getElementById("roomSection")
-        .scrollIntoView({
-            behavior: "smooth"
-        });
+        const visual =
+            document.querySelector(
+                ".hero-visual"
+            );
 
-}
-
-
-renderRooms();
-
-
-const savedUser =
-    JSON.parse(
-        localStorage.getItem("easyroom_user")
-        || "null"
-    );
+        const roomCard =
+            document.querySelector(
+                ".room-card"
+            );
 
 
-if(savedUser) {
+        if (
+            visual &&
+            roomCard &&
+            window.innerWidth > 900
+        ) {
 
-    currentUser = savedUser;
+            visual.addEventListener(
+                "pointermove",
+                (event) => {
 
-    currentRole =
-        savedUser.role;
+                    const rect =
+                        visual.getBoundingClientRect();
 
-    showDashboard();
 
-}
+                    const x =
+                        event.clientX -
+                        rect.left;
 
-</script>
+
+                    const y =
+                        event.clientY -
+                        rect.top;
+
+
+                    const rotateY =
+                        ((x -
+                            rect.width / 2) /
+                            rect.width) *
+                        8;
+
+
+                    const rotateX =
+                        ((rect.height / 2 -
+                            y) /
+                            rect.height) *
+                        7;
+
+
+                    roomCard.style.transform =
+                        `
+                        rotateY(${-9 + rotateY}deg)
+                        rotateX(${5 + rotateX}deg)
+                        rotateZ(1deg)
+                        translateY(-5px)
+                        `;
+
+                }
+            );
+
+
+            visual.addEventListener(
+                "pointerleave",
+                () => {
+
+                    roomCard.style.transform =
+                        `
+                        rotateY(-9deg)
+                        rotateX(5deg)
+                        rotateZ(1deg)
+                        `;
+
+                }
+            );
+
+        }
+
+    </script>
 
 </body>
 </html>
