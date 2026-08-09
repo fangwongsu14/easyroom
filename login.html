@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>เข้าสู่ระบบ | EasyRoom</title>
+
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Prompt:wght@300;400;500;600;700&display=swap');
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Prompt', sans-serif;
+            min-height: 100vh;
+            background: linear-gradient(135deg, #2563eb, #4f46e5);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .login-container {
+            width: 100%;
+            max-width: 430px;
+        }
+
+        .logo {
+            text-align: center;
+            color: white;
+            margin-bottom: 25px;
+        }
+
+        .logo-icon {
+            width: 65px;
+            height: 65px;
+            background: white;
+            color: #2563eb;
+            border-radius: 18px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 32px;
+            margin: 0 auto 12px;
+        }
+
+        .logo h1 {
+            font-size: 30px;
+        }
+
+        .logo p {
+            font-size: 14px;
+            opacity: .9;
+        }
+
+        .card {
+            background: white;
+            border-radius: 20px;
+            padding: 32px;
+            box-shadow: 0 15px 40px rgba(0,0,0,.18);
+        }
+
+        .card h2 {
+            text-align: center;
+            margin-bottom: 25px;
+            color: #172033;
+        }
+
+        .form-group {
+            margin-bottom: 17px;
+        }
+
+        label {
+            display: block;
+            font-size: 14px;
+            margin-bottom: 7px;
+            color: #334155;
+        }
+
+        input,
+        select {
+            width: 100%;
+            padding: 13px 14px;
+            border: 1px solid #d8dee8;
+            border-radius: 10px;
+            font-family: inherit;
+            font-size: 14px;
+            outline: none;
+        }
+
+        input:focus,
+        select:focus {
+            border-color: #2563eb;
+        }
+
+        .roles {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 8px;
+        }
+
+        .role {
+            border: 1px solid #d8dee8;
+            background: white;
+            border-radius: 10px;
+            padding: 11px 5px;
+            cursor: pointer;
+            font-family: inherit;
+        }
+
+        .role.active {
+            border-color: #2563eb;
+            background: #eff6ff;
+            color: #2563eb;
+        }
+
+        .login-btn {
+            width: 100%;
+            border: none;
+            border-radius: 10px;
+            padding: 13px;
+            background: #2563eb;
+            color: white;
+            font-family: inherit;
+            font-size: 15px;
+            font-weight: 500;
+            cursor: pointer;
+            margin-top: 5px;
+        }
+
+        .login-btn:hover {
+            background: #1d4ed8;
+        }
+
+        .links {
+            text-align: center;
+            margin-top: 20px;
+            font-size: 14px;
+        }
+
+        .links a {
+            color: #2563eb;
+            text-decoration: none;
+        }
+
+        .back {
+            display: block;
+            text-align: center;
+            margin-top: 18px;
+            color: white;
+            text-decoration: none;
+            font-size: 14px;
+        }
+
+        @media(max-width:450px) {
+            .card {
+                padding: 25px 20px;
+            }
+
+            .roles {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="login-container">
+
+    <div class="logo">
+
+        <div class="logo-icon">
+            🏫
+        </div>
+
+        <h1>EasyRoom</h1>
+
+        <p>ระบบจองห้องเรียนออนไลน์</p>
+
+    </div>
+
+
+    <div class="card">
+
+        <h2>เข้าสู่ระบบ</h2>
+
+
+        <div class="form-group">
+
+            <label for="username">
+                ชื่อผู้ใช้งาน
+            </label>
+
+            <input
+                type="text"
+                id="username"
+                placeholder="กรอกชื่อผู้ใช้งาน"
+            >
+
+        </div>
+
+
+        <div class="form-group">
+
+            <label for="password">
+                รหัสผ่าน
+            </label>
+
+            <input
+                type="password"
+                id="password"
+                placeholder="กรอกรหัสผ่าน"
+            >
+
+        </div>
+
+
+        <div class="form-group">
+
+            <label>
+                ประเภทผู้ใช้งาน
+            </label>
+
+            <div class="roles">
+
+                <button
+                    class="role active"
+                    onclick="selectRole(this, 'student')">
+                    👨‍🎓 นักศึกษา
+                </button>
+
+                <button
+                    class="role"
+                    onclick="selectRole(this, 'teacher')">
+                    👨‍🏫 อาจารย์
+                </button>
+
+                <button
+                    class="role"
+                    onclick="selectRole(this, 'admin')">
+                    👨‍💼 Admin
+                </button>
+
+            </div>
+
+        </div>
+
+
+        <button
+            class="login-btn"
+            onclick="login()">
+
+            เข้าสู่ระบบ
+
+        </button>
+
+
+        <div class="links">
+
+            ยังไม่มีบัญชี?
+
+            <a href="index.html">
+                สมัครสมาชิก
+            </a>
+
+        </div>
+
+    </div>
+
+
+    <a
+        href="index.html"
+        class="back">
+
+        ← กลับหน้าหลัก
+
+    </a>
+
+</div>
+
+
+<script>
+
+let selectedRole = "student";
+
+
+function selectRole(button, role) {
+
+    selectedRole = role;
+
+    document
+        .querySelectorAll(".role")
+        .forEach(item => {
+            item.classList.remove("active");
+        });
+
+    button.classList.add("active");
+
+}
+
+
+function login() {
+
+    const username =
+        document
+        .getElementById("username")
+        .value
+        .trim();
+
+    const password =
+        document
+        .getElementById("password")
+        .value;
+
+
+    if (!username || !password) {
+
+        alert(
+            "กรุณากรอกชื่อผู้ใช้งานและรหัสผ่าน"
+        );
+
+        return;
+
+    }
+
+
+    const roleName = {
+
+        student: "นักศึกษา",
+
+        teacher: "อาจารย์",
+
+        admin: "Admin"
+
+    };
+
+
+    const user = {
+
+        name: username,
+
+        role: selectedRole,
+
+        roleName: roleName[selectedRole]
+
+    };
+
+
+    localStorage.setItem(
+        "easyroom_user",
+        JSON.stringify(user)
+    );
+
+
+    /*
+        ตอนนี้เป็นระบบต้นแบบ
+        ขั้นต่อไปจะเชื่อมกับ Database จริง
+    */
+
+    window.location.href =
+        "index.html";
+
+}
+
+</script>
+
+</body>
+</html>
