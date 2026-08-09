@@ -7,368 +7,1099 @@
     <title>เข้าสู่ระบบ | EasyRoom</title>
 
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Prompt:wght@300;400;500;600;700&display=swap');
-
         * {
             box-sizing: border-box;
             margin: 0;
             padding: 0;
         }
 
-        body {
-            font-family: 'Prompt', sans-serif;
-            min-height: 100vh;
-            background: linear-gradient(135deg, #2563eb, #4f46e5);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            padding: 20px;
+        :root {
+            --green: #7dffb2;
+            --green-dark: #42d77d;
+            --text: #ffffff;
+            --muted: rgba(255, 255, 255, 0.58);
+            --glass: rgba(255, 255, 255, 0.075);
+            --border: rgba(255, 255, 255, 0.18);
+
+            --rx: 0deg;
+            --ry: 0deg;
         }
 
-        .login-container {
+        body {
+            min-height: 100vh;
+            font-family:
+                Inter,
+                -apple-system,
+                BlinkMacSystemFont,
+                "Segoe UI",
+                sans-serif;
+
+            color: var(--text);
+
+            background:
+                radial-gradient(
+                    circle at 15% 20%,
+                    rgba(90, 255, 170, 0.18),
+                    transparent 28%
+                ),
+                radial-gradient(
+                    circle at 85% 80%,
+                    rgba(100, 80, 255, 0.18),
+                    transparent 30%
+                ),
+                linear-gradient(
+                    135deg,
+                    #050807,
+                    #0b1110 45%,
+                    #050706
+                );
+
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            overflow-x: hidden;
+            padding: 30px;
+        }
+
+        /* Background */
+
+        .background-glow {
+            position: fixed;
+            width: 420px;
+            height: 420px;
+
+            border-radius: 50%;
+
+            background: rgba(91, 255, 163, 0.08);
+
+            filter: blur(80px);
+
+            pointer-events: none;
+        }
+
+        .glow-one {
+            top: -160px;
+            left: -120px;
+        }
+
+        .glow-two {
+            right: -150px;
+            bottom: -170px;
+
+            background: rgba(91, 109, 255, 0.10);
+        }
+
+        /* Main */
+
+        .page {
             width: 100%;
             max-width: 430px;
+
+            perspective: 1200px;
         }
 
-        .logo {
-            text-align: center;
-            color: white;
-            margin-bottom: 25px;
+        /* Glass Card */
+
+        .login-card {
+            position: relative;
+
+            width: 100%;
+
+            padding: 38px;
+
+            background: rgba(255, 255, 255, 0.075);
+
+            backdrop-filter:
+                blur(24px)
+                saturate(1.35);
+
+            -webkit-backdrop-filter:
+                blur(24px)
+                saturate(1.35);
+
+            border:
+                1px solid
+                rgba(255, 255, 255, 0.18);
+
+            border-radius: 26px;
+
+            box-shadow:
+                0 30px 80px rgba(0, 0, 0, 0.45),
+                inset 0 1px 0 rgba(255,255,255,.08);
+
+            transform:
+                rotateX(var(--rx))
+                rotateY(var(--ry));
+
+            transform-style: preserve-3d;
+
+            transition:
+                transform 0.12s ease-out,
+                box-shadow 0.3s ease;
+
+            overflow: hidden;
         }
 
-        .logo-icon {
-            width: 65px;
-            height: 65px;
-            background: white;
-            color: #2563eb;
-            border-radius: 18px;
+        .login-card::before {
+            content: "";
+
+            position: absolute;
+
+            top: -100px;
+            left: -100px;
+
+            width: 260px;
+            height: 260px;
+
+            border-radius: 50%;
+
+            background:
+                radial-gradient(
+                    circle,
+                    rgba(125,255,178,.13),
+                    transparent 70%
+                );
+
+            pointer-events: none;
+        }
+
+        /* Logo */
+
+        .brand {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+
+            margin-bottom: 32px;
+        }
+
+        .brand-icon {
+            width: 44px;
+            height: 44px;
+
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 32px;
-            margin: 0 auto 12px;
+
+            border-radius: 13px;
+
+            background:
+                rgba(125,255,178,.12);
+
+            border:
+                1px solid
+                rgba(125,255,178,.25);
+
+            color: var(--green);
+
+            font-size: 21px;
+
+            box-shadow:
+                0 0 25px rgba(125,255,178,.08);
         }
 
-        .logo h1 {
-            font-size: 30px;
+        .brand-name {
+            font-size: 18px;
+            font-weight: 600;
+            letter-spacing: -.3px;
         }
 
-        .logo p {
+        /* Heading */
+
+        .heading {
+            margin-bottom: 27px;
+        }
+
+        .heading h1 {
+            font-size: 34px;
+            line-height: 1.15;
+
+            letter-spacing: -1.2px;
+
+            margin-bottom: 9px;
+        }
+
+        .heading p {
+            color: var(--muted);
+
             font-size: 14px;
-            opacity: .9;
+
+            line-height: 1.6;
         }
 
-        .card {
-            background: white;
-            border-radius: 20px;
-            padding: 32px;
-            box-shadow: 0 15px 40px rgba(0,0,0,.18);
-        }
-
-        .card h2 {
-            text-align: center;
-            margin-bottom: 25px;
-            color: #172033;
-        }
+        /* Form */
 
         .form-group {
             margin-bottom: 17px;
         }
 
-        label {
+        .form-group label {
             display: block;
-            font-size: 14px;
-            margin-bottom: 7px;
-            color: #334155;
+
+            font-size: 12px;
+
+            color:
+                rgba(255,255,255,.65);
+
+            margin-bottom: 8px;
         }
 
-        input,
-        select {
+        .input-wrapper {
+            position: relative;
+        }
+
+        .input {
             width: 100%;
-            padding: 13px 14px;
-            border: 1px solid #d8dee8;
-            border-radius: 10px;
-            font-family: inherit;
-            font-size: 14px;
+
+            height: 52px;
+
+            border-radius: 14px;
+
+            border:
+                1px solid
+                rgba(255,255,255,.12);
+
+            background:
+                rgba(255,255,255,.055);
+
+            color: white;
+
             outline: none;
+
+            padding:
+                0 15px;
+
+            font-size: 14px;
+
+            transition:
+                border-color .25s,
+                background .25s,
+                box-shadow .25s;
         }
 
-        input:focus,
-        select:focus {
-            border-color: #2563eb;
+        .input::placeholder {
+            color:
+                rgba(255,255,255,.30);
         }
 
-        .roles {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 8px;
+        .input:focus {
+            border-color:
+                rgba(125,255,178,.55);
+
+            background:
+                rgba(255,255,255,.08);
+
+            box-shadow:
+                0 0 0 4px
+                rgba(125,255,178,.07);
         }
 
-        .role {
-            border: 1px solid #d8dee8;
-            background: white;
-            border-radius: 10px;
-            padding: 11px 5px;
-            cursor: pointer;
-            font-family: inherit;
+        /* Password eye */
+
+        .password-input {
+            padding-right: 50px;
         }
 
-        .role.active {
-            border-color: #2563eb;
-            background: #eff6ff;
-            color: #2563eb;
-        }
+        .eye-button {
+            position: absolute;
 
-        .login-btn {
-            width: 100%;
+            right: 8px;
+            top: 50%;
+
+            transform:
+                translateY(-50%);
+
+            width: 38px;
+            height: 38px;
+
             border: none;
-            border-radius: 10px;
-            padding: 13px;
-            background: #2563eb;
-            color: white;
-            font-family: inherit;
-            font-size: 15px;
-            font-weight: 500;
+
+            background: transparent;
+
+            color:
+                rgba(255,255,255,.45);
+
             cursor: pointer;
-            margin-top: 5px;
+
+            border-radius: 10px;
+
+            font-size: 17px;
         }
 
-        .login-btn:hover {
-            background: #1d4ed8;
-        }
-
-        .links {
-            text-align: center;
-            margin-top: 20px;
-            font-size: 14px;
-        }
-
-        .links a {
-            color: #2563eb;
-            text-decoration: none;
-        }
-
-        .back {
-            display: block;
-            text-align: center;
-            margin-top: 18px;
+        .eye-button:hover {
             color: white;
-            text-decoration: none;
-            font-size: 14px;
+
+            background:
+                rgba(255,255,255,.06);
         }
 
-        @media(max-width:450px) {
-            .card {
-                padding: 25px 20px;
+        /* Options */
+
+        .options {
+            display: flex;
+
+            justify-content: space-between;
+
+            align-items: center;
+
+            margin:
+                6px 0 21px;
+
+            font-size: 12px;
+        }
+
+        .remember {
+            display: flex;
+
+            align-items: center;
+
+            gap: 8px;
+
+            color:
+                rgba(255,255,255,.60);
+
+            cursor: pointer;
+        }
+
+        .remember input {
+            accent-color:
+                var(--green);
+
+            width: 14px;
+            height: 14px;
+        }
+
+        .forgot {
+            color:
+                var(--green);
+
+            text-decoration: none;
+        }
+
+        .forgot:hover {
+            text-decoration: underline;
+        }
+
+        /* Sign In */
+
+        .sign-in {
+            width: 100%;
+
+            height: 53px;
+
+            border: none;
+
+            border-radius: 15px;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #9affc5,
+                    #63ec9c
+                );
+
+            color: #07120c;
+
+            font-size: 14px;
+
+            font-weight: 700;
+
+            cursor: pointer;
+
+            position: relative;
+
+            overflow: hidden;
+
+            transition:
+                transform .15s,
+                box-shadow .25s;
+        }
+
+        .sign-in:hover {
+            box-shadow:
+                0 10px 30px
+                rgba(98,239,157,.22);
+
+            transform:
+                translateY(-1px);
+        }
+
+        .sign-in:active {
+            transform:
+                scale(.98);
+        }
+
+        .sign-in.loading {
+            pointer-events: none;
+
+            color: transparent;
+        }
+
+        .spinner {
+            position: absolute;
+
+            width: 20px;
+            height: 20px;
+
+            border:
+                2px solid
+                rgba(0,0,0,.18);
+
+            border-top-color:
+                #07120c;
+
+            border-radius: 50%;
+
+            animation:
+                spin .7s linear infinite;
+
+            left: 50%;
+            top: 50%;
+
+            transform:
+                translate(-50%, -50%);
+
+            display: none;
+        }
+
+        .sign-in.loading .spinner {
+            display: block;
+        }
+
+        .check {
+            display: none;
+
+            font-size: 20px;
+        }
+
+        .sign-in.success {
+            background:
+                #74f2a7;
+        }
+
+        .sign-in.success .check {
+            display: inline;
+        }
+
+        @keyframes spin {
+            to {
+                transform:
+                    translate(-50%, -50%)
+                    rotate(360deg);
+            }
+        }
+
+        /* Divider */
+
+        .divider {
+            display: flex;
+
+            align-items: center;
+
+            gap: 13px;
+
+            margin: 26px 0 18px;
+
+            color:
+                rgba(255,255,255,.30);
+
+            font-size: 11px;
+        }
+
+        .divider::before,
+        .divider::after {
+            content: "";
+
+            height: 1px;
+
+            flex: 1;
+
+            background:
+                rgba(255,255,255,.10);
+        }
+
+        /* Social */
+
+        .social {
+            display: grid;
+
+            grid-template-columns:
+                1fr 1fr;
+
+            gap: 10px;
+        }
+
+        .social-button {
+            height: 48px;
+
+            border-radius: 13px;
+
+            border:
+                1px solid
+                rgba(255,255,255,.11);
+
+            background:
+                rgba(255,255,255,.045);
+
+            color: white;
+
+            font-family: inherit;
+
+            font-size: 13px;
+
+            cursor: pointer;
+
+            transition:
+                background .2s,
+                transform .15s;
+        }
+
+        .social-button:hover {
+            background:
+                rgba(255,255,255,.09);
+
+            transform:
+                translateY(-1px);
+        }
+
+        .social-icon {
+            margin-right: 7px;
+        }
+
+        /* Bottom */
+
+        .bottom {
+            text-align: center;
+
+            margin-top: 25px;
+
+            color:
+                rgba(255,255,255,.42);
+
+            font-size: 12px;
+        }
+
+        .bottom a {
+            color: var(--green);
+
+            text-decoration: none;
+
+            font-weight: 500;
+        }
+
+        .bottom a:hover {
+            text-decoration: underline;
+        }
+
+        /* Mobile */
+
+        @media (max-width: 520px) {
+
+            body {
+                padding: 16px;
             }
 
-            .roles {
-                grid-template-columns: 1fr;
+            .login-card {
+                padding: 28px 22px;
+
+                border-radius: 23px;
             }
+
+            .heading h1 {
+                font-size: 30px;
+            }
+
+            /* ปิด Tilt บนมือถือ */
+            .login-card {
+                transform: none !important;
+            }
+
         }
     </style>
 </head>
 
 <body>
 
-<div class="login-container">
-
-    <div class="logo">
-
-        <div class="logo-icon">
-            🏫
-        </div>
-
-        <h1>EasyRoom</h1>
-
-        <p>ระบบจองห้องเรียนออนไลน์</p>
-
-    </div>
+    <div class="background-glow glow-one"></div>
+    <div class="background-glow glow-two"></div>
 
 
-    <div class="card">
+    <main class="page">
 
-        <h2>เข้าสู่ระบบ</h2>
-
-
-        <div class="form-group">
-
-            <label for="username">
-                ชื่อผู้ใช้งาน
-            </label>
-
-            <input
-                type="text"
-                id="username"
-                placeholder="กรอกชื่อผู้ใช้งาน"
-            >
-
-        </div>
+        <section
+            class="login-card"
+            id="loginCard">
 
 
-        <div class="form-group">
+            <!-- Brand -->
 
-            <label for="password">
-                รหัสผ่าน
-            </label>
+            <div class="brand">
 
-            <input
-                type="password"
-                id="password"
-                placeholder="กรอกรหัสผ่าน"
-            >
+                <div class="brand-icon">
+                    🏫
+                </div>
 
-        </div>
+                <div class="brand-name">
+                    EasyRoom
+                </div>
+
+            </div>
 
 
-        <div class="form-group">
+            <!-- Heading -->
 
-            <label>
-                ประเภทผู้ใช้งาน
-            </label>
+            <div class="heading">
 
-            <div class="roles">
+                <h1>
+                    Welcome back
+                </h1>
+
+                <p>
+                    Sign in to continue to EasyRoom
+                </p>
+
+            </div>
+
+
+            <!-- Form -->
+
+            <form id="loginForm">
+
+
+                <div class="form-group">
+
+                    <label>
+                        Username
+                    </label>
+
+                    <input
+                        class="input"
+                        id="username"
+                        type="text"
+                        placeholder="Enter your username"
+                        autocomplete="username"
+                        required
+                    >
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label>
+                        Password
+                    </label>
+
+
+                    <div class="input-wrapper">
+
+                        <input
+                            class="input password-input"
+                            id="password"
+                            type="password"
+                            placeholder="Enter your password"
+                            autocomplete="current-password"
+                            required
+                        >
+
+
+                        <button
+                            type="button"
+                            class="eye-button"
+                            id="eyeButton"
+                            aria-label="แสดงรหัสผ่าน">
+
+                            👁
+
+                        </button>
+
+                    </div>
+
+                </div>
+
+
+                <!-- Options -->
+
+                <div class="options">
+
+                    <label class="remember">
+
+                        <input
+                            type="checkbox"
+                            id="remember"
+                        >
+
+                        <span>
+                            Remember me
+                        </span>
+
+                    </label>
+
+
+                    <a
+                        href="#"
+                        class="forgot"
+                        onclick="forgotPassword(event)">
+
+                        Forgot password?
+
+                    </a>
+
+                </div>
+
+
+                <!-- Sign In -->
 
                 <button
-                    class="role active"
-                    onclick="selectRole(this, 'student')">
-                    👨‍🎓 นักศึกษา
+                    type="submit"
+                    class="sign-in"
+                    id="signInButton">
+
+                    <span class="button-text">
+                        Sign In
+                    </span>
+
+                    <span class="spinner"></span>
+
+                    <span class="check">
+                        ✓
+                    </span>
+
                 </button>
 
-                <button
-                    class="role"
-                    onclick="selectRole(this, 'teacher')">
-                    👨‍🏫 อาจารย์
-                </button>
+            </form>
+
+
+            <!-- Divider -->
+
+            <div class="divider">
+                or continue with
+            </div>
+
+
+            <!-- Social -->
+
+            <div class="social">
 
                 <button
-                    class="role"
-                    onclick="selectRole(this, 'admin')">
-                    👨‍💼 Admin
+                    class="social-button"
+                    onclick="socialLogin('Google')">
+
+                    <span class="social-icon">
+                        G
+                    </span>
+
+                    Google
+
+                </button>
+
+
+                <button
+                    class="social-button"
+                    onclick="socialLogin('Apple')">
+
+                    <span class="social-icon">
+                        
+                    </span>
+
+                    Apple
+
                 </button>
 
             </div>
 
-        </div>
+
+            <!-- Bottom -->
+
+            <div class="bottom">
+
+                New to EasyRoom?
+
+                <a href="register.html">
+                    Create account
+                </a>
+
+            </div>
+
+        </section>
+
+    </main>
 
 
-        <button
-            class="login-btn"
-            onclick="login()">
+    <script>
 
-            เข้าสู่ระบบ
+        /* =========================
+           PASSWORD SHOW / HIDE
+        ========================= */
 
-        </button>
+        const password =
+            document.getElementById("password");
 
-
-        <div class="links">
-
-            ยังไม่มีบัญชี?
-
-            <a href="index.html">
-                สมัครสมาชิก
-            </a>
-
-        </div>
-
-    </div>
+        const eyeButton =
+            document.getElementById("eyeButton");
 
 
-    <a
-        href="index.html"
-        class="back">
+        eyeButton.addEventListener(
+            "click",
+            () => {
 
-        ← กลับหน้าหลัก
-
-    </a>
-
-</div>
+                const isPassword =
+                    password.type === "password";
 
 
-<script>
-
-let selectedRole = "student";
-
-
-function selectRole(button, role) {
-
-    selectedRole = role;
-
-    document
-        .querySelectorAll(".role")
-        .forEach(item => {
-            item.classList.remove("active");
-        });
-
-    button.classList.add("active");
-
-}
+                password.type =
+                    isPassword
+                        ? "text"
+                        : "password";
 
 
-function login() {
+                eyeButton.textContent =
+                    isPassword
+                        ? "🙈"
+                        : "👁";
 
-    const username =
-        document
-        .getElementById("username")
-        .value
-        .trim();
-
-    const password =
-        document
-        .getElementById("password")
-        .value;
-
-
-    if (!username || !password) {
-
-        alert(
-            "กรุณากรอกชื่อผู้ใช้งานและรหัสผ่าน"
+            }
         );
 
-        return;
 
-    }
+        /* =========================
+           3D CARD TILT
+        ========================= */
 
-
-    const roleName = {
-
-        student: "นักศึกษา",
-
-        teacher: "อาจารย์",
-
-        admin: "Admin"
-
-    };
+        const card =
+            document.getElementById("loginCard");
 
 
-    const user = {
+        document.addEventListener(
+            "pointermove",
+            (event) => {
 
-        name: username,
+                /*
+                    ไม่ทำ Tilt บนอุปกรณ์ Touch
+                */
 
-        role: selectedRole,
+                if (
+                    window.innerWidth <= 520 ||
+                    event.pointerType === "touch"
+                ) {
 
-        roleName: roleName[selectedRole]
+                    return;
 
-    };
-
-
-    localStorage.setItem(
-        "easyroom_user",
-        JSON.stringify(user)
-    );
+                }
 
 
-    /*
-        ตอนนี้เป็นระบบต้นแบบ
-        ขั้นต่อไปจะเชื่อมกับ Database จริง
-    */
+                const rect =
+                    card.getBoundingClientRect();
 
-    window.location.href =
-        "index.html";
 
-}
+                const x =
+                    event.clientX - rect.left;
 
-</script>
+                const y =
+                    event.clientY - rect.top;
+
+
+                const centerX =
+                    rect.width / 2;
+
+                const centerY =
+                    rect.height / 2;
+
+
+                const rotateY =
+                    ((x - centerX) /
+                    centerX) * 5;
+
+
+                const rotateX =
+                    ((centerY - y) /
+                    centerY) * 5;
+
+
+                card.style.setProperty(
+                    "--ry",
+                    `${rotateY}deg`
+                );
+
+
+                card.style.setProperty(
+                    "--rx",
+                    `${rotateX}deg`
+                );
+
+            }
+        );
+
+
+        card.addEventListener(
+            "pointerleave",
+            () => {
+
+                card.style.setProperty(
+                    "--rx",
+                    "0deg"
+                );
+
+                card.style.setProperty(
+                    "--ry",
+                    "0deg"
+                );
+
+            }
+        );
+
+
+        /* =========================
+           LOGIN
+        ========================= */
+
+        const loginForm =
+            document.getElementById(
+                "loginForm"
+            );
+
+
+        const signInButton =
+            document.getElementById(
+                "signInButton"
+            );
+
+
+        loginForm.addEventListener(
+            "submit",
+            (event) => {
+
+                event.preventDefault();
+
+
+                const username =
+                    document
+                        .getElementById(
+                            "username"
+                        )
+                        .value
+                        .trim();
+
+
+                const passwordValue =
+                    password.value;
+
+
+                if (
+                    !username ||
+                    !passwordValue
+                ) {
+
+                    return;
+
+                }
+
+
+                /*
+                    Loading
+                */
+
+                signInButton.classList.add(
+                    "loading"
+                );
+
+
+                /*
+                    จำลองการเข้าสู่ระบบ
+                */
+
+                setTimeout(
+                    () => {
+
+                        signInButton.classList.remove(
+                            "loading"
+                        );
+
+
+                        signInButton.classList.add(
+                            "success"
+                        );
+
+
+                        signInButton.querySelector(
+                            ".button-text"
+                        ).style.display =
+                            "none";
+
+
+                        /*
+                            เก็บ User ไว้สำหรับ Dashboard
+                        */
+
+                        const user = {
+
+                            name: username,
+
+                            role: "student",
+
+                            roleName: "นักศึกษา"
+
+                        };
+
+
+                        localStorage.setItem(
+                            "easyroom_user",
+                            JSON.stringify(user)
+                        );
+
+
+                        /*
+                            รอแสดง Checkmark
+                        */
+
+                        setTimeout(
+                            () => {
+
+                                window.location.href =
+                                    "dashboard.html";
+
+                            },
+                            600
+                        );
+
+                    },
+                    900
+                );
+
+            }
+        );
+
+
+        /* =========================
+           FORGOT PASSWORD
+        ========================= */
+
+        function forgotPassword(event) {
+
+            event.preventDefault();
+
+            alert(
+                "ระบบรีเซ็ตรหัสผ่านจะเปิดใช้งานเมื่อเชื่อมต่อฐานข้อมูล"
+            );
+
+        }
+
+
+        /* =========================
+           SOCIAL LOGIN
+        ========================= */
+
+        function socialLogin(provider) {
+
+            alert(
+                provider +
+                " Login จะเปิดใช้งานเมื่อเชื่อมต่อระบบ Authentication"
+            );
+
+        }
+
+    </script>
 
 </body>
 </html>
