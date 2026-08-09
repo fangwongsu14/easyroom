@@ -2,65 +2,88 @@
 
 <html lang="th">
 <head>
-    <meta charset="UTF-8">
 
 ```
+<meta charset="UTF-8">
+
 <meta
     name="viewport"
     content="width=device-width, initial-scale=1.0"
 >
 
-<title>EasyRoom — Rooms, simplified.</title>
+<title>EasyRoom — จองห้องง่ายกว่าที่เคย</title>
 
 <meta
     name="description"
-    content="EasyRoom ระบบจองห้องเรียนและห้องประชุมที่ออกแบบมาเพื่อชีวิตในมหาวิทยาลัย"
+    content="EasyRoom ระบบจองห้องเรียนและห้องประชุมสำหรับมหาวิทยาลัย"
 >
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-
 <link
     href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Inter:wght@400;500;600;700&family=Noto+Sans+Thai:wght@400;500;600;700&display=swap"
     rel="stylesheet"
 >
 
+
 <style>
 
-    /* =========================================================
-       EASYROOM
-       Premium Editorial Landing Page
-       ========================================================= */
+    /* =====================================================
+       EASYROOM — SOFT BLUE / WHITE
+       ===================================================== */
 
     :root {
-        --bg: #090b10;
-        --bg-soft: #0d1017;
-        --surface: rgba(255,255,255,.055);
-        --surface-strong: rgba(255,255,255,.085);
 
-        --border: rgba(255,255,255,.11);
-        --border-soft: rgba(255,255,255,.065);
+        --white: #ffffff;
 
-        --text: #f5f7fb;
-        --text-soft: #a8afbd;
-        --text-muted: #707887;
+        --page:
+            #f7faff;
 
-        --blue: #75b9ff;
-        --blue-bright: #9bcaff;
-        --blue-dark: #317dcc;
+        --blue:
+            #4b9bea;
 
-        --green: #70e0ae;
+        --blue-light:
+            #eaf5ff;
 
-        --serif: "DM Serif Display", Georgia, serif;
-        --sans: "Inter", "Noto Sans Thai", sans-serif;
+        --blue-soft:
+            #dff0ff;
 
-        --container: 1180px;
+        --blue-dark:
+            #2469ad;
+
+        --text:
+            #172231;
+
+        --text-soft:
+            #617083;
+
+        --text-light:
+            #8b98a8;
+
+        --border:
+            rgba(57, 119, 176, .12);
+
+        --shadow:
+            0 25px 80px rgba(61, 126, 184, .13);
+
+        --serif:
+            "DM Serif Display",
+            Georgia,
+            serif;
+
+        --sans:
+            "Inter",
+            "Noto Sans Thai",
+            sans-serif;
+
+        --container:
+            1180px;
+
     }
 
 
-    /* =========================================================
+    /* =====================================================
        RESET
-       ========================================================= */
+       ===================================================== */
 
     * {
         margin: 0;
@@ -68,844 +91,1274 @@
         box-sizing: border-box;
     }
 
+
     html {
-        scroll-behavior: smooth;
-        scroll-padding-top: 90px;
+
+        scroll-behavior:
+            smooth;
+
+        scroll-padding-top:
+            80px;
+
     }
 
-    html,
+
     body {
-        width: 100%;
-        min-height: 100%;
+
+        min-height:
+            100vh;
+
+        overflow-x:
+            hidden;
+
+        color:
+            var(--text);
+
+        font-family:
+            var(--sans);
+
+        background:
+            var(--page);
+
     }
 
-    body {
-        background: var(--bg);
-        color: var(--text);
 
-        font-family: var(--sans);
+    body,
+    button,
+    a {
 
-        overflow-x: hidden;
+        -webkit-font-smoothing:
+            antialiased;
+
     }
 
-    body.loading {
-        overflow: hidden;
-    }
 
     a {
-        color: inherit;
-        text-decoration: none;
+
+        color:
+            inherit;
+
+        text-decoration:
+            none;
+
     }
 
-    button {
-        font-family: inherit;
-    }
 
     img {
-        max-width: 100%;
-        display: block;
+
+        max-width:
+            100%;
+
+        display:
+            block;
+
     }
 
 
-    /* =========================================================
+    /* =====================================================
        BACKGROUND
-       ========================================================= */
+       ===================================================== */
 
     .background {
-        position: fixed;
-        inset: 0;
-        z-index: -10;
 
-        pointer-events: none;
+        position:
+            fixed;
+
+        inset:
+            0;
+
+        z-index:
+            -10;
+
+        overflow:
+            hidden;
+
+        background:
+            linear-gradient(
+                180deg,
+                #ffffff 0%,
+                #f7fbff 48%,
+                #f4f9fe 100%
+            );
+
+    }
+
+
+    .blob {
+
+        position:
+            absolute;
+
+        border-radius:
+            50%;
+
+        filter:
+            blur(80px);
+
+        pointer-events:
+            none;
+
+        opacity:
+            .55;
+
+    }
+
+
+    .blob-one {
+
+        width:
+            500px;
+
+        height:
+            500px;
+
+        top:
+            -220px;
+
+        left:
+            -120px;
+
+        background:
+            rgba(
+                145,
+                207,
+                255,
+                .34
+            );
+
+    }
+
+
+    .blob-two {
+
+        width:
+            600px;
+
+        height:
+            600px;
+
+        top:
+            25%;
+
+        right:
+            -300px;
+
+        background:
+            rgba(
+                117,
+                184,
+                243,
+                .18
+            );
+
+    }
+
+
+    .blob-three {
+
+        width:
+            450px;
+
+        height:
+            450px;
+
+        bottom:
+            -220px;
+
+        left:
+            35%;
+
+        background:
+            rgba(
+                174,
+                220,
+                255,
+                .24
+            );
+
+    }
+
+
+    #particles {
+
+        position:
+            fixed;
+
+        inset:
+            0;
+
+        width:
+            100%;
+
+        height:
+            100%;
+
+        pointer-events:
+            none;
+
+        z-index:
+            -2;
+
+    }
+
+
+    .mouse-glow {
+
+        position:
+            fixed;
+
+        width:
+            420px;
+
+        height:
+            420px;
+
+        border-radius:
+            50%;
+
+        pointer-events:
+            none;
+
+        z-index:
+            -1;
+
+        opacity:
+            0;
+
+        transform:
+            translate(-50%, -50%);
 
         background:
             radial-gradient(
-                circle at 50% 15%,
-                rgba(42, 111, 190, .15),
-                transparent 32%
-            ),
-            radial-gradient(
-                circle at 80% 60%,
-                rgba(50, 93, 180, .07),
-                transparent 30%
-            ),
-            var(--bg);
-    }
-
-    .background::before {
-        content: "";
-
-        position: absolute;
-        inset: 0;
-
-        background-image:
-            linear-gradient(
-                rgba(255,255,255,.018) 1px,
-                transparent 1px
-            ),
-            linear-gradient(
-                90deg,
-                rgba(255,255,255,.018) 1px,
-                transparent 1px
+                circle,
+                rgba(
+                    91,
+                    169,
+                    238,
+                    .13
+                ),
+                transparent 68%
             );
 
-        background-size: 80px 80px;
+        transition:
+            opacity .4s ease;
 
-        mask-image: linear-gradient(
-            to bottom,
-            black,
-            transparent 75%
-        );
-    }
-
-    #particles {
-        position: fixed;
-        inset: 0;
-
-        width: 100%;
-        height: 100%;
-
-        z-index: -5;
-
-        pointer-events: none;
-    }
-
-    .mouse-glow {
-        position: fixed;
-
-        width: 420px;
-        height: 420px;
-
-        border-radius: 50%;
-
-        background: radial-gradient(
-            circle,
-            rgba(81, 157, 235, .09),
-            transparent 65%
-        );
-
-        transform: translate(-50%, -50%);
-
-        pointer-events: none;
-
-        z-index: -1;
-
-        opacity: 0;
-
-        transition: opacity .5s ease;
     }
 
 
-    /* =========================================================
+    /* =====================================================
        NAVBAR
-       ========================================================= */
+       ===================================================== */
 
     .navbar {
-        position: fixed;
 
-        top: 0;
-        left: 0;
-        right: 0;
+        position:
+            fixed;
 
-        z-index: 100;
+        top:
+            0;
 
-        padding: 20px 0;
+        left:
+            0;
 
-        transition:
-            padding .35s ease,
-            background .35s ease,
-            border .35s ease;
-    }
+        right:
+            0;
 
-    .navbar.scrolled {
-        padding: 13px 0;
-
-        background: rgba(9,11,16,.72);
-
-        backdrop-filter: blur(20px);
-        -webkit-backdrop-filter: blur(20px);
-
-        border-bottom: 1px solid rgba(255,255,255,.06);
-    }
-
-    .nav-inner {
-        width: min(
-            var(--container),
-            calc(100% - 44px)
-        );
-
-        margin: auto;
-
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-    }
-
-    .brand {
-        display: flex;
-        align-items: center;
-    }
-
-    .brand img {
-        width: 148px;
-
-        filter:
-            drop-shadow(
-                0 0 25px rgba(90,166,235,.16)
-            );
-    }
-
-    .nav-links {
-        display: flex;
-        align-items: center;
-
-        gap: 34px;
-
-        margin-left: 60px;
-    }
-
-    .nav-links a {
-        color: #8f97a6;
-
-        font-size: 13px;
-        font-weight: 500;
-
-        transition: color .25s ease;
-    }
-
-    .nav-links a:hover {
-        color: white;
-    }
-
-    .nav-right {
-        display: flex;
-        align-items: center;
-        gap: 10px;
-    }
-
-    .nav-signin {
-        color: #a8afbd;
-
-        padding: 10px 14px;
-
-        font-size: 13px;
-    }
-
-    .nav-cta {
-        padding: 10px 17px;
-
-        border-radius: 10px;
-
-        background: white;
-        color: #0a0c10;
-
-        font-size: 13px;
-        font-weight: 700;
-
-        transition:
-            transform .25s ease,
-            box-shadow .25s ease;
-    }
-
-    .nav-cta:hover {
-        transform: translateY(-2px);
-
-        box-shadow:
-            0 10px 35px rgba(255,255,255,.12);
-    }
-
-
-    /* =========================================================
-       HERO
-       ========================================================= */
-
-    .hero {
-        position: relative;
-
-        min-height: 100vh;
-
-        display: flex;
-        align-items: center;
+        z-index:
+            100;
 
         padding:
-            150px 0
-            100px;
+            18px 0;
 
-        overflow: hidden;
+        transition:
+            .35s ease;
+
     }
 
-    .hero-container {
-        width: min(
-            var(--container),
-            calc(100% - 44px)
-        );
 
-        margin: auto;
+    .navbar.scrolled {
 
-        text-align: center;
+        padding:
+            11px 0;
+
+        background:
+            rgba(
+                255,
+                255,
+                255,
+                .78
+            );
+
+        border-bottom:
+            1px solid
+            rgba(
+                55,
+                118,
+                176,
+                .08
+            );
+
+        backdrop-filter:
+            blur(18px);
+
+        -webkit-backdrop-filter:
+            blur(18px);
+
     }
 
-    .eyebrow {
-        display: inline-flex;
-        align-items: center;
-        gap: 9px;
 
-        padding: 7px 12px;
+    .nav-inner {
 
-        border: 1px solid var(--border);
-
-        border-radius: 999px;
-
-        background: rgba(255,255,255,.035);
-
-        color: #aeb6c4;
-
-        font-size: 11px;
-        letter-spacing: .04em;
-
-        backdrop-filter: blur(10px);
-
-        opacity: 0;
-        transform: translateY(15px);
-
-        animation:
-            heroFade .8s .15s forwards;
-    }
-
-    .eyebrow-dot {
-        width: 5px;
-        height: 5px;
-
-        border-radius: 50%;
-
-        background: var(--green);
-
-        box-shadow:
-            0 0 12px rgba(112,224,174,.7);
-    }
-
-    .hero-title {
-        max-width: 1000px;
+        width:
+            min(
+                var(--container),
+                calc(100% - 44px)
+            );
 
         margin:
-            28px
+            auto;
+
+        display:
+            flex;
+
+        align-items:
+            center;
+
+        justify-content:
+            space-between;
+
+    }
+
+
+    /*
+       โลโก้ใน Navbar เป็นขนาดเล็ก
+       แต่ไม่มี text EasyRoom
+    */
+
+    .nav-logo img {
+
+        width:
+            105px;
+
+        height:
+            auto;
+
+        object-fit:
+            contain;
+
+    }
+
+
+    .nav-links {
+
+        display:
+            flex;
+
+        gap:
+            34px;
+
+        margin-left:
+            auto;
+
+        margin-right:
+            30px;
+
+    }
+
+
+    .nav-links a {
+
+        color:
+            #697789;
+
+        font-size:
+            13px;
+
+        font-weight:
+            500;
+
+        transition:
+            .25s ease;
+
+    }
+
+
+    .nav-links a:hover {
+
+        color:
+            var(--blue);
+
+    }
+
+
+    .nav-actions {
+
+        display:
+            flex;
+
+        align-items:
+            center;
+
+        gap:
+            8px;
+
+    }
+
+
+    .sign-in {
+
+        padding:
+            9px 13px;
+
+        color:
+            #637285;
+
+        font-size:
+            13px;
+
+    }
+
+
+    .nav-button {
+
+        padding:
+            10px 17px;
+
+        border-radius:
+            10px;
+
+        background:
+            #2582d5;
+
+        color:
+            white;
+
+        font-size:
+            12px;
+
+        font-weight:
+            700;
+
+        box-shadow:
+            0 8px 25px
+            rgba(
+                38,
+                130,
+                213,
+                .18
+            );
+
+        transition:
+            .25s ease;
+
+    }
+
+
+    .nav-button:hover {
+
+        transform:
+            translateY(-2px);
+
+        box-shadow:
+            0 12px 30px
+            rgba(
+                38,
+                130,
+                213,
+                .25
+            );
+
+    }
+
+
+    /* =====================================================
+       HERO
+       ===================================================== */
+
+    .hero {
+
+        position:
+            relative;
+
+        min-height:
+            100vh;
+
+        padding:
+            130px 0
+            90px;
+
+        display:
+            flex;
+
+        align-items:
+            center;
+
+        justify-content:
+            center;
+
+        overflow:
+            hidden;
+
+    }
+
+
+    .hero-inner {
+
+        width:
+            min(
+                1080px,
+                calc(100% - 36px)
+            );
+
+        margin:
+            auto;
+
+        text-align:
+            center;
+
+    }
+
+
+    .hero-label {
+
+        display:
+            inline-flex;
+
+        align-items:
+            center;
+
+        gap:
+            8px;
+
+        padding:
+            7px 12px;
+
+        border:
+            1px solid
+            rgba(
+                64,
+                137,
+                204,
+                .13
+            );
+
+        border-radius:
+            999px;
+
+        background:
+            rgba(
+                255,
+                255,
+                255,
+                .68
+            );
+
+        color:
+            #66809a;
+
+        font-size:
+            11px;
+
+        box-shadow:
+            0 8px 30px
+            rgba(
+                65,
+                128,
+                182,
+                .07
+            );
+
+        opacity:
+            0;
+
+        transform:
+            translateY(15px);
+
+        animation:
+            heroIn
+            .8s
+            .1s
+            forwards;
+
+    }
+
+
+    .label-dot {
+
+        width:
+            6px;
+
+        height:
+            6px;
+
+        border-radius:
+            50%;
+
+        background:
+            #55b68b;
+
+        box-shadow:
+            0 0 10px
+            rgba(
+                85,
+                182,
+                139,
+                .5
+            );
+
+    }
+
+
+    .hero-title {
+
+        margin:
+            26px
             auto
             0;
+
+        max-width:
+            950px;
 
         font-size:
             clamp(
-                62px,
-                9vw,
-                118px
+                58px,
+                8vw,
+                105px
             );
 
-        line-height: .93;
+        line-height:
+            .94;
 
-        letter-spacing: -4px;
+        letter-spacing:
+            -4px;
 
-        font-weight: 500;
+        font-weight:
+            600;
 
-        opacity: 0;
-        transform: translateY(25px);
+        color:
+            #172231;
+
+        opacity:
+            0;
+
+        transform:
+            translateY(25px);
 
         animation:
-            heroFade .9s .28s forwards;
+            heroIn
+            .9s
+            .2s
+            forwards;
+
     }
+
 
     .hero-title .serif {
-        font-family: var(--serif);
 
-        font-style: italic;
+        font-family:
+            var(--serif);
 
-        color: var(--blue-bright);
+        font-style:
+            italic;
+
+        color:
+            #489ce8;
+
+        font-weight:
+            400;
+
     }
 
-    .hero-subtitle {
-        max-width: 620px;
+
+    .hero-description {
+
+        max-width:
+            570px;
 
         margin:
-            30px
+            27px
             auto
             0;
 
-        color: var(--text-soft);
+        color:
+            #69798b;
 
-        font-size: 16px;
-        line-height: 1.8;
+        font-size:
+            15px;
 
-        opacity: 0;
-        transform: translateY(20px);
+        line-height:
+            1.9;
+
+        opacity:
+            0;
+
+        transform:
+            translateY(20px);
 
         animation:
-            heroFade .9s .42s forwards;
+            heroIn
+            .9s
+            .35s
+            forwards;
+
     }
+
 
     .hero-actions {
-        display: flex;
-        align-items: center;
-        justify-content: center;
 
-        gap: 10px;
+        display:
+            flex;
 
-        margin-top: 30px;
+        justify-content:
+            center;
 
-        opacity: 0;
-        transform: translateY(20px);
+        align-items:
+            center;
+
+        gap:
+            10px;
+
+        margin-top:
+            28px;
+
+        opacity:
+            0;
+
+        transform:
+            translateY(20px);
 
         animation:
-            heroFade .9s .55s forwards;
+            heroIn
+            .9s
+            .48s
+            forwards;
+
     }
 
-    .button-primary {
-        display: inline-flex;
-        align-items: center;
-        justify-content: center;
 
-        min-width: 145px;
+    .primary-button {
 
-        padding: 13px 19px;
+        padding:
+            13px 21px;
 
-        border-radius: 11px;
+        border-radius:
+            11px;
 
-        background: white;
-        color: #080a0e;
+        background:
+            #2686db;
 
-        font-size: 13px;
-        font-weight: 700;
+        color:
+            white;
 
-        transition:
-            transform .3s ease,
-            box-shadow .3s ease;
-    }
+        font-size:
+            13px;
 
-    .button-primary:hover {
-        transform: translateY(-3px);
+        font-weight:
+            700;
 
         box-shadow:
-            0 15px 45px rgba(255,255,255,.13);
-    }
-
-    .button-secondary {
-        display: inline-flex;
-        align-items: center;
-        justify-content: center;
-
-        min-width: 125px;
-
-        padding: 12px 18px;
-
-        border-radius: 11px;
-
-        border: 1px solid var(--border);
-
-        background: rgba(255,255,255,.035);
-
-        color: #d5dae2;
-
-        font-size: 13px;
-
-        backdrop-filter: blur(12px);
+            0 12px 35px
+            rgba(
+                38,
+                134,
+                219,
+                .22
+            );
 
         transition:
-            background .3s ease,
-            transform .3s ease;
-    }
+            .3s ease;
 
-    .button-secondary:hover {
-        background: rgba(255,255,255,.07);
-
-        transform: translateY(-3px);
     }
 
 
-    /* =========================================================
-       PRODUCT SHOWCASE
-       ========================================================= */
+    .primary-button:hover {
 
-    .showcase {
-        position: relative;
+        transform:
+            translateY(-3px);
 
-        width: min(
-            1000px,
-            calc(100% - 20px)
-        );
+        box-shadow:
+            0 18px 45px
+            rgba(
+                38,
+                134,
+                219,
+                .28
+            );
+
+    }
+
+
+    .secondary-button {
+
+        padding:
+            12px 19px;
+
+        border:
+            1px solid
+            rgba(
+                57,
+                119,
+                176,
+                .14
+            );
+
+        border-radius:
+            11px;
+
+        background:
+            rgba(
+                255,
+                255,
+                255,
+                .68
+            );
+
+        color:
+            #627285;
+
+        font-size:
+            13px;
+
+        backdrop-filter:
+            blur(10px);
+
+        transition:
+            .3s ease;
+
+    }
+
+
+    .secondary-button:hover {
+
+        transform:
+            translateY(-3px);
+
+        background:
+            white;
+
+        color:
+            #377ebc;
+
+    }
+
+
+    /* =====================================================
+       BIG LOGO
+       ===================================================== */
+
+    .logo-stage {
+
+        position:
+            relative;
+
+        width:
+            min(
+                760px,
+                92vw
+            );
+
+        height:
+            430px;
 
         margin:
-            85px
+            65px
             auto
             0;
 
-        perspective: 1600px;
+        display:
+            flex;
 
-        opacity: 0;
+        align-items:
+            center;
+
+        justify-content:
+            center;
+
+        perspective:
+            1400px;
+
+        opacity:
+            0;
+
         transform:
-            translateY(50px)
-            scale(.97);
+            translateY(40px)
+            scale(.96);
 
         animation:
-            showcaseIn 1.2s .7s forwards;
+            logoStageIn
+            1.1s
+            .62s
+            forwards;
+
     }
 
-    .showcase-glow {
-        position: absolute;
 
-        left: 50%;
-        bottom: -100px;
+    .logo-aura {
 
-        width: 650px;
-        height: 260px;
+        position:
+            absolute;
 
-        transform: translateX(-50%);
+        width:
+            500px;
+
+        height:
+            300px;
+
+        border-radius:
+            50%;
 
         background:
             radial-gradient(
                 ellipse,
-                rgba(59,132,210,.25),
-                transparent 68%
+                rgba(
+                    78,
+                    163,
+                    238,
+                    .27
+                ),
+                rgba(
+                    135,
+                    202,
+                    255,
+                    .10
+                ),
+                transparent 70%
             );
 
-        filter: blur(30px);
+        filter:
+            blur(25px);
 
-        pointer-events: none;
+        animation:
+            auraFloat
+            5s
+            ease-in-out
+            infinite;
+
     }
 
-    .app-window {
-        position: relative;
 
-        border-radius: 20px;
+    .logo-ring {
 
-        overflow: hidden;
+        position:
+            absolute;
 
-        background:
-            linear-gradient(
-                145deg,
-                rgba(27,31,40,.94),
-                rgba(13,16,22,.96)
+        width:
+            460px;
+
+        height:
+            280px;
+
+        border-radius:
+            50%;
+
+        border:
+            1px solid
+            rgba(
+                82,
+                158,
+                222,
+                .11
             );
 
-        border: 1px solid rgba(255,255,255,.13);
+        transform:
+            rotateX(68deg);
 
         box-shadow:
-            0 50px 120px rgba(0,0,0,.55),
-            0 0 0 1px rgba(255,255,255,.025);
+            0 0 80px
+            rgba(
+                86,
+                167,
+                235,
+                .09
+            );
 
-        transform-style: preserve-3d;
+        animation:
+            ringFloat
+            6s
+            ease-in-out
+            infinite;
+
+    }
+
+
+    .main-logo {
+
+        position:
+            relative;
+
+        z-index:
+            5;
+
+        width:
+            min(
+                430px,
+                72vw
+            );
+
+        height:
+            auto;
+
+        filter:
+            drop-shadow(
+                0 30px 40px
+                rgba(
+                    49,
+                    121,
+                    185,
+                    .18
+                )
+            );
+
+        transform:
+            translateZ(40px);
 
         transition:
-            transform .15s ease;
+            transform
+            .2s ease;
+
     }
 
-    .window-top {
-        height: 46px;
 
-        display: flex;
-        align-items: center;
+    /* =====================================================
+       FLOATING MINI CARDS
+       ===================================================== */
 
-        padding: 0 17px;
+    .float-card {
 
-        border-bottom: 1px solid rgba(255,255,255,.07);
+        position:
+            absolute;
 
-        background: rgba(255,255,255,.025);
-    }
+        z-index:
+            10;
 
-    .window-dots {
-        display: flex;
-        gap: 6px;
-    }
-
-    .window-dots span {
-        width: 8px;
-        height: 8px;
-
-        border-radius: 50%;
-
-        background: rgba(255,255,255,.18);
-    }
-
-    .window-title {
-        position: absolute;
-
-        left: 50%;
-        transform: translateX(-50%);
-
-        color: #7d8490;
-
-        font-size: 10px;
-    }
-
-    .app-content {
-        display: grid;
-
-        grid-template-columns:
-            185px
-            1fr;
-
-        min-height: 480px;
-    }
-
-    .app-sidebar {
-        padding: 24px 15px;
-
-        border-right: 1px solid rgba(255,255,255,.06);
-
-        background: rgba(0,0,0,.12);
-    }
-
-    .app-mini-logo {
-        width: 88px;
-
-        margin:
-            0
-            0
-            25px
-            8px;
-
-        opacity: .9;
-    }
-
-    .side-label {
         padding:
-            0
-            9px
-            8px;
+            13px 16px;
 
-        color: #5f6673;
-
-        font-size: 9px;
-
-        letter-spacing: .08em;
-        text-transform: uppercase;
-    }
-
-    .side-item {
-        display: flex;
-        align-items: center;
-
-        gap: 9px;
-
-        padding: 9px;
-
-        margin-bottom: 3px;
-
-        border-radius: 8px;
-
-        color: #777f8c;
-
-        font-size: 10px;
-    }
-
-    .side-item.active {
-        background: rgba(255,255,255,.065);
-
-        color: white;
-    }
-
-    .side-dot {
-        width: 5px;
-        height: 5px;
-
-        border-radius: 50%;
-
-        background: currentColor;
-    }
-
-    .app-main {
-        padding: 28px;
-    }
-
-    .app-heading {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-
-        margin-bottom: 25px;
-    }
-
-    .app-heading h3 {
-        font-size: 17px;
-        font-weight: 600;
-    }
-
-    .app-date {
-        color: #69717f;
-        font-size: 9px;
-    }
-
-    .room-grid {
-        display: grid;
-
-        grid-template-columns:
-            repeat(2, 1fr);
-
-        gap: 13px;
-    }
-
-    .room-card {
-        padding: 18px;
-
-        min-height: 150px;
-
-        border-radius: 13px;
-
-        border: 1px solid rgba(255,255,255,.07);
-
-        background:
-            linear-gradient(
-                145deg,
-                rgba(255,255,255,.045),
-                rgba(255,255,255,.018)
+        border:
+            1px solid
+            rgba(
+                70,
+                139,
+                196,
+                .13
             );
 
-        transition:
-            border-color .3s ease,
-            transform .3s ease,
-            background .3s ease;
-    }
-
-    .room-card:hover {
-        transform: translateY(-3px);
-
-        border-color:
-            rgba(117,185,255,.25);
+        border-radius:
+            14px;
 
         background:
-            linear-gradient(
-                145deg,
-                rgba(117,185,255,.075),
-                rgba(255,255,255,.02)
+            rgba(
+                255,
+                255,
+                255,
+                .72
             );
-    }
 
-    .room-status {
-        display: flex;
-        align-items: center;
-        gap: 6px;
+        backdrop-filter:
+            blur(18px);
 
-        color: var(--green);
-
-        font-size: 8px;
-    }
-
-    .room-status::before {
-        content: "";
-
-        width: 5px;
-        height: 5px;
-
-        border-radius: 50%;
-
-        background: var(--green);
+        -webkit-backdrop-filter:
+            blur(18px);
 
         box-shadow:
-            0 0 10px rgba(112,224,174,.6);
-    }
+            0 18px 45px
+            rgba(
+                53,
+                116,
+                172,
+                .12
+            );
 
-    .room-name {
-        margin-top: 15px;
+        text-align:
+            left;
 
-        font-size: 13px;
-        font-weight: 600;
-    }
+        animation:
+            floatCard
+            5s
+            ease-in-out
+            infinite;
 
-    .room-meta {
-        margin-top: 7px;
-
-        color: #6f7784;
-
-        font-size: 9px;
-    }
-
-    .room-bottom {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-
-        margin-top: 18px;
-
-        color: #8d95a2;
-
-        font-size: 8px;
     }
 
 
-    /* =========================================================
-       TRUST LINE
-       ========================================================= */
+    .float-card.one {
 
-    .trust {
-        padding: 50px 0 110px;
+        top:
+            80px;
 
-        text-align: center;
+        left:
+            15px;
+
     }
 
-    .trust p {
-        color: #626a78;
 
-        font-size: 10px;
+    .float-card.two {
 
-        letter-spacing: .13em;
+        top:
+            155px;
 
-        text-transform: uppercase;
+        right:
+            5px;
+
+        animation-delay:
+            -2s;
+
     }
 
-    .trust-line {
-        width: min(
-            700px,
-            80%
-        );
 
-        height: 1px;
+    .float-card.three {
 
-        margin:
-            25px
-            auto
-            0;
+        bottom:
+            55px;
+
+        left:
+            70px;
+
+        animation-delay:
+            -3.5s;
+
+    }
+
+
+    .float-top {
+
+        display:
+            flex;
+
+        align-items:
+            center;
+
+        gap:
+            7px;
+
+        color:
+            #4d6b86;
+
+        font-size:
+            9px;
+
+    }
+
+
+    .status-dot {
+
+        width:
+            6px;
+
+        height:
+            6px;
+
+        border-radius:
+            50%;
 
         background:
-            linear-gradient(
-                90deg,
-                transparent,
-                rgba(255,255,255,.1),
-                transparent
+            #51b789;
+
+        box-shadow:
+            0 0 8px
+            rgba(
+                81,
+                183,
+                137,
+                .45
             );
+
     }
 
 
-    /* =========================================================
-       SECTIONS
-       ========================================================= */
+    .float-title {
 
-    .section {
-        padding: 130px 0;
+        margin-top:
+            7px;
+
+        color:
+            #26394d;
+
+        font-size:
+            12px;
+
+        font-weight:
+            700;
+
     }
+
+
+    .float-sub {
+
+        margin-top:
+            3px;
+
+        color:
+            #8392a1;
+
+        font-size:
+            9px;
+
+    }
+
+
+    /* =====================================================
+       INTRO
+       ===================================================== */
+
+    .intro {
+
+        padding:
+            100px 0
+            130px;
+
+    }
+
 
     .container {
-        width: min(
-            var(--container),
-            calc(100% - 44px)
-        );
 
-        margin: auto;
+        width:
+            min(
+                var(--container),
+                calc(100% - 44px)
+            );
+
+        margin:
+            auto;
+
     }
 
-    .section-header {
-        max-width: 680px;
 
-        margin-bottom: 60px;
+    .intro-inner {
+
+        max-width:
+            820px;
+
+        margin:
+            auto;
+
+        text-align:
+            center;
+
     }
 
-    .section-label {
-        color: #6f7785;
 
-        font-size: 10px;
+    .small-label {
 
-        letter-spacing: .16em;
+        color:
+            #76a0c4;
 
-        text-transform: uppercase;
+        font-size:
+            10px;
+
+        letter-spacing:
+            .15em;
+
+        text-transform:
+            uppercase;
+
     }
 
-    .section-title {
-        margin-top: 17px;
+
+    .intro-title {
+
+        margin-top:
+            18px;
 
         font-size:
             clamp(
@@ -914,469 +1367,949 @@
                 72px
             );
 
-        line-height: 1.02;
+        line-height:
+            1.02;
 
-        letter-spacing: -2.5px;
+        letter-spacing:
+            -2.5px;
 
-        font-weight: 500;
-    }
+        font-weight:
+            600;
 
-    .section-title em {
-        font-family: var(--serif);
-
-        color: var(--blue);
-
-        font-style: italic;
-    }
-
-    .section-description {
-        margin-top: 20px;
-
-        max-width: 530px;
-
-        color: var(--text-soft);
-
-        font-size: 15px;
-        line-height: 1.8;
     }
 
 
-    /* =========================================================
-       FEATURE GRID
-       ========================================================= */
+    .intro-title em {
 
-    .feature-grid {
-        display: grid;
+        font-family:
+            var(--serif);
 
-        grid-template-columns:
-            repeat(3, 1fr);
+        color:
+            #499de8;
 
-        gap: 14px;
+        font-weight:
+            400;
+
     }
 
-    .feature-card {
-        position: relative;
 
-        min-height: 270px;
+    .intro-text {
 
-        padding: 30px;
+        max-width:
+            570px;
 
-        border-radius: 18px;
+        margin:
+            20px
+            auto
+            0;
 
-        background:
-            linear-gradient(
-                145deg,
-                rgba(255,255,255,.065),
-                rgba(255,255,255,.025)
+        color:
+            #718093;
+
+        font-size:
+            14px;
+
+        line-height:
+            1.9;
+
+    }
+
+
+    /* =====================================================
+       FEATURE CARDS
+       ===================================================== */
+
+    .features {
+
+        padding:
+            100px 0
+            130px;
+
+    }
+
+
+    .section-heading {
+
+        max-width:
+            680px;
+
+        margin-bottom:
+            55px;
+
+    }
+
+
+    .section-label {
+
+        color:
+            #79a2c4;
+
+        font-size:
+            10px;
+
+        letter-spacing:
+            .15em;
+
+        text-transform:
+            uppercase;
+
+    }
+
+
+    .section-title {
+
+        margin-top:
+            15px;
+
+        font-size:
+            clamp(
+                42px,
+                6vw,
+                68px
             );
 
-        border: 1px solid var(--border-soft);
+        line-height:
+            1;
 
-        overflow: hidden;
+        letter-spacing:
+            -2.5px;
 
-        transition:
-            transform .4s ease,
-            border-color .4s ease,
-            background .4s ease;
     }
 
-    .feature-card::before {
-        content: "";
 
-        position: absolute;
+    .section-title em {
 
-        width: 180px;
-        height: 180px;
+        font-family:
+            var(--serif);
 
-        top: -100px;
-        right: -100px;
+        color:
+            #479ae5;
+
+        font-weight:
+            400;
+
+    }
+
+
+    .feature-grid {
+
+        display:
+            grid;
+
+        grid-template-columns:
+            repeat(
+                3,
+                1fr
+            );
+
+        gap:
+            15px;
+
+    }
+
+
+    .feature-card {
+
+        position:
+            relative;
+
+        min-height:
+            300px;
+
+        padding:
+            28px;
+
+        overflow:
+            hidden;
+
+        border:
+            1px solid
+            rgba(
+                57,
+                125,
+                182,
+                .10
+            );
+
+        border-radius:
+            20px;
+
+        background:
+            rgba(
+                255,
+                255,
+                255,
+                .68
+            );
+
+        box-shadow:
+            0 20px 60px
+            rgba(
+                55,
+                122,
+                178,
+                .07
+            );
+
+        backdrop-filter:
+            blur(14px);
+
+        transition:
+            .4s ease;
+
+    }
+
+
+    .feature-card::after {
+
+        content:
+            "";
+
+        position:
+            absolute;
+
+        width:
+            190px;
+
+        height:
+            190px;
+
+        right:
+            -90px;
+
+        top:
+            -90px;
+
+        border-radius:
+            50%;
 
         background:
             radial-gradient(
                 circle,
-                rgba(117,185,255,.13),
+                rgba(
+                    105,
+                    181,
+                    242,
+                    .16
+                ),
                 transparent 70%
             );
 
         transition:
-            transform .6s ease;
+            .5s ease;
+
     }
+
 
     .feature-card:hover {
-        transform: translateY(-7px);
+
+        transform:
+            translateY(-7px);
 
         border-color:
-            rgba(117,185,255,.18);
-
-        background:
-            linear-gradient(
-                145deg,
-                rgba(255,255,255,.08),
-                rgba(255,255,255,.028)
+            rgba(
+                62,
+                139,
+                207,
+                .18
             );
+
+        box-shadow:
+            0 28px 70px
+            rgba(
+                55,
+                122,
+                178,
+                .12
+            );
+
     }
 
-    .feature-card:hover::before {
-        transform: scale(1.5);
+
+    .feature-card:hover::after {
+
+        transform:
+            scale(1.35);
+
     }
+
 
     .feature-number {
-        color: #59616f;
 
-        font-size: 10px;
+        color:
+            #9aabba;
 
-        letter-spacing: .12em;
+        font-size:
+            10px;
+
+        letter-spacing:
+            .13em;
+
     }
+
 
     .feature-title {
-        margin-top: 65px;
 
-        font-size: 21px;
+        margin-top:
+            80px;
 
-        font-weight: 600;
+        font-size:
+            21px;
 
-        letter-spacing: -.5px;
+        letter-spacing:
+            -.5px;
+
     }
+
 
     .feature-title span {
-        font-family: var(--serif);
 
-        font-size: 25px;
+        font-family:
+            var(--serif);
 
-        font-weight: 400;
+        color:
+            #489de9;
 
-        color: var(--blue);
+        font-size:
+            25px;
+
+        font-weight:
+            400;
+
     }
+
 
     .feature-text {
-        margin-top: 12px;
 
-        color: #7e8795;
+        margin-top:
+            12px;
 
-        font-size: 12px;
-        line-height: 1.8;
+        color:
+            #7a8999;
+
+        font-size:
+            12px;
+
+        line-height:
+            1.8;
+
     }
 
 
-    /* =========================================================
+    /* =====================================================
        FINAL CTA
-       ========================================================= */
+       ===================================================== */
 
     .final {
+
         padding:
-            150px
-            0
+            140px 0
             170px;
 
-        text-align: center;
+        text-align:
+            center;
+
     }
 
-    .final-title {
-        max-width: 900px;
 
-        margin: auto;
+    .final-title {
 
         font-size:
             clamp(
                 50px,
                 8vw,
-                100px
+                96px
             );
 
-        line-height: .95;
+        line-height:
+            .96;
 
-        letter-spacing: -3px;
+        letter-spacing:
+            -3px;
 
-        font-weight: 500;
     }
+
 
     .final-title em {
-        font-family: var(--serif);
 
-        color: var(--blue-bright);
+        font-family:
+            var(--serif);
 
-        font-style: italic;
+        color:
+            #479be8;
+
+        font-weight:
+            400;
+
     }
 
+
     .final-text {
-        max-width: 500px;
+
+        max-width:
+            480px;
 
         margin:
-            25px
+            22px
             auto
             0;
 
-        color: #7d8592;
+        color:
+            #788899;
 
-        font-size: 14px;
-        line-height: 1.8;
+        font-size:
+            14px;
+
+        line-height:
+            1.8;
+
     }
+
 
     .final-button {
-        display: inline-flex;
 
-        margin-top: 30px;
+        display:
+            inline-flex;
+
+        margin-top:
+            28px;
 
         padding:
-            14px
-            22px;
+            14px 22px;
 
-        border-radius: 11px;
+        border-radius:
+            11px;
 
-        background: white;
+        background:
+            #2584d8;
 
-        color: #080a0e;
+        color:
+            white;
 
-        font-size: 13px;
-        font-weight: 700;
+        font-size:
+            13px;
 
-        transition:
-            transform .3s ease,
-            box-shadow .3s ease;
-    }
-
-    .final-button:hover {
-        transform: translateY(-3px);
+        font-weight:
+            700;
 
         box-shadow:
-            0 18px 50px rgba(255,255,255,.13);
+            0 14px 38px
+            rgba(
+                38,
+                132,
+                216,
+                .22
+            );
+
+        transition:
+            .3s ease;
+
     }
 
 
-    /* =========================================================
+    .final-button:hover {
+
+        transform:
+            translateY(-3px);
+
+        box-shadow:
+            0 20px 48px
+            rgba(
+                38,
+                132,
+                216,
+                .28
+            );
+
+    }
+
+
+    /* =====================================================
        FOOTER
-       ========================================================= */
+       ===================================================== */
 
     footer {
-        padding: 30px 0;
+
+        padding:
+            28px 0;
 
         border-top:
-            1px solid rgba(255,255,255,.055);
+            1px solid
+            rgba(
+                55,
+                118,
+                176,
+                .07
+            );
+
     }
+
 
     .footer-inner {
-        width: min(
-            var(--container),
-            calc(100% - 44px)
-        );
 
-        margin: auto;
+        width:
+            min(
+                var(--container),
+                calc(100% - 44px)
+            );
 
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
+        margin:
+            auto;
+
+        display:
+            flex;
+
+        justify-content:
+            space-between;
+
+        align-items:
+            center;
+
     }
+
 
     .footer-logo img {
-        width: 105px;
 
-        opacity: .65;
+        width:
+            90px;
+
+        opacity:
+            .6;
+
     }
 
-    .footer-copy {
-        color: #555d6a;
 
-        font-size: 10px;
+    .copyright {
+
+        color:
+            #9aa7b5;
+
+        font-size:
+            10px;
+
     }
 
 
-    /* =========================================================
-       SCROLL REVEAL
-       ========================================================= */
+    /* =====================================================
+       REVEAL
+       ===================================================== */
 
     .reveal {
-        opacity: 0;
 
-        transform: translateY(35px);
+        opacity:
+            0;
+
+        transform:
+            translateY(35px);
 
         transition:
             opacity .8s ease,
-            transform .8s cubic-bezier(.2,.7,.2,1);
+            transform .8s
+            cubic-bezier(
+                .2,
+                .7,
+                .2,
+                1
+            );
+
     }
+
 
     .reveal.visible {
-        opacity: 1;
 
-        transform: translateY(0);
+        opacity:
+            1;
+
+        transform:
+            translateY(0);
+
     }
 
 
-    /* =========================================================
-       HERO ANIMATION
-       ========================================================= */
+    /* =====================================================
+       ANIMATIONS
+       ===================================================== */
 
-    @keyframes heroFade {
+    @keyframes heroIn {
 
         to {
-            opacity: 1;
 
-            transform: translateY(0);
+            opacity:
+                1;
+
+            transform:
+                translateY(0);
+
         }
 
     }
 
-    @keyframes showcaseIn {
+
+    @keyframes logoStageIn {
 
         to {
-            opacity: 1;
+
+            opacity:
+                1;
 
             transform:
                 translateY(0)
                 scale(1);
+
         }
 
     }
 
 
-    /* =========================================================
-       RESPONSIVE
-       ========================================================= */
+    @keyframes auraFloat {
 
-    @media (max-width: 900px) {
+        0%,
+        100% {
+
+            transform:
+                scale(1)
+                translateY(0);
+
+        }
+
+        50% {
+
+            transform:
+                scale(1.08)
+                translateY(-10px);
+
+        }
+
+    }
+
+
+    @keyframes ringFloat {
+
+        0%,
+        100% {
+
+            transform:
+                rotateX(68deg)
+                scale(1);
+
+        }
+
+        50% {
+
+            transform:
+                rotateX(68deg)
+                scale(1.06);
+
+        }
+
+    }
+
+
+    @keyframes floatCard {
+
+        0%,
+        100% {
+
+            transform:
+                translateY(0);
+
+        }
+
+        50% {
+
+            transform:
+                translateY(-9px);
+
+        }
+
+    }
+
+
+    /* =====================================================
+       RESPONSIVE
+       ===================================================== */
+
+    @media (
+        max-width: 850px
+    ) {
 
         .nav-links {
-            display: none;
+
+            display:
+                none;
+
         }
 
-        .hero {
-            padding-top: 140px;
+
+        .logo-stage {
+
+            height:
+                390px;
+
         }
 
-        .hero-title {
-            letter-spacing: -3px;
-        }
-
-        .app-content {
-            grid-template-columns: 140px 1fr;
-        }
 
         .feature-grid {
-            grid-template-columns: 1fr;
+
+            grid-template-columns:
+                1fr;
+
         }
 
+
         .feature-card {
-            min-height: 220px;
+
+            min-height:
+                250px;
+
+        }
+
+
+        .feature-title {
+
+            margin-top:
+                55px;
+
         }
 
     }
 
 
-    @media (max-width: 620px) {
+    @media (
+        max-width: 600px
+    ) {
 
-        .nav-inner,
-        .hero-container,
-        .container,
-        .footer-inner {
-            width: calc(100% - 28px);
+        .nav-inner {
+
+            width:
+                calc(
+                    100% - 28px
+                );
+
         }
 
-        .navbar {
-            padding: 16px 0;
+
+        .nav-logo img {
+
+            width:
+                88px;
+
         }
 
-        .navbar.scrolled {
-            padding: 11px 0;
+
+        .sign-in {
+
+            display:
+                none;
+
         }
 
-        .brand img {
-            width: 125px;
-        }
-
-        .nav-signin {
-            display: none;
-        }
-
-        .nav-cta {
-            padding: 9px 13px;
-
-            font-size: 11px;
-        }
 
         .hero {
-            min-height: auto;
 
             padding:
-                140px
-                0
-                80px;
+                120px 0
+                70px;
+
         }
+
+
+        .hero-inner {
+
+            width:
+                calc(
+                    100% - 28px
+                );
+
+        }
+
 
         .hero-title {
-            font-size: 55px;
 
-            letter-spacing: -2.5px;
+            font-size:
+                54px;
+
+            letter-spacing:
+                -2.7px;
+
         }
 
-        .hero-subtitle {
-            font-size: 14px;
+
+        .hero-description {
+
+            font-size:
+                13px;
+
         }
+
 
         .hero-actions {
-            flex-direction: column;
 
-            width: 100%;
+            flex-direction:
+                column;
+
         }
 
-        .button-primary,
-        .button-secondary {
-            width: 100%;
+
+        .primary-button,
+        .secondary-button {
+
+            width:
+                100%;
+
         }
 
-        .showcase {
-            width: 100%;
 
-            margin-top: 60px;
+        .logo-stage {
+
+            width:
+                100%;
+
+            height:
+                340px;
+
+            margin-top:
+                45px;
+
         }
 
-        .app-content {
-            grid-template-columns: 1fr;
+
+        .main-logo {
+
+            width:
+                310px;
+
         }
 
-        .app-sidebar {
-            display: none;
+
+        .logo-aura {
+
+            width:
+                350px;
+
+            height:
+                230px;
+
         }
 
-        .app-main {
-            padding: 18px;
+
+        .logo-ring {
+
+            width:
+                320px;
+
+            height:
+                210px;
+
         }
 
-        .room-grid {
-            grid-template-columns: 1fr;
+
+        .float-card {
+
+            padding:
+                10px 12px;
+
         }
 
-        .window-title {
-            display: none;
+
+        .float-card.one {
+
+            left:
+                -3px;
+
+            top:
+                55px;
+
         }
 
-        .section {
-            padding: 90px 0;
+
+        .float-card.two {
+
+            right:
+                -3px;
+
+            top:
+                110px;
+
         }
 
-        .section-title {
-            font-size: 46px;
 
-            letter-spacing: -1.8px;
+        .float-card.three {
+
+            left:
+                15px;
+
+            bottom:
+                35px;
+
         }
+
+
+        .intro,
+        .features {
+
+            padding:
+                80px 0
+                100px;
+
+        }
+
+
+        .container {
+
+            width:
+                calc(
+                    100% - 28px
+                );
+
+        }
+
+
+        .section-title,
+        .intro-title {
+
+            font-size:
+                45px;
+
+            letter-spacing:
+                -1.8px;
+
+        }
+
 
         .final {
+
             padding:
-                100px
-                0
+                100px 0
                 120px;
+
         }
+
 
         .final-title {
-            font-size: 55px;
 
-            letter-spacing: -2px;
+            font-size:
+                54px;
+
+            letter-spacing:
+                -2px;
+
         }
 
+
         .footer-inner {
-            flex-direction: column;
 
-            gap: 15px;
+            width:
+                calc(
+                    100% - 28px
+                );
 
-            text-align: center;
+            flex-direction:
+                column;
+
+            gap:
+                14px;
+
         }
 
     }
@@ -1389,34 +2322,51 @@
 <body>
 
 ```
-<!-- =========================================================
+<!-- =====================================================
      BACKGROUND
-     ========================================================= -->
+     ===================================================== -->
 
-<div class="background"></div>
+<div class="background">
+
+    <div class="blob blob-one"></div>
+
+    <div class="blob blob-two"></div>
+
+    <div class="blob blob-three"></div>
+
+</div>
+
 
 <canvas id="particles"></canvas>
 
-<div class="mouse-glow" id="mouseGlow"></div>
+<div
+    class="mouse-glow"
+    id="mouseGlow"
+></div>
 
 
-<!-- =========================================================
-     NAVIGATION
-     ========================================================= -->
+<!-- =====================================================
+     NAVBAR
+     ===================================================== -->
 
-<header class="navbar" id="navbar">
+<header
+    class="navbar"
+    id="navbar"
+>
 
     <div class="nav-inner">
 
+
         <a
             href="#top"
-            class="brand"
-            aria-label="EasyRoom"
+            class="nav-logo"
         >
+
             <img
                 src="https://img2.pic.in.th/logoeasyroom.png"
                 alt="EasyRoom"
             >
+
         </a>
 
 
@@ -1426,79 +2376,84 @@
                 Features
             </a>
 
-            <a href="#how">
-                How it works
-            </a>
-
             <a href="#about">
                 About
+            </a>
+
+            <a href="#start">
+                Get started
             </a>
 
         </nav>
 
 
-        <div class="nav-right">
+        <div class="nav-actions">
 
             <a
                 href="login.html"
-                class="nav-signin"
+                class="sign-in"
             >
                 Sign in
             </a>
 
             <a
                 href="register.html"
-                class="nav-cta"
+                class="nav-button"
             >
                 Get started
             </a>
 
         </div>
 
+
     </div>
 
 </header>
 
 
-<!-- =========================================================
+<!-- =====================================================
      MAIN
-     ========================================================= -->
+     ===================================================== -->
 
 <main id="top">
 
 
-    <!-- =====================================================
+    <!-- =================================================
          HERO
-         ===================================================== -->
+         ================================================= -->
 
     <section class="hero">
 
-        <div class="hero-container">
+        <div class="hero-inner">
 
-            <div class="eyebrow">
 
-                <span class="eyebrow-dot"></span>
+            <div class="hero-label">
 
-                Designed for campus life
+                <span class="label-dot"></span>
+
+                Built for campus life
 
             </div>
 
 
             <h1 class="hero-title">
 
-                Rooms,
+                Find your space.
+                <br>
+
                 <span class="serif">
-                    simplified.
+                    Make it yours.
                 </span>
 
             </h1>
 
 
-            <p class="hero-subtitle">
+            <p class="hero-description">
 
-                ค้นหาห้องเรียน ตรวจสอบเวลาว่าง
-                และจองพื้นที่ที่ต้องการได้ในที่เดียว
-                เรียบง่าย รวดเร็ว และออกแบบมาเพื่อชีวิตมหาวิทยาลัย
+                ระบบจองห้องเรียนและห้องประชุม
+                ที่ทำให้การค้นหา ตรวจสอบ
+                และจองพื้นที่ในมหาวิทยาลัย
+                เป็นเรื่องง่ายกว่าที่เคย
 
             </p>
 
@@ -1507,262 +2462,156 @@
 
                 <a
                     href="register.html"
-                    class="button-primary"
+                    class="primary-button"
                 >
                     เริ่มต้นใช้งาน
                 </a>
 
                 <a
                     href="#features"
-                    class="button-secondary"
+                    class="secondary-button"
                 >
-                    ดูระบบ
+                    ดูรายละเอียด
                 </a>
 
             </div>
 
 
-            <!-- Product Preview -->
+            <!-- =========================================
+                 BIG CENTER LOGO
+                 ========================================= -->
 
             <div
-                class="showcase"
-                id="showcase"
+                class="logo-stage"
+                id="logoStage"
             >
 
-                <div class="showcase-glow"></div>
+                <div class="logo-aura"></div>
+
+                <div class="logo-ring"></div>
 
 
-                <div
-                    class="app-window"
-                    id="appWindow"
+                <!-- BIG USER LOGO -->
+
+                <img
+                    class="main-logo"
+                    id="mainLogo"
+                    src="https://img2.pic.in.th/logoeasyroom.png"
+                    alt="EasyRoom"
                 >
 
-                    <div class="window-top">
 
-                        <div class="window-dots">
+                <!-- Floating Card 1 -->
 
-                            <span></span>
-                            <span></span>
-                            <span></span>
+                <div class="float-card one">
 
-                        </div>
+                    <div class="float-top">
 
-                        <div class="window-title">
-                            EasyRoom
-                        </div>
+                        <span class="status-dot"></span>
+
+                        Available
 
                     </div>
 
-
-                    <div class="app-content">
-
-
-                        <!-- Sidebar -->
-
-                        <aside class="app-sidebar">
-
-                            <img
-                                class="app-mini-logo"
-                                src="https://img2.pic.in.th/logoeasyroom.png"
-                                alt="EasyRoom"
-                            >
-
-
-                            <div class="side-label">
-                                Workspace
-                            </div>
-
-                            <div class="side-item active">
-
-                                <span class="side-dot"></span>
-
-                                Overview
-
-                            </div>
-
-                            <div class="side-item">
-
-                                <span class="side-dot"></span>
-
-                                Browse rooms
-
-                            </div>
-
-                            <div class="side-item">
-
-                                <span class="side-dot"></span>
-
-                                My bookings
-
-                            </div>
-
-
-                            <div
-                                class="side-label"
-                                style="margin-top:20px;"
-                            >
-                                Manage
-                            </div>
-
-                            <div class="side-item">
-
-                                <span class="side-dot"></span>
-
-                                Calendar
-
-                            </div>
-
-                            <div class="side-item">
-
-                                <span class="side-dot"></span>
-
-                                Settings
-
-                            </div>
-
-                        </aside>
-
-
-                        <!-- Main App -->
-
-                        <div class="app-main">
-
-                            <div class="app-heading">
-
-                                <h3>
-                                    Available rooms
-                                </h3>
-
-                                <div class="app-date">
-                                    Today · Monday
-                                </div>
-
-                            </div>
-
-
-                            <div class="room-grid">
-
-
-                                <div class="room-card">
-
-                                    <div class="room-status">
-                                        Available
-                                    </div>
-
-                                    <div class="room-name">
-                                        Innovation Room
-                                    </div>
-
-                                    <div class="room-meta">
-                                        Building A · Floor 3
-                                    </div>
-
-                                    <div class="room-bottom">
-                                        <span>
-                                            40 seats
-                                        </span>
-
-                                        <span>
-                                            View
-                                        </span>
-                                    </div>
-
-                                </div>
-
-
-                                <div class="room-card">
-
-                                    <div class="room-status">
-                                        Available
-                                    </div>
-
-                                    <div class="room-name">
-                                        Creative Studio
-                                    </div>
-
-                                    <div class="room-meta">
-                                        Building B · Floor 2
-                                    </div>
-
-                                    <div class="room-bottom">
-                                        <span>
-                                            24 seats
-                                        </span>
-
-                                        <span>
-                                            View
-                                        </span>
-                                    </div>
-
-                                </div>
-
-
-                                <div class="room-card">
-
-                                    <div class="room-status">
-                                        Available
-                                    </div>
-
-                                    <div class="room-name">
-                                        Lecture Room 302
-                                    </div>
-
-                                    <div class="room-meta">
-                                        Building A · Floor 3
-                                    </div>
-
-                                    <div class="room-bottom">
-                                        <span>
-                                            80 seats
-                                        </span>
-
-                                        <span>
-                                            View
-                                        </span>
-                                    </div>
-
-                                </div>
-
-
-                                <div class="room-card">
-
-                                    <div
-                                        class="room-status"
-                                        style="
-                                            color:#e5b870;
-                                        "
-                                    >
-                                        Limited
-                                    </div>
-
-                                    <div class="room-name">
-                                        Meeting Space
-                                    </div>
-
-                                    <div class="room-meta">
-                                        Building C · Floor 1
-                                    </div>
-
-                                    <div class="room-bottom">
-                                        <span>
-                                            12 seats
-                                        </span>
-
-                                        <span>
-                                            View
-                                        </span>
-                                    </div>
-
-                                </div>
-
-
-                            </div>
-
-                        </div>
-
+                    <div class="float-title">
+                        Room A-302
+                    </div>
+
+                    <div class="float-sub">
+                        40 seats · Building A
                     </div>
 
                 </div>
+
+
+                <!-- Floating Card 2 -->
+
+                <div class="float-card two">
+
+                    <div class="float-top">
+
+                        <span class="status-dot"></span>
+
+                        Available now
+
+                    </div>
+
+                    <div class="float-title">
+                        Creative Studio
+                    </div>
+
+                    <div class="float-sub">
+                        Building B · Floor 2
+                    </div>
+
+                </div>
+
+
+                <!-- Floating Card 3 -->
+
+                <div class="float-card three">
+
+                    <div class="float-top">
+
+                        <span class="status-dot"></span>
+
+                        Your booking
+                    </div>
+
+                    <div class="float-title">
+                        Lecture Room
+                    </div>
+
+                    <div class="float-sub">
+                        Today · 13:00 — 15:00
+                    </div>
+
+                </div>
+
+
+            </div>
+
+
+        </div>
+
+    </section>
+
+
+    <!-- =================================================
+         INTRO
+         ================================================= -->
+
+    <section
+        class="intro"
+        id="about"
+    >
+
+        <div class="container">
+
+            <div class="intro-inner reveal">
+
+                <div class="small-label">
+                    Simple by design
+                </div>
+
+                <h2 class="intro-title">
+
+                    Everything you need.
+                    <br>
+
+                    Nothing you
+                    <em>don't.</em>
+
+                </h2>
+
+                <p class="intro-text">
+
+                    EasyRoom รวมทุกอย่างที่จำเป็น
+                    สำหรับการจัดการห้องเรียน
+                    และพื้นที่ส่วนกลางไว้ในประสบการณ์เดียว
+                    โดยไม่ทำให้สิ่งที่ควรง่ายซับซ้อนขึ้น
+
+                </p>
 
             </div>
 
@@ -1771,36 +2620,22 @@
     </section>
 
 
-    <!-- =====================================================
-         TRUST
-         ===================================================== -->
-
-    <section class="trust">
-
-        <p>
-            A simpler way to manage shared spaces
-        </p>
-
-        <div class="trust-line"></div>
-
-    </section>
-
-
-    <!-- =====================================================
+    <!-- =================================================
          FEATURES
-         ===================================================== -->
+         ================================================= -->
 
     <section
-        class="section"
+        class="features"
         id="features"
     >
 
         <div class="container">
 
-            <div class="section-header reveal">
+
+            <div class="section-heading reveal">
 
                 <div class="section-label">
-                    What makes it simple
+                    Features
                 </div>
 
                 <h2 class="section-title">
@@ -1813,77 +2648,89 @@
 
                 </h2>
 
-                <p class="section-description">
-
-                    ทุกสิ่งที่จำเป็นสำหรับการจองห้อง
-                    ถูกออกแบบให้อยู่ในประสบการณ์เดียว
-                    โดยไม่ทำให้สิ่งที่ควรง่ายกลายเป็นเรื่องยุ่งยาก
-
-                </p>
-
             </div>
 
 
             <div class="feature-grid">
 
 
-                <article class="feature-card reveal">
+                <article
+                    class="feature-card reveal"
+                >
 
                     <div class="feature-number">
                         01
                     </div>
 
                     <h3 class="feature-title">
+
                         Find the
-                        <span>right room.</span>
+                        <span>
+                            right room.
+                        </span>
+
                     </h3>
 
                     <p class="feature-text">
 
-                        ค้นหาห้องตามสถานที่ ความจุ
-                        อาคาร และเวลาที่ต้องการได้อย่างรวดเร็ว
+                        ค้นหาห้องตามอาคาร ชั้น
+                        ความจุ และเวลาที่ต้องการ
+                        ได้อย่างรวดเร็ว
 
                     </p>
 
                 </article>
 
 
-                <article class="feature-card reveal">
+                <article
+                    class="feature-card reveal"
+                >
 
                     <div class="feature-number">
                         02
                     </div>
 
                     <h3 class="feature-title">
+
                         Book without
-                        <span>the friction.</span>
+                        <span>
+                            the friction.
+                        </span>
+
                     </h3>
 
                     <p class="feature-text">
 
-                        เลือกช่วงเวลา ส่งคำขอ
-                        และติดตามการจองได้จากที่เดียว
+                        เลือกเวลา ส่งคำขอ
+                        และติดตามสถานะการจอง
+                        ได้จากที่เดียว
 
                     </p>
 
                 </article>
 
 
-                <article class="feature-card reveal">
+                <article
+                    class="feature-card reveal"
+                >
 
                     <div class="feature-number">
                         03
                     </div>
 
                     <h3 class="feature-title">
+
                         Know what's
-                        <span>available.</span>
+                        <span>
+                            available.
+                        </span>
+
                     </h3>
 
                     <p class="feature-text">
 
-                        เห็นสถานะห้องและตารางการใช้งาน
-                        ได้อย่างชัดเจนก่อนตัดสินใจจอง
+                        ดูสถานะห้องแบบเข้าใจง่าย
+                        ก่อนเลือกพื้นที่ที่เหมาะกับคุณ
 
                     </p>
 
@@ -1897,151 +2744,14 @@
     </section>
 
 
-    <!-- =====================================================
-         HOW IT WORKS
-         ===================================================== -->
+    <!-- =================================================
+         FINAL
+         ================================================= -->
 
     <section
-        class="section"
-        id="how"
+        class="final"
+        id="start"
     >
-
-        <div class="container">
-
-            <div class="section-header reveal">
-
-                <div class="section-label">
-                    How it works
-                </div>
-
-                <h2 class="section-title">
-
-                    Three steps.
-                    <br>
-
-                    <em>That's it.</em>
-
-                </h2>
-
-            </div>
-
-
-            <div class="feature-grid">
-
-
-                <article class="feature-card reveal">
-
-                    <div class="feature-number">
-                        STEP 01
-                    </div>
-
-                    <h3 class="feature-title">
-                        Search
-                    </h3>
-
-                    <p class="feature-text">
-
-                        เลือกห้องที่เหมาะกับกิจกรรม
-                        และเวลาที่คุณต้องการ
-
-                    </p>
-
-                </article>
-
-
-                <article class="feature-card reveal">
-
-                    <div class="feature-number">
-                        STEP 02
-                    </div>
-
-                    <h3 class="feature-title">
-                        Choose
-                    </h3>
-
-                    <p class="feature-text">
-
-                        ตรวจสอบรายละเอียดห้อง
-                        และช่วงเวลาที่สามารถใช้งานได้
-
-                    </p>
-
-                </article>
-
-
-                <article class="feature-card reveal">
-
-                    <div class="feature-number">
-                        STEP 03
-                    </div>
-
-                    <h3 class="feature-title">
-                        Book
-                    </h3>
-
-                    <p class="feature-text">
-
-                        ส่งคำขอและจัดการการจอง
-                        ได้จาก Dashboard ของคุณ
-
-                    </p>
-
-                </article>
-
-
-            </div>
-
-        </div>
-
-    </section>
-
-
-    <!-- =====================================================
-         ABOUT
-         ===================================================== -->
-
-    <section
-        class="section"
-        id="about"
-    >
-
-        <div class="container">
-
-            <div class="section-header reveal">
-
-                <div class="section-label">
-                    About EasyRoom
-                </div>
-
-                <h2 class="section-title">
-
-                    Built around
-                    <br>
-
-                    <em>your time.</em>
-
-                </h2>
-
-                <p class="section-description">
-
-                    EasyRoom คือระบบจัดการการจองห้องเรียน
-                    และห้องประชุมที่เน้นประสบการณ์การใช้งาน
-                    เรียบง่ายและทันสมัยสำหรับมหาวิทยาลัย
-
-                </p>
-
-            </div>
-
-        </div>
-
-    </section>
-
-
-    <!-- =====================================================
-         FINAL CTA
-         ===================================================== -->
-
-    <section class="final">
 
         <div class="container">
 
@@ -2053,15 +2763,16 @@
                     <br>
 
                     is
-                    <em>closer.</em>
+                    <em>waiting.</em>
 
                 </h2>
 
 
                 <p class="final-text">
 
-                    เริ่มต้นจัดการการจองห้อง
-                    ในแบบที่ง่ายกว่าเดิม
+                    เริ่มต้นใช้งาน EasyRoom
+                    แล้วทำให้การจองห้องในมหาวิทยาลัย
+                    เป็นเรื่องที่ง่ายขึ้น
 
                 </p>
 
@@ -2079,12 +2790,13 @@
 
     </section>
 
+
 </main>
 
 
-<!-- =========================================================
+<!-- =====================================================
      FOOTER
-     ========================================================= -->
+     ===================================================== -->
 
 <footer>
 
@@ -2103,78 +2815,118 @@
         </a>
 
 
-        <p class="footer-copy">
-            © 2026 EasyRoom. Built for campus life.
-        </p>
+        <div class="copyright">
+
+            © 2026 EasyRoom.
+            Built for campus life.
+
+        </div>
 
     </div>
 
 </footer>
 
 
-<!-- =========================================================
+<!-- =====================================================
      JAVASCRIPT
-     ========================================================= -->
+     ===================================================== -->
 
 <script>
 
-    /* =====================================================
-       ALWAYS START FROM TOP
-       ===================================================== */
+    /* =================================================
+       ALWAYS START AT TOP
+       ================================================= */
 
-    if ("scrollRestoration" in history) {
-        history.scrollRestoration = "manual";
+    if (
+        "scrollRestoration"
+        in history
+    ) {
+
+        history.scrollRestoration =
+            "manual";
+
     }
 
-    if (window.location.hash) {
+
+    if (
+        window.location.hash
+    ) {
+
         history.replaceState(
             null,
             "",
             window.location.pathname +
             window.location.search
         );
+
     }
+
 
     window.addEventListener(
         "load",
         () => {
-            window.scrollTo(0, 0);
+
+            window.scrollTo(
+                0,
+                0
+            );
+
         }
     );
 
 
-    /* =====================================================
-       NAVBAR SCROLL
-       ===================================================== */
+    /* =================================================
+       NAVBAR
+       ================================================= */
 
     const navbar =
-        document.getElementById("navbar");
+        document.getElementById(
+            "navbar"
+        );
+
 
     function updateNavbar() {
 
-        if (window.scrollY > 40) {
-            navbar.classList.add("scrolled");
+        if (
+            window.scrollY > 35
+        ) {
+
+            navbar.classList.add(
+                "scrolled"
+            );
+
         } else {
-            navbar.classList.remove("scrolled");
+
+            navbar.classList.remove(
+                "scrolled"
+            );
+
         }
 
     }
 
+
     window.addEventListener(
         "scroll",
         updateNavbar,
-        { passive: true }
+        {
+            passive: true
+        }
     );
+
 
     updateNavbar();
 
 
-    /* =====================================================
+    /* =================================================
        MOUSE GLOW
-       ===================================================== */
+       ================================================= */
 
     const mouseGlow =
-        document.getElementById("mouseGlow");
+        document.getElementById(
+            "mouseGlow"
+        );
+
 
     let mouseX = 0;
     let mouseY = 0;
@@ -2182,31 +2934,47 @@
     let glowX = 0;
     let glowY = 0;
 
+
     window.addEventListener(
         "mousemove",
-        (event) => {
+        event => {
 
-            mouseX = event.clientX;
-            mouseY = event.clientY;
+            mouseX =
+                event.clientX;
 
-            mouseGlow.style.opacity = "1";
+            mouseY =
+                event.clientY;
+
+            mouseGlow.style.opacity =
+                "1";
 
         }
     );
 
+
     function animateGlow() {
 
         glowX +=
-            (mouseX - glowX) * .08;
+            (
+                mouseX -
+                glowX
+            ) * .08;
+
 
         glowY +=
-            (mouseY - glowY) * .08;
+            (
+                mouseY -
+                glowY
+            ) * .08;
+
 
         mouseGlow.style.left =
             glowX + "px";
 
+
         mouseGlow.style.top =
             glowY + "px";
+
 
         requestAnimationFrame(
             animateGlow
@@ -2214,72 +2982,98 @@
 
     }
 
+
     animateGlow();
 
 
-    /* =====================================================
-       3D SHOWCASE TILT
-       ===================================================== */
+    /* =================================================
+       LOGO TILT
+       ================================================= */
 
-    const showcase =
-        document.getElementById("showcase");
+    const logoStage =
+        document.getElementById(
+            "logoStage"
+        );
 
-    const appWindow =
-        document.getElementById("appWindow");
+
+    const mainLogo =
+        document.getElementById(
+            "mainLogo"
+        );
+
 
     const canTilt =
         window.matchMedia(
             "(hover: hover) and (pointer: fine)"
         ).matches;
 
+
     if (canTilt) {
 
-        showcase.addEventListener(
+        logoStage.addEventListener(
             "mousemove",
-            (event) => {
+            event => {
 
                 const rect =
-                    showcase.getBoundingClientRect();
+                    logoStage
+                        .getBoundingClientRect();
+
 
                 const x =
                     event.clientX -
                     rect.left;
 
+
                 const y =
                     event.clientY -
                     rect.top;
 
+
                 const centerX =
                     rect.width / 2;
+
 
                 const centerY =
                     rect.height / 2;
 
+
                 const rotateY =
-                    ((x - centerX) /
-                        centerX) * 3;
+                    (
+                        (x - centerX) /
+                        centerX
+                    ) * 4;
+
 
                 const rotateX =
-                    -((y - centerY) /
-                        centerY) * 2;
+                    -(
+                        (y - centerY) /
+                        centerY
+                    ) * 3;
 
-                appWindow.style.transform =
+
+                mainLogo.style.transform =
                     `
+                    translateZ(40px)
                     rotateX(${rotateX}deg)
                     rotateY(${rotateY}deg)
-                    translateY(-4px)
-                    scale(1.005)
+                    scale(1.025)
                     `;
 
             }
         );
 
-        showcase.addEventListener(
+
+        logoStage.addEventListener(
             "mouseleave",
             () => {
 
-                appWindow.style.transform =
-                    "rotateX(0deg) rotateY(0deg) translateY(0) scale(1)";
+                mainLogo.style.transform =
+                    `
+                    translateZ(40px)
+                    rotateX(0deg)
+                    rotateY(0deg)
+                    scale(1)
+                    `;
 
             }
         );
@@ -2287,21 +3081,22 @@
     }
 
 
-    /* =====================================================
+    /* =================================================
        SCROLL REVEAL
-       ===================================================== */
+       ================================================= */
 
     const revealElements =
         document.querySelectorAll(
             ".reveal"
         );
 
-    const revealObserver =
+
+    const observer =
         new IntersectionObserver(
-            (entries) => {
+            entries => {
 
                 entries.forEach(
-                    (entry) => {
+                    entry => {
 
                         if (
                             entry.isIntersecting
@@ -2309,12 +3104,14 @@
 
                             entry.target
                                 .classList
-                                .add("visible");
-
-                            revealObserver
-                                .unobserve(
-                                    entry.target
+                                .add(
+                                    "visible"
                                 );
+
+
+                            observer.unobserve(
+                                entry.target
+                            );
 
                         }
 
@@ -2323,14 +3120,16 @@
 
             },
             {
-                threshold: .12
+                threshold:
+                    .12
             }
         );
 
-    revealElements.forEach(
-        (element) => {
 
-            revealObserver.observe(
+    revealElements.forEach(
+        element => {
+
+            observer.observe(
                 element
             );
 
@@ -2338,21 +3137,24 @@
     );
 
 
-    /* =====================================================
+    /* =================================================
        PARTICLES
-       ===================================================== */
+       ================================================= */
 
     const canvas =
         document.getElementById(
             "particles"
         );
 
+
     const ctx =
-        canvas.getContext("2d");
+        canvas.getContext(
+            "2d"
+        );
+
 
     let particles = [];
 
-    let particleCount = 70;
 
     function resizeCanvas() {
 
@@ -2360,15 +3162,21 @@
             window.innerWidth *
             window.devicePixelRatio;
 
+
         canvas.height =
             window.innerHeight *
             window.devicePixelRatio;
 
+
         canvas.style.width =
-            window.innerWidth + "px";
+            window.innerWidth +
+            "px";
+
 
         canvas.style.height =
-            window.innerHeight + "px";
+            window.innerHeight +
+            "px";
+
 
         ctx.setTransform(
             window.devicePixelRatio,
@@ -2379,22 +3187,26 @@
             0
         );
 
-        particleCount =
-            window.innerWidth < 600
-                ? 35
-                : 70;
 
         createParticles();
 
     }
 
+
     function createParticles() {
 
         particles = [];
 
+
+        const amount =
+            window.innerWidth < 600
+                ? 28
+                : 55;
+
+
         for (
             let i = 0;
-            i < particleCount;
+            i < amount;
             i++
         ) {
 
@@ -2418,17 +3230,18 @@
 
                 opacity:
                     Math.random() *
-                    .45 + .1,
+                    .25 + .06,
 
                 drift:
                     Math.random() *
-                    .4 - .2
+                    .3 - .15
 
             });
 
         }
 
     }
+
 
     function drawParticles() {
 
@@ -2439,31 +3252,33 @@
             window.innerHeight
         );
 
+
         particles.forEach(
-            (particle) => {
+            particle => {
 
                 particle.y -=
                     particle.speed;
+
 
                 particle.x +=
                     particle.drift *
                     .08;
 
+
                 if (
-                    particle.y < -10
+                    particle.y <
+                    -10
                 ) {
 
                     particle.y =
                         window.innerHeight +
                         10;
 
-                    particle.x =
-                        Math.random() *
-                        window.innerWidth;
-
                 }
 
+
                 ctx.beginPath();
+
 
                 ctx.arc(
                     particle.x,
@@ -2473,18 +3288,23 @@
                     Math.PI * 2
                 );
 
+
                 ctx.fillStyle =
-                    `rgba(
-                        180,
-                        215,
-                        255,
+                    `
+                    rgba(
+                        75,
+                        155,
+                        225,
                         ${particle.opacity}
-                    )`;
+                    )
+                    `;
+
 
                 ctx.fill();
 
             }
         );
+
 
         requestAnimationFrame(
             drawParticles
@@ -2492,66 +3312,59 @@
 
     }
 
+
     window.addEventListener(
         "resize",
         resizeCanvas
     );
+
 
     resizeCanvas();
 
     drawParticles();
 
 
-    /* =====================================================
-       SMOOTH ANCHOR LINKS
-       ===================================================== */
+    /* =================================================
+       SMOOTH ANCHORS
+       ================================================= */
 
     document
         .querySelectorAll(
             'a[href^="#"]'
         )
         .forEach(
-            (link) => {
+            link => {
 
                 link.addEventListener(
                     "click",
-                    (event) => {
+                    event => {
 
-                        const targetId =
-                            link
-                                .getAttribute(
-                                    "href"
-                                );
+                        const id =
+                            link.getAttribute(
+                                "href"
+                            );
+
+
+                        const target =
+                            document.querySelector(
+                                id
+                            );
+
 
                         if (
-                            targetId === "#top"
+                            target
                         ) {
 
                             event.preventDefault();
 
-                            window.scrollTo({
-                                top: 0,
-                                behavior: "smooth"
-                            });
-
-                            return;
-
-                        }
-
-                        const target =
-                            document.querySelector(
-                                targetId
-                            );
-
-                        if (target) {
-
-                            event.preventDefault();
 
                             target.scrollIntoView({
                                 behavior:
                                     "smooth",
+
                                 block:
                                     "start"
+
                             });
 
                         }
